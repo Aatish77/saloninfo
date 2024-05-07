@@ -93,7 +93,7 @@
         <v-card
           style="background-color: black; color: white"
           class="mx-auto"
-          max-width="1200"
+          max-width="1500"
         >
           <v-container fluid v-if="filteredCards.length !== 0">
             <h4 class="text-center" v-if="searchText">
