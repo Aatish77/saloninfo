@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
+import rootGetters from './getters.js'
 const store = createStore({
   state() {
     return {
@@ -668,14 +669,7 @@ const store = createStore({
       ],
     };
   },
-  getters: {
-    getUsers: (state) => state.users,
-    getSalons: (state) => state.salons,
-    getAdmin: (state) => state.admin,
-    getBaseUrl: (state) => state.baseUrl,
-    getSalonsPending: (state) => state.salonsPending,
-    getServiceCategories: (state) => state.serviceCategories,
-  },
+  getters: rootGetters,
   mutations: {
     addUsers(state, payload) {
       state.users = payload;
