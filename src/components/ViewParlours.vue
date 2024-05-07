@@ -100,7 +100,7 @@
               Showing results of: {{ searchText }}
             </h4>
             <v-row class="d-flex flex-wrap gap-2" dense>
-              <v-col
+              <v-col class="a"
                 @click="navigateToEach(card.id)"
                 v-for="card in filteredCards"
                 :key="card.title"
@@ -235,6 +235,9 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2; /* number of lines to show */
   overflow: hidden;
+}
+.a :hover{
+ cursor: pointer;
 }
 .search {
   background-color: rgba(240, 248, 255, 0) !important;
