@@ -1,0 +1,188 @@
+<template>
+  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
+    <v-layout>
+      <v-app-bar
+        style="z-index: 1"
+        color="teal-darken-4"
+        image="https://4kwallpapers.com/images/walls/thumbs_3t/10974.jpg"
+      >
+        <template v-slot:image>
+          <v-img
+            gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+          ></v-img>
+        </template>
+
+        <template v-slot:prepend>
+          <i class="fas fa-cut"></i>
+        </template>
+
+        <v-app-bar-title
+          style="
+            margin-left: 2px;
+            font-size: 30px;
+            font-weight: 800;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+              'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+          "
+          >saloninfo</v-app-bar-title
+        >
+        <v-slide-y-transition class="mx-3">
+          <v-text-field
+            class="search"
+            v-model="searchText"
+            placeholder="Search"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+            hide-details
+          ></v-text-field>
+        </v-slide-y-transition>
+
+        <!-- Location Input -->
+        <!-- <v-slide-y-transition class="mx-3 mt-3">
+    <v-text-field
+      v-model="location"
+      placeholder="Enter your location"
+      prepend-inner-icon="mdi-map-marker"
+      solo-inverted
+      hide-details
+      @input="fetchNearbySalons"
+    ></v-text-field>
+  </v-slide-y-transition> -->
+        <v-spacer></v-spacer>
+        <!-- <v-card class="mx-auto" width="200">
+          <v-list v-model:opened="open">
+            <v-list-group value="Users">
+              <template v-slot:activator="{ props }">
+                <v-list-item
+                  v-bind="props"
+                    prepend-icon="mdi-account-circle"
+                  title="Users"
+                ></v-list-item>
+              </template>
+              <v-list-item
+                style="z-index: 100 !important"
+                prepend-icon="mdi-home"
+                title="Home"
+              ></v-list-item>
+            </v-list-group>
+          </v-list>
+        </v-card> -->
+        <!-- <v-select 
+  :items="['Logout']"
+  v-model="selectedItem"
+>
+  <template #label>
+    <div style="display: flex; align-items: center;">
+      <h4 style="margin-left:80px; margin-right: 10px; margin-top: 15px;">{{currentUser.fullName}} </h4>
+      
+      <v-avatar style="margin-top: 5px;">
+        <v-img src="https://img.freepik.com/free-photo/close-portrait-man-with-beard-all-face-snow-snowy-forest_343596-4609.jpg?w=996&t=st=1714026882~exp=1714027482~hmac=123975867a0075aee012ece59b12d3eabfa90f2e848983aec784d0d7750d3c7e"></v-img>
+      </v-avatar>
+    </div>
+  </template>
+</v-select> -->
+
+        <!-- Search bar -->
+
+        <!-- <h6 class="user mx-2">Hi, {{ currentUser.fullName }}</h6> -->
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      </v-app-bar>
+
+      <v-main style="background-color: black">
+        <v-container class="d-flex justify-center align-center" fluid style="height: 80px;" >
+         
+          <v-radio-group v-model="switchLabel" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
+      <v-radio label="Men" value="Men" color="primary"></v-radio>
+      <v-radio label="Women" value="Women" color="red"></v-radio>
+    </v-radio-group>
+        </v-container>
+
+        <v-card
+          style="background-color: black; color: white"
+          class="mx-auto"
+          max-width="1200"
+        >
+          <v-container fluid>
+            <v-row v-if="switchLabel==='Men'">
+              <v-col v-for="card in services.men" :key="card">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+                  <v-img height="200px" :src="card.img" cover></v-img>
+
+                  <v-card-title>
+                    {{ card.title }}
+                  </v-card-title>
+                </v-card>
+              </v-col>
+              
+            </v-row>
+            <v-row v-else>
+              <v-col v-for="card in services.women" :key="card">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+                  <v-img height="200px" :src="card.img" cover></v-img>
+
+                  <v-card-title>
+                    {{ card.title }}
+                  </v-card-title>
+                </v-card>
+              </v-col>
+              
+            </v-row>
+
+            
+          </v-container>
+        </v-card>
+      </v-main>
+    </v-layout>
+  </v-card>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      drawer: null,
+      switchValue: "Men",
+      switchLabel: "Men",
+      switchColor: "blue",
+    };
+  },
+  created(){
+    if(this.currentLabel){
+
+      this.switchLabel=this.currentLabel.label
+      // if(this.switchLabel==='Women'){
+      //   this.switchValue=false
+      // }
+    }
+  },
+  methods: {
+    navigateToEach(title,label){
+        const t={title:title,label:label}
+        sessionStorage.setItem("currentLabel",JSON.stringify(t))
+        this.$router.push("/eachservice")
+    },
+    handleSwitchChange() {
+    console.log(this.switchLabel) 
+      
+    },
+  },
+  computed: {
+    currentLabel(){
+        const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"))
+        return currentLabel
+      },
+    services() {
+      return this.$store.getters["getServiceCategories"];
+    },
+  },
+};
+</script>
+<style scoped>
+body {
+  background-color: black;
+  color: white;
+}
+.card1 {
+  color: white;
+  background-color: rgb(41, 41, 41);
+}
+</style>
