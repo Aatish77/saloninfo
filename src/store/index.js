@@ -180,6 +180,20 @@ const store = createStore({
                   }
                 ],
               },
+              {
+                title: "Facial Treatment",
+                subsubCategories: [
+                  { title: "Classic facial", 
+                    img:"https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp"
+                   },
+                  {title: "Microneedling facial",
+                   img: "https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg" },
+                  {title: "Brightening facial",
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU"
+                  },
+                 
+                ],
+              }
             ],
           },
           {
@@ -431,9 +445,15 @@ const store = createStore({
                 { name: "Sunil", img: "sunil.jpg" },
               ],
               subsubCategories: [
-                { title: "Classic facial", price: 150 },
-                {title: "Microneedling facial", price: 200 },
-                {title: "Brightening facial", price: 250 },
+                { title: "Classic facial", 
+                  price: 150 ,
+                  img:"https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp"},
+                {title: "Microneedling facial",
+                 price: 200,
+                 img:"https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg" },
+                {title: "Brightening facial",
+                 price: 250,
+                 img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU" },
                
               ],
             },
