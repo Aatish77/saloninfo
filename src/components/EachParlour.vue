@@ -214,12 +214,12 @@
 
                   <v-card-actions class="pt">
                     <div>
-                    <v-btn class="btn1" @click="addToCart(i)">
+                    <v-btn class="btn1" @click="addToCart(i,service.title)">
   <template v-if="!i.quantity">Add to Cart</template>
   <template v-else>
-    <v-btn class="btn2 mr-2" @click="decreaseQuantity(i)"><v-icon>mdi-minus</v-icon></v-btn>
+    <v-btn class="btn2 mr-2" @click="decreaseQuantity(i,service.title)"><v-icon>mdi-minus</v-icon></v-btn>
     <span>{{ i.quantity }}</span>
-    <v-btn class="btn2 ml-2" @click="increaseQuantity(i)"><v-icon>mdi-plus</v-icon></v-btn>
+    <v-btn class="btn2 ml-2" @click="increaseQuantity(i,service.title)"><v-icon>mdi-plus</v-icon></v-btn>
   </template>
 </v-btn></div><div>
                     </div>
@@ -436,12 +436,15 @@ export default {
     removeFromCart(index) {
     this.cart.splice(index, 1);
   },
-  addToCart(item) {
+  addToCart(item,serTitle) {
       // Check if the item is already in the cart
       let existingItem = this.cart.find(cartItem => cartItem.title === item.title);
       
        if(!existingItem){
         // If item doesn't exist, add it with quantity 1
+        if(serTitle){
+          item.serTitle=serTitle
+        }
         item.quantity = 1;  
         this.cart.push(item);
       }
