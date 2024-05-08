@@ -109,7 +109,7 @@
                     
                     <h1>{{ item.title }}</h1></v-row> 
             <v-row><v-col v-for="i in item.subsubCategories" :key="i">
-                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(datas.title,item.title,switchLabel)">
                   <v-img height="200px" :src="i.img" cover></v-img>
 
                   <v-card-title>
@@ -141,6 +141,13 @@ export default {
             this.datas=i
         }
     }}
+  },
+  methods:{
+    navigateToEach(title,label){
+        const t={title:title,label:label}
+        sessionStorage.setItem("currentLabel",JSON.stringify(t))
+        this.$router.push("/serviceparlour")
+    },
   },
   computed: {
     currentService(){
