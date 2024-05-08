@@ -369,7 +369,7 @@ const store = createStore({
             {
               category: "Hair Cut and Style",
               title: "Hair Cutting",
-              subCategory:' Hair Cut',
+              subCategory:'Hair Cut',
               desc: "Transform your look with a fresh haircut! Our expert stylists are here to give you a trendy and personalized haircut that complements your face shape and style.",
               img: require("@/assets/servicewomen1.jpg"),
               price: "300",
@@ -424,7 +424,8 @@ const store = createStore({
               ],
             },
             {
-              category: "Hair Treatement",
+              category: "Hair Treatements",
+              subCategory:"Hair Color",
               title: "Hair Colour",
               desc: "Change up your style with a vibrant hair colour! Consult our hairstylists to find the perfect shade that suits your skin tone and personality.",
               img: require("@/assets/servicewomen3.png"),

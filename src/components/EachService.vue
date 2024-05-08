@@ -109,7 +109,7 @@
                     
                     <h1>{{ item.title }}</h1></v-row> 
             <v-row><v-col v-for="i in item.subsubCategories" :key="i">
-                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(datas.title,item.title,switchLabel)">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(datas.title,item.title,i.title,currentLabel.label)">
                   <v-img height="200px" :src="i.img" cover></v-img>
 
                   <v-card-title>
@@ -133,18 +133,19 @@ export default {
   created() {
     this.items = [
       { title: this.currentLabel.label, href: "/services" },
-      { title: this.currentLabel.title },
+      { title: this.currentLabel.category },
     ];
     if(this.currentLabel.label==="Women"){
     for (let i of this.currentService.women){
-        if(i.title===this.currentLabel.title){
+        if(i.title===this.currentLabel.category){
             this.datas=i
         }
-    }}
+    }
+  }
   },
   methods:{
-    navigateToEach(title,label){
-        const t={title:title,label:label}
+    navigateToEach(category,subCategory,subsubCategory,label){
+        const t={category:category,subCategory:subCategory,subsubCategory:subsubCategory,label:label}
         sessionStorage.setItem("currentLabel",JSON.stringify(t))
         this.$router.push("/serviceparlour")
     },

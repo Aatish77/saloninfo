@@ -156,7 +156,7 @@ export default {
   },
   methods: {
     navigateToEach(title,label){
-        const t={title:title,label:label}
+        const t={category:title,label:label}
         sessionStorage.setItem("currentLabel",JSON.stringify(t))
         this.$router.push("/eachservice")
     },

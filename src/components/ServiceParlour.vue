@@ -267,7 +267,7 @@ export default {
     }
   },
     created(){
-      this.items=[{title:this.currentLabel.label,href:"/services"},{title:this.currentLabel.title}]
+      this.items=[{title:this.currentLabel.label,href:"/services"},{title:this.currentLabel.category}]
         console.log(this.currentLabel)
     },
     computed:{
@@ -284,7 +284,7 @@ export default {
         return card.type === this.currentLabel.label && this.servicesMatchCategory(card.services);
       }).map(card => {
         // Modify the filtered cards to include service information
-        const service = card.services.find(service => service.category === this.currentLabel.title);
+        const service = card.services.find(service => service.category === this.currentLabel.category);
         return {
           ...card,
           serviceTitle: service ? service.title : '',
@@ -300,7 +300,7 @@ export default {
       },
       servicesMatchCategory(services) {
       // Check if any service's category matches the currentLabel.title
-      return services.some(service => service.category === this.currentLabel.title);
+      return services.some(service => service.category === this.currentLabel.category);
     }
   }
     
