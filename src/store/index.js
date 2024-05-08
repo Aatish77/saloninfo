@@ -103,7 +103,20 @@ const store = createStore({
                    },
                 ],
               },
-              { title: "Hair Spa" },
+              { title: "Hair Spa",
+              subsubCategories: [
+                {
+                  title: "Hair Spa for Dandruff",
+                  img: "https://images.ctfassets.net/j6utfne5ne6b/6Po3SGwFr3EavCo2tsLHof/02ffbb38a654de5e33438218a5baed74/Woman_getting_a_hair_spa.jpg?fm=webp&q=70",
+                },
+                { title: "Hair Spa for Oily Hair & Scalp",
+                  img:"https://im.idiva.com/content/2023/Mar/1---2023-03-17T140443594_6414262fcbc11.png?w=900&h=675&cc=1",
+                 },
+                { title: " Hair Spa Treatment for Coloured Hair",
+                  img:"https://www.bodycraft.co.in/wp-content/uploads/woman-washing-head-hairsalon-1-scaled.jpg"
+                 },
+              ],
+               },
             ],
           },
           
