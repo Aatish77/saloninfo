@@ -1,8 +1,8 @@
 import { createStore } from "vuex";
 
-import rootGetters from './getters.js'
-import rootMutations from './mutations.js'
-import rootActions from './actions.js'
+import rootGetters from "./getters.js";
+import rootMutations from "./mutations.js";
+import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
@@ -95,32 +95,19 @@ const store = createStore({
                     title: "Straight Cut",
                     img: "https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg",
                   },
-                  { title: "U cut",
-                    img:"https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
-                   },
-                  { title: "V  cut",
-                    img:"https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg"
-                   },
+                  {
+                    title: "U cut",
+                    img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
+                  },
+                  {
+                    title: "V  cut",
+                    img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
+                  },
                 ],
               },
-              { title: "Hair Spa",
-              subsubCategories: [
-                {
-                  title: "Hair Spa for Dandruff",
-                  img: "https://images.ctfassets.net/j6utfne5ne6b/6Po3SGwFr3EavCo2tsLHof/02ffbb38a654de5e33438218a5baed74/Woman_getting_a_hair_spa.jpg?fm=webp&q=70",
-                },
-                { title: "Hair Spa for Oily Hair & Scalp",
-                  img:"https://im.idiva.com/content/2023/Mar/1---2023-03-17T140443594_6414262fcbc11.png?w=900&h=675&cc=1",
-                 },
-                { title: " Hair Spa Treatment for Coloured Hair",
-                  img:"https://www.bodycraft.co.in/wp-content/uploads/woman-washing-head-hairsalon-1-scaled.jpg"
-                 },
-              ],
-               },
             ],
           },
-          
-          
+
           {
             title: "Mani and Pedi Hygiene",
             img: "https://media.self.com/photos/57d8938724fe9dae32831885/4:3/w_1920,c_limit/nail-salon-hygiene_feat.jpg",
@@ -128,35 +115,67 @@ const store = createStore({
           {
             title: "Spa and Massage",
             img: "https://5.imimg.com/data5/QM/SA/MY-11130624/hair-spa-services-for-women-and-men-1000x1000.jpg",
+            subCategories: [
+              {
+                title: "Hair Spa",
+                subsubCategories: [
+                  {
+                    title: "Hair Spa for Dandruff",
+                    img: "https://images.ctfassets.net/j6utfne5ne6b/6Po3SGwFr3EavCo2tsLHof/02ffbb38a654de5e33438218a5baed74/Woman_getting_a_hair_spa.jpg?fm=webp&q=70",
+                  },
+                  {
+                    title: "Hair Spa for Oily Hair & Scalp",
+                    img: "https://im.idiva.com/content/2023/Mar/1---2023-03-17T140443594_6414262fcbc11.png?w=900&h=675&cc=1",
+                  },
+                  {
+                    title: " Hair Spa Treatment for Coloured Hair",
+                    img: "https://www.bodycraft.co.in/wp-content/uploads/woman-washing-head-hairsalon-1-scaled.jpg",
+                  },
+                ],
+              },
+            ],
           },
           {
             title: "Hair Treatments",
             img: "https://naturals.in/wp-content/uploads/2022/04/hc-2.jpg",
-            subCategories:[{
-              title: "Hair Color",
-              img: "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kaousa/www-johnfrieda-com/uk/en/blog-images/Happy%20woman%20smiling%20at%20her%20hairdresser%20.jpg?fmt=jpeg&qlt=85&wid=2000",
-              subsubCategories: [
-                { title: "Blonde", 
-                  img:"https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1" },
-                {title: "Brown",
-                 img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg" },
-                {title: "black",
-                 img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg" },
-               
-              ],
-            },
-            {
-              title: "Hair Chemical",
-              img: "https://c.ndtvimg.com/2022-10/b5oj98hg_new-study-says-hairstraightening-products-linked-with-risk-of-uterine-cancer_625x300_19_October_22.jpg",
-              subsubCategories:[
-                { title: "Keratin Hair Treatment", 
-                  img:"https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg" },
-                {title: "Protein Hair Treatment.",
-                 img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg" },
-                {title: "Scalp Treatment", 
-                 img:"https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg" },
-              ]
-            },]
+            subCategories: [
+              {
+                title: "Hair Color",
+                img: "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kaousa/www-johnfrieda-com/uk/en/blog-images/Happy%20woman%20smiling%20at%20her%20hairdresser%20.jpg?fmt=jpeg&qlt=85&wid=2000",
+                subsubCategories: [
+                  {
+                    title: "Blonde",
+                    img: "https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1",
+                  },
+                  {
+                    title: "Brown",
+                    img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg",
+                  },
+                  {
+                    title: "black",
+                    img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
+                  },
+                ],
+              },
+              {
+                title: "Hair Chemical",
+                img: "https://c.ndtvimg.com/2022-10/b5oj98hg_new-study-says-hairstraightening-products-linked-with-risk-of-uterine-cancer_625x300_19_October_22.jpg",
+                subsubCategories: [
+                  {
+                    title: "Keratin Hair Treatment",
+                    img: "https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg",
+                  },
+                  {
+                    title: "Protein Hair Treatment.",
+                    img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg",
+                  },
+                  {
+                    title: "Scalp Treatment",
+                    img: "https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg",
+                  },
+                ],
+              },
+            ],
           },
           {
             title: "Skin Care",
@@ -187,26 +206,30 @@ const store = createStore({
                   {
                     title: "Full Arms",
                     img: "https://fabulicious.ae/wp-content/uploads/2022/04/full-arm-wax.jpg",
-                  },{
-                    title:"Half Arms",
-                    img:"https://atthemarc.com/media/Half-Arm-Wax-1.jpg"
-                  }
+                  },
+                  {
+                    title: "Half Arms",
+                    img: "https://atthemarc.com/media/Half-Arm-Wax-1.jpg",
+                  },
                 ],
               },
               {
                 title: "Facial Treatment",
                 subsubCategories: [
-                  { title: "Classic facial", 
-                    img:"https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp"
-                   },
-                  {title: "Microneedling facial",
-                   img: "https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg" },
-                  {title: "Brightening facial",
-                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU"
+                  {
+                    title: "Classic facial",
+                    img: "https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp",
                   },
-                 
+                  {
+                    title: "Microneedling facial",
+                    img: "https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg",
+                  },
+                  {
+                    title: "Brightening facial",
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU",
+                  },
                 ],
-              }
+              },
             ],
           },
           {
@@ -369,7 +392,7 @@ const store = createStore({
             {
               category: "Hair Cut and Style",
               title: "Hair Cutting",
-              subCategory:'Hair Cut',
+              subCategory: "Hair Cut",
               desc: "Transform your look with a fresh haircut! Our expert stylists are here to give you a trendy and personalized haircut that complements your face shape and style.",
               img: require("@/assets/servicewomen1.jpg"),
               price: "300",
@@ -388,21 +411,26 @@ const store = createStore({
                 },
               ],
               subsubCategories: [
-                { title: "Straight Cut", 
+                {
+                  title: "Straight Cut",
                   price: 150,
-                  img:"https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg" },
-                {title: "U cut",
-                 price: 200,
-                 img:"https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg" },
-                {title: "V cut", 
-                 price: 250,
-                 img:"https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg" },
-               
+                  img: "https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg",
+                },
+                {
+                  title: "U cut",
+                  price: 200,
+                  img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
+                },
+                {
+                  title: "V cut",
+                  price: 250,
+                  img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
+                },
               ],
             },
             {
               title: "Hair Chemical",
-              subCategory:"Hair Chemical",
+              subCategory: "Hair Chemical",
               category: "Hair Treatments",
               desc: "Revitalize your hair with our professional hair treatments. We use top-quality products to nourish and repair your hair, leaving it silky, shiny, and healthy.",
               img: require("@/assets/servicewomen2.png"),
@@ -412,21 +440,26 @@ const store = createStore({
                 { name: "Vikram", img: "vikram.jpg" },
               ],
               subsubCategories: [
-                { title: "Keratin Hair Treatment", 
+                {
+                  title: "Keratin Hair Treatment",
                   price: 150,
-                  img:"https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg" },
-                {title: "Protein Hair Treatment.",
-                 price: 200,
-                 img:"https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg" },
-                {title: "Scalp Treatment",
-                 price: 250,
-                 img:"https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg" },
-               
+                  img: "https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg",
+                },
+                {
+                  title: "Protein Hair Treatment.",
+                  price: 200,
+                  img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg",
+                },
+                {
+                  title: "Scalp Treatment",
+                  price: 250,
+                  img: "https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg",
+                },
               ],
             },
             {
               category: "Hair Treatements",
-              subCategory:"Hair Color",
+              subCategory: "Hair Color",
               title: "Hair Colour",
               desc: "Change up your style with a vibrant hair colour! Consult our hairstylists to find the perfect shade that suits your skin tone and personality.",
               img: require("@/assets/servicewomen3.png"),
@@ -437,16 +470,21 @@ const store = createStore({
                 { name: "Prakash", img: "prakash.jpg" },
               ],
               subsubCategories: [
-                { title: "Blonde",
-                 price: 150,
-                 img:"https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1" },
-                {title: "Brown", 
-                 price: 200,
-                 img:"https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg" },
-                {title: "black",
-                 price: 250,
-                 img:"https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg" },
-               
+                {
+                  title: "Blonde",
+                  price: 150,
+                  img: "https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1",
+                },
+                {
+                  title: "Brown",
+                  price: 200,
+                  img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg",
+                },
+                {
+                  title: "black",
+                  price: 250,
+                  img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
+                },
               ],
             },
             {
@@ -460,16 +498,21 @@ const store = createStore({
                 { name: "Sunil", img: "sunil.jpg" },
               ],
               subsubCategories: [
-                { title: "Classic facial", 
-                  price: 150 ,
-                  img:"https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp"},
-                {title: "Microneedling facial",
-                 price: 200,
-                 img:"https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg" },
-                {title: "Brightening facial",
-                 price: 250,
-                 img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU" },
-               
+                {
+                  title: "Classic facial",
+                  price: 150,
+                  img: "https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp",
+                },
+                {
+                  title: "Microneedling facial",
+                  price: 200,
+                  img: "https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg",
+                },
+                {
+                  title: "Brightening facial",
+                  price: 250,
+                  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU",
+                },
               ],
             },
           ],

@@ -267,7 +267,7 @@ export default {
     }
   },
     created(){
-      this.items=[{title:this.currentLabel.label,href:"/services"},{title:this.currentLabel.category}]
+      this.items=[{title:this.currentLabel.label,href:"/services"},{title:this.currentLabel.category,href:"/eachservice"},{title:this.currentLabel.subCategory,href:"/eachservice"},{title:this.currentLabel.subsubCategory}]
         console.log(this.currentLabel)
     },
     computed:{
@@ -278,7 +278,7 @@ export default {
         cards() {
       return this.$store.getters["getSalons"];
     },
-    filteredCards() {
+    filteredCards() { 
       return this.cards.filter(card => {
         // Filter cards based on type and services category
         return card.type === this.currentLabel.label && this.servicesMatchCategory(card.services);
