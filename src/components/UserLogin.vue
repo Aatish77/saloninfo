@@ -45,7 +45,7 @@
             </v-col>
             <v-form @submit.prevent="submitLogin" ref="form">
               <v-col style="width: 350px">
-                <v-sheet class="mx-auto login">
+                <v-sheet class="mx-auto login" width="200">
                   <h2 class="title text-center">Login</h2>
 
                   <v-text-field

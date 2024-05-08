@@ -104,8 +104,8 @@
           <v-container fluid v-for="item in datas.subCategories" :key="item">
              <v-row >
                 
-                    <v-avatar image="smirk.png" size="100"><v-img
-                    :src="item.img"></v-img></v-avatar>
+                    <!-- <v-avatar image="smirk.png" size="100"><v-img
+                    :src="item.img"></v-img></v-avatar> -->
                     
                     <h1>{{ item.title }}</h1></v-row> 
             <v-row><v-col v-for="i in item.subsubCategories" :key="i">
