@@ -113,17 +113,17 @@
 
                 <v-container
                   style="background-color: black !important; color: white">
-                <v-btn class="btn1" @click="addToCart(service)">
+                <!-- <v-btn class="btn1" @click="addToCart(service)">
   <template v-if="!service.quantity">Add to Cart</template>
   <template v-else>
     <v-btn class="btn2 mr-2" @click="decreaseQuantity(service)">-</v-btn>
     <span>{{ service.quantity }}</span>
     <v-btn class="btn2 ml-2" @click="increaseQuantity(service)">+</v-btn>
   </template>
-</v-btn>
-                <v-btn class="btn1" @click="toggleBookser(index)">
+</v-btn> -->
+                <!-- <v-btn class="btn1" @click="toggleBookser(index)">
                     Book an Appointment
-                  </v-btn>
+                  </v-btn> -->
                   <v-btn class="btn1" @click="currentService=service"><v-icon>mdi-arrow-down</v-icon></v-btn>
                   
 
@@ -161,17 +161,17 @@
                   {{ service.desc }}
                 </p>
                 <v-container>
-                  <v-btn class="btn1" @click="addToCart(service)">
+                  <!-- <v-btn class="btn1" @click="addToCart(service)">
   <template v-if="!service.quantity">Add to Cart</template>
   <template v-else>
     <v-btn class="btn2 mr-2" @click="decreaseQuantity(service)">-</v-btn>
     <span>{{ service.quantity }}</span>
     <v-btn class="btn2 ml-2" @click="increaseQuantity(service)">+</v-btn>
   </template>
-</v-btn>
-                  <v-btn class="btn1" @click="toggleBookser(index)">
-                    Book an Appointment
-                  </v-btn>
+</v-btn> -->
+                    <!-- <v-btn class="btn1" @click="toggleBookser(index)">
+                      Book an Appointment
+                    </v-btn> -->
                   <v-btn class="btn1" @click="cur(service)"><v-icon>mdi-arrow-down</v-icon></v-btn>
                   
                   <v-dialog v-model="dialogSer" max-width="500px">
@@ -191,21 +191,39 @@
                 </v-container>
               </v-col>
               <v-row v-if="currentService===service"><v-col v-for="i in currentService.subsubCategories" :key="i">
-                <v-card class="mx-auto card1" max-width="344" height="250px"  >
-                  <v-img height="200px" :src="i.img" cover></v-img>
-                  <v-card-title>
-                    {{ i.title }}
-                  </v-card-title>
-                  <v-card-subtitle>{{ i.price }}</v-card-subtitle>
-                  <v-btn class="btn1" @click="addToCart(i)">
+                <v-card class="mx-auto card1" max-width="344" height="330px"  >
+                
+                  <v-img
+                    style="border-radius: 5px"
+                    class="align-end text-white "
+                    height="200"
+                    :src="i.img"
+                    cover
+                  >
+                   
+                  </v-img>
+                  <v-card-title>{{i.title }}</v-card-title>
+                  <v-card-subtitle class="">
+                    Price:
+                    <span 
+                      >₹ {{ i.price }}</span
+                    >
+                  </v-card-subtitle>
+
+                  
+
+                  <v-card-actions class="pt">
+                    <div>
+                    <v-btn class="btn1" @click="addToCart(i,service.title)">
   <template v-if="!i.quantity">Add to Cart</template>
   <template v-else>
-    <v-btn class="btn2 mr-2" @click="decreaseQuantity(i)">-</v-btn>
-    <span>{{ service.quantity }}</span>
-    <v-btn class="btn2 ml-2" @click="increaseQuantity(i)">+</v-btn>
+    <v-btn class="btn2 mr-2" @click="decreaseQuantity(i,service.title)"><v-icon>mdi-minus</v-icon></v-btn>
+    <span>{{ i.quantity }}</span>
+    <v-btn class="btn2 ml-2" @click="increaseQuantity(i,service.title)"><v-icon>mdi-plus</v-icon></v-btn>
   </template>
-</v-btn>
-                </v-card>
+</v-btn></div><div>
+                    </div>
+                  </v-card-actions></v-card>
 
 
             </v-col></v-row>
@@ -418,13 +436,16 @@ export default {
     removeFromCart(index) {
     this.cart.splice(index, 1);
   },
-  addToCart(item) {
+  addToCart(item,serTitle) {
       // Check if the item is already in the cart
       let existingItem = this.cart.find(cartItem => cartItem.title === item.title);
       
        if(!existingItem){
         // If item doesn't exist, add it with quantity 1
-        item.quantity = 1;
+        if(serTitle){
+          item.serTitle=serTitle
+        }
+        item.quantity = 1;  
         this.cart.push(item);
       }
     },
@@ -476,17 +497,11 @@ export default {
 .btn2{
   color:white;
   margin-left:2px;
-  background-color: rgba(0, 0, 0, 0);
+
   font-size: 20px;
 
 }
-.btn1 {
-  color: white;
-  visibility: hidden;
-}
-.book:hover .btn1 {
-  visibility: visible;
-}
+
 .book:hover .slideshow {
   width: 100%;
   height: 770px;
@@ -511,7 +526,12 @@ h1 {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .card1 {
+  margin-top:10px;
   color: white;
+  background-color: rgb(41, 41, 41);
+}
+.card2{
+  color:white;
   background-color: rgb(41, 41, 41);
 }
 .hc1 {
@@ -532,7 +552,7 @@ p {
   margin-right: 30px;
 }
 .btn1 {
-  background-color: rgb(111, 105, 105);
+  
   margin-left: 10px;
 }
 
@@ -554,5 +574,18 @@ p {
 
 .pt {
   margin-top: -15px;
+}
+.pt {
+  margin-top: 3px;
+}
+.btn2{
+  color:white;
+  margin-left:2px;
+  background-color: rgb(0, 0, 0);
+  font-size: 20px;
+
+}.btn1 {
+  color: white;
+  background-color: rgb(0, 0, 0);
 }
 </style>
