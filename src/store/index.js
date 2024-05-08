@@ -95,21 +95,19 @@ const store = createStore({
                     title: "Straight Cut",
                     img: "https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg",
                   },
-                  { title: "U cut" },
-                  { title: "V  cut" },
+                  { title: "U cut",
+                    img:"https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
+                   },
+                  { title: "V  cut",
+                    img:"https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg"
+                   },
                 ],
               },
               { title: "Hair Spa" },
             ],
           },
-          {
-            title: "Hair Color",
-            img: "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kaousa/www-johnfrieda-com/uk/en/blog-images/Happy%20woman%20smiling%20at%20her%20hairdresser%20.jpg?fmt=jpeg&qlt=85&wid=2000",
-          },
-          {
-            title: "Hair Chemical",
-            img: "https://c.ndtvimg.com/2022-10/b5oj98hg_new-study-says-hairstraightening-products-linked-with-risk-of-uterine-cancer_625x300_19_October_22.jpg",
-          },
+          
+          
           {
             title: "Mani and Pedi Hygiene",
             img: "https://media.self.com/photos/57d8938724fe9dae32831885/4:3/w_1920,c_limit/nail-salon-hygiene_feat.jpg",
@@ -121,6 +119,31 @@ const store = createStore({
           {
             title: "Hair Treatments",
             img: "https://naturals.in/wp-content/uploads/2022/04/hc-2.jpg",
+            subCategories:[{
+              title: "Hair Color",
+              img: "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kaousa/www-johnfrieda-com/uk/en/blog-images/Happy%20woman%20smiling%20at%20her%20hairdresser%20.jpg?fmt=jpeg&qlt=85&wid=2000",
+              subsubCategories: [
+                { title: "Blonde", 
+                  img:"https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1" },
+                {title: "Brown",
+                 img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg" },
+                {title: "black",
+                 img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg" },
+               
+              ],
+            },
+            {
+              title: "Hair Chemical",
+              img: "https://c.ndtvimg.com/2022-10/b5oj98hg_new-study-says-hairstraightening-products-linked-with-risk-of-uterine-cancer_625x300_19_October_22.jpg",
+              subsubCategories:[
+                { title: "Keratin Hair Treatment", 
+                  img:"https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg" },
+                {title: "Protein Hair Treatment.",
+                 img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg" },
+                {title: "Scalp Treatment", 
+                 img:"https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg" },
+              ]
+            },]
           },
           {
             title: "Skin Care",
@@ -319,6 +342,7 @@ const store = createStore({
             {
               category: "Hair Cut and Style",
               title: "Hair Cutting",
+              subCategory:' Hair Cut',
               desc: "Transform your look with a fresh haircut! Our expert stylists are here to give you a trendy and personalized haircut that complements your face shape and style.",
               img: require("@/assets/servicewomen1.jpg"),
               price: "300",
@@ -336,15 +360,21 @@ const store = createStore({
                   img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
                 },
               ],
-              subServices: [
-                { name: "Hair Cutting", price: 150 },
-                { name: "Head Massage", price: 200 },
-                { name: "Hair Coloring", price: 250 },
-                { name: "Hair Styling", price: 180 },
+              subsubCategories: [
+                { title: "Straight Cut", 
+                  price: 150,
+                  img:"https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg" },
+                {title: "U cut",
+                 price: 200,
+                 img:"https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg" },
+                {title: "V cut", 
+                 price: 250,
+                 img:"https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg" },
+               
               ],
             },
             {
-              title: "Hair Treatment",
+              title: "Hair Chemcial",
               category: "Hair Treatment",
               desc: "Revitalize your hair with our professional hair treatments. We use top-quality products to nourish and repair your hair, leaving it silky, shiny, and healthy.",
               img: require("@/assets/servicewomen2.png"),
@@ -353,9 +383,21 @@ const store = createStore({
                 { name: "Amit", img: "amit.jpg" },
                 { name: "Vikram", img: "vikram.jpg" },
               ],
+              subsubCategories: [
+                { title: "Keratin Hair Treatment", 
+                  price: 150,
+                  img:"https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg" },
+                {title: "Protein Hair Treatment.",
+                 price: 200,
+                 img:"https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg" },
+                {title: "Scalp Treatment",
+                 price: 250,
+                 img:"https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg" },
+               
+              ],
             },
             {
-              category: "Hair Color",
+              category: "Hair Treatement",
               title: "Hair Colour",
               desc: "Change up your style with a vibrant hair colour! Consult our hairstylists to find the perfect shade that suits your skin tone and personality.",
               img: require("@/assets/servicewomen3.png"),
@@ -364,6 +406,18 @@ const store = createStore({
                 { name: "Arjun", img: "arjun.jpg" },
                 { name: "Kiran", img: "kiran.jpg" },
                 { name: "Prakash", img: "prakash.jpg" },
+              ],
+              subsubCategories: [
+                { title: "Blonde",
+                 price: 150,
+                 img:"https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1" },
+                {title: "Brown", 
+                 price: 200,
+                 img:"https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg" },
+                {title: "black",
+                 price: 250,
+                 img:"https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg" },
+               
               ],
             },
             {
@@ -375,6 +429,12 @@ const store = createStore({
               employees: [
                 { name: "Rakesh", img: "rakesh.jpg" },
                 { name: "Sunil", img: "sunil.jpg" },
+              ],
+              subsubCategories: [
+                { title: "Classic facial", price: 150 },
+                {title: "Microneedling facial", price: 200 },
+                {title: "Brightening facial", price: 250 },
+               
               ],
             },
           ],
