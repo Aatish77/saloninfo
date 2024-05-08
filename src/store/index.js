@@ -401,8 +401,9 @@ const store = createStore({
               ],
             },
             {
-              title: "Hair Chemcial",
-              category: "Hair Treatment",
+              title: "Hair Chemical",
+              subCategory:"Hair Chemical",
+              category: "Hair Treatments",
               desc: "Revitalize your hair with our professional hair treatments. We use top-quality products to nourish and repair your hair, leaving it silky, shiny, and healthy.",
               img: require("@/assets/servicewomen2.png"),
               price: "500",
