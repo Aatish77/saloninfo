@@ -104,7 +104,7 @@
             </v-row>
             <h1 class="mt-3">Services</h1>
             <v-row class="book" v-for="(service, index) in card.services" :key="service">
-              <v-col :cols="12" md="6" v-if="index % 2 === 0">
+              <v-col :cols="6" md="6" v-if="index % 2 === 0">
                 <v-img
                   class="round-img square-image"
                   :src="service.img"
@@ -113,15 +113,14 @@
                 >
                 </v-img>
               </v-col>
-              <v-col :cols="12" md="6" v-else>
+              <v-col :cols="6" md="6" v-else>
                 <h1 class="hc1">{{ service.title }}</h1>
                 <p class="pc">
                   {{ service.desc }}
                 </p>
 
                 <v-container
-                  style="background-color: black !important; color: white"
-                >
+                  style="background-color: black !important; color: white">
                 <v-btn class="btn1" @click="addToCart(service)">
   <template v-if="!service.quantity">Add to Cart</template>
   <template v-else>
@@ -133,6 +132,26 @@
                 <v-btn class="btn1" @click="toggleBookser(index)">
                     Book an Appointment
                   </v-btn>
+                  <v-btn class="btn1" @click="currentService=service"><v-icon>mdi-arrow-down</v-icon></v-btn>
+                  <v-row v-if="currentService"><v-col v-for="i in currentService.subsubCategories" :key="i">
+                <v-card class="mx-auto card1" max-width="344" height="250px">
+                  <v-img height="200px" :src="i.img" cover></v-img>
+                  <v-card-title>
+                    {{ i.title }}
+                  </v-card-title>
+                  <v-card-subtitle>{{ i.price }}</v-card-subtitle>
+                  <v-btn class="btn1" @click="addToCart(i)">
+  <template v-if="!service.quantity">Add to Cart</template>
+  <template v-else>
+    <v-btn class="btn2 mr-2" @click="decreaseQuantity(i)">-</v-btn>
+    <span>{{ service.quantity }}</span>
+    <v-btn class="btn2 ml-2" @click="increaseQuantity(i)">+</v-btn>
+  </template>
+</v-btn>
+                </v-card>
+
+
+            </v-col></v-row>
                   <v-dialog v-model="dialogSer" max-width="500px">
                     <v-card>
                       <v-card-title> Book an Appointment </v-card-title>
@@ -175,6 +194,7 @@
                   <v-btn class="btn1" @click="toggleBookser(index)">
                     Book an Appointment
                   </v-btn>
+                  <v-btn class="btn1" @click="currentService=service"><v-icon>mdi-arrow-down</v-icon></v-btn>
                   
                   <v-dialog v-model="dialogSer" max-width="500px">
                     <v-card>
@@ -284,6 +304,8 @@ export default {
   },
 
   data: () => ({
+  
+    currentService:null,
     dialogCart:false,
     dialogSer: false,
     dialogOff: false,
@@ -373,7 +395,11 @@ export default {
     currentImage() {
       return this.card.coverImages[this.currentIndex];
     },
+    commonServices(){
+      return this.$store.getters["getServiceCategories"]
+    }
   },
+
   mounted() {
     this.startSlideshow();
   },
@@ -521,20 +547,7 @@ p {
   margin-left: 120px;
   padding: 50px;
 }
-.square-image {
-  width: 100%; /* Set the width to 100% */
-  padding-top: 100%; /* 1:1 Aspect Ratio */
-  position: relative;
-  overflow: hidden;
-}
 
-.square-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}
 .pt {
   margin-top: -15px;
 }
