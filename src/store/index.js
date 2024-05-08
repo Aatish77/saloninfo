@@ -30,7 +30,9 @@ const store = createStore({
           phone: "9876543210",
           email: "reshma@gmail.com",
           password: "Pass123@3",
-          bookings: [],
+          bookings: [{parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Hair Cut and Style",subCategory:"Hair Cut",subsubCategories:"U cut",price:200,time:"11:00 AM"},
+          {parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Skin Care",subCategory:"Facial",subsubCategories:"Classic facial",price:500,time:"11:30 AM"}
+          ],
         },
       ],
       validUser: null,
@@ -489,6 +491,7 @@ const store = createStore({
             },
             {
               category: "Skin Care",
+              subCategory:"Facial",
               title: "Facial Treatment",
               desc: "Pamper your skin with our rejuvenating facial treatments. Our experienced estheticians will customize a facial to target your specific skin concerns and leave you with a radiant complexion.",
               img: require("@/assets/servicewomen4.png"),
