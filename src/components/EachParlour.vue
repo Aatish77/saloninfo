@@ -121,9 +121,9 @@
     <v-btn class="btn2 ml-2" @click="increaseQuantity(service)">+</v-btn>
   </template>
 </v-btn>
-                <v-btn class="btn1" @click="toggleBookser(index)">
+                <!-- <v-btn class="btn1" @click="toggleBookser(index)">
                     Book an Appointment
-                  </v-btn>
+                  </v-btn> -->
                   <v-btn class="btn1" @click="currentService=service"><v-icon>mdi-arrow-down</v-icon></v-btn>
                   
 
