@@ -113,14 +113,14 @@
 
                 <v-container
                   style="background-color: black !important; color: white">
-                <v-btn class="btn1" @click="addToCart(service)">
+                <!-- <v-btn class="btn1" @click="addToCart(service)">
   <template v-if="!service.quantity">Add to Cart</template>
   <template v-else>
     <v-btn class="btn2 mr-2" @click="decreaseQuantity(service)">-</v-btn>
     <span>{{ service.quantity }}</span>
     <v-btn class="btn2 ml-2" @click="increaseQuantity(service)">+</v-btn>
   </template>
-</v-btn>
+</v-btn> -->
                 <!-- <v-btn class="btn1" @click="toggleBookser(index)">
                     Book an Appointment
                   </v-btn> -->
@@ -161,14 +161,14 @@
                   {{ service.desc }}
                 </p>
                 <v-container>
-                  <v-btn class="btn1" @click="addToCart(service)">
+                  <!-- <v-btn class="btn1" @click="addToCart(service)">
   <template v-if="!service.quantity">Add to Cart</template>
   <template v-else>
     <v-btn class="btn2 mr-2" @click="decreaseQuantity(service)">-</v-btn>
     <span>{{ service.quantity }}</span>
     <v-btn class="btn2 ml-2" @click="increaseQuantity(service)">+</v-btn>
   </template>
-</v-btn>
+</v-btn> -->
                     <!-- <v-btn class="btn1" @click="toggleBookser(index)">
                       Book an Appointment
                     </v-btn> -->
