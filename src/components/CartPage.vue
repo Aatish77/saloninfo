@@ -17,6 +17,7 @@
         v-for="(item,index) in cart "
         :key="item.title"
       >
+      <td>{{item.serTitle}}</td>
         <td><h6> {{ item.title }} </h6></td>
         <td><v-btn class="btn1" >
   <v-btn class="btn2 "  @click="decreaseQuantity(item)"> - </v-btn>
