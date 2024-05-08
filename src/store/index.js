@@ -30,8 +30,8 @@ const store = createStore({
           phone: "9876543210",
           email: "reshma@gmail.com",
           password: "Pass123@3",
-          bookings: [{parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Hair Cut and Style",subCategory:"Hair Cut",subsubCategories:"U cut",price:200,time:"11:00 AM"},
-          {parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Skin Care",subCategory:"Facial",subsubCategories:"Classic facial",price:500,time:"11:30 AM"}
+          bookings: [{parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Hair Cut and Style",subCategory:"Hair Cut",subsubCategories:"U cut",price:200,time:"11:00 AM",date:"10/05/2024"},
+          {parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Skin Care",subCategory:"Facial",subsubCategories:"Classic facial",price:500,time:"11:30 AM",date:"10/05/2024"}
           ],
         },
       ],
