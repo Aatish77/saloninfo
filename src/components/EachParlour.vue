@@ -124,7 +124,7 @@
                 <!-- <v-btn class="btn1" @click="toggleBookser(index)">
                     Book an Appointment
                   </v-btn> -->
-                  <v-btn class="btn1" @click="currentService=service"><v-icon>mdi-arrow-down</v-icon></v-btn>
+                  <v-btn class="btn1" @click="cur(service)"><v-icon v-if="service===currentService">mdi-arrow-up</v-icon><v-icon v-else>mdi-arrow-down</v-icon></v-btn>
                   
 
 
@@ -172,7 +172,7 @@
                     <!-- <v-btn class="btn1" @click="toggleBookser(index)">
                       Book an Appointment
                     </v-btn> -->
-                  <v-btn class="btn1" @click="cur(service)"><v-icon>mdi-arrow-down</v-icon></v-btn>
+                    <v-btn class="btn1" @click="cur(service)"><v-icon v-if="service===currentService">mdi-arrow-up</v-icon><v-icon v-else>mdi-arrow-down</v-icon></v-btn>
                   
                   <v-dialog v-model="dialogSer" max-width="500px">
                     <v-card>
@@ -432,7 +432,11 @@ export default {
   },
   methods: {
     cur(service){
-      this.currentService=service
+      if(this.currentService===service)
+      {
+        this.currentService=null
+      }else{
+      this.currentService=service}
     },
     removeFromCart(index) {
     this.cart.splice(index, 1);
