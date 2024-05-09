@@ -133,7 +133,7 @@
   right: 10px;
   height: 40px;
   width:40px;
-  margin-right: 320px;
+  margin-right: 300px;
   background-color: transparent;
   border: 2px solid #ffffff; /* Add border styling */
   border-radius: 50%;
