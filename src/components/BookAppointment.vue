@@ -20,10 +20,13 @@
       
         <v-container style="background-color: black;">
           <v-row justify="space-around">
-            <v-date-picker color="primary" ></v-date-picker>
+            <div>
+    <v-date-picker v-model="selectedDate" color="primary" format="YYYY-MM-DD"></v-date-picker>
+    <p style="color: white">Selected Date: {{ formattedDate }}</p>
+  </div>
           </v-row>
         </v-container>
-        <v-checkbox label="Do you prefer an employee?" v-model="customemp"></v-checkbox>
+        <!-- <v-checkbox label="Do you prefer an employee?" v-model="customemp"></v-checkbox>
         <div v-if="customemp">
         <v-card-title>Available employees</v-card-title>
         <v-row class="mt-3">
@@ -34,7 +37,7 @@
     <h6 class="mt-2">{{ emp.name }}</h6>
   </div>
     </v-col></v-row>
-  </div>
+  </div> -->
       
       <v-divider class="mx-4 mb-1 mt-0" ></v-divider>
   
@@ -61,13 +64,15 @@
   </template>
   
   <script>
+  import moment from 'moment';
     export default {
-        props:['price','selected'],
+        props:['price'],
       data: () => ({
         customemp:false,
         loading: false,
         selection: 1,
-        se:null
+        se:null,
+        selectedDate:null
       }),
   
       methods: {
@@ -80,6 +85,17 @@
           setTimeout(() => (this.loading = false), 2000)
         },
       },
+      computed: {
+    formattedDate() {
+      // Check if selectedDate is not null or undefined
+      if (this.selectedDate) {
+        // Format selectedDate to dd/mm/yyyy using moment.js
+        return moment(this.selectedDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
+      } else {
+        return ''; // Return empty string if selectedDate is null or undefined
+      }
+    }
+  }
     }
   </script>
   <style scoped>

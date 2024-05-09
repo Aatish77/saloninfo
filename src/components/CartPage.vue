@@ -26,8 +26,21 @@
 
 </v-btn></td>
         <td>₹ {{ item.price*item.quantity }}</td>
-        
-        <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>
+        <td><v-btn @click="dialogOff=!dialogOff">Select date</v-btn></td>
+        <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
+        <v-dialog v-model="dialogOff" max-width="500px">
+                    <v-card>
+                      <v-card-title> Book an Appointment </v-card-title>
+                      <v-card-text>
+                        <book-appointment :price="item.price" >{{
+                          item.title
+                        }}</book-appointment>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-btn @click="toggleBookoff(null)">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
       </tr>
       <tr><td></td>
     <td></td>
@@ -42,11 +55,15 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    
   </template>
   
   <script>
-
+import BookAppointment from "./BookAppointment.vue";
   export default {
+    components:{
+      BookAppointment
+    },
     
     props: {
       cart: {
@@ -56,6 +73,11 @@
       parlour:{
         type: Object,
         required:true
+      }
+    },
+    data(){
+      return{
+        dialogOff: false,
       }
     },
     methods: {
