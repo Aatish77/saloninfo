@@ -498,7 +498,7 @@ export default {
 .close-btn {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: -3px;
   height:40px;
   width: 40px;
   margin-right: 160px;

@@ -163,7 +163,7 @@
             <v-col cols="9">
               <v-list-item
             lines="two"
-            :prepend-avatar="currentUser.image"
+            :prepend-avatar='currentUser.image'
             subtitle="Logged in"
             :title="currentUser.fullName"
           >
