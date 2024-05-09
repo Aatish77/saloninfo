@@ -501,7 +501,7 @@ export default {
   right: 10px;
   height:40px;
   width: 40px;
-  margin-right: 180px;
+  margin-right: 160px;
   background-color: transparent;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 50%;
