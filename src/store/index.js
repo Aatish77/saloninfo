@@ -403,7 +403,7 @@ const store = createStore({
                   name: "Harish",
                   img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
                 },
-                {
+                { 
                   name: "Deepthi",
                   img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
                 },

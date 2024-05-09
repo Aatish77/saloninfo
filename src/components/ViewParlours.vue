@@ -190,6 +190,7 @@
             prepend-icon="mdi-account"
             title="My Account"
             value="account"
+            @click="clickProfile"
           ></v-list-item>
           <v-list-item
             prepend-icon="fas fa-briefcase"
@@ -314,6 +315,9 @@ export default {
     }
   },
   methods: {
+    clickProfile(){
+      this.$router.push("/userprofile")
+    },
     serviceClick(){
       this.$router.push("/services")
     },
