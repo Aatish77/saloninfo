@@ -12,7 +12,7 @@ import ServicesPage from "./components/ServicesPage.vue";
 import ServiceParlour from "./components/ServiceParlour.vue";
 import EachService from "./components/EachService.vue";
 // import AdminEachRequest from "./components/AdminEachRequest.vue"
-import UserProfile from "./components/UserProfile.vue";
+import UserPage from "./components/UserPage.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -38,10 +38,11 @@ const router = createRouter({
       
     },
     {path:"/eachservice",component: EachService},
+    
     {
-      path:"/userprofile",
-      component:UserProfile
-    },
+      path:"/userpage",
+      component:UserPage
+    }
   ],
 });
 export default router;

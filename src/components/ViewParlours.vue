@@ -163,7 +163,7 @@
             <v-col cols="9">
               <v-list-item
             lines="two"
-            prepend-avatar="https://img.freepik.com/free-photo/close-portrait-man-with-beard-all-face-snow-snowy-forest_343596-4609.jpg?w=996&t=st=1714026882~exp=1714027482~hmac=123975867a0075aee012ece59b12d3eabfa90f2e848983aec784d0d7750d3c7e"
+            :prepend-avatar="currentUser.image"
             subtitle="Logged in"
             :title="currentUser.fullName"
           >
@@ -316,7 +316,7 @@ export default {
   },
   methods: {
     clickProfile(){
-      this.$router.push("/userprofile")
+      this.$router.push("/userpage")
     },
     serviceClick(){
       this.$router.push("/services")

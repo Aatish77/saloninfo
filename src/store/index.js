@@ -15,6 +15,7 @@ const store = createStore({
           email: "rakesh@gmail.com",
           password: "Pass123@1",
           bookings: [],
+          image:"https://img.freepik.com/free-photo/close-portrait-man-with-beard-all-face-snow-snowy-forest_343596-4609.jpg?w=996&t=st=1714026882~exp=1714027482~hmac=123975867a0075aee012ece59b12d3eabfa90f2e848983aec784d0d7750d3c7e"
         },
         {
           fullName: "Rejina C",
@@ -30,6 +31,7 @@ const store = createStore({
           phone: "9876543210",
           email: "reshma@gmail.com",
           password: "Pass123@3",
+          image:"https://anniedotexe.github.io/hosted-assets/dailyui/dailyui006/profile-pic.jpg",
           bookings: [{parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Hair Cut and Style",subCategory:"Hair Cut",subsubCategories:"U cut",price:200,time:"11:00 AM",date:"10/05/2024"},
           {parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Skin Care",subCategory:"Facial",subsubCategories:"Classic facial",price:500,time:"11:30 AM",date:"10/05/2024"}
           ],

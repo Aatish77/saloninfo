@@ -1,5 +1,5 @@
 <template>
-    <v-card max-width="674">
+    <v-card max-width="674" class="a">
       <v-card-title>Cart</v-card-title>
       <v-card-text>
         
@@ -94,5 +94,9 @@
 }.btn1 {
   color: white;
   background-color: black;
+}
+.a{
+  background-color: white;
+  color: black;
 }
   </style>

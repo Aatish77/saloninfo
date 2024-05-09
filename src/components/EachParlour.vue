@@ -290,8 +290,9 @@
                     </v-card>
                   </v-dialog>
                   <v-dialog v-model="dialogCart">
-                    <v-card style="margin-left: 250px; margin-right: 300px">
-  <CartPage :cart="cart" :parlour="card" @removeFromCart="removeFromCart" /></v-card>
+                    <button class="close-btn" @click="dialogCart = false">X</button>
+                    
+  <CartPage style="margin-left: 250px; margin-right: 300px" :cart="cart" :parlour="card" @removeFromCart="removeFromCart" />
 </v-dialog>
                 </v-card></v-col
               >
@@ -494,6 +495,21 @@ export default {
 };
 </script>
 <style scoped>
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height:40px;
+  width: 40px;
+  margin-right: 180px;
+  background-color: transparent;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  color: #fffcfc;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .btn2{
   color:white;
   margin-left:2px;
@@ -512,8 +528,8 @@ export default {
 .v-dialog > .v-overlay__content > .v-sheet,
 .v-dialog > .v-overlay__content > form > .v-card,
 .v-dialog > .v-overlay__content > form > .v-sheet .slideshow img {
-  background-color: black;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   width: 100%;
   height: 100%;
   object-fit: cover;
