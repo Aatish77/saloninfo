@@ -135,7 +135,7 @@
     ></v-img>
 
     <v-card-item>
-      <v-card-title>{{card.parlourName}}</v-card-title>
+      <v-card-title >{{card.parlourName}}</v-card-title>
 
       <v-card-subtitle>
         <span class="me-1"><i class="fas fa-map-marker-alt"></i> {{ card.location }}</span>

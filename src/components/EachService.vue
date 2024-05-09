@@ -109,12 +109,12 @@
                     
                     <h1>{{ item.title }}</h1></v-row> 
             <v-row><v-col v-for="i in item.subsubCategories" :key="i">
-                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(datas.title,item.title,i.title,currentLabel.label)">
+                <v-card class="mx-auto card1" max-width="344" max-height="260px" @click="navigateToEach(datas.title,item.title,i.title,currentLabel.label)">
                   <v-img height="200px" :src="i.img" cover></v-img>
 
-                  <v-card-title>
-                    {{ i.title }}
-                  </v-card-title>
+                  <v-card-item ><h5 class="multi-line-title">{{ i.title }}</h5>
+                    
+                  </v-card-item>
                 </v-card>
 
             </v-col></v-row>
@@ -162,6 +162,12 @@ export default {
 };
 </script>
 <style scoped>
+.multi-line-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  overflow: hidden;
+}
 body {
   background-color: black;
   color: white;
