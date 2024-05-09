@@ -419,16 +419,58 @@ const store = createStore({
                   title: "Straight Cut",
                   price: 150,
                   img: "https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg",
+                  employees: [
+                    {
+                      name: "Harish",
+                      img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
+                    },
+                    { 
+                      name: "Deepthi",
+                      img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
+                    },
+                    {
+                      name: "Ranjitha",
+                      img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
+                    },
+                  ],
                 },
                 {
                   title: "U cut",
                   price: 200,
                   img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
+                  employees: [
+                    {
+                      name: "Harish",
+                      img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
+                    },
+                    { 
+                      name: "Deepthi",
+                      img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
+                    },
+                    {
+                      name: "Ranjitha",
+                      img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
+                    },
+                  ],
                 },
                 {
                   title: "V cut",
                   price: 250,
                   img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
+                  employees: [
+                    {
+                      name: "Harish",
+                      img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
+                    },
+                    { 
+                      name: "Deepthi",
+                      img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
+                    },
+                    {
+                      name: "Ranjitha",
+                      img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
+                    },
+                  ],
                 },
               ],
             },
@@ -440,24 +482,36 @@ const store = createStore({
               img: require("@/assets/servicewomen2.png"),
               price: "500",
               employees: [
-                { name: "Amit", img: "amit.jpg" },
-                { name: "Vikram", img: "vikram.jpg" },
+                { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
+                { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
               ],
               subsubCategories: [
                 {
                   title: "Keratin Hair Treatment",
                   price: 150,
                   img: "https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg",
+                  employees: [
+                    { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
+                    { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                  ],
                 },
                 {
                   title: "Protein Hair Treatment.",
                   price: 200,
                   img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg",
+                  employees: [
+                    { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
+                    { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                  ],
                 },
                 {
                   title: "Scalp Treatment",
                   price: 250,
                   img: "https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg",
+                  employees: [
+                    { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
+                    { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                  ],
                 },
               ],
             },
@@ -469,25 +523,40 @@ const store = createStore({
               img: require("@/assets/servicewomen3.png"),
               price: "300",
               employees: [
-                { name: "Arjun", img: "arjun.jpg" },
-                { name: "Kiran", img: "kiran.jpg" },
-                { name: "Prakash", img: "prakash.jpg" },
+                { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
+                { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
+                { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
               ],
               subsubCategories: [
                 {
                   title: "Blonde",
                   price: 150,
                   img: "https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1",
+                  employees: [
+                    { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
+                    { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
+                    { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                  ],
                 },
                 {
                   title: "Brown",
                   price: 200,
                   img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg",
+                  employees: [
+                    { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
+                    { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
+                    { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                  ],
                 },
                 {
                   title: "black",
                   price: 250,
                   img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
+                  employees: [
+                    { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
+                    { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
+                    { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                  ],
                 },
               ],
             },
