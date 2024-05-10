@@ -10,11 +10,49 @@
           <p><i class="fas fa-map-marker-alt"></i> {{ parlour.location }}</p>
         </div>
       </div>
-      <v-table>
+      <v-table v-if="!cartFinal">
     
     <tbody>
       <tr
         v-for="(item,index) in cart "
+        :key="item.title"
+      >
+      
+      <td>{{item.serTitle}}</td>
+        <td><h6> {{ item.title }} </h6></td>
+        <td><v-btn class="btn1" >
+  <v-btn class="btn2 "  @click="decreaseQuantity(item)"> - </v-btn>
+  <span>{{ item.quantity }}</span>
+  <v-btn class="btn2 " @click="increaseQuantity(item)">+</v-btn>
+
+</v-btn></td>
+        <td>₹ {{ item.price*item.quantity }}</td>
+        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:"Select date"}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
+        <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
+        <v-dialog v-model="dialogOff" max-width="500px">
+                    <v-card>
+                      <v-card-title> Book an Appointment </v-card-title>
+                      <v-card-text>
+                        <book-appointment :cart="cart" :index="bookser" @child-value-updated="handleChildValueChange">{{
+                          item.title
+                        }}</book-appointment>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-btn @click="toggleBookoff(null)">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+      </tr>
+      <tr><td></td>
+    <td></td>
+<td>Total: ₹ {{total}}</td> </tr>
+    </tbody>
+  </v-table>
+  <v-table v-else>
+    
+    <tbody>
+      <tr
+        v-for="(item,index) in cartFinal "
         :key="item.title"
       >
       <td>{{item.serTitle}}</td>
@@ -26,13 +64,13 @@
 
 </v-btn></td>
         <td>₹ {{ item.price*item.quantity }}</td>
-        <td><v-btn @click="dialogOff=!dialogOff">Select date</v-btn></td>
+        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:'Select date'}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
         <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
         <v-dialog v-model="dialogOff" max-width="500px">
                     <v-card>
                       <v-card-title> Book an Appointment </v-card-title>
                       <v-card-text>
-                        <book-appointment :price="item.price" >{{
+                        <book-appointment :cart="cart" :index="bookser" @child-value-updated="handleChildValueChange">{{
                           item.title
                         }}</book-appointment>
                       </v-card-text>
@@ -78,10 +116,29 @@ import BookAppointment from "./BookAppointment.vue";
     data(){
       return{
         dialogOff: false,
+        cartFinal:null,
+        bookser:null,
+      }
+    },
+    watch:{
+      cartFinal(){
+        this.$emit('child-value-updated', this.cartFinal);
       }
     },
     methods: {
+      toggleBookoff(index) {
+      if (index != null) {
+        this.bookser = index;
         
+        this.dialogOff = !this.dialogOff;
+      } else {
+        this.dialogOff = !this.dialogOff;
+      }
+    },
+      handleChildValueChange(value) {
+      // Handle the value passed from the child component
+      this.cartFinal = value;
+    },
         increaseQuantity(item) {
       item.quantity++;
     },

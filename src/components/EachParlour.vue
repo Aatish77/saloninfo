@@ -292,7 +292,7 @@
                   <v-dialog v-model="dialogCart">
                     <button class="close-btn" @click="dialogCart = false">X</button>
                     
-  <CartPage style="margin-left: 250px; margin-right: 300px" :cart="cart" :parlour="card" @removeFromCart="removeFromCart" />
+  <CartPage @child-value-updated="handleChildValueChange" style="margin-left: 250px; margin-right: 300px" :cart="cart" :parlour="card" @removeFromCart="removeFromCart" />
 </v-dialog>
                 </v-card></v-col
               >
@@ -431,6 +431,10 @@ export default {
     }
   },
   methods: {
+    handleChildValueChange(value) {
+      // Handle the value passed from the child component
+      this.cart = value;
+    },
     cur(service){
       if(this.currentService===service)
       {
@@ -461,6 +465,9 @@ export default {
     decreaseQuantity(item) {
       if (item.quantity > 1) {
         item.quantity--;
+      }
+      else {
+        this.removeFromCart
       }
     },
     toggleBookser(index) {
