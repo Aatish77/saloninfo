@@ -1,11 +1,11 @@
 <template>
-    <v-card max-width="674" class="a">
+    <v-card max-width="874" class="a">
       <v-card-title>Cart</v-card-title>
       <v-card-text>
         
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; margin-right: 300px;">
         <v-img :src="parlour.src" style="height: 150px; width: 150px;"></v-img>
-        <div style="margin-left: 20px;">
+        <div style="margin-left: 10px;">
           <h5>{{ parlour.parlourName }}</h5>
           <p><i class="fas fa-map-marker-alt"></i> {{ parlour.location }}</p>
         </div>
@@ -21,7 +21,7 @@
       <td>{{item.serTitle}}</td>
         <td><h6> {{ item.title }} </h6></td>
         <td><v-btn class="btn1" >
-  <v-btn class="btn2 "  @click="decreaseQuantity(item)"> - </v-btn>
+  <v-btn class="btn2 "  @click="decreaseQuantity(item,index)"> - </v-btn>
   <span>{{ item.quantity }}</span>
   <v-btn class="btn2 " @click="increaseQuantity(item)">+</v-btn>
 
@@ -142,9 +142,12 @@ import BookAppointment from "./BookAppointment.vue";
         increaseQuantity(item) {
       item.quantity++;
     },
-    decreaseQuantity(item) {
+    decreaseQuantity(item,index) {
       if (item.quantity > 1) {
         item.quantity--;
+      }
+      else{
+        this.removeFromCart(index)
       }
     },
       removeFromCart(index) {
