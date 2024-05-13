@@ -26,8 +26,8 @@
   <v-btn class="btn2 " @click="increaseQuantity(item)">+</v-btn>
 
 </v-btn></td>
-        <td>₹ {{ item.price*item.quantity }}</td>
-        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:"Select date"}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
+        <td style="width: 200px;" >₹ {{ item.price*item.quantity }}</td>
+        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:"Select date and time"}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
         <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
         <v-dialog v-model="dialogOff" max-width="500px">
                     <v-card>
@@ -44,8 +44,8 @@
                   </v-dialog>
       </tr>
       <tr><td></td>
-    <td></td>
-<td>Total: ₹ {{total}}</td> </tr>
+    <td></td><td align="end">Total: </td>
+<td >₹ {{total}}</td> </tr>
     </tbody>
   </v-table>
   <v-table v-else>
@@ -64,7 +64,7 @@
 
 </v-btn></td>
         <td>₹ {{ item.price*item.quantity }}</td>
-        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:'Select date'}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
+        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:'Select date and time'}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
         <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
         <v-dialog v-model="dialogOff" max-width="500px">
                     <v-card>
@@ -81,8 +81,8 @@
                   </v-dialog>
       </tr>
       <tr><td></td>
-    <td></td><td></td><td></td>
-<td>Totala: ₹ {{total}}</td><td></td> </tr>
+    <td></td><td>Total: </td>
+<td>₹ {{total}}</td><td></td> </tr>
     </tbody>
   </v-table>
               
