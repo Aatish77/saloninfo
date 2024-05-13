@@ -15,7 +15,8 @@ const store = createStore({
           email: "rakesh@gmail.com",
           password: "Pass123@1",
           bookings: [],
-          image:"https://img.freepik.com/free-photo/close-portrait-man-with-beard-all-face-snow-snowy-forest_343596-4609.jpg?w=996&t=st=1714026882~exp=1714027482~hmac=123975867a0075aee012ece59b12d3eabfa90f2e848983aec784d0d7750d3c7e"
+          image:
+            "https://img.freepik.com/free-photo/close-portrait-man-with-beard-all-face-snow-snowy-forest_343596-4609.jpg?w=996&t=st=1714026882~exp=1714027482~hmac=123975867a0075aee012ece59b12d3eabfa90f2e848983aec784d0d7750d3c7e",
         },
         {
           fullName: "Rejina C",
@@ -31,9 +32,27 @@ const store = createStore({
           phone: "9876543210",
           email: "reshma@gmail.com",
           password: "Pass123@3",
-          image:"https://anniedotexe.github.io/hosted-assets/dailyui/dailyui006/profile-pic.jpg",
-          bookings: [{parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Hair Cut and Style",subCategory:"Hair Cut",subsubCategories:"U cut",price:200,time:"11:00 AM",date:"10/05/2024"},
-          {parlourName:"Amaze Beauty Parlour & Bridal Makeup Studio",category:"Skin Care",subCategory:"Facial",subsubCategories:"Classic facial",price:500,time:"11:30 AM",date:"10/05/2024"}
+          image:
+            "https://anniedotexe.github.io/hosted-assets/dailyui/dailyui006/profile-pic.jpg",
+          bookings: [
+            {
+              parlourName: "Amaze Beauty Parlour & Bridal Makeup Studio",
+              category: "Hair Cut and Style",
+              subCategory: "Hair Cut",
+              subsubCategories: "U cut",
+              price: 200,
+              time: "11:00 AM",
+              date: "10/05/2024",
+            },
+            {
+              parlourName: "Amaze Beauty Parlour & Bridal Makeup Studio",
+              category: "Skin Care",
+              subCategory: "Facial",
+              subsubCategories: "Classic facial",
+              price: 500,
+              time: "11:30 AM",
+              date: "10/05/2024",
+            },
           ],
         },
       ],
@@ -48,19 +67,32 @@ const store = createStore({
           {
             title: "Hair Cut and Style",
             img: "https://www.zhairacademy.com/wp-content/uploads/fly-images/1921/Z-Hair-Academy-Mens-Cuts-Intro-1280x1200-c.jpg",
+            subCategories: [
+              {
+                title: "Hair Cut",
+                img: "https://larastyles.com/wp-content/uploads/2022/08/hair-cut-768x768.jpg",
+                subsubCategories: [
+                  {
+                    title: "Pompadour Haircut",
+                    img: "https://www.dmarge.com/wp-content/uploads/2022/09/david-beckham-gq-0416-2-1200x900.webp",
+                  },
+                  {
+                    title: "Ivy League Haircut",
+                    img: "https://www.dmarge.com/wp-content/uploads/2022/09/Ryan-Gosling-Ivy-League-Hairstyle-800x1200-1.jpeg",
+                  },
+                  {
+                    title: "Buzz Cut",
+                    img: "https://www.dmarge.com/wp-content/uploads/2022/09/zain-malik-1200x1200.jpg",
+                  },
+                ],
+              },
+            ],
           },
           {
             title: "Beard",
             img: "https://assets-global.website-files.com/5cb569e54ca2fddd5451cbb2/5f8e7707ad6d75eda371136b_Cannington-120.jpg",
           },
-          {
-            title: "Hair Color",
-            img: "https://img.mensxp.com/media/content/2022/Sep/googledocmediakix32gfazpq6691_63294b909933b.jpeg?w=1210&h=818&cc=1",
-          },
-          {
-            title: "Hair Chemical",
-            img: "https://www.nicholasmark.co.uk/mens-hair-straightening-newcastle-upon-tyne.jpg",
-          },
+
           {
             title: "Mani and Pedi Hygiene",
             img: "https://d2zdpiztbgorvt.cloudfront.net/us/cms_content/425/df5bd406e950478fac0be143a96c175d.jpg",
@@ -72,10 +104,54 @@ const store = createStore({
           {
             title: "Hair Treatments",
             img: "https://assets-global.website-files.com/621fc5da26683b662359a48d/626998459e85648971269164_menshaircolorred-p-800.jpeg",
+            subCategories: [
+              {
+                title: "Hair Color",
+                img: "https://img.mensxp.com/media/content/2022/Sep/googledocmediakix32gfazpq6691_63294b909933b.jpeg?w=1210&h=818&cc=1",
+                subsubCategories: [
+                  {
+                    title: "Golden brown",
+                    img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Golden-Brown-03.webp",
+                  },
+                  {
+                    title: "Charcoal gray ",
+                    img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Charcoal-Gray-01.webp",
+                  },
+                  {
+                    title: "Light blonde",
+                    img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Light-Blonde-01.webp",
+                  },
+                ],
+              },
+              {
+                title: "Hair Chemical",
+                img: "https://www.nicholasmark.co.uk/mens-hair-straightening-newcastle-upon-tyne.jpg",
+              },
+            ],
           },
           {
             title: "Skin Care",
-            img: "https://www.rd.com/wp-content/uploads/2017/04/04-Grooming-Treatments-Every-Man-Should-Be-Getting.jpg?fit=700,700",
+            img: "https://larastyles.com/wp-content/uploads/2022/08/facial-768x768.jpg",
+            subCategories: [
+              {
+                title: "Facial Treatment",
+                img: "https://larastyles.com/wp-content/uploads/2022/08/facial-768x768.jpg",
+                subsubCategories: [
+                  {
+                    title: "Brightening radiance facial",
+                    img: "https://www.thebombayskinclinic.com/wp-content/uploads/2023/02/mens-facial-treatment.jpg",
+                  },
+                  {
+                    title: "Pumpkin facial",
+                    img: "https://3989ac5bcbe1edfc864a-0a7f10f87519dba22d2dbc6233a731e5.ssl.cf2.rackcdn.com/oasisfacebar/man-pumpkin-facial.jpg",
+                  },
+                  {
+                    title: "Hollywood laser facial",
+                    img: "https://faceofman.com.au/wp-content/uploads/2019/10/Screenshot-2019-10-23-09.08.29.png",
+                  },
+                ],
+              },
+            ],
           },
           {
             title: "Make up",
@@ -404,7 +480,7 @@ const store = createStore({
                 {
                   name: "Harish",
                   img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -431,12 +507,13 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
-                  ]},
-                { 
+                    "09:30 PM",
+                  ],
+                },
+                {
                   name: "Deepthi",
                   img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -463,12 +540,13 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
-                  ]},
+                    "09:30 PM",
+                  ],
+                },
                 {
                   name: "Ranjitha",
                   img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -495,15 +573,16 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
-                  ]},
+                    "09:30 PM",
+                  ],
+                },
               ],
               subsubCategories: [
                 {
                   title: "Straight Cut",
                   price: 150,
                   img: "https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -530,13 +609,13 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
+                    "09:30 PM",
                   ],
                   employees: [
                     {
                       name: "Harish",
                       img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -563,12 +642,13 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
-                    { 
+                        "09:30 PM",
+                      ],
+                    },
+                    {
                       name: "Deepthi",
                       img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -595,12 +675,13 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ] },
+                        "09:30 PM",
+                      ],
+                    },
                     {
                       name: "Ranjitha",
                       img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -627,15 +708,16 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
+                        "09:30 PM",
+                      ],
+                    },
                   ],
                 },
                 {
                   title: "U cut",
                   price: 200,
                   img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -662,13 +744,13 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
+                    "09:30 PM",
                   ],
                   employees: [
                     {
                       name: "Harish",
                       img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -695,12 +777,13 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
-                    { 
+                        "09:30 PM",
+                      ],
+                    },
+                    {
                       name: "Deepthi",
                       img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -727,12 +810,13 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
+                        "09:30 PM",
+                      ],
+                    },
                     {
                       name: "Ranjitha",
                       img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -759,15 +843,16 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
+                        "09:30 PM",
+                      ],
+                    },
                   ],
                 },
                 {
                   title: "V cut",
                   price: 250,
                   img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -794,13 +879,13 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
+                    "09:30 PM",
                   ],
                   employees: [
                     {
                       name: "Harish",
                       img: "https://st.depositphotos.com/1008939/2240/i/950/depositphotos_22408839-stock-photo-serious.jpg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -827,12 +912,13 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
-                    { 
+                        "09:30 PM",
+                      ],
+                    },
+                    {
                       name: "Deepthi",
                       img: "https://images.statusfacebook.com/profile_pictures/cute_girls/cute_girls_dps_profile_pictures_fb_whatsapp_02.jpg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -859,12 +945,13 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
+                        "09:30 PM",
+                      ],
+                    },
                     {
                       name: "Ranjitha",
                       img: "https://miro.medium.com/v2/resize:fit:786/format:webp/0*xFuo_UNWchLZ8bqS.jpeg",
-                      "slots": [
+                      slots: [
                         "08:30 AM",
                         "09:00 AM",
                         "09:30 AM",
@@ -891,8 +978,9 @@ const store = createStore({
                         "08:00 PM",
                         "08:30 PM",
                         "09:00 PM",
-                        "09:30 PM"
-                      ]},
+                        "09:30 PM",
+                      ],
+                    },
                   ],
                 },
               ],
@@ -905,15 +993,21 @@ const store = createStore({
               img: require("@/assets/servicewomen2.png"),
               price: "500",
               employees: [
-                { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
-                { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                {
+                  name: "Amit",
+                  img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg",
+                },
+                {
+                  name: "Vikram",
+                  img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996",
+                },
               ],
               subsubCategories: [
                 {
                   title: "Keratin Hair Treatment",
                   price: 150,
                   img: "https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg",
-                  "slots": [
+                  slots: [
                     "08:30 AM",
                     "09:00 AM",
                     "09:30 AM",
@@ -940,11 +1034,17 @@ const store = createStore({
                     "08:00 PM",
                     "08:30 PM",
                     "09:00 PM",
-                    "09:30 PM"
+                    "09:30 PM",
                   ],
                   employees: [
-                    { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
-                    { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                    {
+                      name: "Amit",
+                      img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg",
+                    },
+                    {
+                      name: "Vikram",
+                      img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996",
+                    },
                   ],
                 },
                 {
@@ -952,8 +1052,14 @@ const store = createStore({
                   price: 200,
                   img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg",
                   employees: [
-                    { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
-                    { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                    {
+                      name: "Amit",
+                      img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg",
+                    },
+                    {
+                      name: "Vikram",
+                      img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996",
+                    },
                   ],
                 },
                 {
@@ -961,8 +1067,14 @@ const store = createStore({
                   price: 250,
                   img: "https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg",
                   employees: [
-                    { name: "Amit", img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg" },
-                    { name: "Vikram", img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996" },
+                    {
+                      name: "Amit",
+                      img: "https://as2.ftcdn.net/v2/jpg/06/10/51/33/1000_F_610513347_Qjqz5OOrrUqK02ilUoUyi2ScmMEDxMDm.jpg",
+                    },
+                    {
+                      name: "Vikram",
+                      img: "https://img.freepik.com/free-photo/male-barber-sitting-his-shop_23-2149186523.jpg?t=st=1715249606~exp=1715253206~hmac=ad1e97937cfe88a15ffac4731fb2c34283455598ae05f8c8b91b961672656414&w=996",
+                    },
                   ],
                 },
               ],
@@ -975,9 +1087,18 @@ const store = createStore({
               img: require("@/assets/servicewomen3.png"),
               price: "300",
               employees: [
-                { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
-                { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
-                { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                {
+                  name: "Arjun",
+                  img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996",
+                },
+                {
+                  name: "Kiran",
+                  img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996",
+                },
+                {
+                  name: "Prakash",
+                  img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996",
+                },
               ],
               subsubCategories: [
                 {
@@ -985,9 +1106,18 @@ const store = createStore({
                   price: 150,
                   img: "https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1",
                   employees: [
-                    { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
-                    { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
-                    { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                    {
+                      name: "Arjun",
+                      img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996",
+                    },
+                    {
+                      name: "Kiran",
+                      img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996",
+                    },
+                    {
+                      name: "Prakash",
+                      img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996",
+                    },
                   ],
                 },
                 {
@@ -995,9 +1125,18 @@ const store = createStore({
                   price: 200,
                   img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg",
                   employees: [
-                    { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
-                    { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
-                    { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                    {
+                      name: "Arjun",
+                      img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996",
+                    },
+                    {
+                      name: "Kiran",
+                      img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996",
+                    },
+                    {
+                      name: "Prakash",
+                      img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996",
+                    },
                   ],
                 },
                 {
@@ -1005,16 +1144,25 @@ const store = createStore({
                   price: 250,
                   img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
                   employees: [
-                    { name: "Arjun", img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996" },
-                    { name: "Kiran", img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996" },
-                    { name: "Prakash", img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996" },
+                    {
+                      name: "Arjun",
+                      img: "https://img.freepik.com/free-photo/confident-young-handsome-male-barber-uniform-holding-scissors-isolated-blue-wall_141793-75115.jpg?t=st=1715249775~exp=1715253375~hmac=367b8610c683eebcd9c3a8580eeaf758a06d5476a5fbb17e5f2bdfbffb8ba6b4&w=996",
+                    },
+                    {
+                      name: "Kiran",
+                      img: "https://img.freepik.com/free-photo/portrait-male-hairstylist-looking-camera_23-2147839829.jpg?t=st=1715249814~exp=1715253414~hmac=3f4ec9e883a022cafced134f1a35564be5846b4f072ac8d8a055a106d12d8a83&w=996",
+                    },
+                    {
+                      name: "Prakash",
+                      img: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205930.jpg?t=st=1715249847~exp=1715253447~hmac=7129ff0961fc16992349dfd0118704605b4626754e8eca87444dd1810039cd5a&w=996",
+                    },
                   ],
                 },
               ],
             },
             {
               category: "Skin Care",
-              subCategory:"Facial",
+              subCategory: "Facial",
               title: "Facial Treatment",
               desc: "Pamper your skin with our rejuvenating facial treatments. Our experienced estheticians will customize a facial to target your specific skin concerns and leave you with a radiant complexion.",
               img: require("@/assets/servicewomen4.png"),
@@ -1110,6 +1258,7 @@ const store = createStore({
           services: [
             {
               category: "Hair Cut and Style",
+              subCategory: "Hair Cut",
               title: "Hair Cutting",
               desc: "A new hair cut never goes out of style! You hair is not just hair but a crown you wear, Make heads whirl with our new customizable haircuts from the finest stylist in town. A classic faded look can never go wrong. Why look boring when you can make it interesting.",
               img: "https://larastyles.com/wp-content/uploads/2022/08/hair-cut-768x768.jpg",
@@ -1124,17 +1273,70 @@ const store = createStore({
                   img: "https://wallpapers.com/images/high/professional-profile-pictures-5472-x-3648-fnzog91drg7fwyv1.webp",
                 },
               ],
+              subsubCategories: [
+                {
+                  title: "Pompadour Haircut",
+                  price: 150,
+                  img: "https://www.dmarge.com/wp-content/uploads/2022/09/david-beckham-gq-0416-2-1200x900.webp",
+                },
+                {
+                  title: "Ivy League Haircut",
+                  price: 150,
+                  img: "https://www.dmarge.com/wp-content/uploads/2022/09/837bebe7ef4a908bf7d6a3e6612102e3-967x1200.jpeg",
+                },
+                {
+                  title: "Buzz Cut",
+                  price: 150,
+                  img: "https://www.dmarge.com/wp-content/uploads/2022/09/zain-malik-1200x1200.jpg",
+                },
+              ],
             },
             {
-              category: "Hair Treatments",
-              title: "Hair Treatment",
-              desc: "Come and get the best hair treatments from our professionals at Lara. We use premium products and are equally equipped and all set to help you obtain the hair you desire, and help you bring out the best of your hair at our care, say bye bye to dry and scanty hair .",
-              img: "https://larastyles.com/wp-content/uploads/2022/08/hair-treatment-768x768.jpg",
+              category: "Skin Care",
+              subCategory: "Facial Treatment",
+              title: "Facial",
+              desc: "A facial can help clear pores and quench parched skin and a small massage to help your skin feel light and radiant, with complete care for your skin. You can now select facials according to the type of glow or skin you desire to obtain with the help of our expertise.",
+              img: "https://larastyles.com/wp-content/uploads/2022/08/facial-768x768.jpg",
               price: "400",
+              subsubCategories: [
+                {
+                  title: "Brightening radiance sacial",
+                  price:500,
+                  img: "https://www.thebombayskinclinic.com/wp-content/uploads/2023/02/mens-facial-treatment.jpg",
+                },
+                {
+                  title: "Pumpkin facial",
+                  price:500,
+                  img: "https://3989ac5bcbe1edfc864a-0a7f10f87519dba22d2dbc6233a731e5.ssl.cf2.rackcdn.com/oasisfacebar/man-pumpkin-facial.jpg",
+                },
+                {
+                  title: "Hollywood laser facial",
+                  price:500,
+                  img: "https://faceofman.com.au/wp-content/uploads/2019/10/Screenshot-2019-10-23-09.08.29.png",
+                },
+              ],
             },
             {
-              category: "Hair Color",
+              category: "Hair Treatment",
+              subCategory: "Hair Color",
               title: "Hair Color",
+              subsubCategories: [
+                {
+                  title: "Golden brown",
+                  price: "400",
+                  img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Golden-Brown-03.webp",
+                },
+                {
+                  title: "Charcoal gray ",
+                  price: "400",
+                  img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Charcoal-Gray-01.webp",
+                },
+                {
+                  title: "Light blonde",
+                  price: "400",
+                  img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Light-Blonde-01.webp",
+                },
+              ],
               desc: "Tired of the same old black hair? No worries we got you! Confused with what colour to choose? No problem you can consult our hairstylist to help you find your edge with exquisite and vibrant hair colours to Flair up your style, and make you look hip.",
               img: "https://larastyles.com/wp-content/uploads/2022/08/hair-colour-768x768.jpg",
               price: "200",

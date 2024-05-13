@@ -142,6 +142,13 @@ export default {
         }
     }
   }
+  else if(this.currentLabel.label==="Men"){
+    for (let i of this.currentService.men){
+        if(i.title===this.currentLabel.category){
+            this.datas=i
+        }
+    }
+  }
   },
   methods:{
     navigateToEach(category,subCategory,subsubCategory,label){
