@@ -99,7 +99,7 @@
               v-for="(service, index) in card.services"
               :key="service"
             >
-              <v-col :cols="6" md="6" v-if="index % 2 === 0">
+              <v-col :cols="12" md="6" v-if="index % 2 === 0">
                 <v-img
                   class="round-img square-image"
                   :src="service.img"
@@ -108,7 +108,7 @@
                 >
                 </v-img>
               </v-col>
-              <v-col :cols="6" md="6" v-else>
+              <v-col :cols="12" md="6" v-else>
                 <h1 class="hc1">{{ service.title }}</h1>
                 <p class="pc">
                   {{ service.desc }}
@@ -152,7 +152,7 @@
                 </v-container>
               </v-col>
 
-              <v-col :cols="6" v-if="index % 2 !== 0">
+              <v-col :cols="12" :md="6" v-if="index % 2 !== 0">
                 <v-img
                   class="round-img square-image"
                   :src="service.img"
@@ -161,7 +161,7 @@
                 >
                 </v-img>
               </v-col>
-              <v-col :cols="6" v-else>
+              <v-col :cols="12" :md="6" v-else>
                 <h1 class="hc1">{{ service.title }}</h1>
                 <p class="pc">
                   {{ service.desc }}
@@ -203,7 +203,7 @@
               </v-col>
               <v-row v-if="currentService === service"
                 ><v-col v-for="i in currentService.subsubCategories" :key="i">
-                  <v-card class="mx-auto card1" max-width="344" height="330px">
+                  <v-card class="mx-auto card1" max-width="344" max-height="350px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
@@ -212,7 +212,7 @@
                       cover
                     >
                     </v-img>
-                    <v-card-title>{{ i.title }}</v-card-title>
+                    <v-card-item ><h5 class="multi-line-title">{{ i.title }}</h5> </v-card-item>
                     <v-card-subtitle class="">
                       Price:
                       <span>₹ {{ i.price }}</span>
@@ -365,86 +365,22 @@ export default {
     bookser: null,
     bookoff: null,
     card: {
-      title: "The Garage",
-      subTitle: "Gents Beauty Parlour",
-      desc: "Excellent infrastructure facility with aesthetic interior designing and scientifically designed wellness furniture and fully air-conditioned service rooms is our unique feature. We provide all types of beauty services with an advanced bridal studio and a spa.",
-      src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
-      rating: 4.7,
-      location: "YMCA road, Alapuzha",
-      flex: 3,
-      services: [
-        {
-          title: "Hair Cutting",
-          desc: "A new hair cut never goes out of style! You hair is not just hair but a crown you wear, Make heads whirl with our new customizable haircuts from the finest stylist in town. A classic faded look can never go wrong. Why look boring when you can make it interesting.",
-          img: "https://larastyles.com/wp-content/uploads/2022/08/hair-cut-768x768.jpg",
-          price: "200",
-        },
-        {
-          title: "Hair Treatment",
-          desc: "Come and get the best hair treatments from our professionals at Lara. We use premium products and are equally equipped and all set to help you obtain the hair you desire, and help you bring out the best of your hair at our care, say bye bye to dry and scanty hair .",
-          img: "https://larastyles.com/wp-content/uploads/2022/08/hair-treatment-768x768.jpg",
-          price: "400",
-        },
-        {
-          title: "Hair Colour",
-          desc: "Tired of the same old black hair? No worries we got you! Confused with what colour to choose? No problem you can consult our hairstylist to help you find your edge with exquisite and vibrant hair colours to Flair up your style, and make you look hip.",
-          img: "https://larastyles.com/wp-content/uploads/2022/08/hair-colour-768x768.jpg",
-          price: "200",
-        },
-      ],
-      offers: [
-        {
-          name: "Smoothening Offers",
-          price: "4999",
-          offerPrice: "3999",
-          img: "https://assets-mhd-com.s3.amazonaws.com/uploads/video/mobile_background/10585/M_R_470_MOB.jpg",
-        },
-        {
-          name: "Haircut and Styling",
-          price: "1200",
-          offerPrice: "999",
-          img: "https://www.beyoung.in/blog/wp-content/uploads/2020/04/general-min-1.jpg",
-        },
-
-        {
-          name: "Beard Grooming",
-          price: "800",
-          offerPrice: "699",
-          img: "https://cdn11.bigcommerce.com/s-h7l2pcerei/product_images/uploaded_images/trimming-beard.jpg",
-        },
-        {
-          name: "Tattoo Offers",
-          price: "3500",
-          offerPrice: "2999",
-          img: "https://manofmany.com/_next/image?url=https%3A%2F%2Fapi.manofmany.com%2Fwp-content%2Fuploads%2F2023%2F06%2F40-Best-Tattoo-Ideas-for-Men.jpg&w=1024&q=75",
-        },
-        {
-          name: "Mud Mask Treatment",
-          price: "2100",
-          offerPrice: "1799",
-          img: "https://wolfproject.co/cdn/shop/articles/for-men-only-5-reasons-why-a-muddier-skincare-routine-is-what-you-need-747265_1500x.jpeg?v=1637160032",
-        },
-      ],
     },
     images: [
-      // "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      // "https://getwallpapers.com/wallpaper/full/2/c/a/165944.jpg",
-      "https://larastyles.com/wp-content/uploads/2022/09/Lara-Banner-06-copy.jpg",
-      //   'https://larastyles.com/wp-content/uploads/2022/08/hair-cut-768x768.jpg',
-      //   'https://images.unsplash.com/photo-1502126829571-83575bb53030?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ],
+      ],
     currentIndex: 0,
     intervalId: null,
     intervalDuration: 3000,
     cart: [],
   }),
   computed: {
+    
     datas() {
       return this.$store.getters["getSalons"];
       // return this.$store.getters["getSalons"];
     },
     currentImage() {
-      return this.card.coverImages[this.currentIndex];
+      return this.card.coverImages[0];
     },
     commonServices() {
       return this.$store.getters["getServiceCategories"];
@@ -551,6 +487,12 @@ export default {
 };
 </script>
 <style scoped>
+.multi-line-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  overflow: hidden;
+}
 .close-btn {
   position: absolute;
   top: 10px;

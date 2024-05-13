@@ -63,7 +63,7 @@
   <v-btn class="btn2 " @click="increaseQuantity(item)">+</v-btn>
 
 </v-btn></td>
-        <td>₹ {{ item.price*item.quantity }}</td>
+        <td style="width: 300px;" >₹ {{ item.price*item.quantity }}</td>
         <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:'Select date and time'}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
         <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
         <v-dialog v-model="dialogOff" max-width="500px">
@@ -81,7 +81,7 @@
                   </v-dialog>
       </tr>
       <tr><td></td>
-    <td></td><td>Total: </td>
+    <td></td><td align="end">Total: </td>
 <td>₹ {{total}}</td><td></td> </tr>
     </tbody>
   </v-table>
@@ -126,6 +126,9 @@ import BookAppointment from "./BookAppointment.vue";
       }
     },
     methods: {
+      reserve(){
+        console.log(this.cartFinal,this.cart)
+      },
       toggleBookoff(index) {
       if (index != null) {
         this.bookser = index;
