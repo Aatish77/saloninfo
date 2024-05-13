@@ -82,7 +82,7 @@
       </tr>
       <tr><td></td>
     <td></td><td></td><td></td>
-<td>Total: ₹ {{total}}</td><td>a</td> </tr>
+<td>Total: ₹ {{total}}</td><td></td> </tr>
     </tbody>
   </v-table>
               
