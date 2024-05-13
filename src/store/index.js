@@ -1300,7 +1300,7 @@ const store = createStore({
               price: "400",
               subsubCategories: [
                 {
-                  title: "Brightening radiance sacial",
+                  title: "Brightening radiance facial",
                   price:500,
                   img: "https://www.thebombayskinclinic.com/wp-content/uploads/2023/02/mens-facial-treatment.jpg",
                 },

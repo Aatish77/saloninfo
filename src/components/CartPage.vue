@@ -81,8 +81,8 @@
                   </v-dialog>
       </tr>
       <tr><td></td>
-    <td></td>
-<td>Total: ₹ {{total}}</td> </tr>
+    <td></td><td></td><td></td>
+<td>Total: ₹ {{total}}</td><td>a</td> </tr>
     </tbody>
   </v-table>
               

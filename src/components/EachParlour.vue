@@ -248,7 +248,7 @@
             <v-row class="mt-3">
               <v-col
                 class="book"
-                v-for="(offer, index) in card.offers"
+                v-for="(offer) in card.offers"
                 :key="offer"
                 :cols="4"
               >
@@ -297,11 +297,11 @@
                         </template>
                       </v-btn>
                     </div>
-                    <div>
+                    <!-- <div>
                       <v-btn class="btn1" @click="toggleBookoff(index)">
                         Book an Appointment
                       </v-btn>
-                    </div>
+                    </div> -->
                   </v-card-actions>
                   <v-dialog v-model="dialogOff" max-width="500px">
                     <v-card>
