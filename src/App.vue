@@ -55,6 +55,6 @@ export default {
   background-image: url('https://4kwallpapers.com/images/walls/thumbs_3t/10974.jpg');
 }
 body{
-   background-color: rgb(0, 0, 0) !important;
+   background-color: rgb(11, 11, 11) !important;
   font-family : 'Roboto', sans-serif !important;}
 </style>

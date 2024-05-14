@@ -78,7 +78,7 @@ const store = createStore({
                   },
                   {
                     title: "Ivy League Haircut",
-                    img: "https://www.dmarge.com/wp-content/uploads/2022/09/Ryan-Gosling-Ivy-League-Hairstyle-800x1200-1.jpeg",
+                    img: "https://i.pinimg.com/564x/f5/10/c9/f510c9491355637d603fba2852f2b09c.jpg",
                   },
                   {
                     title: "Buzz Cut",
@@ -1379,7 +1379,7 @@ const store = createStore({
                 {
                   title: "Ivy League Haircut",
                   price: 150,
-                  img: "https://www.dmarge.com/wp-content/uploads/2022/09/837bebe7ef4a908bf7d6a3e6612102e3-967x1200.jpeg",
+                  img: "https://i.pinimg.com/564x/f5/10/c9/f510c9491355637d603fba2852f2b09c.jpg",
                   slots: [
                     "08:30 AM",
                     "09:00 AM",

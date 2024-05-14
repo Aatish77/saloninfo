@@ -99,6 +99,7 @@
   <script>
 import BookAppointment from "./BookAppointment.vue";
   export default {
+  
     components:{
       BookAppointment
     },

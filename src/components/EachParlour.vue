@@ -203,11 +203,11 @@
               </v-col>
               <v-row v-if="currentService === service"
                 ><v-col v-for="i in currentService.subsubCategories" :key="i">
-                  <v-card class="mx-auto card1" max-width="344" max-height="350px">
+                  <v-card class="mx-auto card1" max-width="344" max-height="400px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
-                      height="200"
+                      height="250"
                       :src="i.img"
                       cover
                     >
