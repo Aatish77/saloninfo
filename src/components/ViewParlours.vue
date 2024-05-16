@@ -91,8 +91,8 @@
 
       <v-main>
         <v-card
-          style="background-color: black; color: white"
-          class="mx-auto"
+          style=" color: white"
+          class="mx-auto bgcolor"
           max-width="1500"
         >
           <v-container fluid v-if="filteredCards.length !== 0">
@@ -231,6 +231,9 @@
 </template>
 
 <style>
+.bgcolor{
+  background-color: rgb(10, 10, 10);
+}
 .multi-line-title {
   display: -webkit-box;
   -webkit-box-orient: vertical;

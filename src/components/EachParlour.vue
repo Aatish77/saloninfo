@@ -44,14 +44,14 @@
       </v-app-bar>
       <v-main>
         <v-card
-          style="background-color: black; color: white"
-          class="mx-auto"
+          style="color: white"
+          class="mx-auto bgcolor"
           max-width="1200"
         >
           <v-container fluid>
             <v-row dense>
               <v-col :cols="12">
-                <v-card style="background-color: black; color: white">
+                <v-card style=" color: white" class="bgcolor">
                   <v-img
                     :src="currentImage"
                     alt="Slideshow"
@@ -201,8 +201,8 @@
                   </v-dialog>
                 </v-container>
               </v-col>
-              <v-row v-if="currentService === service"
-                ><v-col v-for="i in currentService.subsubCategories" :key="i">
+              <v-row 
+                ><v-col v-for="i in service.subsubCategories" :key="i">
                   <v-card class="mx-auto card1" max-width="344" max-height="400px">
                     <v-img
                       style="border-radius: 5px"
@@ -487,6 +487,9 @@ export default {
 };
 </script>
 <style scoped>
+.bgcolor{
+  background-color: rgb(14, 14, 14);
+}
 .multi-line-title {
   display: -webkit-box;
   -webkit-box-orient: vertical;

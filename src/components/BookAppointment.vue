@@ -43,14 +43,20 @@
   
       <v-card-title>Availability</v-card-title>
   
-      <div class="px-4">
+      <!-- <div class="px-4">
         <v-row v-if="employee" v-model="selection" class="chip-group">
           <v-chip v-for="slot in employee.slots" :key="slot" :class="selection===slot?'te':'s'" @click="selection=slot" >{{ slot }}</v-chip>
         </v-row>
         <v-row v-else v-model="selection" class="chip-group">
           <v-chip v-for="slot in cart[index].slots" :key="slot" :class="selection===slot?'te':'s'" @click="selection=slot">{{ slot }}</v-chip>
         </v-row>
-      </div>
+      </div> -->
+      <v-select
+      :items="cart[index].slots"
+      v-model="selection"
+      density="comfortable"
+      label="Time slot"
+    ></v-select>
   
       <v-card-actions>
         <v-btn color="deep-purple-lighten-2" variant="text" @click="reserve">

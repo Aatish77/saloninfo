@@ -115,7 +115,7 @@ const store = createStore({
                   },
                   {
                     title: "Charcoal gray ",
-                    img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Charcoal-Gray-01.webp",
+                    img: "https://i.pinimg.com/564x/f8/c7/60/f8c760aed9209c2e664098a88b71a502.jpg",
                   },
                   {
                     title: "Light blonde",
@@ -232,7 +232,7 @@ const store = createStore({
                     img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg",
                   },
                   {
-                    title: "black",
+                    title: "Black",
                     img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
                   },
                 ],
@@ -1140,7 +1140,7 @@ const store = createStore({
                   ],
                 },
                 {
-                  title: "black",
+                  title: "Black",
                   price: 250,
                   img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
                   employees: [
@@ -1608,7 +1608,7 @@ const store = createStore({
               ],
             },
             {
-              category: "Hair Treatment",
+              category: "Hair Treatments",
               subCategory: "Hair Color",
               title: "Hair Color",
               subsubCategories: [
@@ -1620,7 +1620,7 @@ const store = createStore({
                 {
                   title: "Charcoal gray ",
                   price: "400",
-                  img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Charcoal-Gray-01.webp",
+                  img: "https://i.pinimg.com/564x/f8/c7/60/f8c760aed9209c2e664098a88b71a502.jpg",
                 },
                 {
                   title: "Light blonde",

@@ -37,7 +37,7 @@
         </div>
         <div>
           <label>Mobile:</label>
-          <input type="number" v-model.number="user.phone">
+          <input type="text" v-model.number="user.phone">
         </div>
         <button class="button1" @click="saveProfile">Save</button>
         
@@ -143,7 +143,7 @@
 }
   .profile {
 	margin: auto;
-	height: 520px;
+	height: 480px;
 	width: 400px;
 	background: #ffffff;
     margin-top: 20px;
