@@ -210,7 +210,7 @@
               </v-col>
               <v-row 
                 ><v-col v-for="i in service.subsubCategories" :key="i">
-                  <v-card class="mx-auto card1" max-width="344" max-height="400px">
+                  <v-card :id="i.title" class="mx-auto card1" max-width="344" max-height="400px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
