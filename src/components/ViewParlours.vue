@@ -232,7 +232,7 @@
 
 <style>
 .bgcolor{
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(0, 0, 0);
 }
 .multi-line-title {
   display: -webkit-box;
