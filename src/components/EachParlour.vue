@@ -73,7 +73,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
 
-                    <v-btn>
+                    <v-btn href="#l1">
                       <div>
                         <h6 class="text-end" style="margin-top: 0px">
                           {{ card.location }}
@@ -342,7 +342,7 @@
             </v-row>
           </v-container>
         </v-card>
-        <iframe :src="card.locationLink" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe :src="card.locationLink"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="l1"></iframe>
       </v-main>
     </v-layout>
   </v-card>
