@@ -283,12 +283,21 @@ export default {
     filteredCards() {
   return this.cards.filter(card => {
     // Filter cards based on type and services category
-    return card.type === this.currentLabel.label && this.servicesMatchCategory(card.services);
+    return (card.type === this.currentLabel.label ||  card.type==="Unisex" ) && this.servicesMatchCategory(card.services);
   }).map(card => {
     // Modify the filtered cards to include service information
-    const matchingService = card.services.find(service => {
+    let matchingService
+    if(card.type==="Unisex"){
+      
+      for(let i of card.serviceCategories){
+        if(i.title=== this.currentLabel.label){
+      matchingService = i.services.find(service => {
       return service.category === this.currentLabel.category && service.subCategory === this.currentLabel.subCategory && service.subsubCategories.some(subsub => subsub.title === this.currentLabel.subsubCategory);
-    });
+    });}}
+    }
+    else{ matchingService = card.services.find(service => {
+      return service.category === this.currentLabel.category && service.subCategory === this.currentLabel.subCategory && service.subsubCategories.some(subsub => subsub.title === this.currentLabel.subsubCategory);
+    });}
     if (matchingService) {
       const matchingSubsubCategory = matchingService.subsubCategories.find(subsub => subsub.title === this.currentLabel.subsubCategory);
       if (matchingSubsubCategory) {
