@@ -1680,12 +1680,13 @@ const store = createStore({
           id: "salon3",
           description:
             "Beyond Labels: Discover Your Signature Look at Our Unisex Salon",
-            coverImages:[
-            "https://i.pinimg.com/736x/1a/08/53/1a085368c48e7540911adbcc9b47b0ba.jpg"
-            ],
+          
             serviceCategories:[
               {
                 title: "Men",
+                coverImages:[
+                  require("@/assets/unisexmen.jpg"),
+                  ],
                 
           services: [
             {
@@ -2101,6 +2102,9 @@ const store = createStore({
               },
              {
               title: "Women",
+              coverImages:[
+                require("@/assets/unisexwomen.jpeg"),
+                ],
               services: [
                 {
                   category: "Hair Cut and Style",
@@ -2109,6 +2113,7 @@ const store = createStore({
                   desc: "Transform your look with a fresh haircut! Our expert stylists are here to give you a trendy and personalized haircut that complements your face shape and style.",
                   img: require("@/assets/servicewomen1.jpg"),
                   price: "300",
+                  
                   employees: [
                     {
                       name: "Harish",

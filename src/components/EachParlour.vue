@@ -389,7 +389,7 @@ export default {
       // return this.$store.getters["getSalons"];
     },
     currentImage() {
-      return this.card.coverImages[0];
+      return this.cardServices.coverImages[0];
     },
     commonServices() {
       return this.$store.getters["getServiceCategories"];

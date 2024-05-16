@@ -342,4 +342,5 @@ export default {
 .card1:hover {
   scale: 101%;
 }
+
 </style>
