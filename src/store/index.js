@@ -461,6 +461,7 @@ const store = createStore({
           src: "https://cdn.tapetender70er.de/media/image/6c/3d/af/Hair-Salon-Wallpaper-Design_944x944@2x.webp",
           rating: 4.5,
           location: "Nadakkavu, Alappuzha",
+          locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.9097557147425!2d76.53979667478346!3d9.252360890818142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b061f4f39da6ea7%3A0x35daef4905593447!2sNadakkavu!5e0!3m2!1sen!2sin!4v1715839892019!5m2!1sen!2sin",
           flex: 3,
           id: "salon1",
           description:
@@ -1248,6 +1249,7 @@ const store = createStore({
           src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
           rating: 4.7,
           location: "YMCA road, Alappuzha",
+          locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7031.155658833512!2d76.33429072109983!3d9.499149486903942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08845fb35f8e55%3A0x8e0f472b509a7416!2sYMCA%20Rd%2C%20Vazhicherry%20Ward%2C%20Sea%20View%20Ward%2C%20Alappuzha%2C%20Kerala!5e0!3m2!1sen!2sin!4v1715840193464!5m2!1sen!2sin",
           flex: 3,
           id: "salon2",
           description:
@@ -1676,6 +1678,7 @@ const store = createStore({
 
           rating: 4.0,
           location: "Chandanakkavu road, Alappuzha",
+          locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.928037340505!2d76.34522558911691!3d9.487457484507154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0885f939dc5ff1%3A0x336ec60eec9cc6b!2sAlappuzha!5e0!3m2!1sen!2sin!4v1715840447501!5m2!1sen!2sin",
           flex: 3,
           id: "salon3",
           description:
