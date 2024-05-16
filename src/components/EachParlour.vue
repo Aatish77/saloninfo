@@ -93,10 +93,17 @@
                 </v-card>
               </v-col>
             </v-row>
+            <v-container v-if="card.serviceCategories" class="d-flex justify-center align-center" fluid style="height: 80px;" >
+         
+         <v-radio-group v-model="type" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
+     <v-radio label="Men" value="Men" color="primary"></v-radio>
+     <v-radio label="Women" value="Women" color="red"></v-radio>
+   </v-radio-group>
+       </v-container>
             <h1 class="mt-3">Services</h1>
             <v-row
               class="book"
-              v-for="(service, index) in card.services"
+              v-for="(service, index) in cardServices.services"
               :key="service"
             >
               <v-col :cols="12" md="6" v-if="index % 2 === 0">
@@ -248,7 +255,7 @@
             <v-row class="mt-3">
               <v-col
                 class="book"
-                v-for="(offer) in card.offers"
+                v-for="(offer) in cardServices.offers"
                 :key="offer"
                 :cols="4"
               >
@@ -372,6 +379,8 @@ export default {
     intervalId: null,
     intervalDuration: 3000,
     cart: [],
+    cardServices:null,
+    type:'Men'
   }),
   computed: {
     
@@ -399,8 +408,29 @@ export default {
         console.log(this.card);
       }
     }
+    if(this.card.serviceCategories){
+     
+        for(let i of this.card.serviceCategories ){
+          if(i.title===this.type){
+            this.cardServices=i;
+          }
+        }
+      
+
+    }
+    else{
+      this.cardServices=this.card;
+    }
   },
   methods: {
+    handleSwitchChange(){
+      for(let i of this.card.serviceCategories ){
+          if(i.title===this.type){
+            this.cardServices=i;
+          }
+        }
+      
+    },
     handleChildValueChange(value) {
       // Handle the value passed from the child component
       this.cart = value;
@@ -488,7 +518,7 @@ export default {
 </script>
 <style scoped>
 .bgcolor{
-  background-color: rgb(14, 14, 14);
+  background-color: rgb(0, 0, 0);
 }
 .multi-line-title {
   display: -webkit-box;
