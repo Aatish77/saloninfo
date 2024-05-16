@@ -81,7 +81,13 @@
                         </h6></div
                     ></v-btn>
                   </v-card-actions>
-
+                  <v-container v-if="card.serviceCategories" class="d-flex justify-center align-center" fluid style="height: 80px;" >
+         
+         <v-radio-group v-model="type" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
+     <v-radio label="Men" value="Men" color="primary"></v-radio>
+     <v-radio label="Women" value="Women" color="red"></v-radio>
+   </v-radio-group>
+       </v-container>
                   <h1>About</h1>
                   <v-row>
                     <v-col :cols="8">
@@ -93,13 +99,7 @@
                 </v-card>
               </v-col>
             </v-row>
-            <v-container v-if="card.serviceCategories" class="d-flex justify-center align-center" fluid style="height: 80px;" >
-         
-         <v-radio-group v-model="type" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
-     <v-radio label="Men" value="Men" color="primary"></v-radio>
-     <v-radio label="Women" value="Women" color="red"></v-radio>
-   </v-radio-group>
-       </v-container>
+            
             <h1 class="mt-3">Services</h1>
             <v-row
               class="book"
