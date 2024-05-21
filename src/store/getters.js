@@ -5,4 +5,5 @@ export default{
     getBaseUrl: (state) => state.baseUrl,
     getSalonsPending: (state) => state.salonsPending,
     getServiceCategories: (state) => state.serviceCategories,
+    getoffers: (state )=> state.offers,
 }

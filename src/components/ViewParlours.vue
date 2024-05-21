@@ -202,6 +202,7 @@
             prepend-icon="fas fa-tags"
             title="Offers"
             value="account"
+            @click="offerClick"
           ></v-list-item>
           <v-list-item
             :prepend-avatar= 'require("@/assets/man2.png")'
@@ -323,6 +324,9 @@ export default {
     },
     serviceClick(){
       this.$router.push("/services")
+    },
+    offerClick(){
+      this.$router.push("/offer")
     },
     logout(){
       

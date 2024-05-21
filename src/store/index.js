@@ -3030,6 +3030,76 @@ const store = createStore({
           website: "https://www.menspacegrooming.com",
         },
       ],
+      offers: [
+        // Example offers data
+        {title: "Smoothening Offers",
+        mrp: "5499",
+        price: "4499",
+        img: "https://www.myglamm.com/_next/image?url=https%3A%2F%2Ffiles.myglamm.com%2Fsite-images%2F768x432%2FBenefits-of-Hair-Straightening_1.jpg&w=1920&q=75", 
+        category: "Women",
+      },
+
+        { title: "Haircut and Styling",
+                  mrp: "1400",
+                  price: "1199",
+                  img: "https://lh6.googleusercontent.com/DIL-VBWpAC65rQJre94Xk-oqcfqgehMrSZLD5idZZqerpjWWgbPEhT6dxjJyBsbXOzv6hhJLfWZBiu30pYQSXwwo5g4I4FncUFe7zQWe2BuODzSiporvBjJ8_c5Alu22oVyEGmkWtDEAD3Qxh-P3NOYj5y2bQdVSGTQ7orpAnZFwW0QKJzJhk3_Np2tEEg",
+                  category: "Women", 
+                },
+                {
+                  title: "Facial & Hair Spa Combo",
+                  mrp: "2500",
+                  price: "1999",
+                  img: "https://images.herzindagi.info/image/2019/Jul/hair-spa-benefits.jpg",
+                  category: "Women",
+                },
+                {
+                  title: "Bridal Package",
+                  mrp: "10000",
+                  price: "7999",
+                  img: "https://shaadiwish.com/blog/wp-content/uploads/2020/12/best-south-indian-brides.jpg",
+                  category: "Women",
+                },
+                {
+                  title: "Smoothening Offers",
+                  mrp: "4999",
+                  price: "3999",
+                  img: "https://assets-mhd-com.s3.amazonaws.com/uploads/video/mobile_background/10585/M_R_470_MOB.jpg",
+                  category: "Men",
+                },
+                {
+                  title: "Haircut and Styling",
+                  mrp: "1200",
+                  price: "999",
+                  img: "https://www.beyoung.in/blog/wp-content/uploads/2020/04/general-min-1.jpg",
+                  category: "Men",
+
+                },
+    
+                {
+                  title: "Beard Grooming",
+                  mrp: "800",
+                  price: "699",
+                  img: "https://cdn11.bigcommerce.com/s-h7l2pcerei/product_images/uploaded_images/trimming-beard.jpg",
+                  category: "Men",
+                },
+                {
+                  title: "Tattoo Offers",
+                  mrp: "3500",
+                  price: "2999",
+                  img: "https://manofmany.com/_next/image?url=https%3A%2F%2Fapi.manofmany.com%2Fwp-content%2Fuploads%2F2023%2F06%2F40-Best-Tattoo-Ideas-for-Men.jpg&w=1024&q=75",
+                  category: "Men",
+                },
+                {
+                  title: "Mud Mask Treatment",
+                  mrp: "2100",
+                  price: "1799",
+                  img: "https://wolfproject.co/cdn/shop/articles/for-men-only-5-reasons-why-a-muddier-skincare-routine-is-what-you-need-747265_1500x.jpeg?v=1637160032",
+                  category: "Men",
+                },
+
+        // Add more offers
+      ],
+    
     };
   },
   getters: rootGetters,
