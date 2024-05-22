@@ -8,13 +8,14 @@
         <i class="fas fa-cut"></i>
       </template>
       <v-app-bar-title
-      style="
-            margin-left: 2px;
-            font-size: 30px;
-            font-weight: 800;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-              'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-          ">saloninfo</v-app-bar-title>
+        style="
+          margin-left: 2px;
+          font-size: 30px;
+          font-weight: 800;
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        "
+      >saloninfo</v-app-bar-title>
       <v-slide-y-transition class="mx-3">
         <v-text-field
           class="search"
@@ -27,40 +28,50 @@
       </v-slide-y-transition>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
-    <v-main>
-      
-        <v-container class="d-flex justify-center align-center" fluid style="height: 80px; margin-left: 500px;">
-          <v-radio-group v-model="switchLabel" @change="handleSwitchChange" inline style="color:white;">
-            <v-radio label="Men" value="Men" color="primary"></v-radio>
-            <v-radio label="Women" value="Women" color="red"></v-radio>
-          </v-radio-group>
+    <v-carousel cycle interval="2500" hide-delimiters :show-arrows="false" style="height: 600px;">
+      <v-carousel-item v-for="(item, i) in carouselItems" :key="i" :src="item.src" cover>
+        <v-container class="fill-height d-flex" fluid>
+          <h1 :class="[getTitleClass(i), 'carousel-title', getFontClass(i)]" v-html="formatTitle(item.title)"></h1>
         </v-container>
-        <h1 class="mt-3" style="color:white;">Offers</h1>
-        <v-row class="mt-3">
-          <v-col
-            class="book"
-            v-for="(offer, index) in filteredOffers"
-            :key="index"
-            :cols="4"
-          >
-            <v-card style="background-color: black; color: white" class="mx-auto" max-width="400">
-              <v-img style="border-radius: 5px" class="align-end text-white mx-3" height="300" :src="offer.img" cover>
-                <v-card-title>{{ offer.title }}</v-card-title>
-              </v-img>
-              <v-card-subtitle class="pt-2 mb-0">
-                Price:
-                <span style="text-decoration: line-through">₹{{ offer.mrp }}</span>
-              </v-card-subtitle>
-              <v-card-text class="pt-0">
-                <div>Offer Price: ₹{{ offer.price }}</div>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-     
+      </v-carousel-item>
+    </v-carousel>
+
+    <v-main>
+      <v-container class="d-flex justify-center align-center" fluid style="height: 80px; margin-left: 500px;">
+        <v-radio-group v-model="switchLabel" @change="handleSwitchChange" inline style="color:white;">
+          <v-radio label="Men" value="Men" color="primary"></v-radio>
+          <v-radio label="Women" value="Women" color="red"></v-radio>
+        </v-radio-group>
+      </v-container>
+      <h1 class="mt-3" style="color:white;">Offers</h1>
+      <v-row class="mt-3">
+        <v-col
+          class="book"
+          v-for="(offer, index) in filteredOffers"
+          :key="index"
+          :cols="4"
+        >
+          <v-card style="background-color: black; color: white" class="mx-auto" max-width="400">
+            <v-img style="border-radius: 5px" class="align-end text-white mx-3" height="300" :src="offer.img" cover>
+              <v-card-title>{{ offer.title }}</v-card-title>
+            </v-img>
+            <v-card-subtitle class="pt-2 mb-0">
+              Price:
+              <span style="text-decoration: line-through">₹{{ offer.mrp }}</span>
+            </v-card-subtitle>
+            <v-card-text class="pt-0">
+              <div>Offer Price: ₹{{ offer.price }}</div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>
+
+
+
+
 
 <script>
 export default {
@@ -70,6 +81,13 @@ export default {
       searchText: '',
       switchLabel: 'Men',
       switchColor: 'blue',
+      carouselItems: [
+        { src: 'https://www.stryx.com/cdn/shop/articles/how-often-men-should-get-haircuts.jpg?v=1644630261', title: 'Hair cut 50% OFF' },
+        { src: 'https://img.freepik.com/free-photo/woman-getting-treatment-hairdresser-shop_23-2149230940.jpg?t=st=1716360215~exp=1716363815~hmac=dabd7d67b709e7237ed1f820d654871c61f2257ba573d2d3345e3d96c620550c&w=996', title: 'Hair Treatment 25% OFF' },
+        { src: 'https://img.freepik.com/free-photo/man-portrait-skincare-routine_23-2151308483.jpg?t=st=1716359036~exp=1716362636~hmac=00c9914c9b454b1eff21338ddc0461f1866c2c9d18f17269180861098c6ee28f&w=1380', title: 'Skin Care 30% OFF' },
+        { src: 'https://mjgorgeous.com/wp-content/uploads/2020/12/MACost2.jpg', title: 'Bridal Makeup 20% OFF' },
+        { src: 'https://img.freepik.com/free-photo/dilligent-focused-tattoo-artist-is-creating-new-tattoo-young-woman-s-hand-tatoo-studio_613910-19581.jpg?t=st=1716359325~exp=1716362925~hmac=ab1ba9a13414088b7f25b9ad56d81c044d56029bfcbb7d2143b1205543e3a2f2&w=996', title: 'Tattoo 20% OFF' }
+      ]
     };
   },
   created() {
@@ -81,6 +99,16 @@ export default {
     handleSwitchChange() {
       console.log(this.switchLabel);
     },
+    getTitleClass(index) {
+      return index % 2 === 0 ? 'left-align' : 'right-align';
+    },
+    getFontClass(index) {
+      const fontClasses = ['font-style-1', 'font-style-2', 'font-style-3'];
+      return fontClasses[index % fontClasses.length];
+    },
+    formatTitle(title) {
+      return title.replace(/(\d+%?)/g, '<span class="large-digits">$1</span>');
+    }
   },
   computed: {
     currentLabel() {
@@ -94,6 +122,8 @@ export default {
 };
 </script>
 
+
+
 <style scoped>
 body {
   background-color: black;
@@ -101,4 +131,55 @@ body {
   margin: 0; /* Remove default margin */
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
+
+.v-carousel-item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure the image covers the container without distortion */
+}
+
+.left-align {
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 20px; /* Add some padding for better positioning */
+}
+
+.right-align {
+  justify-content: flex-end;
+  text-align: right;
+  padding-right: 20px; /* Add some padding for better positioning */
+}
+
+.carousel-title {
+  width: 100%; /* Ensure the title takes up the full width of the container */
+}
+
+/* Define different font styles */
+.font-style-1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: white; /* Gold color */
+}
+
+.font-style-2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: white; /* Aqua color */
+}
+
+.font-style-3 {
+  font-family: 'Arial', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;  /* HotPink color */
+}
+
+.large-digits {
+  font-size: 1.5em; /* Increase digit size */
+  
+}
 </style>
+
