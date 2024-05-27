@@ -209,8 +209,8 @@
                 </v-container>
               </v-col>
               <v-row 
-                ><v-col v-for="i in service.subsubCategories" :key="i">
-                  <v-card :id="i.title" class="mx-auto card1" max-width="344" max-height="400px">
+                ><v-col v-for="i in service.subsubCategories" :key="i" :id="i.title">
+                  <v-card  class="mx-auto card1" max-width="344" max-height="400px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
@@ -384,7 +384,10 @@ export default {
     type:'Men'
   }),
   computed: {
-    
+    currentLabel() {
+      const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"));
+      return currentLabel;
+    },
     datas() {
       return this.$store.getters["getSalons"];
       // return this.$store.getters["getSalons"];
@@ -401,6 +404,16 @@ export default {
     this.startSlideshow();
   },
   created() {
+    if (this.currentLabel) {
+      console.log(this.currentLabel)
+      this.type=this.currentLabel.label
+    this.$nextTick(() => {
+      const element = document.getElementById(this.currentLabel.subsubCategory);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
     console.log(this.datas);
     console.log(this.id);
     for (let i = 0; i < this.datas.length; i++) {
@@ -422,6 +435,8 @@ export default {
     else{
       this.cardServices=this.card;
     }
+    
+    
   },
   methods: {
     handleSwitchChange(){
