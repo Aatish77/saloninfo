@@ -180,7 +180,7 @@ const store = createStore({
                     img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
                   },
                   {
-                    title: "V  cut",
+                    title: "V cut",
                     img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
                   },
                 ],
