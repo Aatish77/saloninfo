@@ -33,17 +33,9 @@ const router = createRouter({
     { path: "/parlourreg", component: ParlourReg },
     { path: "/adminhome", component: AdminHome },
     { path: "/services", component: ServicesPage },
-    {
-      path: "/serviceparlour",
-      component: ServiceParlour,
-      
-    },
+    {path: "/serviceparlour",component: ServiceParlour,},
     {path:"/eachservice",component: EachService},
-    
-    {
-      path:"/userpage",
-      component:UserPage
-    },
+    {path:"/userpage",component:UserPage},
     { path:"/offer",component:OfferPage},
    
   ],
