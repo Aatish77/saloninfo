@@ -107,7 +107,7 @@ export default {
       return fontClasses[index % fontClasses.length];
     },
     formatTitle(title) {
-      return title.replace(/(\d+%?)/g, '<span class="large-digits">$1</span>');
+      return title.replace(/(\d+%?)/g, '<span class="large-digits" style="font-size:1.5em">$1</span>');
     }
   },
   computed: {
@@ -178,7 +178,8 @@ body {
 }
 
 .large-digits {
-  font-size: 1.5em; /* Increase digit size */
+  
+  font-size: 1.5em !important; /* Increase digit size */
   
 }
 </style>
