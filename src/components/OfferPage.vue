@@ -83,7 +83,7 @@ export default {
       switchColor: 'blue',
       carouselItems: [
         { src: 'https://www.stryx.com/cdn/shop/articles/how-often-men-should-get-haircuts.jpg?v=1644630261', title: 'Hair cut 50% OFF' },
-        { src: 'https://img.freepik.com/free-photo/woman-getting-treatment-hairdresser-shop_23-2149230940.jpg?t=st=1716360215~exp=1716363815~hmac=dabd7d67b709e7237ed1f820d654871c61f2257ba573d2d3345e3d96c620550c&w=996', title: 'Hair Treatment 25% OFF' },
+        { src: 'https://img.freepik.com/free-photo/woman-getting-treatment-hairdresser-shop_23-2149230920.jpg?t=st=1716790850~exp=1716794450~hmac=b653335a8d9fe3e264283dc3f61ccf002cd6a693c8beb3e0dd0944497aa1dfe3&w=996', title: 'Hair Treatment 25% OFF' },
         { src: 'https://img.freepik.com/free-photo/man-portrait-skincare-routine_23-2151308483.jpg?t=st=1716359036~exp=1716362636~hmac=00c9914c9b454b1eff21338ddc0461f1866c2c9d18f17269180861098c6ee28f&w=1380', title: 'Skin Care 30% OFF' },
         { src: 'https://mjgorgeous.com/wp-content/uploads/2020/12/MACost2.jpg', title: 'Bridal Makeup 20% OFF' },
         { src: 'https://img.freepik.com/free-photo/dilligent-focused-tattoo-artist-is-creating-new-tattoo-young-woman-s-hand-tatoo-studio_613910-19581.jpg?t=st=1716359325~exp=1716362925~hmac=ab1ba9a13414088b7f25b9ad56d81c044d56029bfcbb7d2143b1205543e3a2f2&w=996', title: 'Tattoo 20% OFF' }
