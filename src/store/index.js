@@ -1548,7 +1548,7 @@ const store = createStore({
           description:
             "Orchid Beauty Studio offers a variety of beauty services including facial treatments, waxing, and nail services.",
           services: [
-            { title: "Facial Treatments", category: "Skin care", price: "500" },
+            { title: "Facial Treatments", category: "Skin care", price: "500", },
             { title: "Waxing", category: "Skin Care", price: "300" },
             { title: "Nail Services", category: "Nail Art", price: "800" },
           ],

@@ -269,6 +269,9 @@ export default {
     open: ["Users"],
     
   }),
+  created(){
+    sessionStorage.removeItem('currentLabel');
+  },
   computed: {
     currentUser() {
       const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -298,6 +301,12 @@ export default {
           if (regex.test(service.title)) {
             return true;
           }
+          if(service.subsubCategories){
+          for(const subsub of service.subsubCategories){
+            if(regex.test(subsub.title)){
+              return true
+            }
+          }}
         }
 
         for (const offer of card.offers) {
