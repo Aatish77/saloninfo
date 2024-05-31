@@ -12,6 +12,7 @@ import ServicesPage from "./components/ServicesPage.vue";
 import ServiceParlour from "./components/ServiceParlour.vue";
 import EachService from "./components/EachService.vue";
 import OfferPage from "./components/OfferPage.vue";
+import OfferParlour from "./components/OfferParlour.vue"
 // import AdminEachRequest from "./components/AdminEachRequest.vue"
 import UserPage from "./components/UserPage.vue";
 const router = createRouter({
@@ -37,7 +38,7 @@ const router = createRouter({
     {path:"/eachservice",component: EachService},
     {path:"/userpage",component:UserPage},
     { path:"/offer",component:OfferPage},
-   
+    {path:"/offerparlour",component:OfferParlour}
   ],
 });
 export default router;

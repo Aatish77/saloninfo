@@ -260,6 +260,7 @@
                 :cols="4"
               >
                 <v-card
+                :id="offer.title"
                   style="background-color: black; color: white"
                   class="mx-auto"
                   max-width="400"
@@ -384,6 +385,10 @@ export default {
     type:'Men'
   }),
   computed: {
+    currentOffer(){
+      const currentOffer = JSON.parse(sessionStorage.getItem("currentOffer"));
+      return currentOffer;
+    },
     currentLabel() {
       const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"));
       return currentLabel;
@@ -409,6 +414,14 @@ export default {
       this.type=this.currentLabel.label
     this.$nextTick(() => {
       const element = document.getElementById(this.currentLabel.subsubCategory);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  } else if(this.currentOffer){
+    this.type=this.currentOffer.label
+    this.$nextTick(() => {
+      const element = document.getElementById(this.currentOffer.offer);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }

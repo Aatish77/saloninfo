@@ -1,15 +1,14 @@
 <template>
-  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208" >
+    <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
     <v-layout>
       <v-app-bar
-        
         style="z-index: 1"
         color="teal-darken-4"
-        image="https://img.freepik.com/free-photo/wavy-black-white-background_23-2150530927.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1716422400&semt=ais_user"
+        image="https://4kwallpapers.com/images/walls/thumbs_3t/10974.jpg"
       >
         <template v-slot:image>
           <v-img
-            gradient="to top right, rgba(71,71,71,.1), rgba(8,8,8,1)"
+            gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
           ></v-img>
         </template>
         
@@ -28,9 +27,8 @@
           "
           >saloninfo</v-app-bar-title
         >
-        <v-slide-y-transition class="" >
+        <v-slide-y-transition class="mx-3">
           <v-text-field
-          
             class="search"
             v-model="searchText"
             placeholder="Search"
@@ -93,66 +91,88 @@
 
       <v-main>
         <v-card
-          style=" color: white"
-          class="mx-auto bgcolor"
-          max-width="1500"
+          style="background-color: black; color: white"
+          class="mx-auto"
+          max-width="1200"
+          max-height="2000"
         >
-          <v-container fluid v-if="filteredCards.length !== 0">
-            <h4 class="text-center" v-if="searchText">
-              Showing results of: {{ searchText }}
-            </h4>
+        <div>
+    <!-- <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon icon="mdi-chevron-right"></v-icon>
+      </template>
+    </v-breadcrumbs> -->
+  </div>
+          <v-container fluid >
+            
             <v-row class="d-flex flex-wrap gap-2" dense>
-              <v-col class="a"
+              <v-col
                 @click="navigateToEach(card.id)"
                 v-for="card in filteredCards"
                 :key="card.title"
               >
-                <v-card
-                  style="background-color: black; color: white"
-                  :loading="loading"
-                  class="mx-auto my-0 card1"
-                  max-width="374"
-                >
-                  <template v-slot:loader="{ isActive }">
-                    <v-progress-linear
-                      :active="isActive"
-                      color="deep-purple"
-                      height="4"
-                      indeterminate
-                    ></v-progress-linear>
-                  </template>
+                
+                <v-card 
+                style="background-color: black; color: white"
+                  
+    :disabled="loading"
+    :loading="loading"
+    class="mx-auto my-2 card1"
+    max-width="374"
+  >
+    <template v-slot:loader="{ isActive }">
+      <v-progress-linear
+        :active="isActive"
+        color="deep-purple"
+        height="4"
+        indeterminate
+      ></v-progress-linear>
+    </template>
 
-                  <v-img height="250" :src="card.src" cover></v-img>
+    <v-img
+      height="250"
+      :src="card.src"
+      cover
+    ></v-img>
 
-                  <v-card-item>
-                    <h5 class="multi-line-title">{{ card.parlourName }}</h5>
-                  </v-card-item>
+    <v-card-item>
+      <v-card-title >{{card.parlourName}}</v-card-title>
 
-                  <v-card-text>
-                    <v-row align="center" class="mx-0">
-                      <v-rating
-                        :model-value="card.rating"
-                        color="amber"
-                        density="compact"
-                        size="small"
-                        half-increments
-                        readonly
-                      ></v-rating>
+      <v-card-subtitle>
+        <span class="me-1"><i class="fas fa-map-marker-alt"></i> {{ card.location }}</span>
+      </v-card-subtitle>
+    </v-card-item>
 
-                      <div class="text-grey ms-4">{{ card.rating }} (413)</div>
-                    </v-row>
+    <v-card-text>
+      <v-row align="center" class="mx-0">
+        <v-rating
+          :model-value="card.rating"
+          color="amber"
+          density="compact"
+          size="small"
+          half-increments
+          readonly
+        ></v-rating>
 
-                    <div class="my-4 text-subtitle-1">
-                      <i class="fas fa-map-marker-alt"></i> {{ card.location }}
-                    </div>
-                  </v-card-text>
-                </v-card>
+        <div class="text-grey ms-4">{{card.rating}} (413)</div>
+      </v-row>
+      <div class="mt-2 text-subtitle-1">{{card.offerTitle}}</div>
+
+      
+
+      <div>₹ {{card.offerPrice}}</div>
+    </v-card-text>
+
+    
+
+    
+  </v-card>
+
+
               </v-col>
             </v-row>
           </v-container>
-          <v-container fluid v-else>
-            <h1 align="center" class="mt-5">No search results found.</h1>
-          </v-container>
+          
         </v-card>
       </v-main>
     </v-layout>
@@ -163,13 +183,7 @@
         <template v-slot:prepend>
           <v-row>
             <v-col cols="9">
-              <v-list-item
-            lines="two"
-            :prepend-avatar='currentUser.image'
-            subtitle="Logged in"
-            :title="currentUser.fullName"
-          >
-          </v-list-item>
+              
   </v-col><v-col cols="3">
     <v-btn icon @click="drawer = false" style="background-color: black; color: white; ">
       <v-icon>mdi-close</v-icon>
@@ -192,7 +206,6 @@
             prepend-icon="mdi-account"
             title="My Account"
             value="account"
-            @click="clickProfile"
           ></v-list-item>
           <v-list-item
             prepend-icon="fas fa-briefcase"
@@ -204,7 +217,6 @@
             prepend-icon="fas fa-tags"
             title="Offers"
             value="account"
-            @click="offerClick"
           ></v-list-item>
           <v-list-item
             :prepend-avatar= 'require("@/assets/man2.png")'
@@ -232,129 +244,95 @@
     </v-layout>
   </v-card>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      items: [
+        {
+          title: 'Dashboard',
+          disabled: false,
+          href: 'breadcrumbs_dashboard',
+        },
+        {
+          title: 'Link 1',
+          disabled: false,
+          href: 'breadcrumbs_link_1',
+        },
+        {
+          title: 'Link 2',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
+      drawer: null,
+    }
+  },
+    created(){
+    //   this.items=[{title:this.currentLabel.label,href:"/services"},{title:this.currentLabel.category,href:"/eachservice"},{title:this.currentLabel.subCategory,href:"/eachservice"},{title:this.currentLabel.subsubCategory}]
+        console.log(this.currentOffer)
+        console.log('f',this.cards[2])
+    },
+    computed:{
+      currentOffer(){
+        const currentOffer = JSON.parse(sessionStorage.getItem("currentOffer"))
+        return currentOffer
+      },
+        cards() {
+      return this.$store.getters["getSalons"];
+    },
+    filteredCards() {
+  return this.cards.filter(card => {
+    // Filter cards based on type and services category
+    return (card.type === this.currentOffer.label ||  card.type ==="Unisex" ) ;
+  }).map(card => {
+    // Modify the filtered cards to include service information
+    let matchingOffer
+    if(card.type==="Unisex"){
+      
+      for(let i of card.serviceCategories){
+        if(i.title === this.currentOffer.label){
+      matchingOffer = i.offers.find(offer => {
+      return offer.title === this.currentOffer.offer ;
+    });}}
+    }
+    else{ matchingOffer = card.offers.find(offer => {
+      return offer.title === this.currentOffer.offer
+    });}
+    console.log("g",matchingOffer)
+    if (matchingOffer) {
+      
+        return {
+          ...card,
+          offerTitle: this.currentOffer.offer,
+          offerPrice: matchingOffer.price
+        };
+      
+    } else {
+      // If no matching service is found, return null
+      return null;
+    }
+  }).filter(Boolean); // Remove any null values from the mapped array
+},
 
-<style>
-.bgcolor{
-  background-color: rgb(0, 0, 0);
+
+    
+    },
+    methods: {
+      navigateToEach(id){
+        this.$router.push({name:"EachParlour",params:{id:id}})
+      },
+      offersMatchCategory(offers) {
+      // Check if any service's category matches the currentLabel.title
+      return offers.some(offer => offer.title === this.currentLabel.offer);
+    }
+  }
+    
 }
-.multi-line-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  overflow: hidden;
-}
-.a :hover{
- cursor: pointer;
-}
-.search {
-  
-  background-color: rgba(240, 248, 255, 0) !important;
-}
-.user {
-  margin-left: 2px;
-}
+</script>
+<style scoped>
 .card1 {
   width: 250px !important;
   height: 400px;
 }
-.card1:hover {
-  scale: 101%;
-}
-/* .v-select{
-  background-color: rgba(245, 245, 220, 0) !important;
-} */
 </style>
-
-<script>
-export default {
-  data: () => ({
-    drawer: null,
-    selectedItem: null,
-    show: false,
-    searchText: "",
-    open: ["Users"],
-    
-  }),
-  created(){
-    sessionStorage.removeItem('currentLabel');
-  },
-  computed: {
-    currentUser() {
-      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-      return currentUser;
-    },
-    cards() {
-      return this.$store.getters["getSalons"];
-    },
-    filteredCards() {
-      if (!this.searchText) {
-        return this.cards;
-      }
-
-      const regex = new RegExp(this.searchText.trim(), "i");
-      return this.cards.filter((card) => {
-        // Check if parlourName or location matches searchText
-        if (
-          regex.test(card.parlourName) ||
-          regex.test(card.location) ||
-          regex.test(card.type)
-        ) {
-          return true;
-        }
-
-        // Check if any service.title or offer.name matches searchText
-        for (const service of card.services) {
-          if (regex.test(service.title)) {
-            return true;
-          }
-          if(service.subsubCategories){
-          for(const subsub of service.subsubCategories){
-            if(regex.test(subsub.title)){
-              return true
-            }
-          }}
-        }
-
-        for (const offer of card.offers) {
-          if (regex.test(offer.name)) {
-            return true;
-          }
-        }
-
-        return false;
-      });
-    },
-  },
-  watch: {
-    selectedItem(newValue) {
-      console.log(newValue)
-      if (newValue === 'Logout') {
-        this.logout();
-      }
-    }
-  },
-  methods: {
-    clickProfile(){
-      this.$router.push("/userpage")
-    },
-    serviceClick(){
-      this.$router.push("/services")
-    },
-    offerClick(){
-      this.$router.push("/offer")
-    },
-    logout(){
-      
-      console.log("logout")
-      this.$router.push("/")
-    },
-    navigateToEach(id) {
-      this.$router.push({ name: "EachParlour", params: { id: id } });
-    },
-    toggleSearch() {
-      this.show = !this.show;
-    },
-  },
-};
-</script>
-

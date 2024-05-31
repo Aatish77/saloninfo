@@ -51,7 +51,7 @@
           :key="index"
           :cols="4"
         >
-          <v-card style="background-color: black; color: white" class="mx-auto" max-width="400">
+          <v-card @click="offernav(offer.title,switchLabel)" style="background-color: black; color: white" class="mx-auto" max-width="400">
             <v-img style="border-radius: 5px" class="align-end text-white mx-3" height="300" :src="offer.img" cover>
               <v-card-title>{{ offer.title }}</v-card-title>
             </v-img>
@@ -91,11 +91,16 @@ export default {
     };
   },
   created() {
-    if (this.currentLabel) {
-      this.switchLabel = this.currentLabel.label;
+    if (this.currentOffer) {
+      this.switchLabel = this.currentOffer.label;
     }
   },
   methods: {
+    offernav(offer,label){
+        const t={offer:offer,label:label}
+        sessionStorage.setItem("currentOffer",JSON.stringify(t))
+        this.$router.push("/offerparlour")
+    },
     handleSwitchChange() {
       console.log(this.switchLabel);
     },
@@ -111,9 +116,9 @@ export default {
     }
   },
   computed: {
-    currentLabel() {
-      const currentLabel = JSON.parse(sessionStorage.getItem('currentLabel'));
-      return currentLabel;
+    currentOffer() {
+      const currentOffer = JSON.parse(sessionStorage.getItem('currentOffer'));
+      return currentOffer;
     },
     filteredOffers() {
       return this.$store.getters.getoffers.filter(offer => offer.category === this.switchLabel);
