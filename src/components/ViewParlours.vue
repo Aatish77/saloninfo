@@ -4,11 +4,11 @@
       <v-app-bar
         style="z-index: 1"
         color="teal-darken-4"
-        image="https://4kwallpapers.com/images/walls/thumbs_3t/10974.jpg"
+        image="https://img.freepik.com/free-photo/wavy-black-white-background_23-2150530927.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1716422400&semt=ais_user"
       >
         <template v-slot:image>
           <v-img
-            gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+            gradient="to top right, rgba(71,71,71,.1), rgba(8,8,8,1)"
           ></v-img>
         </template>
         
