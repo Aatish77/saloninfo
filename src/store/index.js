@@ -180,7 +180,7 @@ const store = createStore({
                     img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
                   },
                   {
-                    title: "V  cut",
+                    title: "V cut",
                     img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
                   },
                 ],
@@ -801,7 +801,8 @@ const store = createStore({
           src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
           rating: 4.7,
           location: "YMCA road, Alappuzha",
-          locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7031.155658833512!2d76.33429072109983!3d9.499149486903942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08845fb35f8e55%3A0x8e0f472b509a7416!2sYMCA%20Rd%2C%20Vazhicherry%20Ward%2C%20Sea%20View%20Ward%2C%20Alappuzha%2C%20Kerala!5e0!3m2!1sen!2sin!4v1715840193464!5m2!1sen!2sin",
+          
+          locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.9152373328!2d76.33623521572925!3d9.498367919855726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08845fbbee7013%3A0x7ba0cda86b0d631d!2sThe%20Garage!5e0!3m2!1sen!2sin!4v1717129438735!5m2!1sen!2sin",
           flex: 3,
           id: "salon2",
           description:

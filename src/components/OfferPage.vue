@@ -17,14 +17,14 @@
         "
       >saloninfo</v-app-bar-title>
       <v-slide-y-transition class="mx-3">
-        <v-text-field
+        <!-- <v-text-field
           class="search"
           v-model="searchText"
           placeholder="Search"
           prepend-inner-icon="mdi-magnify"
           solo-inverted
           hide-details
-        ></v-text-field>
+        ></v-text-field> -->
       </v-slide-y-transition>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
