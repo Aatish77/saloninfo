@@ -458,8 +458,7 @@ export default {
           if(i.title===this.type){
             this.cardServices=i;
           }
-        }
-      
+        }      
     },
     handleChildValueChange(value) {
       // Handle the value passed from the child component
