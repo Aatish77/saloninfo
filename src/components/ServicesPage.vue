@@ -106,6 +106,7 @@
             <v-row v-if="switchLabel==='Men'">
               <v-col v-for="card in services.men" :key="card">
                 <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+                  
                   <v-img height="200px" :src="card.img" cover></v-img>
 
                   <v-card-title>
@@ -184,5 +185,19 @@ body {
 .card1 {
   color: white;
   background-color: rgb(41, 41, 41);
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up-enter-active {
+  animation: slide-up 0.5s ease-out;
 }
 </style>
