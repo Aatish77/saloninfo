@@ -258,9 +258,10 @@
                 v-for="(offer) in cardServices.offers"
                 :key="offer"
                 :cols="4"
+                :id="offer.title"
               >
                 <v-card
-                :id="offer.title"
+                
                   style="background-color: black; color: white"
                   class="mx-auto"
                   max-width="400"
@@ -409,6 +410,7 @@ export default {
     this.startSlideshow();
   },
   created() {
+    
     if (this.currentLabel) {
       console.log(this.currentLabel)
       this.type=this.currentLabel.label
@@ -420,13 +422,12 @@ export default {
     });
   } 
   if(this.currentOffer){
+    console.log("b",this.currentOffer)
     this.type=this.currentOffer.label
-    this.$nextTick(() => {
-      const element = document.getElementById(this.currentOffer.offer);
+    const element = document.getElementById(this.currentOffer.offer);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-    });
   }
     console.log(this.datas);
     console.log(this.id);

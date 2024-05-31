@@ -204,21 +204,7 @@
             value="account"
             @click="offerClick"
           ></v-list-item>
-          <v-list-item
-            :prepend-avatar= 'require("@/assets/man2.png")'
-            title="Men"
-            value="account"
-          ></v-list-item>
-          <v-list-item
-            :prepend-avatar='require("@/assets/woman.png")'
-            title="Women"
-            value="account"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-account-group-outline"
-            title="Users"
-            value="users"
-          ></v-list-item>
+          
         </v-list>
         <template v-slot:append>
           <div class="pa-2">
@@ -270,6 +256,7 @@ export default {
     
   }),
   created(){
+    sessionStorage.removeItem('currentOffer')
     sessionStorage.removeItem('currentLabel');
   },
   computed: {
