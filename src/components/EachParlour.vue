@@ -418,7 +418,8 @@ export default {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     });
-  } else if(this.currentOffer){
+  } 
+  if(this.currentOffer){
     this.type=this.currentOffer.label
     this.$nextTick(() => {
       const element = document.getElementById(this.currentOffer.offer);
