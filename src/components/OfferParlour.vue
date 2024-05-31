@@ -2,13 +2,13 @@
     <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
     <v-layout>
       <v-app-bar
-        style="z-index: 1"
+        style="z-index: 1;background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
         color="teal-darken-4"
-        image="https://4kwallpapers.com/images/walls/thumbs_3t/10974.jpg"
+       
       >
         <template v-slot:image>
           <v-img
-            gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+            gradient="to top right, rgba(255,255,255,.0), rgba(255,255,255,.2)"
           ></v-img>
         </template>
         
