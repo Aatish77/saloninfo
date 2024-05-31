@@ -8,7 +8,7 @@
       >
         <template v-slot:image>
           <v-img
-            gradient="to top right, rgba(255,255,255,.1), rgba(255,255,255,.2)"
+            gradient="to top right, rgba(255,255,255,.0), rgba(255,255,255,.2)"
           ></v-img>
         </template>
         

@@ -498,6 +498,7 @@ const store = createStore({
                 {
                   title: "Straight Cut",
                   price: 150,
+                  durartion:10 ,
                   img: "https://i.pinimg.com/564x/4b/51/91/4b51914cb00c9e35241ea4115bf04578.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -521,6 +522,7 @@ const store = createStore({
                 {
                   title: "U cut",
                   price: 200,
+                  duration:10,
                   img: "https://i.pinimg.com/564x/22/e7/ba/22e7ba72f411acf8207fd85897f4dd8c.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -544,6 +546,7 @@ const store = createStore({
                 {
                   title: "V cut",
                   price: 250,
+                  duration:10,
                   img: "https://i.pinimg.com/564x/1d/21/f4/1d21f4df81811310664e5730f5045961.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -587,6 +590,7 @@ const store = createStore({
                 {
                   title: "Keratin Hair Treatment",
                   price: 150,
+                  duration:180,
                   img: "https://salonveritas.com/wp-content/uploads/2020/08/22424491_1464326743682362_2833995149517310956_o.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -603,6 +607,7 @@ const store = createStore({
                 {
                   title: "Protein Hair Treatment.",
                   price: 200,
+                  duration:60,
                   img: "https://i.pinimg.com/564x/eb/59/47/eb594728d03b690a25f458c3a6299243.jpg",
                   employees: [
                     {
@@ -618,6 +623,7 @@ const store = createStore({
                 {
                   title: "Scalp Treatment",
                   price: 250,
+                  duration:20,
                   img: "https://i.pinimg.com/564x/d8/e2/74/d8e274f5ef23d0ce794d6a1c8e1f11d7.jpg",
                   employees: [
                     {
@@ -657,6 +663,7 @@ const store = createStore({
                 {
                   title: "Blonde",
                   price: 150,
+                  duration:20,
                   img: "https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2014/07/48-beautiful-california-blonde-balayage.jpg?w=500&ssl=1",
                   employees: [
                     {
@@ -676,6 +683,7 @@ const store = createStore({
                 {
                   title: "Brown",
                   price: 200,
+                  duration:45,
                   img: "https://i.pinimg.com/736x/43/b5/77/43b5774db8b4cd3fa36d150277c5d0ba.jpg",
                   employees: [
                     {
@@ -695,6 +703,7 @@ const store = createStore({
                 {
                   title: "Black",
                   price: 250,
+                  duration:45,
                   img: "https://i.pinimg.com/564x/58/4b/ee/584beedb919d991dc9bd961ce4f092d7.jpg",
                   employees: [
                     {
@@ -728,16 +737,19 @@ const store = createStore({
                 {
                   title: "Classic facial",
                   price: 150,
+                  duration:60,
                   img: "https://daylesforddayspa.com.au/wp-content/uploads/2022/03/Daylesford-Day-Spa-facial-classic-hydrating.webp",
                 },
                 {
                   title: "Microneedling facial",
                   price: 200,
+                  duration:30,
                   img: "https://www.efmedispa.com/storage/uploads/insights/microneedlingvsmesotherapy/microneedling-skin-clinic_qugku.jpg",
                 },
                 {
                   title: "Brightening facial",
                   price: 250,
+                  duration:50,
                   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQypAGzL777sjEOVO037gk4XV102wwPBvbQ9OiNs_WO4sgO1PMwJRFxS6qOVqXtHBFOM4A&usqp=CAU",
                 },
               ],
@@ -832,6 +844,7 @@ const store = createStore({
                 {
                   title: "Pompadour Haircut",
                   price: 150,
+                  duration:30,
                   img: "https://www.dmarge.com/wp-content/uploads/2022/09/david-beckham-gq-0416-2-1200x900.webp",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -850,6 +863,7 @@ const store = createStore({
                 {
                   title: "Ivy League Haircut",
                   price: 150,
+                  duration:30,
                   img: "https://i.pinimg.com/564x/f5/10/c9/f510c9491355637d603fba2852f2b09c.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -868,6 +882,7 @@ const store = createStore({
                 {
                   title: "Buzz Cut",
                   price: 150,
+                  duration:30,
                   img: "https://www.dmarge.com/wp-content/uploads/2022/09/zain-malik-1200x1200.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
@@ -896,16 +911,19 @@ const store = createStore({
                 {
                   title: "Brightening radiance facial",
                   price:500,
+                  duration:90,
                   img: "https://www.thebombayskinclinic.com/wp-content/uploads/2023/02/mens-facial-treatment.jpg",
                 },
                 {
                   title: "Pumpkin facial",
                   price:500,
+                  duration:90,
                   img: "https://3989ac5bcbe1edfc864a-0a7f10f87519dba22d2dbc6233a731e5.ssl.cf2.rackcdn.com/oasisfacebar/man-pumpkin-facial.jpg",
                 },
                 {
                   title: "Hollywood laser facial",
                   price:500,
+                  duration:60,
                   img: "https://faceofman.com.au/wp-content/uploads/2019/10/Screenshot-2019-10-23-09.08.29.png",
                 },
               ],
@@ -918,16 +936,19 @@ const store = createStore({
                 {
                   title: "Golden brown",
                   price: "400",
+                  duration:30,
                   img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Golden-Brown-03.webp",
                 },
                 {
                   title: "Charcoal gray ",
                   price: "400",
+                  duration:45,
                   img: "https://i.pinimg.com/564x/f8/c7/60/f8c760aed9209c2e664098a88b71a502.jpg",
                 },
                 {
                   title: "Light blonde",
                   price: "400",
+                  duration:45,
                   img: "https://zblogs.zoylee.com/wp-content/uploads/2023/10/Light-Blonde-01.webp",
                 },
               ],
