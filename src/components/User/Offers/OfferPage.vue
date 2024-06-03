@@ -84,10 +84,10 @@ export default {
       switchColor: 'blue',
       carouselItems: [
         { src: 'https://www.stryx.com/cdn/shop/articles/how-often-men-should-get-haircuts.jpg?v=1644630261', title: 'Hair cut 50% OFF' },
-        { src: 'https://img.freepik.com/free-photo/woman-getting-treatment-hairdresser-shop_23-2149230920.jpg?t=st=1716790850~exp=1716794450~hmac=b653335a8d9fe3e264283dc3f61ccf002cd6a693c8beb3e0dd0944497aa1dfe3&w=996', title: 'Hair Treatment 25% OFF' },
-        { src: 'https://img.freepik.com/free-photo/handsome-man-applying-skin-care-treatment_23-2148272459.jpg?t=st=1716791259~exp=1716794859~hmac=0dcb652ba7d1514d4fadf982b69a653072c1e5d5030c3ad48884de55d90599c9&w=996', title: 'Skin Care 30% OFF' },
+        { src: 'https://houseofdearhairsalon.com/wp-content/uploads/2022/04/5-Salon-Hair-Treatments-to-Fix-Your-Hair-From-Root-to-Tip-1024x576.jpg', title: 'Hair Treatment 25% OFF' },
+        { src: 'https://d1ooscleda9ip9.cloudfront.net/Upload/687/CMS/News/Photos/8f1d0233-942.jpg', title: 'Skin Care 30% OFF' },
         { src: 'https://mjgorgeous.com/wp-content/uploads/2020/12/MACost2.jpg', title: 'Bridal Makeup 20% OFF' },
-        { src: 'https://img.freepik.com/free-photo/dilligent-focused-tattoo-artist-is-creating-new-tattoo-young-woman-s-hand-tatoo-studio_613910-19581.jpg?t=st=1716791481~exp=1716795081~hmac=55f99d55797df9a512e90e7c99afa1588837aec96d794f9d60e7afe447fb7965&w=996', title: 'Tattoo 20% OFF' }
+        { src: 'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2022/02/02132521/shutterstock_420858511.jpg?tr=w-1200,q-60', title: 'Tattoo 20% OFF' }
       ]
     };
   },
