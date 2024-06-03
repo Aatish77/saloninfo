@@ -1,20 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
-import UserLogin from "./components/UserLogin.vue";
-import ViewParlours from "./components/ViewParlours.vue";
-import EachParlour from "./components/EachParlour.vue";
-import UserSignup from "./components/UserSignup.vue";
-import ParlourLogin from "./components/ParlourLogin.vue";
-import ParlourProfile from "./components/ParlourProfile.vue";
-import ParlourReg from "./components/ParlourReg.vue";
-import AdminLogin from "./components/AdminLogin.vue";
-import AdminHome from "./components/AdminHome.vue";
-import ServicesPage from "./components/ServicesPage.vue";
-import ServiceParlour from "./components/ServiceParlour.vue";
-import EachService from "./components/EachService.vue";
-import OfferPage from "./components/OfferPage.vue";
-import OfferParlour from "./components/OfferParlour.vue"
+import UserLogin from "./components/User/UserLogin.vue";
+import ViewParlours from "./components/User/ViewParlours.vue";
+import EachParlour from "./components/User/EachParlour.vue";
+import UserSignup from "./components/User/UserSignup.vue";
+import ParlourLogin from "./components/Parlour/ParlourLogin.vue";
+import ParlourProfile from "./components/Parlour/ParlourProfile.vue";
+import ParlourReg from "./components/Parlour/ParlourReg.vue";
+import AdminLogin from "./components/Admin/AdminLogin.vue";
+import AdminHome from "./components/Admin/AdminHome.vue";
+import ServicesPage from "./components/User/Services/ServicesPage.vue";
+import ServiceParlour from "./components/User/Services/ServiceParlour.vue";
+import EachService from "./components/User/Services/EachService.vue";
+import OfferPage from "./components/User/Offers/OfferPage.vue";
+import OfferParlour from "./components/User/Offers/OfferParlour.vue"
 // import AdminEachRequest from "./components/AdminEachRequest.vue"
-import UserPage from "./components/UserPage.vue";
+import UserPage from "./components/User/UserPage.vue";
+import AdminReg from "./components/Admin/AdminReg.vue"
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -38,7 +39,8 @@ const router = createRouter({
     {path:"/eachservice",component: EachService},
     {path:"/userpage",component:UserPage},
     { path:"/offer",component:OfferPage},
-    {path:"/offerparlour",component:OfferParlour}
+    {path:"/offerparlour",component:OfferParlour},
+    {path:"/adminreg", component:AdminReg}
   ],
 });
 export default router;

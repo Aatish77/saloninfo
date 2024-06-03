@@ -197,17 +197,15 @@ export default {
       this.$refs.form.validate().then((valid) => {
         if (valid.valid) {
           this.dialogVis = true;
-          const formData = new FormData();
-          formData.append("fullName", this.fullName);
-          formData.append("phone", this.phone);
-          formData.append("email", this.email);
-          formData.append("password", this.password);
+          const data = {"fullName":this.fullName,"phone":this.phone,"email":this.email,"password":this.password}
+          
 
           this.$store
-            .dispatch("addTheUser", formData)
+            .dispatch("addTheUser", data)
             .then(() => {
               // Reset form data after successful dispatch
               this.resetFormData();
+              this.$router.push("/userlogin")
             })
             .catch((error) => {
               console.error("Error adding user:", error);

@@ -23,8 +23,7 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
               'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
           "
-          >saloninfo</v-app-bar-title
-        >
+          >saloninfo</v-app-bar-title>
   
           <v-spacer></v-spacer>
   

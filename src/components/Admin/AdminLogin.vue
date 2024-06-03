@@ -125,7 +125,7 @@ export default {
     async login(){
       
       try {
-        const res = await this.$store.dispatch("viewAdmin", {
+        const res = await this.$store.dispatch("adminLogin", {
           "email":this.email,
           "password":this.password
         })

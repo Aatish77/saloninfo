@@ -41,6 +41,7 @@
         </v-btn>
       </v-app-bar>
       <v-main class="card">
+        <v-btn @click="addCat">Category</v-btn>
         <v-card class="mx-auto" max-width="600">
           <v-toolbar color="secondary">
             <v-toolbar-title>Pending Requests</v-toolbar-title>
@@ -127,7 +128,7 @@
                     <v-btn
                       style="background-color: white; color: black !important"
                       variant="text"
-                      @click="rejetc(selectedSalon)"
+                      @click="reject"
                       >Reject</v-btn
                     >
                     <v-spacer></v-spacer>
@@ -214,9 +215,16 @@ export default {
         console.log(this.selectedSalon);
       }
     },
+    addCat(){
+      this.$store.dispatch("addCategories",{"name":"Men"})
+    },
     accept(index) {
+      
       this.salonsPending.splice(index, 1);
     },
+    reject(){
+      this.$store.dispatch("checkParlourStatus","5")
+    }
   },
 };
 </script>

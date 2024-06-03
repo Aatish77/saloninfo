@@ -414,12 +414,10 @@ export default {
     if (this.currentLabel) {
       console.log(this.currentLabel)
       this.type=this.currentLabel.label
-    this.$nextTick(() => {
       const element = document.getElementById(this.currentLabel.subsubCategory);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   } 
   if(this.currentOffer){
     console.log("b",this.currentOffer)

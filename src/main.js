@@ -16,7 +16,7 @@ import router from './router.js'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import '@mdi/font/css/materialdesignicons.css' 
-import BaseModal from './components/BaseModal.vue';
+import BaseModal from './components/User/BaseModal.vue';
   const vuetify = createVuetify({
     components,
     directives,

@@ -271,6 +271,7 @@ export default {
             .then(() => {
               // Reset form data after successful dispatch
               this.resetFormData();
+              this.$router.push("/parlourlogin")
             })
             .catch((error) => {
               console.error("Error adding user:", error);
