@@ -86,7 +86,7 @@ export default {
         { src: 'https://www.stryx.com/cdn/shop/articles/how-often-men-should-get-haircuts.jpg?v=1644630261', title: 'Hair cut 50% OFF' },
         { src: 'https://houseofdearhairsalon.com/wp-content/uploads/2022/04/5-Salon-Hair-Treatments-to-Fix-Your-Hair-From-Root-to-Tip-1024x576.jpg', title: 'Hair Treatment 25% OFF' },
         { src: 'https://media.istockphoto.com/id/980122828/photo/young-man-applying-anti-aging-lotion-fot-skin-care.jpg?s=612x612&w=0&k=20&c=wyfFgr-9DuZcbRh-0DHD8elICDYE-mlNk92YSTXCzaw=', title: 'Skin Care 30% OFF' },
-        { src:  require("@/assets/bridal.jpg"), title: 'Bridal Makeup 20% OFF' },
+        { src:  'https://images.unsplash.com/photo-1610173826014-d131b02d69ca?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', title: 'Bridal Makeup 20% OFF' },
         { src: 'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2022/02/02132521/shutterstock_420858511.jpg?tr=w-1200,q-60', title: 'Tattoo 20% OFF' }
       ]
     };
