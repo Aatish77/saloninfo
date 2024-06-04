@@ -78,8 +78,10 @@
                     {{ error }}
                   </v-alert>
                   <v-btn elevation="6" rounded="xl" class="mt-0 login-btn  " type="submit" block>Login</v-btn>
+                <a  class="link"  href="/usersignup">Register</a>
                 </v-sheet>
               </v-col>
+              
             </v-form>
           </v-row>
         </v-row>
@@ -199,10 +201,15 @@ export default {
 .cl{
    color: #612800;
 }
+.link{
+  color:#612800;
+  margin-left: 200px;
+
+}
 .login {
   /* border-radius: 20px; */
   margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-bottom: px; */
   /* margin-right:100px; */
   padding: 20px;
   width: 300px !important;
@@ -222,7 +229,7 @@ export default {
 .title {
   font-size: 40px;
   font-weight: 1000 !important;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .slideshow {
   margin-top: 10px;
@@ -267,6 +274,7 @@ export default {
   /* color: #cd853f; */
   /* color:#f4a460 */
   color: #DBDBDB;
+  margin-bottom: 10px;
 }
 /* :deep(.v-field__field ){
   border-bottom: 2px solid brown;
