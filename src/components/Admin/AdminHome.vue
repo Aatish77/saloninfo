@@ -43,6 +43,24 @@
       <v-main class="card">
         <v-btn @click="addCat">Category</v-btn>
         <v-btn @click="viewCat">View cats</v-btn>
+        <v-text-field
+        style="color:white"
+                  v-model="subName"
+                  label="Sub category Name"
+                  variant="underlined"
+                  
+                ></v-text-field>
+        <v-file-input
+                ref="license"
+                  style="color: white"
+                  :label="uploadedFileName"
+                  v-model="subFile"
+                  accept="image/*"
+                  outlined
+                  @change="subPhoto"
+                >
+                </v-file-input>
+                <v-btn @click="addSubcat">Add sub category</v-btn>
         <v-card class="mx-auto" max-width="600">
           <v-toolbar color="secondary">
             <v-toolbar-title>Pending Requests</v-toolbar-title>
@@ -184,16 +202,36 @@
 export default {
   data() {
     return {
+      subName:"",
+      picUrl:"",
+      subFile:null,
       viewDialog: false,
       selectedSalon: null,
     };
   },
   computed: {
+    uploadedFileName() {
+      if (this.licenseFile) {
+        return this.subFile.name;
+      }
+      return "Upload Subcategory Photo";
+    },
     salonsPending() {
       return this.$store.getters["getSalonsPending"];
     },
   },
   methods: {
+    subPhoto(){
+      const imgInput = this.$refs.license.files[0];
+       
+       const reader = new Image();
+ 
+       reader.onload = () => {
+         this.picUrl = imgInput;
+       }
+ 
+       reader.src = URL.createObjectURL(imgInput);
+    },
     nextSalon() {
       if (this.selectedSalon < this.salonsPending.length - 1) {
         this.selectedSalon++;
@@ -221,6 +259,21 @@ export default {
     },
     viewCat(){
       this.$store.dispatch("viewCategories")
+    },
+    addSubcat(){
+      const formData = new FormData();
+          formData.append("subName", this.subName);
+          formData.append("image",this.picUrl)
+          this.$store.dispatch("addSubcategory", formData)
+            .then(() => {
+              // Reset form data after successful dispatch
+              console.log("Success")
+              this.resetFormData();
+              
+            })
+            .catch((error) => {
+              console.error("Error adding user:", error);
+            });
     },
     accept(index) {
       

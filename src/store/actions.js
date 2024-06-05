@@ -121,6 +121,18 @@ export default{
             console.error(error)
           }
       },
+      async addSubcategory(context,payload){
+        try {
+          const response = await axios.post(
+            `${context.getters.getBaseUrl}/SubCategory/add_Sub`,payload)
+          if (response.status===200){
+            console.log("Success")
+            console.log(response)
+          }}
+          catch(error){
+            console.error(error)
+          }
+      },
       async updateParlour(context,payload){
         try{
           const response = await axios.put(`${context.getters.getBaseUrl}/parlour/1`,payload)
