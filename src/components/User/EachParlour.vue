@@ -351,8 +351,8 @@
 </template>
 
 <script>
-import CartPage from "./CartPage.vue";
-import BookAppointment from "./BookAppointment.vue";
+import CartPage from "./Cart/CartPage.vue";
+import BookAppointment from "./Cart/BookAppointment.vue";
 export default {
   props: {
     id: {
