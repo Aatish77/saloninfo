@@ -40,18 +40,41 @@
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-app-bar>
-      <v-main class="card">
-        <v-btn @click="addCat">Category</v-btn>
-        <v-btn @click="viewCat">View cats</v-btn>
+      <v-main class="card"><v-row>
+        
+        <v-col :cols="3"><v-btn @click="viewCat">View cats</v-btn></v-col>
+      
+      </v-row><v-row>        <v-col :cols="3">
         <v-text-field
         style="color:white"
                   v-model="subName"
+                  label="Category Name"
+                  variant="underlined"
+                  
+                ></v-text-field></v-col>
+                <v-col :cols="3">
+        <v-file-input
+                ref="cat"
+                  style="color: white"
+                  :label="uploadedCatFileName"
+                  v-model="catFile"
+                  accept="image/*"
+                  outlined
+                  @change="catPhoto"
+                >
+                </v-file-input></v-col>
+                <v-col :cols="3">
+                <v-btn @click="addCat">Add category</v-btn></v-col></v-row><v-row>        <v-col :cols="3">
+        <v-text-field
+        style="color:white"
+                  v-model="catName"
                   label="Sub category Name"
                   variant="underlined"
                   
-                ></v-text-field>
+                ></v-text-field></v-col>
+                <v-col :cols="3">
         <v-file-input
-                ref="license"
+                ref="sub"
                   style="color: white"
                   :label="uploadedFileName"
                   v-model="subFile"
@@ -59,8 +82,30 @@
                   outlined
                   @change="subPhoto"
                 >
-                </v-file-input>
-                <v-btn @click="addSubcat">Add sub category</v-btn>
+                </v-file-input></v-col>
+                <v-col :cols="3">
+                <v-btn @click="addSubcat">Add sub category</v-btn></v-col></v-row>
+                <v-row>        <v-col :cols="3">
+        <v-text-field
+        style="color:white"
+                  v-model="subsubName"
+                  label="Sub sub category Name"
+                  variant="underlined"
+                  
+                ></v-text-field></v-col>
+                <v-col :cols="3">
+        <v-file-input
+                ref="sub"
+                  style="color: white"
+                  :label="uploadedsubsubFileName"
+                  v-model="subsubFile"
+                  accept="image/*"
+                  outlined
+                  @change="subsubPhoto"
+                >
+                </v-file-input></v-col>
+                <v-col :cols="3">
+                <v-btn @click="addSubsubcat">Add sub sub category</v-btn></v-col></v-row>
         <v-card class="mx-auto" max-width="600">
           <v-toolbar color="secondary">
             <v-toolbar-title>Pending Requests</v-toolbar-title>
@@ -203,31 +248,71 @@ export default {
   data() {
     return {
       subName:"",
+      catName:"",
+      subsubName:"",
       picUrl:"",
+      piccatUrl:"",
+      picsubsubUrl:"",
+      catFile:null,
       subFile:null,
+      subsubFile:null,
       viewDialog: false,
       selectedSalon: null,
     };
   },
   computed: {
     uploadedFileName() {
-      if (this.licenseFile) {
+      if (this.subFile) {
         return this.subFile.name;
       }
       return "Upload Subcategory Photo";
+    },
+    uploadedCatFileName() {
+      if (this.catFile) {
+        return this.catFile.name;
+      }
+      return "Upload Category Photo";
+    },
+    uploadedsubsubFileName() {
+      if (this.subsubFile) {
+        return this.subsubFile.name;
+      }
+      return "Upload Subsubcategory Photo";
     },
     salonsPending() {
       return this.$store.getters["getSalonsPending"];
     },
   },
   methods: {
+    subsubPhoto(){
+      const imgInput = this.$refs.subsub.files[0];
+       
+       const reader = new Image();
+ 
+       reader.onload = () => {
+         this.picsubsubUrl = imgInput;
+       }
+ 
+       reader.src = URL.createObjectURL(imgInput);
+    },
     subPhoto(){
-      const imgInput = this.$refs.license.files[0];
+      const imgInput = this.$refs.sub.files[0];
        
        const reader = new Image();
  
        reader.onload = () => {
          this.picUrl = imgInput;
+       }
+ 
+       reader.src = URL.createObjectURL(imgInput);
+    },
+    catPhoto(){
+      const imgInput = this.$refs.cat.files[0];
+       
+       const reader = new Image();
+ 
+       reader.onload = () => {
+         this.piccatUrl = imgInput;
        }
  
        reader.src = URL.createObjectURL(imgInput);
@@ -255,7 +340,20 @@ export default {
       }
     },
     addCat(){
-      this.$store.dispatch("addCategories",{"name":"Women","bookings":[]})
+      const formData = new FormData();
+          formData.append("subName", this.catName);
+          formData.append("image",this.piccatUrl)
+
+        this.$store.dispatch("addCategories",formData)
+        .then(() => {
+              // Reset form data after successful dispatch
+              console.log("Success")
+              this.resetFormData();
+              
+            })
+            .catch((error) => {
+              console.error("Error adding user:", error);
+            });
     },
     viewCat(){
       this.$store.dispatch("viewCategories")
@@ -274,6 +372,22 @@ export default {
             .catch((error) => {
               console.error("Error adding user:", error);
             });
+    },
+    addsubsubCat(){
+      const formData = new FormData();
+          formData.append("subsubName", this.subName);
+          formData.append("image",this.picsubsubUrl)
+          this.$store.dispatch("addSubsubcategory", formData)
+            .then(() => {
+              // Reset form data after successful dispatch
+              console.log("Success")
+              this.resetFormData();
+              
+            })
+            .catch((error) => {
+              console.error("Error adding user:", error);
+            });
+
     },
     accept(index) {
       
