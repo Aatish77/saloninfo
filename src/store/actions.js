@@ -43,6 +43,18 @@ export default{
           console.error(error);
         }
       },
+      async viewCategories(context) {
+        try {
+          const response = await axios.get(
+            `${context.getters.getBaseUrl}/Categories/all`)
+          if (response.status===200){
+            console.log("Success")
+            console.log(response.data)
+          }}
+          catch(error){
+            console.error(error)
+          }
+      },
       async addTheUser(context, payload) {
         try {
           const response = await axios.post(

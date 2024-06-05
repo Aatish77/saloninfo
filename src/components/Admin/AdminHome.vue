@@ -42,6 +42,7 @@
       </v-app-bar>
       <v-main class="card">
         <v-btn @click="addCat">Category</v-btn>
+        <v-btn @click="viewCat">View cats</v-btn>
         <v-card class="mx-auto" max-width="600">
           <v-toolbar color="secondary">
             <v-toolbar-title>Pending Requests</v-toolbar-title>
@@ -216,7 +217,10 @@ export default {
       }
     },
     addCat(){
-      this.$store.dispatch("addCategories",{"name":"Men"})
+      this.$store.dispatch("addCategories",{"name":"Women","bookings":[]})
+    },
+    viewCat(){
+      this.$store.dispatch("viewCategories")
     },
     accept(index) {
       
