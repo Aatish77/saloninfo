@@ -157,6 +157,7 @@ export default {
           "password":this.password
         })
         if(res){
+          sessionStorage.setItem("currentParlour", JSON.stringify(res))
           this.$router.push("/parlourprofile")
         }
         else{
