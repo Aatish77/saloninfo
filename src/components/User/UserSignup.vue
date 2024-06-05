@@ -27,7 +27,7 @@
         >
 
         <v-spacer></v-spacer>
-        <v-btn style="background-color: blue" @click="navLogin">Login</v-btn>
+        <v-btn style="background-color: white;color: black;" @click="navLogin">Login</v-btn>
 
         <!-- <v-btn icon>
          <v-icon>mdi-magnify</v-icon>
