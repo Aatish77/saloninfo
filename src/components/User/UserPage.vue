@@ -1,4 +1,35 @@
 <template>
+  <v-app style="background-color: black;">
+      <v-app-bar app fixed style="z-index: 10;background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
+     color="teal-darken-4">
+      <template v-slot:image>
+        <v-img gradient="to top right, rgba(255,255,255,.0), rgba(255,255,255,.2)"></v-img>
+      </template>
+      <template v-slot:prepend>
+        <i class="fas fa-cut"></i>
+      </template>
+      <v-app-bar-title
+        style="
+          margin-left: 2px;
+          font-size: 30px;
+          font-weight: 800;
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        "
+      >saloninfo</v-app-bar-title>
+      <v-slide-y-transition class="mx-3">
+        <!-- <v-text-field
+          class="search"
+          v-model="searchText"
+          placeholder="Search"
+          prepend-inner-icon="mdi-magnify"
+          solo-inverted
+          hide-details
+        ></v-text-field> -->
+      </v-slide-y-transition>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+  
     <div class="profile created-by-anniedotexe">
     <div class="profile-pic">
       <div class="header-color"></div>
@@ -15,7 +46,6 @@
     </div>
     <button class="follow button1" @click="dialog=!dialog">Edit</button>
     <div class="images-container">
-      
     </div>
   </div>
     <v-dialog v-model="dialog">
@@ -79,12 +109,78 @@
   </tbody>
 </table>
 </div>
+</v-app>
+<v-card>
+    <v-layout>
+      <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
+        <template v-slot:prepend>
+
+          <v-row class="no-gutters" align="center">
+
+            <v-col cols="10">
+              <v-list-item
+              v-if="currentUser"
+            lines="two"
+            :prepend-avatar='currentUser.image'
+            subtitle="Logged in"
+            :title="currentUser.fullName"
+          >
+          </v-list-item>
+   </v-col><v-col cols="2" class="d-flex justify-end">
+    <v-btn icon @click="drawer = false" style="background-color: black; color: white; ">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
+    
+          
+        </v-col>
+        </v-row>
+          
+        </template>
+
+
+        <v-list dense >
+          <v-list-item
+            prepend-icon="mdi-home-city"
+            title="Home"
+            value="home"
+             @click="navigateToHome"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account"
+            @click="clickProfile"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-briefcase"
+            title="Services"
+            value="account"
+            @click="serviceClick"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-tags"
+            title="Offers"
+            value="account"
+            @click="offerClick"
+          ></v-list-item>
+          
+        </v-list>
+        <template v-slot:append>
+          <div class="pa-2">
+            <v-btn block @click="logout"> Logout </v-btn>
+          </div>
+        </template>
+      </v-navigation-drawer>
+      
+    </v-layout>
+  </v-card>
   </template>
   
   <script>
   export default {
     data() {
       return {
+        drawer:false,
         fullName: 'Reshma',
         email: '',
         phone:'',
@@ -114,7 +210,21 @@
       },
       saveProfile() {
         // Add logic to save user profile
-      }
+      },
+      clickProfile(){
+      this.$router.push("/userpage")
+    },
+    serviceClick(){
+      this.$router.push("/services")
+    },
+    offerClick(){
+      this.$router.push("/offer")
+    },
+    logout(){
+      
+      console.log("logout")
+      this.$router.push("/")
+    },
     }
   };
   </script>
@@ -146,7 +256,7 @@
 	height: 480px;
 	width: 400px;
 	background: #ffffff;
-    margin-top: 20px;
+  margin-top: 100px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

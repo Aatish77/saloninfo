@@ -134,12 +134,78 @@
       </v-main>
     </v-layout>
   </v-card>
+  <v-card>
+    <v-layout>
+      <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
+        <template v-slot:prepend>
+
+          <v-row class="no-gutters" align="center">
+
+            <v-col cols="10">
+              <v-list-item
+              v-if="currentUser"
+            lines="two"
+            :prepend-avatar='currentUser.image'
+            subtitle="Logged in"
+            :title="currentUser.fullName"
+          >
+          </v-list-item>
+  </v-col><v-col cols="2" class="d-flex justify-end">
+    <v-btn icon @click="drawer = false" style="background-color: black; color: white; ">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
+    
+          
+        </v-col>
+        </v-row>
+          
+        </template>
+
+
+        <v-list dense >
+          <v-list-item
+            prepend-icon="mdi-home-city"
+            title="Home"
+            value="home"
+             @click="navigateToHome"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account"
+            @click="clickProfile"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-briefcase"
+            title="Services"
+            value="account"
+            @click="serviceClick"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-tags"
+            title="Offers"
+            value="account"
+            @click="offerClick"
+          ></v-list-item>
+          
+        </v-list>
+        <template v-slot:append>
+          <div class="pa-2">
+            <v-btn block @click="logout"> Logout </v-btn>
+          </div>
+        </template>
+      </v-navigation-drawer>
+      
+    </v-layout>
+  </v-card>
+
 </template>
+
 <script>
 export default {
   data() {
     return {
-      drawer: null,
+      drawer: false,
       switchValue: "Men",
       switchLabel: "Men",
       switchColor: "blue",
@@ -163,6 +229,20 @@ export default {
     handleSwitchChange() {
     console.log(this.switchLabel) 
       
+    },
+    clickProfile(){
+      this.$router.push("/userpage")
+    },
+    serviceClick(){
+      this.$router.push("/services")
+    },
+    offerClick(){
+      this.$router.push("/offer")
+    },
+    logout(){
+      
+      console.log("logout")
+      this.$router.push("/")
     },
   },
   computed: {
