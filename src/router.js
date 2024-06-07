@@ -16,6 +16,7 @@ import OfferParlour from "./components/User/Offers/OfferParlour.vue"
 // import AdminEachRequest from "./components/AdminEachRequest.vue"
 import UserPage from "./components/User/UserPage.vue";
 import AdminReg from "./components/Admin/AdminReg.vue"
+import AdminViewServices from "./components/Admin/AdminViewServices.vue"
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -40,7 +41,8 @@ const router = createRouter({
     {path:"/userpage",component:UserPage},
     { path:"/offer",component:OfferPage},
     {path:"/offerparlour",component:OfferParlour},
-    {path:"/adminreg", component:AdminReg}
+    {path:"/adminreg", component:AdminReg},
+    {path:"/adminservices",component: AdminViewServices}
   ],
 });
 export default router;

@@ -43,11 +43,13 @@
       <v-main class="card"><v-row>
         
         <v-col :cols="3"><v-btn @click="viewCat">View cats</v-btn></v-col>
+        <v-col :cols="3"><v-btn @click="viewSubCat">View sub cats</v-btn></v-col>
+        <v-col :cols="3"><v-btn @click="viewSubsubCat">View sub sub cats</v-btn></v-col>
       
       </v-row><v-row>        <v-col :cols="3">
         <v-text-field
         style="color:white"
-                  v-model="subName"
+                  v-model="catName"
                   label="Category Name"
                   variant="underlined"
                   
@@ -67,7 +69,7 @@
                 <v-btn @click="addCat">Add category</v-btn></v-col></v-row><v-row>        <v-col :cols="3">
         <v-text-field
         style="color:white"
-                  v-model="catName"
+                  v-model="subName"
                   label="Sub category Name"
                   variant="underlined"
                   
@@ -340,15 +342,19 @@ export default {
       }
     },
     addCat(){
-      const formData = new FormData();
-          formData.append("subName", this.catName);
+      const jsonBlob = new Blob([JSON.stringify({"name":this.catName})], { type: 'application/json' })
+      const formData = new FormData(); 
+      // newblob in it json new blob application/json
+      formData.append('data', jsonBlob);
+      // formData.append("data",JSON.stringify({"name": this.catName}));
+          // formData.append("name", this.catName);
           formData.append("image",this.piccatUrl)
 
         this.$store.dispatch("addCategories",formData)
         .then(() => {
               // Reset form data after successful dispatch
-              console.log("Success")
-              this.resetFormData();
+              console.log("Success at home")
+              
               
             })
             .catch((error) => {
@@ -358,15 +364,22 @@ export default {
     viewCat(){
       this.$store.dispatch("viewCategories")
     },
+    viewSubCat(){
+      this.$store.dispatch("viewSubCategories")
+    },
+    viewSubsubCat(){
+      this.$store.dispatch("viewSubsubCategories")
+    },
     addSubcat(){
+      const jsonBlob = new Blob([JSON.stringify({"name":this.subName})], { type: 'application/json' })
       const formData = new FormData();
-          formData.append("subName", this.subName);
+          formData.append("data", jsonBlob);
           formData.append("image",this.picUrl)
           this.$store.dispatch("addSubcategory", formData)
             .then(() => {
               // Reset form data after successful dispatch
               console.log("Success")
-              this.resetFormData();
+              // this.resetFormData();
               
             })
             .catch((error) => {
@@ -375,13 +388,13 @@ export default {
     },
     addsubsubCat(){
       const formData = new FormData();
-          formData.append("subsubName", this.subName);
+          formData.append("name", this.subName);
           formData.append("image",this.picsubsubUrl)
           this.$store.dispatch("addSubsubcategory", formData)
             .then(() => {
               // Reset form data after successful dispatch
               console.log("Success")
-              this.resetFormData();
+              // this.resetFormData();
               
             })
             .catch((error) => {

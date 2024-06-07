@@ -134,7 +134,7 @@
       </v-main>
     </v-layout>
   </v-card>
-  <v-card>
+  <v-card style="z-index: 4;">
     <v-layout>
       <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
         <template v-slot:prepend>
@@ -252,6 +252,10 @@ export default {
       },
     services() {
       return this.$store.getters["getServiceCategories"];
+    },
+    currentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      return currentUser;
     },
   },
 };

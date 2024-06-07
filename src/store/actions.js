@@ -55,6 +55,30 @@ export default{
             console.error(error)
           }
       },
+      async viewSubCategories(context) {
+        try {
+          const response = await axios.get(
+            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=2`)
+          if (response.status>=200 || response.status<300){
+            console.log("Success")
+            console.log(response.data)
+          }}
+          catch(error){
+            console.error(error)
+          }
+      },
+      async viewSubsubCategories(context) {
+        try {
+          const response = await axios.get(
+            `${context.getters.getBaseUrl}/SubCategories/all`)
+          if (response.status===200){
+            console.log("Success")
+            console.log(response.data)
+          }}
+          catch(error){
+            console.error(error)
+          }
+      },
       async addTheUser(context, payload) {
         try {
           const response = await axios.post(
@@ -115,7 +139,7 @@ export default{
           const response = await axios.post(
             `${context.getters.getBaseUrl}/Categories/add`,payload)
           if (response.status===200){
-            console.log(response.data,"Success")
+            console.log("Success")
           }}
           catch(error){
             console.error(error)
@@ -124,10 +148,11 @@ export default{
       async addSubcategory(context,payload){
         try {
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubCategory/add_Sub`,payload)
+            `${context.getters.getBaseUrl}/SubCategory/add_Sub?categoryId=2`,payload)
           if (response.status===200){
             console.log("Success")
             console.log(response)
+            return response
           }}
           catch(error){
             console.error(error)
