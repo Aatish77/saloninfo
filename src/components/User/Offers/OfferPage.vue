@@ -29,6 +29,7 @@
       </v-slide-y-transition>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
+   
     <v-carousel cycle interval="2500" hide-delimiters :show-arrows="false" style="height: 600px;">
       <v-carousel-item v-for="(item, i) in carouselItems" :key="i" :src="item.src" cover>
         <v-container class="fill-height d-flex" fluid>
@@ -64,10 +65,74 @@
               <div>Offer Price: ₹{{ offer.price }}</div>
             </v-card-text>
           </v-card>
+          
         </v-col>
       </v-row>
     </v-main>
   </v-app>
+  <v-card>
+    <v-layout>
+      <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
+        <template v-slot:prepend>
+
+          <v-row class="no-gutters" align="center">
+
+            <v-col cols="10">
+              <v-list-item
+            lines="two"
+            :prepend-avatar='currentUser.image'
+            subtitle="Logged in"
+            :title="currentUser.fullName"
+          >
+          </v-list-item>
+  </v-col><v-col cols="2" class="d-flex justify-end">
+    <v-btn icon @click="drawer = false" style="background-color: black; color: white; ">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
+    
+          
+        </v-col>
+        </v-row>
+          
+        </template>
+
+
+        <v-list dense >
+          <v-list-item
+            prepend-icon="mdi-home-city"
+            title="Home"
+            value="home"
+             @click="navigateToHome"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account"
+            @click="clickProfile"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-briefcase"
+            title="Services"
+            value="account"
+            @click="serviceClick"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-tags"
+            title="Offers"
+            value="account"
+            @click="offerClick"
+          ></v-list-item>
+          
+        </v-list>
+        <template v-slot:append>
+          <div class="pa-2">
+            <v-btn block @click="logout"> Logout </v-btn>
+          </div>
+        </template>
+      </v-navigation-drawer>
+      
+    </v-layout>
+  </v-card>
 </template>
 
 
@@ -78,8 +143,10 @@
 export default {
   data() {
     return {
-      drawer: null,
-      searchText: '',
+      drawer:false,
+      // selectedItem: null,
+      //  show: false,
+      // searchText: '',
       switchLabel: 'Men',
       switchColor: 'blue',
       carouselItems: [
@@ -88,7 +155,7 @@ export default {
         { src: 'https://media.istockphoto.com/id/980122828/photo/young-man-applying-anti-aging-lotion-fot-skin-care.jpg?s=612x612&w=0&k=20&c=wyfFgr-9DuZcbRh-0DHD8elICDYE-mlNk92YSTXCzaw=', title: 'Skin Care 30% OFF' },
         { src:  'https://images.unsplash.com/photo-1610173826014-d131b02d69ca?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', title: 'Bridal Makeup 20% OFF' },
         { src: 'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2022/02/02132521/shutterstock_420858511.jpg?tr=w-1200,q-60', title: 'Tattoo 20% OFF' }
-      ]
+      ],
     };
   },
   created() {
@@ -97,6 +164,26 @@ export default {
     }
   },
   methods: {
+    clickProfile(){
+      this.$router.push("/userpage")
+    },
+    serviceClick(){
+      this.$router.push("/services")
+    },
+    offerClick(){
+      this.$router.push("/offer")
+    },
+    logout(){
+      
+      console.log("logout")
+      this.$router.push("/")
+    },
+    navigateToEach(id) {
+      this.$router.push({ name: "EachParlour", params: { id: id } });
+    },
+    toggleSearch() {
+      this.show = !this.show;
+    },
     offernav(offer,label){
         const t={offer:offer,label:label}
         sessionStorage.setItem("currentOffer",JSON.stringify(t))
@@ -117,12 +204,54 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      return currentUser;
+    },
     currentOffer() {
       const currentOffer = JSON.parse(sessionStorage.getItem('currentOffer'));
       return currentOffer;
     },
     filteredOffers() {
       return this.$store.getters.getoffers.filter(offer => offer.category === this.switchLabel);
+    },
+    filteredCards() {
+      if (!this.searchText) {
+        return this.cards;
+      }
+
+      const regex = new RegExp(this.searchText.trim(), "i");
+      return this.cards.filter((card) => {
+        // Check if parlourName or location matches searchText
+        if (
+          regex.test(card.parlourName) ||
+          regex.test(card.location) ||
+          regex.test(card.type)
+        ) {
+          return true;
+        }
+
+        // Check if any service.title or offer.name matches searchText
+        for (const service of card.services) {
+          if (regex.test(service.title)) {
+            return true;
+          }
+          if(service.subsubCategories){
+          for(const subsub of service.subsubCategories){
+            if(regex.test(subsub.title)){
+              return true
+            }
+          }}
+        }
+
+        for (const offer of card.offers) {
+          if (regex.test(offer.name)) {
+            return true;
+          }
+        }
+
+        return false;
+      });
     },
   },
 };
