@@ -426,8 +426,9 @@ Edit</v-btn>
         return this.card.coverImages[this.currentIndex];
       },
       currentParlour(){
-      const currentParlour = JSON.parse(sessionStorage.getItem('currentParlour'));
-      return currentParlour
+        return this.datas[0]
+      // const currentParlour = JSON.parse(sessionStorage.getItem('currentParlour'));
+      // return currentParlour
     },
     },
     mounted() {

@@ -89,11 +89,15 @@
 
       <v-main style="background-color: black">
         <v-container class="d-flex justify-center align-center" fluid style="height: 80px;" >
-         
-          <v-radio-group v-model="switchLabel" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
+          <v-tabs v-model="switchLabel" align-tabs="center" color="blue">
+     
+     <v-tab style="color:white" value="Men">Men</v-tab>
+     <v-tab style="color:white" value="Women">Women</v-tab>
+   </v-tabs>
+          <!-- <v-radio-group v-model="switchLabel" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
       <v-radio label="Men" value="Men" color="primary"></v-radio>
       <v-radio label="Women" value="Women" color="red"></v-radio>
-    </v-radio-group>
+    </v-radio-group> -->
         </v-container>
 
         <v-card

@@ -53,8 +53,8 @@
         <v-card>
     <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
      
-      <v-tab :value="2">Men</v-tab>
-      <v-tab :value="1">Women</v-tab>
+      <v-tab :value="2">Pending Request</v-tab>
+      <v-tab :value="1">Approved Parlours</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">
