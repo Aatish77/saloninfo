@@ -161,7 +161,7 @@ export default{
       async addSubsubcategory(context,payload){
         try {
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubsubCategory/add_Sub`,payload)
+            `${context.getters.getBaseUrl}/SubSubCategory/add_Sub?subCategoryId=2`,payload)
           if (response.status===200){
             console.log("Success")
             console.log(response)

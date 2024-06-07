@@ -97,7 +97,7 @@
                 ></v-text-field></v-col>
                 <v-col :cols="3">
         <v-file-input
-                ref="sub"
+                ref="subsub"
                   style="color: white"
                   :label="uploadedsubsubFileName"
                   v-model="subsubFile"
@@ -388,7 +388,7 @@ export default {
     },
     addsubsubCat(){
       const formData = new FormData();
-          formData.append("name", this.subName);
+          formData.append("name", this.subsubName);
           formData.append("image",this.picsubsubUrl)
           this.$store.dispatch("addSubsubcategory", formData)
             .then(() => {
