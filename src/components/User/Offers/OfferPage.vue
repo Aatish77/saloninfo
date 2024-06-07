@@ -72,7 +72,7 @@
   </v-app>
   <v-card>
     <v-layout>
-      <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
+      <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white; z-index: 4;">
         <template v-slot:prepend>
 
           <v-row class="no-gutters" align="center">
