@@ -18,7 +18,6 @@
             prepend-icon="mdi-home-city"
             title="Overview"
             value="overview"
-            @click="overviewClick"
           ></v-list-item>
           <v-list-item
             prepend-icon="fas fa-briefcase"
@@ -49,7 +48,7 @@
         </template>
         <!--  -->
       </v-navigation-drawer>
-  
+<!--   
       <v-main class="bg-grey-lighten-2">
         <v-card>
     <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
@@ -75,7 +74,7 @@
       </v-tabs-window-item>
     </v-tabs-window>
   </v-card>
-      </v-main>
+      </v-main> -->
     </v-app>
   </template>
   
@@ -91,8 +90,8 @@
         tab: null
        }),
        methods: {
-    overviewClick(){
-      this.$router.push("/overview")
+    clickProfile(){
+      this.$router.push("/userpage")
     },
     serviceClick(){
       this.$router.push("/adminservices")

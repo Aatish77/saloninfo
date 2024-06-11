@@ -12,7 +12,7 @@
       <v-list density="compact" nav>
         <v-list-item prepend-icon="mdi-home-city" title="Overview" value="overview"></v-list-item>
         <v-list-item prepend-icon="fas fa-briefcase" title="Services" value="account" @click="serviceClick"></v-list-item>
-        <v-list-item prepend-icon="fas fa-tags" title="Parlours" value="account" @click="offerClick"></v-list-item>
+        <v-list-item prepend-icon="fas fa-tags" title="Parlours" value="account" @click="parlourClick"></v-list-item>
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
@@ -28,56 +28,77 @@
           <v-tab :value="1">Approved</v-tab>
         </v-tabs>
       </v-card>
-
-      <v-container v-if="tab===2">
-        <v-data-table :headers="headings" :items="items" class="elevation-1">
-<template v-slot:item="{ item }">
-  <tr>
-    <td>{{ item.sl_no }}</td>
-    <td>{{ item.parlour_id }}</td>
-    <td>
-      <img :src="item.parlour_image" alt="Parlour Image" class="qr">
-    </td>
-    <td>{{ item.name }}</td>
-    <td>{{ item.phone }}</td>
-    <td>{{ item.email }}</td>
-    <td>
-      <v-icon small @click="viewDetails(item)">mdi-eye</v-icon>
-    </td>
-    <td>
-      <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-    </td>
-  </tr>
-</template>
-
-</v-data-table>
+      <v-container v-if="tab === 2">
+        <v-data-table :headers="headings" :items="items" class="elevation-1"
+        :header-props="{ style: 'background-color: #000000; color: #FFFFFF;' }">
+          <template v-slot:item="{ item }">
+            <tr>
+              <td>{{ item.sl_no }}</td>
+              <td>{{ item.parlour_id }}</td>
+              <td>
+                <img :src="item.parlour_image" alt="Parlour Image" class="qr">
+              </td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                <v-icon small @click="viewDetails(item)" color="black darken-4">mdi-eye</v-icon>
+              </td>
+              <td>
+                <v-icon small @click="confirmDelete(item)"  color="red darken-4">mdi-delete</v-icon>
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
       </v-container>
-      <v-container v-if="tab===1">
-        <v-data-table :headers="headings1" :items="items1" class="elevation-1">
-<template v-slot:item="{ item }">
-  <tr>
-    <td>{{ item.sl_no }}</td>
-    <td>{{ item.parlour_id }}</td>
-    <td>
-      <img :src="item.parlour_image" alt="Parlour Image" class="qr">
-    </td>
-    <td>{{ item.name }}</td>
-    <td>{{ item.phone }}</td>
-    <td>{{ item.email }}</td>
-    <td>
-      <v-icon small @click="viewDetails(item)">mdi-eye</v-icon>
-    </td>
-    <td>
-      <v-icon small @click="deleteItem(item)">mdi-pencil</v-icon>/
-      <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-    </td>
-  </tr>
-</template>
-
-</v-data-table>
-
+      <v-container v-if="tab === 1">
+        <v-data-table :headers="headings1" :items="items1" class="elevation-1"
+        :header-props="{ style: 'background-color: #000000; color: #FFFFFF;' }">
+          <template v-slot:item="{ item }">
+            <tr>
+              <td>{{ item.sl_no }}</td>
+              <td>{{ item.parlour_id }}</td>
+              <td>
+                <img :src="item.parlour_image" alt="Parlour Image" class="qr">
+              </td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                <v-icon small @click="viewDetails(item)">mdi-eye</v-icon>
+              </td>
+              <td>
+                <v-icon small @click="confirmDelete(item)">mdi-pencil</v-icon>/
+                <v-icon small @click="confirmDelete(item)"  color="red darken-4">mdi-delete</v-icon>
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
       </v-container>
     </v-main>
+
+    <v-dialog v-model="dialog" width="290" style="border-radius: 32px;">
+      <v-card>
+        <v-card-title class="headline">
+          <v-container class="delete-icon-container" align-center justify-center>
+          <v-icon color="red darken-4" class="delete">mdi-delete</v-icon>
+        </v-container>
+        </v-card-title>
+        <v-card-text>Are you sure you want to delete this item?</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="red darken-1" text @click="deleteItem">
+            
+            OK
+          </v-btn>
+          <v-btn color="grey darken-1" text @click="cancelDelete">
+            
+            Cancel
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -86,6 +107,7 @@ export default {
   data: () => ({
     drawer: null,
     tab: null,
+    dialog: false,
     items: [
       {
         sl_no: 1,
@@ -102,7 +124,6 @@ export default {
         name: 'Orchid Beauty Studio',
         phone: '9745362890',
         email: 'Orchidbeauty@gmail.com',
-        
       },
       // Add more items here
     ],
@@ -115,7 +136,6 @@ export default {
       { title: 'Email', key: 'email' },
       { title: 'Details', sortable: false },
       { title: 'Delete', sortable: false },
-
     ],
     items1: [
       {
@@ -133,7 +153,6 @@ export default {
         name: 'The Garage Men Salon',
         phone: '9745362890',
         email: 'garage@gmail.com',
-        
       },
       // Add more items here
     ],
@@ -145,12 +164,42 @@ export default {
       { title: 'Phone', key: 'phone' },
       { title: 'Email', key: 'email' },
       { title: 'Details', sortable: false },
-      {title:'Edit/Delete',sortable:false},
-      // { title: ' ', sortable: false },
-
+      { title: 'Edit/Delete', sortable: false },
     ],
+    itemToDelete: null,
   }),
-  // ...
+  methods: {
+    clickProfile() {
+      this.$router.push("/userpage");
+    },
+    serviceClick() {
+      this.$router.push("/adminservices");
+    },
+    parlourClick() {
+      this.$router.push("/adminparlours");
+    },
+    logout() {
+      console.log("logout");
+      this.$router.push("/");
+    },
+    confirmDelete(item) {
+      this.itemToDelete = item;
+      this.dialog = true;
+    },
+    cancelDelete() {
+      this.dialog = false;
+      this.itemToDelete = null;
+    },
+    deleteItem() {
+      if (this.tab === 2) {
+        this.items = this.items.filter(i => i.parlour_id !== this.itemToDelete.parlour_id);
+      } else if (this.tab === 1) {
+        this.items1 = this.items1.filter(i => i.parlour_id !== this.itemToDelete.parlour_id);
+      }
+      this.dialog = false;
+      this.itemToDelete = null;
+    },
+  }
 }
 </script>
 
@@ -159,5 +208,14 @@ export default {
   height: 50px;
   width: 50px;
 }
+.delete{
+  font-size: 50px;
+}
+.delete-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 </style>
