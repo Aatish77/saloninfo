@@ -345,26 +345,26 @@ export default {
         console.log(this.selectedSalon);
       }
     },
-    addCat(){
-      const jsonBlob = new Blob([JSON.stringify({"name":this.catName})], { type: 'application/json' })
-      const formData = new FormData(); 
-      // newblob in it json new blob application/json
-      formData.append('data', jsonBlob);
-      // formData.append("data",JSON.stringify({"name": this.catName}));
-          // formData.append("name", this.catName);
-          formData.append("image",this.piccatUrl)
+      addCat(){
+        const jsonBlob = new Blob([JSON.stringify({"name":this.catName})], { type: 'application/json' })
+        const formData = new FormData(); 
+        // newblob in it json new blob application/json
+        formData.append('data', jsonBlob);
+        // formData.append("data",JSON.stringify({"name": this.catName}));
+            // formData.append("name", this.catName);
+            formData.append("image",this.piccatUrl)
 
-        this.$store.dispatch("addCategories",formData)
-        .then(() => {
-              // Reset form data after successful dispatch
-              console.log("Success at home")
-              
-              
-            })
-            .catch((error) => {
-              console.error("Error adding user:", error);
-            });
-    },
+          this.$store.dispatch("addCategories",formData)
+          .then(() => {
+                // Reset form data after successful dispatch
+                console.log("Success at home")
+                
+                
+              })
+              .catch((error) => {
+                console.error("Error adding user:", error);
+              });
+      },
     viewCat(){
       this.$store.dispatch("viewCategories")
     },
