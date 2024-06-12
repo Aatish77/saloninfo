@@ -160,7 +160,7 @@ export default{
       async addSubcategory(context,payload){
         try {
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubCategory/add_Sub?categoryId=2`,payload)
+            `${context.getters.getBaseUrl}/SubCategory/add_Sub?categoryId=${payload.catId}`,payload.form)
           if (response.status===200){
             console.log("Success")
             console.log(response)
