@@ -35,8 +35,12 @@
         <v-btn icon>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-btn @click="navCart" icon>
-          <v-icon>mdi-cart</v-icon>
+        <v-btn @click="navCart" class="cart-button" icon>
+          <button @click="toggleCart" >
+      <i class="fas fa-shopping-cart"></i>
+      <span v-if="itemCount!=0" class="cart-count">{{ itemCount }}</span>
+    </button>
+          <!-- <v-icon>mdi-cart</v-icon> -->
         </v-btn>
         <v-btn icon>
           <v-icon>mdi-dots-vertical</v-icon>
@@ -386,6 +390,13 @@ export default {
     type:'Men'
   }),
   computed: {
+    itemCount(){
+      let sum=0
+      for (let i of this.cart){
+        sum+=i.quantity
+      } 
+      return sum
+    },
     currentOffer(){
       const currentOffer = JSON.parse(sessionStorage.getItem("currentOffer"));
       return currentOffer;
@@ -545,6 +556,35 @@ export default {
 };
 </script>
 <style scoped>
+.cart {
+  position: relative;
+}
+.cart-button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border-radius: 50%;
+  padding: 0 6px;
+  font-size: 12px;
+}
+.cart-items {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 .bgcolor{
   background-color: rgb(0, 0, 0);
 }

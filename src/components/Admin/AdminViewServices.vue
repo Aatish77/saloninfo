@@ -84,7 +84,7 @@
       <v-tabs-window-item v-for="category in categories" :key="category" :value="category.id">
         <v-container fluid>
           <v-row v-if="category.subCategories">
-            <v-col v-for="subCategory in category.subCategories" :key="subCategory" cols="12" md="4">
+            <v-col v-for="subCategory in category.subCategories" :key="subCategory" cols="12" md="4" @click="nav(category,subCategory)">
               <v-img
                 
                 :src="getImageUrl(subCategory.image)"
@@ -104,7 +104,7 @@
             
           </v-row>
           <v-row v-else>
-            <v-col cols="12" md="4" @click="subDia=!subDia">
+            <v-col cols="12" md="4" @click="subDia=!subDia" style="border:2px black">
               <v-img
                 :src="require('@/assets/upload1.jpg')"
                 height="205"
@@ -152,7 +152,7 @@
   
   <script>
     export default {
-      mounted(){
+      created(){
         this.$store.dispatch("viewCategories")
         this.tab= this.categories[0].id
       },
@@ -175,7 +175,9 @@
       },
       watch:{
         tab(value){
-          this.$store.dispatch("viewSubCategories",value)
+          if(value!="add"){
+          this.$store.dispatch("viewSubCategories",value)}
+
         }
       },
       data: () => ({ drawer: null,
@@ -189,6 +191,10 @@
         subDia:false,
        }),
        methods:{
+        nav(cat,subCat){
+          sessionStorage.setItem("adminser",JSON.stringify({cat:cat.name,subCat:subCat.name}))
+          this.$router.push("/adminsubcat")
+        },
         catPhoto(){
       const imgInput = this.$refs.cat.files[0];
        
@@ -225,6 +231,7 @@
             .then(() => {
               // Reset form data after successful dispatch
               this.$router.push("/adminservices")
+              // this.$router.push("/adminservices")
               console.log("Success")
               // this.resetFormData();
               
@@ -244,6 +251,7 @@
         this.$store.dispatch("addCategories",formData)
         .then(() => {
               // Reset form data after successful dispatch
+              this.$router.push("/adminservices")
               console.log("Success at home")
               
               
