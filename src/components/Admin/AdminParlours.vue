@@ -10,7 +10,7 @@
 
     <v-navigation-drawer style="background-color: black; color:white;" v-model="drawer" temporary>
       <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-home-city" title="Overview" value="overview"></v-list-item>
+        <v-list-item prepend-icon="mdi-home-city" title="Overview" value="overview" @clik="overviewClick"></v-list-item>
         <v-list-item prepend-icon="fas fa-briefcase" title="Services" value="account" @click="serviceClick"></v-list-item>
         <v-list-item prepend-icon="fas fa-tags" title="Parlours" value="account" @click="parlourClick"></v-list-item>
       </v-list>
@@ -169,8 +169,8 @@ export default {
     itemToDelete: null,
   }),
   methods: {
-    clickProfile() {
-      this.$router.push("/userpage");
+    overviewClick() {
+      this.$router.push("/overview");
     },
     serviceClick() {
       this.$router.push("/adminservices");
