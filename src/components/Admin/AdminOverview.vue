@@ -35,7 +35,7 @@
             prepend-icon="fas fa-tags"
             title="Parlours"
             value="account"
-            @click="offerClick"
+            @click="parlourClick"
           ></v-list-item>
          
           
@@ -48,7 +48,7 @@
         </template>
         <!--  -->
       </v-navigation-drawer>
-  
+<!--   
       <v-main class="bg-grey-lighten-2">
         <v-card>
     <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
@@ -74,7 +74,7 @@
       </v-tabs-window-item>
     </v-tabs-window>
   </v-card>
-      </v-main>
+      </v-main> -->
     </v-app>
   </template>
   
@@ -89,5 +89,21 @@
       data: () => ({ drawer: null,
         tab: null
        }),
+       methods: {
+    clickProfile(){
+      this.$router.push("/userpage")
+    },
+    serviceClick(){
+      this.$router.push("/adminservices")
+    },
+    parlourClick(){
+      this.$router.push("/adminparlours")
+    },
+    logout(){
+      
+      console.log("logout")
+      this.$router.push("/")
+    },
+  }
     }
   </script>
