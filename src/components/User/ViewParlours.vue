@@ -120,7 +120,14 @@
                     ></v-progress-linear>
                   </template>
 
-                  <v-img height="250" :src="card.src" cover></v-img>
+                  <v-img height="250" :src="card.src" cover>
+      <template v-slot:default>
+        <div class="overlay-text">
+          <i class="fas fa-female"></i>
+        </div>
+      </template>
+    </v-img>
+
 
                   <v-card-item>
                     <h5 class="multi-line-title">{{ card.parlourName }}</h5>
@@ -143,6 +150,7 @@
                     <div class="my-4 text-subtitle-1">
                       <i class="fas fa-map-marker-alt"></i> {{ card.location }}
                     </div>
+
                   </v-card-text>
                 </v-card>
               </v-col>
@@ -239,6 +247,16 @@
 .card1 {
   width: 250px !important;
   height: 400px;
+}
+.overlay-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better visibility */
+  padding: 5px;
+  border-radius: 5px;
 }
 /* .v-select{
   background-color: rgba(245, 245, 220, 0) !important;
