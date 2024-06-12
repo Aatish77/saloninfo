@@ -93,9 +93,17 @@
               ></v-img>
               <h6>{{ subCategory.name }}</h6>
             </v-col>
+            <v-col cols="12" md="4" @click="subDia=!subDia">
+              <v-img
+                :src="require('@/assets/upload.jpg')"
+                height="205"
+                
+              ></v-img>
+              <h6 align="center">Add a Sub Category</h6>
+            </v-col>
             
           </v-row>
-          <v-row>
+          <v-row v-else>
             <v-col cols="12" md="4" @click="subDia=!subDia">
               <v-img
                 :src="require('@/assets/upload.jpg')"
