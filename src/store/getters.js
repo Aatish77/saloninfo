@@ -6,4 +6,5 @@ export default{
     getSalonsPending: (state) => state.salonsPending,
     getServiceCategories: (state) => state.serviceCategories,
     getoffers: (state )=> state.offers,
+    getCategories:(state)=> state.categories
 }

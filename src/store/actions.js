@@ -50,30 +50,42 @@ export default{
           if (response.status===200){
             console.log("Success")
             console.log(response.data)
+            context.commit("loadCategories",response.data)
+            // for (let i=0;i< context.getters.getCategories.length;i++){
+            //   let subCategories = await context.dispatch("viewSubCategories",context.getters.getCategories[i].id)
+            //   context.commit("loadSubCategories",{data:subCategories,index:i})
+            //     for (let j = 0; j<context.getters.getCategories[i].subCategories;++i){
+            //       let subsubCategories = await context.dispatch("viewSubSubCategories",context.getters.getCategories[i].subCategories[j].id)
+            //       context.commit("loadSubSubCategories",{data:subsubCategories,catIndex:i,subIndex:j})
+            //     }
+            // }
+            console.log("All cat",context.getters.getCategories)
           }}
           catch(error){
             console.error(error)
           }
       },
-      async viewSubCategories(context) {
+      async viewSubCategories(context,payload) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=2`)
+            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${payload}`)
           if (response.status>=200 || response.status<300){
-            console.log("Success")
+            console.log("Success",payload)
             console.log(response.data)
+            context.commit("loadSubCategories",{data:response.data,id:payload})
           }}
           catch(error){
             console.error(error)
           }
       },
-      async viewSubsubCategories(context) {
+      async viewSubSubCategories(context,payload) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/SubCategories/all`)
+            `${context.getters.getBaseUrl}/SubSubCategories/all?subcategoryId=${payload}`)
           if (response.status===200){
-            console.log("Success")
+            console.log("Success",payload)
             console.log(response.data)
+            return response.data
           }}
           catch(error){
             console.error(error)

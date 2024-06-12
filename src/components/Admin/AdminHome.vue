@@ -41,7 +41,7 @@
         </v-btn>
       </v-app-bar>
       <v-main class="card"><v-row>
-        
+        <v-col :cols="3"><v-btn @click="allCats">All cats</v-btn></v-col>
         <v-col :cols="3"><v-btn @click="viewCat">View cats</v-btn></v-col>
         <v-col :cols="3"><v-btn @click="viewSubCat">View sub cats</v-btn></v-col>
         <v-col :cols="3"><v-btn @click="viewSubsubCat">View sub sub cats</v-btn></v-col>
@@ -66,7 +66,8 @@
                 >
                 </v-file-input></v-col>
                 <v-col :cols="3">
-                <v-btn @click="addCat">Add category</v-btn></v-col></v-row><v-row>        <v-col :cols="3">
+                <v-btn @click="addCat">Add category</v-btn></v-col></v-row><v-row> 
+                  <v-col :cols="3">
         <v-text-field
         style="color:white"
                   v-model="subName"
@@ -286,6 +287,9 @@ export default {
     },
   },
   methods: {
+    allCats(){
+      console.log(this.$store.getters["getCategories"])
+    },
     subsubPhoto(){
       const imgInput = this.$refs.subsub.files[0];
        
@@ -368,7 +372,7 @@ export default {
       this.$store.dispatch("viewSubCategories")
     },
     viewSubsubCat(){
-      this.$store.dispatch("viewSubsubCategories")
+      this.$store.dispatch("viewSubSubCategories")
     },
     addSubcat(){
       const jsonBlob = new Blob([JSON.stringify({"name":this.subName})], { type: 'application/json' })

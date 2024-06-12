@@ -6,7 +6,7 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.25:8080`,
+      baseUrl: `http://192.168.1.10:8080`,
       users: [
         {
           fullName: "Rakesh S",
@@ -62,6 +62,7 @@ const store = createStore({
       admin: "",
       validAdmin: null,
       isAdminLoggedin: false,
+      categories:[{name:"Men",id:1},{name:"Women",id:2}],
       serviceCategories: {
         men: [
           {
