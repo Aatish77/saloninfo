@@ -106,7 +106,7 @@
           <v-row v-else>
             <v-col cols="12" md="4" @click="subDia=!subDia">
               <v-img
-                :src="require('@/assets/upload.jpg')"
+                :src="require('@/assets/upload1.jpg')"
                 height="205"
                 
               ></v-img>
