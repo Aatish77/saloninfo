@@ -99,7 +99,7 @@
                 height="205"
                 
               ></v-img>
-              <h6 align="center">Add a Sub Category</h6>
+              <h6 align="center">Add Sub Category</h6>
             </v-col>
             
           </v-row>
