@@ -62,7 +62,10 @@ const store = createStore({
       admin: "",
       validAdmin: null,
       isAdminLoggedin: false,
-      categories:[{name:"Men",id:1},{name:"Women",id:2}],
+      categories:[{name:"Men",id:1,
+        subCategories:[]
+
+      },{name:"Women",id:2}],
       serviceCategories: {
         men: [
           {
