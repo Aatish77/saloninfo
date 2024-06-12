@@ -58,7 +58,7 @@
       <v-tab :value="1">Women</v-tab>
     </v-tabs>
 
-    <v-tabs-window v-model="tab">
+    <!-- <v-tabs-window v-model="tab">
       <v-tabs-window-item v-for="n in 3" :key="n" :value="n">
         <v-container fluid>
           <v-row>
@@ -73,7 +73,42 @@
           </v-row>
         </v-container>
       </v-tabs-window-item>
-    </v-tabs-window>
+    </v-tabs-window> -->
+    <v-card
+          style="background-color: black; color: white"
+          class="mx-auto"
+          max-width="1200"
+        >
+          <v-container fluid>
+            <v-row v-if="tab===2">
+              <v-col v-for="card in services.men" :key="card">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+                  
+                  <v-img height="200px" :src="card.img" cover></v-img>
+
+                  <v-card-title>
+                    {{ card.title }}
+                  </v-card-title>
+                </v-card>
+              </v-col>
+              
+            </v-row>
+            <v-row v-if="tab===1">
+              <v-col v-for="card in services.women" :key="card">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+                  <v-img height="200px" :src="card.img" cover></v-img>
+
+                  <v-card-title>
+                    {{ card.title }}
+                  </v-card-title>
+                </v-card>
+              </v-col>
+              
+            </v-row>
+
+            
+          </v-container>
+        </v-card>
   </v-card>
       </v-main>
     </v-app>
@@ -90,6 +125,19 @@
       data: () => ({ drawer: null,
         tab: null
        }),
+       computed: {
+    currentLabel(){
+        const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"))
+        return currentLabel
+      },
+    services() {
+      return this.$store.getters["getServiceCategories"];
+    },
+    currentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      return currentUser;
+    },
+  },
        methods: {
     overviewClick(){
       this.$router.push("/overview")
@@ -105,6 +153,7 @@
       console.log("logout")
       this.$router.push("/")
     },
+   
   }
     }
   </script>

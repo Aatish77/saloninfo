@@ -24,8 +24,8 @@
     <v-main class="bg-grey-lighten-2">
       <v-card>
         <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
-          <v-tab :value="2">Pending</v-tab>
-          <v-tab :value="1">Approved</v-tab>
+          <v-tab :value="2">Pending Requests</v-tab>
+          <v-tab :value="1">Approved Requests</v-tab>
         </v-tabs>
       </v-card>
       <v-container v-if="tab === 2">
