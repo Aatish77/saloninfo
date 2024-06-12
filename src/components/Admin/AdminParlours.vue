@@ -99,7 +99,7 @@
     </v-dialog>
 
     <!-- Detail View Dialog -->
-    <v-dialog v-model="viewDialog" max-width="800px">
+    <v-dialog v-model="viewDialog" max-width="800px" style="border-radius: 32px;">
       <v-card style="background-color: black; color:white">
         <v-btn
           icon
@@ -142,10 +142,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="acceptDialog" max-width="500px">
+    <v-dialog v-model="acceptDialog" max-width="350px" style="border-radius: 21px;">
     <v-card>
       <v-card-title>Accept Confirmation</v-card-title>
-      <v-card-text style="color:green">
+      <v-card-text style="color:green;font-size: small;">
         Are you sure you want to accept this request?
       </v-card-text>
       <v-card-actions>
