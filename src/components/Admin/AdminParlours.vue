@@ -54,7 +54,7 @@
       <v-container v-if="tab === 1">
         <v-data-table :headers="headings1" :items="items1" class="elevation-1"
         :header-props="{ style: 'background-color: #000000; color: #FFFFFF;' }">
-          <template v-slot:item="{ item }">
+          <template v-slot:item="{ item,index }">
             <tr>
               <td>{{ item.sl_no }}</td>
               <td>{{ item.parlour_id }}</td>
@@ -65,7 +65,7 @@
               <td>{{ item.phone }}</td>
               <td>{{ item.email }}</td>
               <td>
-                <v-icon small @click="viewDetails(item)">mdi-eye</v-icon>
+                <v-icon small @click="viewApprove(index)">mdi-eye</v-icon>
               </td>
               <td>
                 <v-icon small>mdi-pencil</v-icon>/
@@ -99,7 +99,7 @@
     </v-dialog>
 
     <!-- Detail View Dialog -->
-    <v-dialog v-model="viewDialog" max-width="800px">
+    <v-dialog v-model="viewDialog" max-width="800px" style="border-radius: 32px;">
       <v-card style="background-color: black; color:white">
         <v-btn
           icon
@@ -122,6 +122,7 @@
                 <p><strong>Description:</strong> {{ selectedSalon.description }}</p>
                 <p><strong>License No:</strong> {{ selectedSalon.licenseNo }}</p>
                 <p><strong>License:</strong> <a :href="selectedSalon.license" target="_blank">View License</a></p>
+                <div v-if="tab === 2">
                 <v-btn
                   style="background-color: white; color: black !important; margin-right: 8px;"
                   variant="text"
@@ -133,6 +134,7 @@
                   variant="text"
                   @click="reject"
                 >Reject</v-btn>
+              </div>
               </v-col>
             </v-row>
           </v-container>
@@ -142,10 +144,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="acceptDialog" max-width="500px">
+    <v-dialog v-model="acceptDialog" max-width="350px" style="border-radius: 21px;">
     <v-card>
       <v-card-title>Accept Confirmation</v-card-title>
-      <v-card-text style="color:green">
+      <v-card-text style="color:green;font-size: small;">
         Are you sure you want to accept this request?
       </v-card-text>
       <v-card-actions>
@@ -155,6 +157,40 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!-- Detail View Dialog -->
+  <!-- <v-dialog v-model="viewDialog" max-width="800px" style="border-radius: 32px;">
+      <v-card style="background-color: black; color:white">
+        <v-btn
+          icon
+          @click="viewDialog = false"
+          class="close-btn"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-card-title class="headline">{{ selectedSalon.name }}</v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-img :src="selectedSalon.parlour_image" aspect-ratio="1"></v-img>
+              </v-col>
+              <v-col cols="12" md="8">
+                <p><strong>Phone:</strong> {{ selectedSalon.phone }}</p>
+                <p><strong>Email:</strong> {{ selectedSalon.email }}</p>
+                <p><strong>Location:</strong> {{ selectedSalon.location }}</p>
+                <p><strong>Description:</strong> {{ selectedSalon.description }}</p>
+                <p><strong>License No:</strong> {{ selectedSalon.licenseNo }}</p>
+                <p><strong>License:</strong> <a :href="selectedSalon.license" target="_blank">View License</a></p>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog> -->
   </v-app>
 </template>
 
@@ -201,7 +237,7 @@ export default {
       { title: 'Name', key: 'name' },
       { title: 'Phone', key: 'phone' },
       { title: 'Email', key: 'email' },
-      { title: 'Details', sortable: false },
+      { title: 'View', sortable: false },
       { title: 'Delete', sortable: false },
     ],
     items1: [
@@ -212,6 +248,10 @@ export default {
         name: 'Amaze Beauty Parlour',
         phone: '9846766214',
         email: 'classichair@gmail.com',
+        location: '789 High St, City',
+        description: 'Your beauty, our duty.',
+        licenseNo: 'LIC654321',
+        license: '#'
       },
       {
         sl_no: 2,
@@ -220,6 +260,10 @@ export default {
         name: 'The Garage Men Salon',
         phone: '9745362890',
         email: 'garage@gmail.com',
+        location: '910 High St, City',
+        description: 'Your beauty, our duty.',
+        licenseNo: 'LIC654321',
+        license: '#'
       },
       // Add more items here
     ],
@@ -281,18 +325,25 @@ export default {
       this.selectedSalon = this.items[index];
       this.viewDialog = true;
     },
-    accept(salon) {
-      console.log("Accept clicked for", salon);
-    },
     reject() {
-      console.log("Reject clicked");
+      this.viewDialog = false;
     },
+    
     acceptRequest() {
-      // Logic to accept the request
-      console.log('Request accepted');
+      // Move the selected item from items to items1
+      const acceptedItem = this.items.splice(this.selectedIndex, 1)[0];
+      this.items1.push(acceptedItem);
+
       // Close the dialog
       this.acceptDialog = false;
-    }
+      this.viewDialog = false;
+    },
+    viewApprove(index) {
+      this.selectedSalon = this.items1[index];
+      this.viewDialog = true;
+
+    },
+
 
   }
 }

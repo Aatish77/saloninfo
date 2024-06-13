@@ -123,7 +123,8 @@
                   <v-img height="250" :src="card.src" cover>
       <template v-slot:default>
         <div class="overlay-text">
-          <i class="fas fa-female"></i>
+          <!-- <i class="fas fa-female"></i> -->
+          <svg-icon type="mdi" :path="iconPath(card.type)"></svg-icon>
         </div>
       </template>
     </v-img>
@@ -264,11 +265,21 @@
 </style>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiHumanFemaleGirl } from '@mdi/js';
+import { mdiHumanMaleChild } from '@mdi/js';
+import { mdiHumanMaleFemale } from '@mdi/js';
+
 export default {
+  name: "my-component",
+  components: {
+    SvgIcon
+  },
   data: () => ({
     drawer: null,
     selectedItem: null,
     show: false,
+    path: mdiHumanFemaleGirl,
     searchText: "",
     open: ["Users"],
     
@@ -333,6 +344,18 @@ export default {
     }
   },
   methods: {
+    iconPath(type){
+      if(type==='Men'){
+        return mdiHumanMaleChild
+      }
+      else if(type==='Women'){
+        return  mdiHumanFemaleGirl
+      }
+      else if(type==='Unisex'){
+        return mdiHumanMaleFemale
+      }
+    },
+
     clickProfile(){
       this.$router.push("/userpage")
     },
