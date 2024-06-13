@@ -13,13 +13,10 @@ export default{
         
       },
       loadSubCategories(state,payload){
-        console.log("payload",payload)
-        for (let i=0; i< state.categories.length;++i){
-          if (state.categories[i].id === payload.id){
-            state.categories[i].subCategories=payload.data
+        
+            state.categories[payload.catIndex].subCategories=payload.data
             console.log("aaaaaa",state.categories)
-          }
-        }
+         
         
        },
        loadSubSubCategories(state,payload){

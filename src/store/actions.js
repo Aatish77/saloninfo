@@ -68,7 +68,7 @@ export default{
       async viewSubCategories(context,payload) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${payload}`)
+            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${context.getters.getCategories[payload].id}`)
           if (response.status>=200 || response.status<300){
             console.log("Success",payload)
             console.log(response.data)

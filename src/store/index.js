@@ -63,7 +63,38 @@ const store = createStore({
       validAdmin: null,
       isAdminLoggedin: false,
       categories:[{name:"Men",id:1,
-        subCategories:[]
+        subCategories:[
+          {
+            name: "Hair Cut and Style",
+            image1: "https://www.zhairacademy.com/wp-content/uploads/fly-images/1921/Z-Hair-Academy-Mens-Cuts-Intro-1280x1200-c.jpg",
+            subsubCategories: [{
+              name: "Hair Cut",
+              image1: "https://larastyles.com/wp-content/uploads/2022/08/hair-cut-768x768.jpg"},
+              {
+                name: "Beard",
+                image1: "https://assets-global.website-files.com/5cb569e54ca2fddd5451cbb2/5f8e7707ad6d75eda371136b_Cannington-120.jpg",
+              }
+            ]},
+            {
+              name: "Mani and Pedi Hygiene",
+              image1: "https://d2zdpiztbgorvt.cloudfront.net/us/cms_content/425/df5bd406e950478fac0be143a96c175d.jpg",
+            },
+            {
+              name: "Spa and Massage",
+              image1: "https://www.elitestudio.co.in/images/bg-image/m14.jpg",
+            },
+            {
+              name: "Hair Treatments",
+              image1: "https://assets-global.website-files.com/621fc5da26683b662359a48d/626998459e85648971269164_menshaircolorred-p-800.jpeg",
+            },
+            {
+              name: "Skin Care",
+              image1: "https://larastyles.com/wp-content/uploads/2022/08/facial-768x768.jpg",},
+              {
+                name: "Pre Groom",
+                image1: "https://www.vasuhealthcare.com/wp-content/uploads/2022/02/Best-Pre-wedding-Grooming-Manual-for-a-Man-Banner.jpg",
+              },
+            ]
 
       },{name:"Women",id:2}],
       serviceCategories: {
@@ -90,6 +121,7 @@ const store = createStore({
                   },
                 ],
               },
+              
             ],
           },
           {

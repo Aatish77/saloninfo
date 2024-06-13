@@ -50,10 +50,10 @@
       </v-navigation-drawer>
   
       <v-main class="bg-grey-lighten-2">
-        <v-card>
+        <v-card style="height: 100%;">
     <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
      
-      <v-tab v-for="category in categories" :key="category" :value="category.id">{{ category.name }}</v-tab>
+      <v-tab v-for="(category,index) in categories" :key="category" :value="index">{{ category.name }}</v-tab>
       <v-tab value="add">+ Add category</v-tab>
     </v-tabs>
 
@@ -81,36 +81,58 @@
                 <v-col style="width:600px;margin-left: 300px;">
                 <v-btn @click="addCat">Add category</v-btn></v-col>
       </v-tab-window-item>
-      <v-tabs-window-item v-for="category in categories" :key="category" :value="category.id">
+      <v-tabs-window-item v-for="(category,index) in categories" :key="category" :value="index">
         <v-container fluid>
           <v-row v-if="category.subCategories">
-            <v-col v-for="subCategory in category.subCategories" :key="subCategory" cols="12" md="4" @click="nav(category,subCategory)">
-              <v-img
+            <v-col v-for="(subCategory,subIndex) in category.subCategories" :key="subCategory" @click="nav(category,subCategory,index,subIndex)" md="3">
+              <v-card  class="mx-auto card1" max-width="344" max-height="300px">
+                    <v-img
+                      style="border-radius: 5px"
+                      class="align-end text-white"
+                      height="250"
+                      :src="subCategory.image1"
+                      cover
+                    >
+                    </v-img>
+                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }}</h5> </v-card-item></v-card>
+              <!-- <v-img
                 
-                :src="getImageUrl(subCategory.image)"
+                :src="subCategory.image?getImageUrl(subCategory.image):subCategory.image1"
                 height="205"
                 cover
               ></v-img>
-              <h6>{{ subCategory.name }}</h6>
+              <h6>{{ subCategory.name }}</h6> -->
             </v-col>
-            <v-col cols="12" md="4" @click="subDia=!subDia">
+            <v-col md="3">
+              <v-card @click="subDia=!subDia" class="mx-auto card2 "  max-width="344" max-height="300px">
               <v-img
+              style="border-radius: 5px"
+              height="250"
+              class="align-end text-white"
               :src="require('@/assets/upload1.jpg')"
-                height="205"
+              cover
+                
                 
               ></v-img>
-              <h6 align="center">Add Sub Category</h6>
+              <v-card-item ><h5 class="multi-line-title">Add Sub Category</h5> </v-card-item>
+              
+            </v-card>
             </v-col>
             
           </v-row>
           <v-row v-else>
-            <v-col cols="12" md="4" @click="subDia=!subDia" style="border:2px black">
+            <v-col>
+              <v-card @click="subDia=!subDia" class="card2 mx-auto"  max-width="344" max-height="300px">
               <v-img
-                :src="require('@/assets/upload1.jpg')"
-                height="205"
-                
+              style="border-radius: 5px"
+              height="250"
+              class="align-end text-white"
+              :src="require('@/assets/upload1.jpg')"
+              cover 
               ></v-img>
-              <h6 align="center">Add a Sub Category</h6>
+              <v-card-item ><h5 class="multi-line-title">Add Sub Category</h5> </v-card-item>
+              
+            </v-card>
             </v-col>
           </v-row>
           <v-dialog v-model="subDia" style="width: 600px;height: 300px;background-color: black ;border-radius: 5px;">
@@ -154,7 +176,7 @@
     export default {
       created(){
         this.$store.dispatch("viewCategories")
-        this.tab= this.categories[0].id
+        this.tab = 0
       },
       computed:{
         categories(){
@@ -191,8 +213,8 @@
         subDia:false,
        }),
        methods:{
-        nav(cat,subCat){
-          sessionStorage.setItem("adminser",JSON.stringify({cat:cat.name,subCat:subCat.name}))
+        nav(cat,subCat,index,subIndex){
+          sessionStorage.setItem("adminser",JSON.stringify({cat:cat.name,subCat:subCat.name,catIndex:index,subIndex:subIndex}))
           this.$router.push("/adminsubcat")
         },
         catPhoto(){
@@ -232,6 +254,7 @@
               // Reset form data after successful dispatch
               this.$router.push("/adminservices")
               // this.$router.push("/adminservices")
+              alert("Successfully added")
               console.log("Success")
               // this.resetFormData();
               
@@ -267,3 +290,14 @@
        }
     }
   </script>
+  <style scoped>
+  .card1 {
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(41, 41, 41);
+}.card2  {
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(41, 41, 41);
+}
+  </style>

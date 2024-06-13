@@ -50,7 +50,7 @@
       </v-navigation-drawer>
   
       <v-main class="bg-grey-lighten-2">
-        <v-card>
+        <v-card style="height: 100vh;">
             <div>
             <v-breadcrumbs :items="items">
               <template v-slot:divider>
@@ -59,14 +59,59 @@
             </v-breadcrumbs>
           </div>
             <v-row>
-                <v-col cols="12" md="4" @click="subsubDia=!subsubDia" style="border:2px black">
-              <v-img
-                :src="require('@/assets/upload1.jpg')"
+             
+                
+            <v-col v-for="subsubCategory in subsubCategories" :key="subsubCategory"  style="border:2px black">
+              <v-card  class="mx-auto card1" max-width="344" max-height="300px">
+                    <v-img
+                      style="border-radius: 5px"
+                      class="align-end text-white"
+                      height="250"
+                      :src="subsubCategory.image1"
+                      cover
+                    >
+                    </v-img>
+                    <v-card-item ><h5 class="multi-line-title">{{ subsubCategory.name }}</h5> </v-card-item></v-card>
+              <!-- <v-img
+                :src="subsubCategory.image1"
                 height="205"
                 
               ></v-img>
-              <h6 align="center">Add a Sub Sub Category</h6>
+              <h6 align="center">{{subsubCategory.name}}</h6> -->
             </v-col>
+            <v-col>
+              <v-card @click="subsubDia=!subsubDia" class="card1 mx-auto"  max-width="344" max-height="300px">
+              <v-img
+              style="border-radius: 5px"
+              height="250"
+              class="align-end text-white"
+              :src="require('@/assets/upload1.jpg')"
+              cover   
+              ></v-img>
+              <v-card-item ><h5 class="multi-line-title">Add Sub Sub Category</h5> </v-card-item>
+              
+            </v-card>
+            </v-col>
+            <v-dialog v-model="subsubDia" style="width: 600px;height: 300px;background-color: black ;border-radius: 5px;">
+              <v-text-field
+        style="color:white"
+                  v-model="subsubName"
+                  label="Sub sub category Name"
+                  variant="underlined"
+                  
+                ></v-text-field>
+              <v-file-input
+                ref="subsub"
+                  style="color: white"
+                  :label="uploadedsubsubFileName"
+                  v-model="subsubFile"
+                  accept="image/*"
+                  outlined
+                  @change="subsubPhoto"
+                >
+                </v-file-input>
+                <v-btn @click="addSubsubcat">Add sub sub category</v-btn>
+          </v-dialog>
             </v-row>
         </v-card></v-main></v-app>
 </template>
@@ -75,7 +120,11 @@ export default {
     data(){
         return{
             subsubDia:false,
-            items:[]
+            items:[],
+            subsubCategories:[],
+            subsubName:"",
+            picsubsubUrl:"",
+            subsubFile:null,
         }
     },
     created(){
@@ -83,13 +132,60 @@ export default {
       { title: this.currentService.cat, href: "/adminservices" },
       { title: this.currentService.subCat },
     ];
+    this.subsubCategories=this.categories[this.currentService.catIndex].subCategories[this.currentService.subIndex].subsubCategories
+    console.log(this.subsubCategories)
     },
     computed:{
+      uploadedsubsubFileName() {
+      if (this.subsubFile) {
+        return this.subsubFile.name;
+      }
+      return "Upload Subsubcategory Photo";
+    },
         currentService(){
         const currentLabel = JSON.parse(sessionStorage.getItem("adminser"))
         return currentLabel
       },
+      categories(){
+        return this.$store.getters["getCategories"]
+      }
+    },
+    methods:{
+      subsubPhoto(){
+      const imgInput = this.$refs.subsub.files[0];
+       
+       const reader = new Image();
+ 
+       reader.onload = () => {
+         this.picsubsubUrl = imgInput;
+       }
+ 
+       reader.src = URL.createObjectURL(imgInput);
+    },
+    addsubsubCat(){
+      const formData = new FormData();
+          formData.append("name", this.subsubName);
+          formData.append("image",this.picsubsubUrl)
+          this.$store.dispatch("addSubsubcategory", formData)
+            .then(() => {
+              // Reset form data after successful dispatch
+              console.log("Success")
+              // this.resetFormData();
+              
+            })
+            .catch((error) => {
+              console.error("Error adding user:", error);
+            });
+
+    },
     }
 
 }
 </script>
+<style scoped>
+  .card1 {
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(41, 41, 41);
+}
+  </style>
