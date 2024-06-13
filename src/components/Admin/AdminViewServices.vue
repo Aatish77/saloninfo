@@ -85,11 +85,11 @@
         <v-container fluid>
           <v-row v-if="category.subCategories">
             <v-col v-for="(subCategory,subIndex) in category.subCategories" :key="subCategory" @click="nav(category,subCategory,index,subIndex)" md="3">
-              <v-card  class="mx-auto card1 a" max-width="344" max-height="300px">
+              <v-card  class="mx-auto card1 a" max-width="344" max-height="280px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
-                      height="250"
+                      height="220"
                       :src="subCategory.image1"
                       cover
                     >
@@ -107,7 +107,7 @@
               <v-card @click="subDia=!subDia" class="mx-auto card2 a"  max-width="344" max-height="300px">
               <v-img
               style="border-radius: 5px"
-              height="250"
+              height="220"
               class="align-end text-white"
               :src="require('@/assets/upload1.jpg')"
               cover
@@ -125,7 +125,7 @@
               <v-card @click="subDia=!subDia" class="card2 mx-auto a"  max-width="344" max-height="300px">
               <v-img
               style="border-radius: 5px"
-              height="250"
+              height="220"
               class="align-end text-white"
               :src="require('@/assets/upload1.jpg')"
               cover 
