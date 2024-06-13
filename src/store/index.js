@@ -96,7 +96,37 @@ const store = createStore({
               },
             ]
 
-      },{name:"Women",id:2}],
+      },{name:"Women",id:2,subCategories:[
+        {name: "Hair Cut and Style",
+        image1: "https://stylecaster.com/wp-content/uploads/2015/04/haircut-salon-visit.jpg?w=650&h=432&crop=1",
+        
+        
+        
+        },
+        {
+          name: "Mani and Pedi Hygiene",
+          image1: "https://media.self.com/photos/57d8938724fe9dae32831885/4:3/w_1920,c_limit/nail-salon-hygiene_feat.jpg",
+        },
+        {
+          name: "Spa and Massage",
+          image1: "https://5.imimg.com/data5/QM/SA/MY-11130624/hair-spa-services-for-women-and-men-1000x1000.jpg",
+        },
+        {
+          name: "Hair Treatments",
+          image1: "https://naturals.in/wp-content/uploads/2022/04/hc-2.jpg",
+          subsubCategories: [{
+            name: "Hair Color",
+                image1: "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kaousa/www-johnfrieda-com/uk/en/blog-images/Happy%20woman%20smiling%20at%20her%20hairdresser%20.jpg?fmt=jpeg&qlt=85&wid=2000",
+        },
+        {
+          name: "Hair Chemical",
+          image1: "https://c.ndtvimg.com/2022-10/b5oj98hg_new-study-says-hairstraightening-products-linked-with-risk-of-uterine-cancer_625x300_19_October_22.jpg",
+        }
+      ]
+        }
+            
+      ]
+    }],
       serviceCategories: {
         men: [
           {
