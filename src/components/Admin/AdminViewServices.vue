@@ -85,7 +85,7 @@
         <v-container fluid>
           <v-row v-if="category.subCategories">
             <v-col v-for="(subCategory,subIndex) in category.subCategories" :key="subCategory" @click="nav(category,subCategory,index,subIndex)" md="3">
-              <v-card  class="mx-auto card1" max-width="344" max-height="300px">
+              <v-card  class="mx-auto card1 a" max-width="344" max-height="300px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
@@ -104,7 +104,7 @@
               <h6>{{ subCategory.name }}</h6> -->
             </v-col>
             <v-col md="3">
-              <v-card @click="subDia=!subDia" class="mx-auto card2 "  max-width="344" max-height="300px">
+              <v-card @click="subDia=!subDia" class="mx-auto card2 a"  max-width="344" max-height="300px">
               <v-img
               style="border-radius: 5px"
               height="250"
@@ -121,8 +121,8 @@
             
           </v-row>
           <v-row v-else>
-            <v-col>
-              <v-card @click="subDia=!subDia" class="card2 mx-auto"  max-width="344" max-height="300px">
+            <v-col md="3">
+              <v-card @click="subDia=!subDia" class="card2 mx-auto a"  max-width="344" max-height="300px">
               <v-img
               style="border-radius: 5px"
               height="250"
@@ -176,9 +176,17 @@
     export default {
       created(){
         this.$store.dispatch("viewCategories")
-        this.tab = 0
+        if(this.currentService){
+          this.tab=this.currentService.catIndex
+        }
+        else{
+        this.tab = 0}
       },
       computed:{
+        currentService(){
+        const currentLabel = JSON.parse(sessionStorage.getItem("adminser"))
+        return currentLabel
+      },
         categories(){
           return this.$store.getters["getCategories"]
         },

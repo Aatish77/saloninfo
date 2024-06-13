@@ -61,8 +61,8 @@
             <v-row>
              
                 
-            <v-col v-for="subsubCategory in subsubCategories" :key="subsubCategory"  style="border:2px black">
-              <v-card  class="mx-auto card1" max-width="344" max-height="300px">
+            <v-col v-for="subsubCategory in subsubCategories" :key="subsubCategory"  style="border:2px black" md="3">
+              <v-card  class="mx-auto card1 a" max-width="344" max-height="300px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
@@ -79,8 +79,8 @@
               ></v-img>
               <h6 align="center">{{subsubCategory.name}}</h6> -->
             </v-col>
-            <v-col>
-              <v-card @click="subsubDia=!subsubDia" class="card1 mx-auto"  max-width="344" max-height="300px">
+            <v-col md="3">
+              <v-card @click="subsubDia=!subsubDia" class="card1 mx-auto a"  max-width="344" max-height="300px">
               <v-img
               style="border-radius: 5px"
               height="250"
