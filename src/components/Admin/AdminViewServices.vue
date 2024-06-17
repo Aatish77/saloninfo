@@ -34,7 +34,7 @@
           ></v-list-item> -->
           <v-list-item
             prepend-icon="fas fa-tags"
-            title="Parlours"
+            title="Offers"
             value="account"
             @click="offerClick"
           ></v-list-item>
