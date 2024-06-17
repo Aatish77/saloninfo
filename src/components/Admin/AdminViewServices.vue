@@ -18,6 +18,7 @@
             prepend-icon="mdi-home-city"
             title="Overview"
             value="overview"
+            @click="overviewClick"
           ></v-list-item>
           <v-list-item
             prepend-icon="fas fa-briefcase"
@@ -37,6 +38,13 @@
             value="account"
             @click="offerClick"
           ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-tags"
+            title="Parlours"
+            value="account"
+            @click="parlourClick"
+          ></v-list-item>
+          
          
           
           
@@ -215,6 +223,18 @@
         subDia:false,
        }),
        methods:{
+        overviewClick(){
+      this.$router.push("/overview")
+    },
+    serviceClick(){
+      this.$router.push("/adminservices")
+    },
+    parlourClick(){
+      this.$router.push("/adminparlours")
+    },
+    offerClick(){
+    this.router.push("/adminoffers")
+    },
         confirmDeleteSub(index) {
       // Show a confirmation alert
       if (window.confirm("Are you sure you want to delete this Sub Category?")) {
