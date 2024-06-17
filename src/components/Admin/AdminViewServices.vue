@@ -93,22 +93,23 @@
           <v-row v-if="category.subCategories">
             <v-col v-for="(subCategory,subIndex) in category.subCategories" :key="subCategory" @click="nav(category,subCategory,index,subIndex)" md="3">
               <v-card  class="mx-auto card1 a" max-width="344" max-height="280px">
-                    <v-img
-                      style="border-radius: 5px"
-                      class="align-end text-white"
-                      height="220"
-                      :src="subCategory.image?getImageUrl(subCategory.image):subCategory.image1"
-                      cover
-                    >
-                    </v-img>
-                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }}  <v-icon
-            
-            small
-            @click.stop="deleteSub(index)"
-            class="ml-2 delete"
-          >
-            mdi-delete
-          </v-icon></h5></v-card-item></v-card>
+                <v-img
+              style="border-radius: 5px"
+              class="align-end text-white"
+              height="220"
+              :src="subCategory.image ? getImageUrl(subCategory.image) : subCategory.image1"
+              cover
+            >
+              <v-icon
+
+                small
+                @click.stop="confirmDeleteSub(index)"
+                class="delete-icon"
+              >
+                mdi-delete
+              </v-icon>
+            </v-img>
+                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }} </h5></v-card-item></v-card>
               
             </v-col>
             <v-col md="3">
@@ -229,6 +230,20 @@
         subDia:false,
        }),
        methods:{
+        confirmDeleteSub(index) {
+      // Show a confirmation alert
+      if (window.confirm("Are you sure you want to delete this Sub Category?")) {
+        this.deleteSub(index);
+      }
+    }, deleteSub(index) {
+      // Remove the tab at the specified index
+      this.tabs.splice(index, 1);
+
+      // Adjust the active tab if necessary
+      if (this.activeTab >= index) {
+        this.activeTab = Math.max(0, this.activeTab - 1);
+      }
+    },
         confirmDelete(index) {
       // Show a confirmation alert
       if (window.confirm("Are you sure you want to delete this tab?")) {
@@ -333,5 +348,19 @@
   margin-top: 10px;
   color: white;
   background-color: rgb(41, 41, 41);
+}
+.card1 :hover .delete-icon{
+  visibility: visible;
+}
+.delete-icon {
+  visibility: hidden;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
 }
   </style>
