@@ -123,7 +123,7 @@
               
             </v-col> -->
           </v-row>
-          <v-btn type="submit" color="black" class="white--text mt-3" style="width: 400px; border-radius: 16px;">
+          <v-btn type="submit" color="black" class="white--text mt-3" style="width: 404px; height: 40px; border-radius: 16px;">
            Add
           </v-btn>
         </v-form>
