@@ -61,7 +61,7 @@
       <v-tab-window-item v-if="tab==='add'" style="width:600px">
         <v-col style="width:600px;margin-left: 300px;" >
         <v-text-field
-        style="color:black"
+          style="color:black"
                   v-model="catName"
                   label="Category Name"
                   variant="underlined"
@@ -69,7 +69,7 @@
                 ></v-text-field></v-col>
                 <v-col style="width:600px;margin-left: 300px;">
         <v-file-input
-                ref="cat"
+                  ref="cat"
                   style="color: black"
                   :label="uploadedCatFileName"
                   v-model="catFile"

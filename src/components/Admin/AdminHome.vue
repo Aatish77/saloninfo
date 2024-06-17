@@ -27,7 +27,8 @@
         >
 
         <v-spacer></v-spacer>
-
+<!-- offers id ,name ,description -->
+ <!-- categoryid , categoryName -->
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
