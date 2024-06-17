@@ -298,7 +298,9 @@
           this.$store.dispatch("addSubcategory", {"form":formData,"catId":this.categories[tab].id})
             .then(() => {
               // Reset form data after successful dispatch
+              this.subDia=false
               this.$router.push("/adminservices")
+
               // this.$router.push("/adminservices")
               alert("Successfully added")
               console.log("Success")
@@ -362,5 +364,8 @@
   border-radius: 50%;
   padding: 2px;
   cursor: pointer;
+}
+.delete-icon :hover{
+color:red
 }
   </style>

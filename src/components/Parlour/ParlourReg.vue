@@ -54,6 +54,8 @@
     <v-file-input
       ref="photo"
       style="color: white"
+      :error="errorp"
+      :error-messages="errorMessagep"
       :label="uploadedPhotoName"
       v-model="parlourPhoto"
       :rules="parlourPhotoRules"
@@ -135,9 +137,12 @@
               </v-col>
               <v-col cols="12" sm="6">
                 <v-file-input
+              
                 ref="license"
                   style="color: white"
                   :label="uploadedFileName"
+                  :error="errorl"
+                  :error-messages="errorMessagel"
                   v-model="licenseFile"
                   :rules="licenseFileRules"
                   accept="image/*"
@@ -211,7 +216,13 @@ export default {
       cpassword: "",
       licenseNo: "",
       licenseUrl:null,
-      rating:5
+      rating:5,
+      errorl: false,
+      errorMessagel:'',
+      errorp:false,
+      errorMessagep:"",
+      licenseFileRules: [v => {
+          return !!v || "License file is required."},]
     };
   },
   methods: {
@@ -249,11 +260,12 @@ export default {
     navparlourlogin() {
       this.$router.push("/parlourlogin");
     },
-    submit() {
+    async submit() {
       // Check if the form is valid
-      this.$refs.form.validate().then((valid) => {
-        
-        if (valid.valid) {
+      // this.$refs.form.validate().then((valid) => {
+        const {valid} = await this.$refs.form.validate();
+        console.log(valid)
+        if (valid && this.licenseFile !== null && this.parlourPhoto!== null) {
           this.dialogVis = true;
           const formData = new FormData();
           formData.append("parlourName", this.parlourName);
@@ -277,9 +289,16 @@ export default {
               console.error("Error adding user:", error);
             });
         } else {
+          if(this.licenseFile===null){
+          this.errorl= true
+          this.errorMessagel='File needed'}
+          if(this.parlourPhoto===null){
+            this.errorp=true
+            this.errorMessagep='Parlour photo required'
+          }
           console.warn("Form validation failed");
         }
-      });
+      
     },
     resetFormData() {
       this.parlourName = "";
@@ -290,6 +309,19 @@ export default {
       this.location = "";
       this.description = "";
     },
+  },
+  watch:{
+    licenseFile(value){
+      if(value){
+      this.errorl=false
+      this.errorMessagel=""}
+      
+    },
+    parlourPhoto(value){
+      if(value){
+      this.errorp=false 
+      this.errorMessagep=""}
+    }
   },
   computed: {
     uploadedPhotoName() {
@@ -305,11 +337,11 @@ export default {
       if (this.licenseFile) {
         return this.licenseFile.name;
       }
-      return "Upload License (PDF)";
+      return "Upload License (Photo)";
     },
-    licenseFileRules() {
-      return [(v) => !!v || "License file is required."];
-    },
+    // licenseFileRules() {
+    //   return [(v) => !!v || "License file is required."];
+    // },
     parlourNameRules() {
       return [
         (v) => !!v || "Parlour Name is required.",
