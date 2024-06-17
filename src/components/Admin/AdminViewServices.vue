@@ -233,7 +233,7 @@
       this.$router.push("/adminparlours")
     },
     offerClick(){
-    this.router.push("/adminoffers")
+    this.$router.push("/adminoffers")
     },
         confirmDeleteSub(index) {
       // Show a confirmation alert
