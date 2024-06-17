@@ -13,6 +13,8 @@
         <v-list-item prepend-icon="mdi-home-city" title="Overview" value="overview" @click="overviewClick"></v-list-item>
         <v-list-item prepend-icon="fas fa-briefcase" title="Services" value="account" @click="serviceClick"></v-list-item>
         <v-list-item prepend-icon="fas fa-tags" title="Parlours" value="account" @click="parlourClick"></v-list-item>
+        <v-list-item   prepend-icon="fas fa-tags" title="offers" value="account" @click="offerClick"></v-list-item>
+  
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
@@ -298,6 +300,9 @@ export default {
     },
     parlourClick() {
       this.$router.push("/adminparlours");
+    },
+    offerClick(){
+      this.$router.push("/adminoffers")
     },
     logout() {
       console.log("logout");

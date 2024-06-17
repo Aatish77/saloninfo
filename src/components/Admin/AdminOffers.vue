@@ -40,12 +40,10 @@
           ></v-list-item>
           <v-list-item
             prepend-icon="fas fa-tags"
-            title="offers"
+            title="Offers"
             value="account"
             @click="offerClick"
           ></v-list-item>
-
-
          
           
           
@@ -57,7 +55,6 @@
         </template>
         <!--  -->
       </v-navigation-drawer>
-      <h1>OVER VIEW PAGE</h1>
 <!--   
       <v-main class="bg-grey-lighten-2">
         <v-card>
@@ -85,22 +82,86 @@
     </v-tabs-window>
   </v-card>
       </v-main> -->
-    </v-app>
-  </template>
+      
+      <v-container>
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <h1 class="text-center">Elegant Contact Form</h1>
+        <v-form @submit.prevent="handleSubmit">
+          <v-row>
+            <v-col cols="12" md="6"  offset-md="2" class="custom-margin">
+              <v-text-field
+                v-model="name"
+                label="Name"
+                outlined
+                dense
+                required
+              ></v-text-field>
+              <v-textarea
+                v-model="description"
+                label="Description"
+                outlined
+                dense
+                required
+                rows="5"
+              ></v-textarea>
+              <v-file-input
+                v-model="image"
+                label="Image"
+                outlined
+                dense
+                required
+                @change="imageChange"
+              ></v-file-input>
+            </v-col>
+            <!-- <v-col cols="12" md="6">
+              
+            </v-col> -->
+          </v-row>
+          <v-btn type="submit" color="black" class="white--text mt-3" style="width: 400px; border-radius: 16px;">
+            Submit
+          </v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-container>
+
+
+</v-app>
+</template>
   
-  <script setup>
-    import { ref } from 'vue'
-  
-    const drawer = ref(null)
-  </script>
+<!-- <script setup>
+
+  </script> -->
   
   <script>
+  
     export default {
       data: () => ({ drawer: null,
-        tab: null
+        tab: null,
+        name: '',
+       description: '',
+      image: '',
+      picUrl:''
+      
        }),
        methods: {
-    OverviewClick(){
+        handleSubmit() {
+      // Handle form submission logic
+      console.log({
+        name: this.name,
+        description: this.description,
+        image: this.image,
+        
+        
+      });
+      const formData = new FormData(); 
+      // newblob in it json new blob application/json
+      formData.append('name', this.name);
+      formData.append('description', this.description);
+      formData.append('image', this.picUrl);
+    },
+    overviewClick(){
       this.$router.push("/overview")
     },
     serviceClick(){
@@ -110,13 +171,40 @@
       this.$router.push("/adminparlours")
     },
     offerClick(){
-      this.$router.push("/adminoffers")
+    this.router.push("/adminoffers")
     },
     logout(){
       
       console.log("logout")
       this.$router.push("/")
     },
+    imageChange(event){
+        this.picUrl = event.target.files[0];
+    }
   }
     }
   </script>
+
+<style scoped>
+
+h1 {
+    margin-top: 54px;
+    text-align: center;
+    color: black;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+ .v-form {
+  max-width: 600px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.v-text-field, .v-textarea, .v-file-input {
+  margin-top: 1em;
+  width: 400px;
+}
+.custom-margin {
+  margin-left: 90px; /* Adjust this value to move the fields to the right */
+}
+</style>
