@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" >
       
   
       <v-app-bar style="z-index: 1;background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
@@ -83,15 +83,16 @@
   </v-card>
       </v-main> -->
       
-      <v-container>
+      <v-container >
     <v-row justify="center">
       <v-col cols="12" md="8">
-        <h1 class="text-center">Elegant Contact Form</h1>
-        <v-form @submit.prevent="handleSubmit">
+        <h1 class="text-center">Add Offers</h1>
+        <v-form  ref="form" @submit.prevent="handleSubmit">
           <v-row>
             <v-col cols="12" md="6"  offset-md="2" class="custom-margin">
               <v-text-field
                 v-model="name"
+                 :rules="nameRules"
                 label="Name"
                 outlined
                 dense
@@ -99,6 +100,7 @@
               ></v-text-field>
               <v-textarea
                 v-model="description"
+                :rules="descriptionRules"
                 label="Description"
                 outlined
                 dense
@@ -107,7 +109,10 @@
               ></v-textarea>
               <v-file-input
                 v-model="image"
+                :rules="imageRules"
                 label="Image"
+                :error="error"
+                :error-messages="errormessage"
                 outlined
                 dense
                 required
@@ -119,7 +124,7 @@
             </v-col> -->
           </v-row>
           <v-btn type="submit" color="black" class="white--text mt-3" style="width: 400px; border-radius: 16px;">
-            Submit
+           Add
           </v-btn>
         </v-form>
       </v-col>
@@ -141,26 +146,58 @@
         tab: null,
         name: '',
        description: '',
-      image: '',
-      picUrl:''
+      image: null,
+      picUrl:'',
+      error:false,
+      errormessage:'',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length >= 3 || 'Name must be at least 3 characters'
+      ],
+      emailRules: [
+        v => !!v || 'Email is required',
+        v => /.+@.+\..+/.test(v) || 'Email must be valid'
+      ],
+      descriptionRules: [
+        v => !!v || 'Description is required',
+        v => v.length >= 10 || 'Description must be at least 10 characters'
+      ],
+      imageRules: [
+        v => !!v || 'Image is required',
+      
+        ],
       
        }),
        methods: {
-        handleSubmit() {
-      // Handle form submission logic
-      console.log({
-        name: this.name,
-        description: this.description,
-        image: this.image,
-        
-        
-      });
-      const formData = new FormData(); 
-      // newblob in it json new blob application/json
-      formData.append('name', this.name);
-      formData.append('description', this.description);
-      formData.append('image', this.picUrl);
-    },
+        async handleSubmit() {
+            const {valid}=await this.$refs.form .validate();
+            console.log(valid)
+            if(valid && this.image !==null ){
+  const formData = new FormData();
+  formData.append('name', this.name);
+  formData.append('description', this.description);
+  formData.append('image', this.picUrl);
+
+  this.$store.dispatch("addOffers", formData)
+    .then(() => {
+    
+        alert('Offer added successfully');
+        // Alert message shown immediately after successful submission
+      // Optionally, you can reset form fields or perform other actions here
+    })
+    .catch(error => {
+      console.error('Error adding offer:', error);
+    });
+}
+else{
+    if(this.image===null){
+        this.error=true;
+        this.errormessage="Please select an image";
+    }
+    console.warn("validation failed")
+}
+},
+
     overviewClick(){
       this.$router.push("/overview")
     },
@@ -181,6 +218,12 @@
     imageChange(event){
         this.picUrl = event.target.files[0];
     }
+  },
+  watch:{
+    image(){
+        this.error=false,
+        this.errormessage=''
+    }
   }
     }
   </script>
@@ -198,6 +241,7 @@ h1 {
   max-width: 600px;
   text-align: center;
   margin: 20px auto;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .v-text-field, .v-textarea, .v-file-input {

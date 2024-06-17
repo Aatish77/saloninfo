@@ -105,6 +105,20 @@ export default{
           console.error(error);
         }
       },
+      async addOffers(context,payload){
+        try{
+          const response=await axios.post(
+            `${context.getters.getBaseUrl}/`,payload
+          );
+          if(response.status>=200 || response.status<300){
+            console.log(response.data);
+            alert("Offer added successfully");
+          }
+      }
+      catch(error){
+        console.error(error);
+      }
+    },
       async addTheAdmin(context, payload) {
         try {
           const response = await axios.post(

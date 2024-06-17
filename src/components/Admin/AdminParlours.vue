@@ -23,7 +23,7 @@
       </template>
     </v-navigation-drawer>
 
-    <v-main class="bg-grey-lighten-2">
+    <v-main >
       <v-card>
         <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
           <v-tab :value="2">Pending Requests</v-tab>
