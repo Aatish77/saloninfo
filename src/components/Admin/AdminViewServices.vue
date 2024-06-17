@@ -61,7 +61,14 @@
         <v-card style="height: 100%;">
     <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
      
-      <v-tab v-for="(category,index) in categories" :key="category" :value="index">{{ category.name }}</v-tab>
+      <v-tab v-for="(category,index) in categories" :key="category" :value="index">{{ category.name }}  <v-icon
+            v-if="index===tab"
+            small
+            @click.stop="confirmDelete(index)"
+            class="ml-2 delete"
+          >
+            mdi-delete
+          </v-icon> </v-tab>
       <v-tab value="add">+ Add category</v-tab>
     </v-tabs>
 
@@ -114,10 +121,10 @@
               
             </v-col>
             <v-col md="3">
-              <v-card @click="subDia=!subDia" class="mx-auto card2 "  max-width="344" max-height="300px">
+              <v-card @click="subDia=!subDia" class="mx-auto card2 "  max-width="344" max-height="280px">
               <v-img
               style="border-radius: 5px"
-              height="250"
+              height="220"
               class="align-end text-white"
               :src="require('@/assets/upload1.jpg')"
               cover
@@ -132,10 +139,10 @@
           </v-row>
           <v-row v-else>
             <v-col>
-              <v-card @click="subDia=!subDia" class="card2 mx-auto"  max-width="344" max-height="300px">
+              <v-card @click="subDia=!subDia" class="card2 mx-auto"  max-width="344" max-height="280px">
               <v-img
               style="border-radius: 5px"
-              height="250"
+              height="220"
               class="align-end text-white"
               :src="require('@/assets/upload1.jpg')"
               cover 
@@ -145,7 +152,7 @@
             </v-card>
             </v-col>
           </v-row>
-          <v-dialog v-model="subDia" style="width: 600px;height: 300px;background-color: black ;border-radius: 5px;">
+          <v-dialog v-model="subDia" style="width: 400px;height: 300px;background-color: black ;border-radius: 5px;">
             
         <v-text-field
         style="color:white"
