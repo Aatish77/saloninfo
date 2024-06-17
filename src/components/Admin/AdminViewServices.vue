@@ -85,23 +85,25 @@
         <v-container fluid>
           <v-row v-if="category.subCategories">
             <v-col v-for="(subCategory,subIndex) in category.subCategories" :key="subCategory" @click="nav(category,subCategory,index,subIndex)" md="3">
-              <v-card  class="mx-auto card1" max-width="344" max-height="300px">
-                    <v-img
-                      style="border-radius: 5px"
-                      class="align-end text-white"
-                      height="250"
-                      :src="subCategory.image1"
-                      cover
-                    >
-                    </v-img>
-                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }}</h5> </v-card-item></v-card>
-              <!-- <v-img
-                
-                :src="subCategory.image?getImageUrl(subCategory.image):subCategory.image1"
-                height="205"
-                cover
-              ></v-img>
-              <h6>{{ subCategory.name }}</h6> -->
+              <v-card  class="mx-auto card1 a" max-width="344" max-height="280px">
+                <v-img
+              style="border-radius: 5px"
+              class="align-end text-white"
+              height="220"
+              :src="subCategory.image ? getImageUrl(subCategory.image) : subCategory.image1"
+              cover
+            >
+              <v-icon
+
+                small
+                @click.stop="confirmDeleteSub(index)"
+                class="delete-icon"
+              >
+                mdi-delete
+              </v-icon>
+            </v-img>
+                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }} </h5></v-card-item></v-card>
+              
             </v-col>
             <v-col md="3">
               <v-card @click="subDia=!subDia" class="mx-auto card2 "  max-width="344" max-height="300px">
@@ -213,6 +215,34 @@
         subDia:false,
        }),
        methods:{
+        confirmDeleteSub(index) {
+      // Show a confirmation alert
+      if (window.confirm("Are you sure you want to delete this Sub Category?")) {
+        this.deleteSub(index);
+      }
+    }, deleteSub(index) {
+      // Remove the tab at the specified index
+      this.tabs.splice(index, 1);
+
+      // Adjust the active tab if necessary
+      if (this.activeTab >= index) {
+        this.activeTab = Math.max(0, this.activeTab - 1);
+      }
+    },
+        confirmDelete(index) {
+      // Show a confirmation alert
+      if (window.confirm("Are you sure you want to delete this tab?")) {
+        this.deleteTab(index);
+      }
+    }, deleteTab(index) {
+      // Remove the tab at the specified index
+      this.tabs.splice(index, 1);
+
+      // Adjust the active tab if necessary
+      if (this.activeTab >= index) {
+        this.activeTab = Math.max(0, this.activeTab - 1);
+      }
+    },
         nav(cat,subCat,index,subIndex){
           sessionStorage.setItem("adminser",JSON.stringify({cat:cat.name,subCat:subCat.name,catIndex:index,subIndex:subIndex}))
           this.$router.push("/adminsubcat")
@@ -252,7 +282,9 @@
           this.$store.dispatch("addSubcategory", {"form":formData,"catId":id})
             .then(() => {
               // Reset form data after successful dispatch
+              this.subDia=false
               this.$router.push("/adminservices")
+
               // this.$router.push("/adminservices")
               alert("Successfully added")
               console.log("Success")
@@ -299,5 +331,22 @@
   margin-top: 10px;
   color: white;
   background-color: rgb(41, 41, 41);
+}
+.card1 :hover .delete-icon{
+  visibility: visible;
+}
+.delete-icon {
+  visibility: hidden;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+}
+.delete-icon :hover{
+color:red
 }
   </style>
