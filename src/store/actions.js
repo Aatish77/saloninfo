@@ -151,6 +151,7 @@ export default{
           const response = await axios.post(
             `${context.getters.getBaseUrl}/Categories/add`,payload)
           if (response.status===200){
+            alert("Subcategory added successfully")
             console.log("Success")
           }}
           catch(error){
@@ -159,11 +160,14 @@ export default{
       },
       async addSubcategory(context,payload){
         try {
+          console.log(payload)
           const response = await axios.post(
             `${context.getters.getBaseUrl}/SubCategory/add_Sub?categoryId=${payload.catId}`,payload.form)
           if (response.status===200){
+            alert("Subcategory added successfully")
             console.log("Success")
             console.log(response)
+           
             return response
           }}
           catch(error){

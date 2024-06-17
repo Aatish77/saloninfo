@@ -6,7 +6,7 @@
       color="teal-darken-4">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
   
-        <v-app-bar-title>saloninfo</v-app-bar-title>
+        <v-app-bar-title>Services</v-app-bar-title>
       </v-app-bar>
   
       <v-navigation-drawer
@@ -53,7 +53,14 @@
         <v-card style="height: 100%;">
     <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
      
-      <v-tab v-for="(category,index) in categories" :key="category" :value="index">{{ category.name }}</v-tab>
+      <v-tab v-for="(category,index) in categories" :key="category" :value="index">{{ category.name }} <v-icon
+            v-if="index===tab"
+            small
+            @click.stop="confirmDelete(index)"
+            class="ml-2 delete"
+          >
+            mdi-delete
+          </v-icon>   </v-tab>
       <v-tab value="add">+ Add category</v-tab>
     </v-tabs>
 
@@ -90,18 +97,19 @@
                       style="border-radius: 5px"
                       class="align-end text-white"
                       height="220"
-                      :src="subCategory.image1"
+                      :src="subCategory.image?getImageUrl(subCategory.image):subCategory.image1"
                       cover
                     >
                     </v-img>
-                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }}</h5> </v-card-item></v-card>
-              <!-- <v-img
-                
-                :src="subCategory.image?getImageUrl(subCategory.image):subCategory.image1"
-                height="205"
-                cover
-              ></v-img>
-              <h6>{{ subCategory.name }}</h6> -->
+                    <v-card-item ><h5 class="multi-line-title">{{ subCategory.name }}  <v-icon
+            
+            small
+            @click.stop="deleteSub(index)"
+            class="ml-2 delete"
+          >
+            mdi-delete
+          </v-icon></h5></v-card-item></v-card>
+              
             </v-col>
             <v-col md="3">
               <v-card @click="subDia=!subDia" class="mx-auto card2 a"  max-width="344" max-height="300px">
@@ -154,7 +162,7 @@
                   @change="subPhoto"
                 >
                 </v-file-input>
-                <v-btn @click="addSubcat(category.id)">Add sub category</v-btn>
+                <v-btn @click="addSubcat(tab)">Add sub category</v-btn>
           </v-dialog>
           
           
@@ -221,6 +229,20 @@
         subDia:false,
        }),
        methods:{
+        confirmDelete(index) {
+      // Show a confirmation alert
+      if (window.confirm("Are you sure you want to delete this tab?")) {
+        this.deleteTab(index);
+      }
+    }, deleteTab(index) {
+      // Remove the tab at the specified index
+      this.tabs.splice(index, 1);
+
+      // Adjust the active tab if necessary
+      if (this.activeTab >= index) {
+        this.activeTab = Math.max(0, this.activeTab - 1);
+      }
+    },
         nav(cat,subCat,index,subIndex){
           sessionStorage.setItem("adminser",JSON.stringify({cat:cat.name,subCat:subCat.name,catIndex:index,subIndex:subIndex}))
           this.$router.push("/adminsubcat")
@@ -252,12 +274,13 @@
  
     //    reader.src = URL.createObjectURL(imgInput);
     // },
-    addSubcat(id){
+    addSubcat(tab){
+      console.log(this.categories[tab].id)
       const jsonBlob = new Blob([JSON.stringify({"name":this.subName})], { type: 'application/json' })
       const formData = new FormData();
           formData.append("data", jsonBlob);
           formData.append("image",this.picUrl)
-          this.$store.dispatch("addSubcategory", {"form":formData,"catId":id})
+          this.$store.dispatch("addSubcategory", {"form":formData,"catId":this.categories[tab].id})
             .then(() => {
               // Reset form data after successful dispatch
               this.$router.push("/adminservices")
@@ -299,6 +322,9 @@
     }
   </script>
   <style scoped>
+  .delete :hover{
+    color: rgb(255, 0, 0) !important;
+  }
   .card1 {
   margin-top: 10px;
   color: white;

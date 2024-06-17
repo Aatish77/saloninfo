@@ -13,10 +13,10 @@ export default{
         
       },
       loadSubCategories(state,payload){
-        
-            state.categories[payload.catIndex].subCategories=payload.data
+
+            state.categories[payload.id].subCategories=payload.data.filter(d=>d.categoryId===state.categories[payload.id].id)
             console.log("aaaaaa",state.categories)
-         
+
         
        },
        loadSubSubCategories(state,payload){
