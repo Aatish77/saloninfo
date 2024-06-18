@@ -110,6 +110,7 @@
               cover
             >
               <v-icon
+              
 
                 small
                 @click.stop="confirmDeleteSub(index)"
