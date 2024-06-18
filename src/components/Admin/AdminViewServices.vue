@@ -77,6 +77,7 @@
         <v-form>
         <v-col>
         <v-text-field
+        class="text"
         style="color:black"
                   v-model="catName"
                   label="Category Name"
@@ -85,6 +86,7 @@
                 ></v-text-field></v-col>
                 <v-col >
         <v-file-input
+                class="input"
                 ref="cat"
                   style="color: black"
                   :label="uploadedCatFileName"
@@ -359,7 +361,7 @@
     box-shadow: 2px 12px 16px rgba(0, 0, 0, 0.1);
     
   }
-  .v-text-field, .v-file-input {
+  .text , .input {
   margin-top: 1em;
   width: 400px;
   margin-left: 90px;
