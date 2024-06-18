@@ -245,7 +245,7 @@ export default {
     items1: [
       {
         sl_no: 1,
-        parlour_id: 'P001',
+        parlour_id: 'P011',
         parlour_image: "https://cdn.tapetender70er.de/media/image/6c/3d/af/Hair-Salon-Wallpaper-Design_944x944@2x.webp",
         name: 'Amaze Beauty Parlour',
         phone: '9846766214',
@@ -257,7 +257,7 @@ export default {
       },
       {
         sl_no: 2,
-        parlour_id: 'P002',
+        parlour_id: 'P012',
         parlour_image: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
         name: 'The Garage Men Salon',
         phone: '9745362890',
@@ -310,6 +310,7 @@ export default {
     },
     confirmDelete(item) {
       this.itemToDelete = item;
+      console.log(item)
       this.dialog = true;
     },
     cancelDelete() {

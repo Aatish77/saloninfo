@@ -74,7 +74,7 @@
 
     <v-tabs-window v-model="tab">
       <v-tab-window-item v-if="tab==='add'" >
-        <v-form class="form1" >
+        <v-form>
         <v-col>
         <v-text-field
         style="color:black"
@@ -95,7 +95,7 @@
                 >
                 </v-file-input></v-col>
                 <v-col >
-                <v-btn @click="addCat">Add category</v-btn></v-col></v-form>
+                <v-btn @click="addCat" color="black" style="margin-left: 100px; width: 400px; height: 40px; border-radius: 16px; ">Add category</v-btn></v-col></v-form>
       </v-tab-window-item>
       <v-tabs-window-item v-for="(category,index) in categories" :key="category" :value="index">
         <v-container fluid>
@@ -351,12 +351,19 @@
     }
   </script>
   <style scoped>
-  .form1{
+  .v-form{
+    margin-top: 50px;
     margin-left: 300px;
-    width:600px;
+    max-width:600px;
+    box-shadow: 2px 12px 16px rgba(0, 0, 0, 0.1);
     
-    box-shadow:  2px 8px 16px rgb(0, 0, 0.1);
   }
+  .v-text-field, .v-file-input {
+  margin-top: 1em;
+  width: 400px;
+  margin-left: 90px;
+
+}
   .card1 {
   margin-top: 10px;
   color: white;
