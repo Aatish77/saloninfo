@@ -73,8 +73,9 @@
     </v-tabs>
 
     <v-tabs-window v-model="tab">
-      <v-tab-window-item v-if="tab==='add'" style="width:600px">
-        <v-col style="width:600px;margin-left: 300px;" >
+      <v-tab-window-item v-if="tab==='add'" >
+        <v-form class="form1" >
+        <v-col>
         <v-text-field
         style="color:black"
                   v-model="catName"
@@ -82,7 +83,7 @@
                   variant="underlined"
                   
                 ></v-text-field></v-col>
-                <v-col style="width:600px;margin-left: 300px;">
+                <v-col >
         <v-file-input
                 ref="cat"
                   style="color: black"
@@ -93,8 +94,8 @@
                   @change="catPhoto"
                 >
                 </v-file-input></v-col>
-                <v-col style="width:600px;margin-left: 300px;">
-                <v-btn @click="addCat">Add category</v-btn></v-col>
+                <v-col >
+                <v-btn @click="addCat">Add category</v-btn></v-col></v-form>
       </v-tab-window-item>
       <v-tabs-window-item v-for="(category,index) in categories" :key="category" :value="index">
         <v-container fluid>
@@ -350,6 +351,12 @@
     }
   </script>
   <style scoped>
+  .form1{
+    margin-left: 300px;
+    width:600px;
+    
+    box-shadow:  2px 8px 16px rgb(0, 0, 0.1);
+  }
   .card1 {
   margin-top: 10px;
   color: white;
