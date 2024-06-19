@@ -107,7 +107,7 @@
                 required
                 rows="5"
               ></v-textarea>
-              <v-file-input
+              <!-- <v-file-input
                 v-model="image"
                 :rules="imageRules"
                 label="Image"
@@ -117,7 +117,7 @@
                 dense
                 required
                 @change="imageChange"
-              ></v-file-input>
+              ></v-file-input> -->
             </v-col>
             <!-- <v-col cols="12" md="6">
               
@@ -169,7 +169,12 @@
       
        }),
        methods: {
-        async handleSubmit() {
+       async handleSubmit(){
+          await this.$store.dispatch("addOffers", {'name':this.name,'description':this.description})
+         
+
+        },
+        async handleSubmit1() {
             const {valid}=await this.$refs.form .validate();
             console.log(valid)
             if(valid && this.image !==null ){

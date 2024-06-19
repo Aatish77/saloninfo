@@ -567,7 +567,7 @@ Edit</v-btn>
     position: relative;
     overflow: hidden;
   }
-  
+
   .square-image img {
     position: absolute;
     top: 0;
@@ -577,7 +577,7 @@ Edit</v-btn>
   }
   .hc1 {
     font-size: 40px;
-    font-weight: 800;
+    font-weight: 800;  
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     margin-top: 80px;

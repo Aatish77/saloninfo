@@ -108,7 +108,7 @@ export default{
       async addOffers(context,payload){
         try{
           const response=await axios.post(
-            `${context.getters.getBaseUrl}/`,payload
+            `${context.getters.getBaseUrl}/offers/offer`,payload
           );
           if(response.status>=200 || response.status<300){
             console.log(response.data);

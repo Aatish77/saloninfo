@@ -64,13 +64,13 @@
 
 </v-btn></td>
         <td style="width: 300px;" >₹ {{ item.price*item.quantity }}</td>
-        <td><v-btn @click="toggleBookoff(index)">{{item.date?item.date:'Select date and time'}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
+        <td><v-btn @click="toggleBookoff(index)">{{item.date?this.formattedDate(item.date):'Select date and time'}} {{ item.slot?item.slot:"" }} {{ item.employee?item.employee.name:"" }}</v-btn></td>
         <td><v-btn @click="removeFromCart(index)">Remove</v-btn></td>   
         <v-dialog v-model="dialogOff" max-width="500px">
                     <v-card>
                       <v-card-title> Book an Appointment </v-card-title>
                       <v-card-text>
-                        <book-appointment :cart="cart" :index="bookser" @child-value-updated="handleChildValueChange">{{
+                        <book-appointment :cart="cartFinal?cartFinal:cart" :index="bookser" @child-value-updated="handleChildValueChange">{{
                           item.title
                         }}</book-appointment>
                       </v-card-text>
@@ -97,6 +97,7 @@
   </template>
   
   <script>
+  import moment from 'moment';
 import BookAppointment from "./BookAppointment.vue";
   export default {
   
@@ -127,6 +128,15 @@ import BookAppointment from "./BookAppointment.vue";
       }
     },
     methods: {
+      formattedDate(date) {
+      // Check if selectedDate is not null or undefined
+      if (date) {
+        // Format selectedDate to dd/mm/yyyy using moment.js
+        return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+      } else {
+        return ''; // Return empty string if selectedDate is null or undefined
+      }
+    },
       reserve(){
         console.log(this.cartFinal,this.cart)
       },

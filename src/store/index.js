@@ -6,9 +6,9 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.11:8448`,
+      baseUrl: `http://192.168.1.23:8080`,
       users: [
-        {
+        { userId:"1",
           fullName: "Rakesh S",
           username: "user1",
           phone: "9846766214",
@@ -561,7 +561,7 @@ const store = createStore({
                 },
               ],
               subsubCategories: [
-                {
+                { itemId:"1",
                   title: "Straight Cut",
                   price: 150,
                   durartion:10 ,
@@ -907,7 +907,7 @@ const store = createStore({
                 },
               ],
               subsubCategories: [
-                {
+                { itemId:"2",
                   title: "Pompadour Haircut",
                   price: 150,
                   duration:30,
