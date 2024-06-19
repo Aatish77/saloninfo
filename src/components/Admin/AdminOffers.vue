@@ -277,7 +277,7 @@ else{
 }
 },
 
-seasonalSubmit(){
+ async seasonalSubmit(){
   const formData = new FormData();
   // formData.append('categoryId', this.seasonal.categoryId);
   formData.append('name', this.seasonal.name);
@@ -286,7 +286,7 @@ seasonalSubmit(){
   formData.append('offerPrice', this.seasonal.offerPrice);
   formData.append('description', this.seasonal.description);
   formData.append('image', this.seasonal.PicUrl);
-  this.$store.dispatch("addseasonaloffers", { form:formData,id:this.seasonal.categoryId})
+   await this.$store.dispatch("addseasonaloffers", { form:formData,id:this.seasonal.categoryId})
 
 },
 
