@@ -18,6 +18,7 @@
             prepend-icon="mdi-home-city"
             title="Overview"
             value="overview"
+            @click="overviewClick"
           ></v-list-item>
           <v-list-item
             prepend-icon="fas fa-briefcase"
@@ -37,6 +38,14 @@
             value="account"
             @click="parlourClick"
           ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-tags"
+            title="offers"
+            value="account"
+            @click="offerClick"
+          ></v-list-item>
+
+
          
           
           
@@ -48,6 +57,7 @@
         </template>
         <!--  -->
       </v-navigation-drawer>
+      <h1>OVER VIEW PAGE</h1>
 <!--   
       <v-main class="bg-grey-lighten-2">
         <v-card>
@@ -90,14 +100,17 @@
         tab: null
        }),
        methods: {
-    clickProfile(){
-      this.$router.push("/userpage")
+    OverviewClick(){
+      this.$router.push("/overview")
     },
     serviceClick(){
       this.$router.push("/adminservices")
     },
     parlourClick(){
       this.$router.push("/adminparlours")
+    },
+    offerClick(){
+      this.$router.push("/adminoffers")
     },
     logout(){
       

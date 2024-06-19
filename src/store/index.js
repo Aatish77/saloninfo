@@ -6,9 +6,9 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.16:8448`,
+      baseUrl: `http://192.168.1.23:8080`,
       users: [
-        {
+        { userId:"1",
           fullName: "Rakesh S",
           username: "user1",
           phone: "9846766214",
@@ -63,9 +63,70 @@ const store = createStore({
       validAdmin: null,
       isAdminLoggedin: false,
       categories:[{name:"Men",id:1,
-        subCategories:[]
+        subCategories:[
+          {
+            name: "Hair Cut and Style",
+            image1: "https://www.zhairacademy.com/wp-content/uploads/fly-images/1921/Z-Hair-Academy-Mens-Cuts-Intro-1280x1200-c.jpg",
+            subsubCategories: [{
+              name: "Hair Cut",
+              image1: "https://larastyles.com/wp-content/uploads/2022/08/hair-cut-768x768.jpg"},
+              {
+                name: "Beard",
+                image1: "https://assets-global.website-files.com/5cb569e54ca2fddd5451cbb2/5f8e7707ad6d75eda371136b_Cannington-120.jpg",
+              }
+            ]},
+            {
+              name: "Mani and Pedi Hygiene",
+              image1: "https://d2zdpiztbgorvt.cloudfront.net/us/cms_content/425/df5bd406e950478fac0be143a96c175d.jpg",
+            },
+            {
+              name: "Spa and Massage",
+              image1: "https://www.elitestudio.co.in/images/bg-image/m14.jpg",
+            },
+            {
+              name: "Hair Treatments",
+              image1: "https://assets-global.website-files.com/621fc5da26683b662359a48d/626998459e85648971269164_menshaircolorred-p-800.jpeg",
+            },
+            {
+              name: "Skin Care",
+              image1: "https://larastyles.com/wp-content/uploads/2022/08/facial-768x768.jpg",},
+              {
+                name: "Pre Groom",
+                image1: "https://www.vasuhealthcare.com/wp-content/uploads/2022/02/Best-Pre-wedding-Grooming-Manual-for-a-Man-Banner.jpg",
+              },
+            ]
 
-      },{name:"Women",id:2}],
+      },{name:"Women",id:2,subCategories:[
+        {name: "Hair Cut and Style",
+        image1: "https://stylecaster.com/wp-content/uploads/2015/04/haircut-salon-visit.jpg?w=650&h=432&crop=1",
+        
+        
+        
+        },
+        {
+          name: "Mani and Pedi Hygiene",
+          image1: "https://media.self.com/photos/57d8938724fe9dae32831885/4:3/w_1920,c_limit/nail-salon-hygiene_feat.jpg",
+        },
+        {
+          name: "Spa and Massage",
+          image1: "https://5.imimg.com/data5/QM/SA/MY-11130624/hair-spa-services-for-women-and-men-1000x1000.jpg",
+        },
+        {
+          name: "Hair Treatments",
+          image1: "https://naturals.in/wp-content/uploads/2022/04/hc-2.jpg",
+          subsubCategories: [{
+            name: "Hair Color",
+                image1: "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kaousa/www-johnfrieda-com/uk/en/blog-images/Happy%20woman%20smiling%20at%20her%20hairdresser%20.jpg?fmt=jpeg&qlt=85&wid=2000",
+        },
+        {
+          name: "Hair Chemical",
+          image1: "https://c.ndtvimg.com/2022-10/b5oj98hg_new-study-says-hairstraightening-products-linked-with-risk-of-uterine-cancer_625x300_19_October_22.jpg",
+        }
+      ]
+        }
+            
+      ]
+    }],
       serviceCategories: {
         men: [
           {
@@ -90,6 +151,7 @@ const store = createStore({
                   },
                 ],
               },
+              
             ],
           },
           {
@@ -499,7 +561,7 @@ const store = createStore({
                 },
               ],
               subsubCategories: [
-                {
+                { itemId:"1",
                   title: "Straight Cut",
                   price: 150,
                   durartion:10 ,
@@ -845,7 +907,7 @@ const store = createStore({
                 },
               ],
               subsubCategories: [
-                {
+                { itemId:"2",
                   title: "Pompadour Haircut",
                   price: 150,
                   duration:30,

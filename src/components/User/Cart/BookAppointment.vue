@@ -30,7 +30,7 @@
         <div v-if="customemp">
         <v-card-title>Available employees</v-card-title>
         <v-row class="mt-3">
-        <v-col @click="select(index1)" :class="se===index1?'t':''"  v-for="(emp,index1) in cart[index].employees" :key="emp">
+        <v-col @click="select(index1)" :class="se===index1?'t':''"  v-for="(emp,index1) in cart[index].employees" v-model="employee" :key="emp" :value="emp">
           <div class="d-flex flex-column align-center" @click="employee=emp">
     <v-avatar :image="emp.img" size="73"></v-avatar>
     
@@ -79,7 +79,18 @@
         employee:null,
         cartFinal:[]
       }),
-  
+  created(){
+    if(this.cart[this.index].employee){
+      this.selectedDate=this.cart[this.index].date
+      this.employee=this.cart[this.index].employee
+      this.selection=this.cart[this.index].slot
+      for (let i=0;i< this.cart[this.index].employees.length;++i){
+      if(this.cart[this.index].employees[i]===this.cart[this.index].employee){
+        this.customemp=true
+        this.se=i}
+      }
+    }
+  },
       methods: {
         select(index){
           this.se=index
@@ -92,7 +103,7 @@
             }
             else{
               this.cartFinal[this.index]=this.cart[this.index]
-              this.cartFinal[this.index].date=this.formattedDate
+              this.cartFinal[this.index].date=this.selectedDate
               this.cartFinal[this.index].employee=this.employee
               this.cartFinal[this.index].slot=this.selection
             }

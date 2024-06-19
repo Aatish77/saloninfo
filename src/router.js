@@ -19,6 +19,9 @@ import AdminReg from "./components/Admin/AdminReg.vue"
 import AdminViewServices from "./components/Admin/AdminViewServices.vue"
 import AdminParlours from "./components/Admin/AdminParlours.vue";
 import AdminOverview from "./components/Admin/AdminOverview.vue";
+import AdminSubCat from "./components/Admin/AdminSubCat.vue";
+import AdminOffers from "./components/Admin/AdminOffers.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -46,7 +49,10 @@ const router = createRouter({
     {path:"/adminreg", component:AdminReg},
     {path:"/adminservices",component: AdminViewServices},
     {path:"/adminparlours",component:AdminParlours},
-    {path:"/overview",component:AdminOverview}
+    {path:"/overview",component:AdminOverview},
+    {path:"/adminsubcat",component: AdminSubCat},
+    {path:"/adminoffers",component:AdminOffers}
+   
   ],
 });
 export default router;

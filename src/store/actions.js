@@ -68,7 +68,7 @@ export default{
       async viewSubCategories(context,payload) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${payload}`)
+            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${context.getters.getCategories[payload].id}`)
           if (response.status>=200 || response.status<300){
             console.log("Success",payload)
             console.log(response.data)
@@ -105,6 +105,20 @@ export default{
           console.error(error);
         }
       },
+      async addOffers(context,payload){
+        try{
+          const response=await axios.post(
+            `${context.getters.getBaseUrl}/offers/offer`,payload
+          );
+          if(response.status>=200 || response.status<300){
+            console.log(response.data);
+            alert("Offer added successfully");
+          }
+      }
+      catch(error){
+        console.error(error);
+      }
+    },
       async addTheAdmin(context, payload) {
         try {
           const response = await axios.post(
@@ -151,6 +165,7 @@ export default{
           const response = await axios.post(
             `${context.getters.getBaseUrl}/Categories/add`,payload)
           if (response.status===200){
+            alert("Subcategory added successfully")
             console.log("Success")
           }}
           catch(error){
@@ -159,11 +174,14 @@ export default{
       },
       async addSubcategory(context,payload){
         try {
+          console.log(payload)
           const response = await axios.post(
             `${context.getters.getBaseUrl}/SubCategory/add_Sub?categoryId=${payload.catId}`,payload.form)
           if (response.status===200){
+            alert("Subcategory added successfully")
             console.log("Success")
             console.log(response)
+           
             return response
           }}
           catch(error){

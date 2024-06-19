@@ -13,13 +13,10 @@ export default{
         
       },
       loadSubCategories(state,payload){
-        console.log("payload",payload)
-        for (let i=0; i< state.categories.length;++i){
-          if (state.categories[i].id === payload.id){
-            state.categories[i].subCategories=payload.data
+
+            state.categories[payload.id].subCategories=payload.data.filter(d=>d.categoryId===state.categories[payload.id].id)
             console.log("aaaaaa",state.categories)
-          }
-        }
+
         
        },
        loadSubSubCategories(state,payload){
