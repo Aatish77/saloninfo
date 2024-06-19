@@ -286,7 +286,7 @@ else{
   formData.append('offerPrice', this.seasonal.offerPrice);
   formData.append('description', this.seasonal.description);
   formData.append('image', this.seasonal.PicUrl);
-   await this.$store.dispatch("addseasonaloffers", { form:formData,id:this.seasonal.categoryId})
+   await this.$store.dispatch("addseasonaloffer", { form:formData,id:this.seasonal.categoryId})
 
 },
 
