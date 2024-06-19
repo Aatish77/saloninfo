@@ -287,7 +287,9 @@ else{
   formData.append('description', this.seasonal.description);
   formData.append('image', this.seasonal.PicUrl);
    await this.$store.dispatch("addseasonaloffer", { form:formData,id:this.seasonal.categoryId})
-
+  
+  //  alert("Seasonal Offer added successfully");
+  
 },
 
     overviewClick(){
