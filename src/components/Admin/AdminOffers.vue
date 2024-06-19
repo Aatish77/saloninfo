@@ -117,7 +117,7 @@
   <v-container v-if="tab === 2" >
     <v-row justify="center">
       <v-col cols="12" md="8">
-        <h1 class="text-center">SeasonalOffers</h1>
+        <h1 class="text-center">Seasonal Offers</h1>
         <v-form  ref="form" @submit.prevent="seasonalSubmit">
           <v-row>
             <v-col cols="12" md="6"  offset-md="2" class="custom-margin">
