@@ -133,7 +133,7 @@ export default {
       console.log('Unique ID:', uniqueID);
       console.log(this.cartFinal, this.cart);
       // You can now use this uniqueID to connect with the backend for Razorpay
-      await this.$store.dispatch("payMent", {'id':uniqueID})
+      await this.$store.dispatch("addpayMent", {'id':uniqueID})
       this.$emit('reserve', { cartFinal: this.cartFinal || this.cart, uniqueID });
     },
     toggleBookoff(index) {
