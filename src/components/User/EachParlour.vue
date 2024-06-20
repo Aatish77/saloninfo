@@ -378,10 +378,8 @@ export default {
     selectedOffer: {},
     bookser: null,
     bookoff: null,
-    card: {
-    },
-    images: [
-      ],
+    card: {},
+    images: [],
     currentIndex: 0,
     intervalId: null,
     intervalDuration: 3000,
@@ -390,6 +388,10 @@ export default {
     type:'Men'
   }),
   computed: {
+    currentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      return currentUser;
+    },
     itemCount(){
       let sum=0
       for (let i of this.cart){
@@ -502,7 +504,18 @@ export default {
         }
         item.quantity = 1;
         this.cart.push(item);
+        this.callAddCart()
       }
+    },
+    async callAddCart(){
+      let itemIds=[]
+      let quantityArray=[]
+      for (let i of this.cart){
+        itemIds.push(i.itemId)
+        quantityArray.push(i.quantity)
+      }
+      let cart={"userId":this.currentUser.userId,"itemIds":itemIds,"parlourId":this.card.parlourId,"employeeId":"2","bookingDate":"2024-06-22","bookingTime":"10:30:00","quantity":quantityArray,"status":0}
+      await this.$store.dispatch("addToCart",cart)
     },
     // Add methods to increase and decrease quantity
     increaseQuantity(item) {

@@ -879,7 +879,7 @@ const store = createStore({
           src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
           rating: 4.7,
           location: "YMCA road, Alappuzha",
-          
+          parlourId:"2",
           locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.9152373328!2d76.33623521572925!3d9.498367919855726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08845fbbee7013%3A0x7ba0cda86b0d631d!2sThe%20Garage!5e0!3m2!1sen!2sin!4v1717129438735!5m2!1sen!2sin",
           flex: 3,
           id: "salon2",
@@ -914,7 +914,7 @@ const store = createStore({
                   img: "https://www.dmarge.com/wp-content/uploads/2022/09/david-beckham-gq-0416-2-1200x900.webp",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
-                    {
+                    { employeeId:"1",
                       name: "Manoj",
                       img: "https://img.freepik.com/free-photo/close-up-portrait-young-man-isolated-black-studio-background-photoshot-real-emotions-male-model-smiling-feeling-happy-facial-expression-pure-clear-human-emotions-concept_155003-25751.jpg?w=996&t=st=1713519692~exp=1713520292~hmac=738048c98c9cb8100f54be36e26a7ab6f9c644c8dcade7c2b2d4ffdab417a467",
                       slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
@@ -928,12 +928,13 @@ const store = createStore({
                 },
                 {
                   title: "Ivy League Haircut",
+                  itemId:"3",
                   price: 150,
                   duration:30,
                   img: "https://i.pinimg.com/564x/f5/10/c9/f510c9491355637d603fba2852f2b09c.jpg",
                   slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],
                   employees: [
-                    {
+                    { employeeId:"1",
                       name: "Manoj",
                       img: "https://img.freepik.com/free-photo/close-up-portrait-young-man-isolated-black-studio-background-photoshot-real-emotions-male-model-smiling-feeling-happy-facial-expression-pure-clear-human-emotions-concept_155003-25751.jpg?w=996&t=st=1713519692~exp=1713520292~hmac=738048c98c9cb8100f54be36e26a7ab6f9c644c8dcade7c2b2d4ffdab417a467",
                       slots: [ "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", ],

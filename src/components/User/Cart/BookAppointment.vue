@@ -101,12 +101,12 @@
             if(this.index!=i){
               this.cartFinal[i]=this.cart[i]
             }
-            else{
+            else {
               this.cartFinal[this.index]=this.cart[this.index]
               this.cartFinal[this.index].date=this.selectedDate
               this.cartFinal[this.index].employee=this.employee
               this.cartFinal[this.index].slot=this.selection
-            }
+            }  
           }
           this.$emit('child-value-updated', this.cartFinal);
           console.log(this.cartFinal)

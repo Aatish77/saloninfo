@@ -55,35 +55,17 @@
         </template>
         <!--  -->
       </v-navigation-drawer>
-<!--   
-      <v-main class="bg-grey-lighten-2">
-        <v-card>
-    <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
-     
-      <v-tab :value="2">Men</v-tab>
-      <v-tab :value="1">Women</v-tab>
-    </v-tabs>
-
-    <v-tabs-window v-model="tab">
-      <v-tabs-window-item v-for="n in 3" :key="n" :value="n">
-        <v-container fluid>
-          <v-row>
-            <v-col v-for="i in 6" :key="i" cols="12" md="4">
-              <v-img
-                :lazy-src="`https://picsum.photos/10/6?image=${i * n * 5 + 10}`"
-                :src="`https://picsum.photos/500/300?image=${i * n * 5 + 10}`"
-                height="205"
-                cover
-              ></v-img>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-tabs-window-item>
-    </v-tabs-window>
-  </v-card>
-      </v-main> -->
+   
+      <v-main >
+      <v-card>
+        <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
+          <v-tab :value="1">Add offers</v-tab>
+          <v-tab :value="2">Seasonal offers</v-tab>
+        </v-tabs>
+      </v-card>
       
-      <v-container >
+      
+      <v-container v-if="tab === 1" >
     <v-row justify="center">
       <v-col cols="12" md="8">
         <h1 class="text-center">Add Offers</h1>
@@ -131,6 +113,90 @@
     </v-row>
   </v-container>
 
+    
+  <v-container v-if="tab === 2" >
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <h1 class="text-center">Seasonal Offers</h1>
+        <v-form  ref="form" @submit.prevent="seasonalSubmit">
+          <v-row>
+            <v-col cols="12" md="6"  offset-md="2" class="custom-margin">
+              <v-select
+                 v-model=" seasonal.categoryId"
+                :items="seasonal.items"
+                label="CategoryId"
+                 required
+      ></v-select>
+      <v-text-field
+                v-model=" seasonal.categoryName"
+                label="CategoryName"
+                outlined
+                dense
+                required
+              ></v-text-field>
+
+              <v-text-field
+                v-model=" seasonal.name"
+                label="Name"
+                outlined
+                dense
+                required
+              ></v-text-field>
+              <v-text-field type="date"
+                v-model="seasonal.startDate"
+                
+                label="StartDate"
+                outlined
+                dense
+                required
+                rows="5"
+              ></v-text-field>
+              <v-text-field type="date"
+                v-model="seasonal.endDate"
+                
+                label="EndDate"
+                outlined
+                dense
+                required
+                rows="5"
+              ></v-text-field>
+              <v-text-field
+                v-model=" seasonal.offerPrice"
+                label="OfferPrice"
+                outlined
+                dense
+                required
+              ></v-text-field>
+              <v-textarea
+                v-model=" seasonal.description"
+                label="Description"
+                outlined
+                dense
+                required
+                rows="5"
+              ></v-textarea>
+              <v-file-input
+                v-model=" seasonal.image"
+                label="Image"
+                outlined
+                dense
+                required
+                @change="seasonalImage"
+              ></v-file-input>
+            </v-col>
+            <!-- <v-col cols="12" md="6">
+              
+            </v-col> -->
+          </v-row>
+          <v-btn type="submit" color="black" class="white--text mt-3" style="width: 404px; height: 40px; border-radius: 16px;">
+           Add seasonal
+          </v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-container>
+</v-main>
+
 
 </v-app>
 </template>
@@ -146,16 +212,33 @@
         tab: null,
         name: '',
        description: '',
-      image: null,
       picUrl:'',
       error:false,
       errormessage:'',
+      seasonal:{
+        categoryId:'',
+        categoryName:'',
+        name:'',
+        startDate:null,
+        endDate:null,
+        offerPrice:'',
+        description:'',
+        image:null,
+        select: null,
+      items: [
+        '1',
+        '2',
+        ' 3',
+        '4',
+      ],
+
+      },
       nameRules: [
         v => !!v || 'Name is required',
         v => v.length >= 3 || 'Name must be at least 3 characters'
       ],
       emailRules: [
-        v => !!v || 'Email is required',
+        v => !!v || 'Email is required',  
         v => /.+@.+\..+/.test(v) || 'Email must be valid'
       ],
       descriptionRules: [
@@ -171,8 +254,7 @@
        methods: {
        async handleSubmit(){
           await this.$store.dispatch("addOffers", {'name':this.name,'description':this.description})
-         
-
+        
         },
         async handleSubmit1() {
             const {valid}=await this.$refs.form .validate();
@@ -203,6 +285,18 @@ else{
 }
 },
 
+ async seasonalSubmit(){
+  const jsonBlob = new Blob([JSON.stringify({'categoryName': this.seasonal.categoryName,"name":this.seasonal.name,'startDate':this.seasonal.startDate,'endDate': this.seasonal.endDate,'offerPrice': this.seasonal.offerPrice,'description': this.seasonal.description})], { type: 'application/json' })
+  const formData = new FormData();
+  // formData.append('categoryId', this.seasonal.categoryId);
+  formData.append('data', jsonBlob);
+  formData.append('image', this.picUrl);
+   await this.$store.dispatch("addseasonaloffer", { form:formData,id:this.seasonal.categoryId})
+  
+  //  alert("Seasonal Offer added successfully");
+  
+},
+
     overviewClick(){
       this.$router.push("/overview")
     },
@@ -220,8 +314,11 @@ else{
       console.log("logout")
       this.$router.push("/")
     },
-    imageChange(event){
-        this.picUrl = event.target.files[0];
+    // imageChange(event){
+    //     this.picUrl = event.target.files[0];
+    // },
+    seasonalImage(event){
+      this.picUrl=event.target.files[0];
     }
   },
   watch:{
