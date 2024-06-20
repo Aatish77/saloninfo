@@ -21,7 +21,8 @@ import AdminParlours from "./components/Admin/AdminParlours.vue";
 import AdminOverview from "./components/Admin/AdminOverview.vue";
 import AdminSubCat from "./components/Admin/AdminSubCat.vue";
 import AdminOffers from "./components/Admin/AdminOffers.vue";
-import DummyPage from "./components/DummyPage.vue"
+import DummyPage from "./components/DummyPage.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [

@@ -1,3 +1,4 @@
+
 import axios from "axios";
 export default{
     addOneUser(context, payload) {
@@ -233,6 +234,17 @@ export default{
         }catch (error){
           console.error(error)
         }
-      }
+      },
+      async addpayMent(context,payload){
+        try {
+          const response = await axios.post(
+            `${context.getters.getBaseUrl}/SubSubCategory/add_Sub?subCategoryId=2`,payload)
+          if (response.status===200){
+            console.log(response.data)
+          }}
+          catch(error){
+            console.error(error)
+          }
+      },
       
 }
