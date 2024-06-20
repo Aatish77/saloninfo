@@ -237,8 +237,8 @@ export default{
       },
       async addpayMent(context,payload){
         try {
-          const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubSubCategory/add_Sub?subCategoryId=2`,payload)
+          const response = await axios.get(
+            `${context.getters.getBaseUrl}/createTransaction/${payload.amount}/${payload.id}`)
           if (response.status===200){
             console.log(response.data)
           }}
