@@ -286,14 +286,10 @@ else{
 },
 
  async seasonalSubmit(){
+  const jsonBlob = new Blob([JSON.stringify({'categoryName': this.seasonal.categoryName,"name":this.seasonal.name,'startDate':this.seasonal.startDate,'endDate': this.seasonal.endDate,'offerPrice': this.seasonal.offerPrice,'description': this.seasonal.description})], { type: 'application/json' })
   const formData = new FormData();
   // formData.append('categoryId', this.seasonal.categoryId);
-  formData.append('categoryName', this.seasonal.categoryName);
-  formData.append('name', this.seasonal.name);
-  formData.append('startDate', this.seasonal.startDate);
-  formData.append('endDate', this.seasonal.endDate);
-  formData.append('offerPrice', this.seasonal.offerPrice);
-  formData.append('description', this.seasonal.description);
+  formData.append('data', jsonBlob);
   formData.append('image', this.picUrl);
    await this.$store.dispatch("addseasonaloffer", { form:formData,id:this.seasonal.categoryId})
   
