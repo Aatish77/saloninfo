@@ -128,7 +128,7 @@
                  required
       ></v-select>
       <v-text-field
-                v-model=" seasonal.categiryName"
+                v-model=" seasonal.categoryName"
                 label="CategoryName"
                 outlined
                 dense
