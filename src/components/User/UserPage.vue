@@ -59,15 +59,15 @@
 
         <div>
           <label for="fullName">Name:</label>
-          <input type="text"  id="fullName" v-model="user.fullName">
+          <input type="text"  id="fullName" :rules="nameRules" v-model="user.fullName">
         </div>
         <div>
           <label>Email:</label>
-          <input type="email" v-model="user.email">
+          <input type="email" v-model="user.email" :rules="emailRules">
         </div>
         <div>
           <label>Mobile:</label>
-          <input type="text" v-model.number="user.phone">
+          <input type="text" v-model.number="user.phone" :rules="phoneRules">
         </div>
         <button class="button1" @click="saveProfile">Save</button>
         
@@ -196,6 +196,28 @@
       };
     },
     computed:{
+      nameRules() {
+      return [
+        (v) => !!v || "Parlour Name is required.",
+        (v) =>
+          !/^\s/.test(v) || "Parlour Name should not start with a blank space.",
+      ];
+    },phoneRules() {
+      return [
+        (v) => !!v || "Phone Number is required.",
+        (v) =>
+          /^[0-9]{10}$/.test(v) ||
+          "Phone Number should contain exactly 10 digits and only numbers.",
+      ];
+    },
+    emailRules() {
+      return [
+        (v) => !!v || "Email is required.",
+        (v) =>
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(v) ||
+          "Email must be a valid email address.",
+      ];
+    },
      currentUser(){
         return JSON.parse(sessionStorage.getItem("currentUser"));
      }
@@ -209,6 +231,7 @@
         this.isFollowing = !this.isFollowing;
       },
       saveProfile() {
+        this.dialog=false
         // Add logic to save user profile
       },
       clickProfile(){
