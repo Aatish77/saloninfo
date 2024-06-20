@@ -318,9 +318,9 @@ else{
       console.log("logout")
       this.$router.push("/")
     },
-    imageChange(event){
-        this.picUrl = event.target.files[0];
-    },
+    // imageChange(event){
+    //     this.picUrl = event.target.files[0];
+    // },
     seasonalImage(event){
       this.picUrl=event.target.files[0];
     }
