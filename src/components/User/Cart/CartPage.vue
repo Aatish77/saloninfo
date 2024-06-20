@@ -128,11 +128,12 @@ export default {
         return '';
       }
     },
-    reserve() {
+   async reserve() {
       const uniqueID = uuidv4();
       console.log('Unique ID:', uniqueID);
       console.log(this.cartFinal, this.cart);
       // You can now use this uniqueID to connect with the backend for Razorpay
+      await this.$store.dispatch("payMent", {'id':uniqueID})
       this.$emit('reserve', { cartFinal: this.cartFinal || this.cart, uniqueID });
     },
     toggleBookoff(index) {
