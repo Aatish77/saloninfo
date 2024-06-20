@@ -223,6 +223,16 @@ export default{
         }catch(error){
           console.error(error)
         }
+      },
+      async addToCart(context,payload){
+        try{
+          const response = await axios.post(`${context.getters.getBaseUrl}/cart/addCart`,payload)
+          if(response.status===200){
+            console.log(response.data,"Success")
+          }
+        }catch (error){
+          console.error(error)
+        }
       }
       
 }
