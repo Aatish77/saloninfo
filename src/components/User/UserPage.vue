@@ -58,16 +58,16 @@
       <div class="user-profile">
 
         <div>
-          <label for="fullName">Name:</label>
-          <input type="text"  id="fullName" :rules="nameRules" v-model="user.fullName">
+          
+          <v-text-field style="color:black;width: 300px;" type="text"  id="fullName" label="Name" :rules="nameRules" v-model="user.fullName"></v-text-field>
         </div>
         <div>
-          <label>Email:</label>
-          <input type="email" v-model="user.email" :rules="emailRules">
+          
+          <v-text-field label="Email" style="color:black;width: 300px;" type="email" v-model="user.email" :rules="emailRules"></v-text-field>
         </div>
         <div>
-          <label>Mobile:</label>
-          <input type="text" v-model.number="user.phone" :rules="phoneRules">
+          
+          <v-text-field label="Phone Number" style="color:black;width: 300px;" type="text" v-model.number="user.phone" :rules="phoneRules"></v-text-field>
         </div>
         <button class="button1" @click="saveProfile">Save</button>
         
@@ -198,11 +198,12 @@
     computed:{
       nameRules() {
       return [
-        (v) => !!v || "Parlour Name is required.",
+        (v) => !!v || "Name is required.",
         (v) =>
-          !/^\s/.test(v) || "Parlour Name should not start with a blank space.",
+          !/^\s/.test(v) || "Name should not start with a blank space.",
       ];
-    },phoneRules() {
+    },
+    phoneRules() {
       return [
         (v) => !!v || "Phone Number is required.",
         (v) =>
@@ -218,7 +219,7 @@
           "Email must be a valid email address.",
       ];
     },
-     currentUser(){
+    currentUser(){
         return JSON.parse(sessionStorage.getItem("currentUser"));
      }
     },
