@@ -238,7 +238,7 @@
         v => v.length >= 3 || 'Name must be at least 3 characters'
       ],
       emailRules: [
-        v => !!v || 'Email is required',
+        v => !!v || 'Email is required',  
         v => /.+@.+\..+/.test(v) || 'Email must be valid'
       ],
       descriptionRules: [
