@@ -127,6 +127,13 @@
                 label="CategoryId"
                  required
       ></v-select>
+      <v-text-field
+                v-model=" seasonal.categiryName"
+                label="CategoryName"
+                outlined
+                dense
+                required
+              ></v-text-field>
 
               <v-text-field
                 v-model=" seasonal.name"
@@ -174,7 +181,7 @@
                 outlined
                 dense
                 required
-                @change="imageChange"
+                @change="seasonalImage"
               ></v-file-input>
             </v-col>
             <!-- <v-col cols="12" md="6">
@@ -210,6 +217,7 @@
       errormessage:'',
       seasonal:{
         categoryId:'',
+        categoryName:'',
         name:'',
         startDate:null,
         endDate:null,
@@ -280,12 +288,13 @@ else{
  async seasonalSubmit(){
   const formData = new FormData();
   // formData.append('categoryId', this.seasonal.categoryId);
+  formData.append('categoryName', this.seasonal.categoryName);
   formData.append('name', this.seasonal.name);
   formData.append('startDate', this.seasonal.startDate);
   formData.append('endDate', this.seasonal.endDate);
   formData.append('offerPrice', this.seasonal.offerPrice);
   formData.append('description', this.seasonal.description);
-  formData.append('image', this.seasonal.PicUrl);
+  formData.append('image', this.picUrl);
    await this.$store.dispatch("addseasonaloffer", { form:formData,id:this.seasonal.categoryId})
   
   //  alert("Seasonal Offer added successfully");
@@ -311,6 +320,9 @@ else{
     },
     imageChange(event){
         this.picUrl = event.target.files[0];
+    },
+    seasonalImage(event){
+      this.picUrl=event.target.files[0];
     }
   },
   watch:{
