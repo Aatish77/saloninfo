@@ -21,12 +21,13 @@ import AdminParlours from "./components/Admin/AdminParlours.vue";
 import AdminOverview from "./components/Admin/AdminOverview.vue";
 import AdminSubCat from "./components/Admin/AdminSubCat.vue";
 import AdminOffers from "./components/Admin/AdminOffers.vue";
-import DummyPage from "./components/DummyPage.vue";
+// import DummyPage from "./components/DummyPage.vue";
+import HomePage from "./components/User/HomePage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", redirect: "/userlogin" },
+    { path: "/", redirect: "/home" },
     { path: "/userlogin", component: UserLogin },
     { path: "/viewparlours", component: ViewParlours },
     {
@@ -53,7 +54,9 @@ const router = createRouter({
     {path:"/overview",component:AdminOverview},
     {path:"/adminsubcat",component: AdminSubCat},
     {path:"/adminoffers",component:AdminOffers},
-    {path:"/dummy",component: DummyPage}
+    // {path:"/dummy",component: DummyPage},
+    {path:"/home",component:HomePage}
+
    
   ],
 });

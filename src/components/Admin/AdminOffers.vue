@@ -123,12 +123,14 @@
             <v-col cols="12" md="6"  offset-md="2" class="custom-margin">
               <v-select
                  v-model=" seasonal.categoryId"
+                 :rules=" idRules"
                 :items="seasonal.items"
                 label="CategoryId"
                  required
       ></v-select>
       <v-text-field
                 v-model=" seasonal.categoryName"
+                :rules="catnameRules"
                 label="CategoryName"
                 outlined
                 dense
@@ -137,6 +139,7 @@
 
               <v-text-field
                 v-model=" seasonal.name"
+                :rules="nameRules"
                 label="Name"
                 outlined
                 dense
@@ -144,7 +147,7 @@
               ></v-text-field>
               <v-text-field type="date"
                 v-model="seasonal.startDate"
-                
+                :rules="startdateRules"
                 label="StartDate"
                 outlined
                 dense
@@ -153,7 +156,7 @@
               ></v-text-field>
               <v-text-field type="date"
                 v-model="seasonal.endDate"
-                
+                :rules="enddateRules"
                 label="EndDate"
                 outlined
                 dense
@@ -162,6 +165,7 @@
               ></v-text-field>
               <v-text-field
                 v-model=" seasonal.offerPrice"
+                :rules="priceRules"
                 label="OfferPrice"
                 outlined
                 dense
@@ -169,6 +173,7 @@
               ></v-text-field>
               <v-textarea
                 v-model=" seasonal.description"
+                :rules="descriptionRules"
                 label="Description"
                 outlined
                 dense
@@ -177,10 +182,13 @@
               ></v-textarea>
               <v-file-input
                 v-model=" seasonal.image"
+                :rules="imageRules"
                 label="Image"
                 outlined
                 dense
                 required
+                :error="error"
+                :error-messages="errormessage"
                 @change="seasonalImage"
               ></v-file-input>
             </v-col>
@@ -233,8 +241,16 @@
       ],
 
       },
+      idRules: [
+        v => !!v || 'id is required',
+       
+      ],
       nameRules: [
         v => !!v || 'Name is required',
+        v => v.length >= 3 || 'Name must be at least 3 characters'
+      ],
+      catnameRules: [
+        v => !!v || ' category Name is required',
         v => v.length >= 3 || 'Name must be at least 3 characters'
       ],
       emailRules: [
@@ -244,6 +260,18 @@
       descriptionRules: [
         v => !!v || 'Description is required',
         v => v.length >= 10 || 'Description must be at least 10 characters'
+      ],
+      startdateRules: [
+      v => !!v || 'start date is required',
+      v => /^\d{4}-\d{2}-\d{2}$/.test(v) || 'Date must be in YYYY-MM-DD format'
+    ],
+    enddateRules: [
+      v => !!v || 'End date is required',
+      v => /^\d{4}-\d{2}-\d{2}$/.test(v) || 'Date must be in YYYY-MM-DD format'
+    ],
+    priceRules: [
+        v => !!v || ' offer price is required',
+       
       ],
       imageRules: [
         v => !!v || 'Image is required',
@@ -286,12 +314,24 @@ else{
 },
 
  async seasonalSubmit(){
+  const {valid}=await this.$refs.form .validate();
+            console.log(valid)
+            if(valid && this.image !==null ){
   const jsonBlob = new Blob([JSON.stringify({'categoryName': this.seasonal.categoryName,"name":this.seasonal.name,'startDate':this.seasonal.startDate,'endDate': this.seasonal.endDate,'offerPrice': this.seasonal.offerPrice,'description': this.seasonal.description})], { type: 'application/json' })
+
   const formData = new FormData();
   // formData.append('categoryId', this.seasonal.categoryId);
   formData.append('data', jsonBlob);
   formData.append('image', this.picUrl);
    await this.$store.dispatch("addseasonaloffer", { form:formData,id:this.seasonal.categoryId})
+  }
+else{
+    if(this.seasonal.image===null){
+        this.error=true;
+        this.errormessage="Please select an image";
+    }
+    console.warn("validation failed")
+}
   
   //  alert("Seasonal Offer added successfully");
   

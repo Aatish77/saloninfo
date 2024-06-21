@@ -14,8 +14,7 @@
       <div class="banner-text">
         <h1>Salon Info</h1>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic autem harum eaque aut deserunt pariatur eum ea,
-          sequi minus nam veniam atque et quisquam molestiae aperiam! Iusto, ipsum.
+            Transform your beauty routine with seamless scheduling and exclusive offers from top salons. Enjoy expert services at your convenience  no waiting, just beauty on demand. Your perfect look is just a click away!
         </p>
         <a href="userlogin">Login</a>
         <a href="usersignup">Sign up</a>
@@ -36,7 +35,7 @@
 }
 
 .banner-area {
-  background-image: url('../assets/background2.jpg');
+  background-image: url('../../assets/background2.jpg');
   background-position: center center;
   background-size: cover;
   height: 100vh;
