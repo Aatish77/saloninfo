@@ -1,124 +1,231 @@
 <template>
-    <div class="banner-area">
-      <header>
-        <div class="menu">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-      </header>
-      <div class="banner-text">
-        <h1>Salon Info</h1>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic autem harum eaque aut deserunt pariatur eum ea,
-          sequi minus nam veniam atque et quisquam molestiae aperiam! Iusto, ipsum.
-        </p>
-        <a href="userlogin">Login</a>
-        <a href="usersignup">Sign up</a>
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'HomePage'
-  };
-  </script>
-  
-  <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
+  <v-app>
+    <v-main>
+      <v-container>
+       
 
-.banner-area {
-  background-image: url('../assets/background2.jpg');
-  background-position: center center;
+        <v-container class="fill-height" fluid>
+          <v-row justify="center" align="center">
+            <v-col cols="12" md="8">
+              <v-card class="elevation-12">
+                <!-- <v-card-title class="headline">Register</v-card-title>
+                <br><br> -->
+                <v-card-text>
+                  <v-form @submit.prevent="submit" ref="form">
+                    <v-row>
+                      <v-col cols="12">
+                <h2 class="text-center" style="color: white;">User Registration</h2>
+              </v-col>
+                    </v-row>
+                    <v-text-field
+                  v-model="fullName"
+                  label="Full Name"
+                  variant="underlined"
+                  :rules="fullNameRules"
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="phone"
+                  label="Phone Number"
+                  variant="underlined"
+                  :rules="phoneRules"
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="email"
+                  placeholder="example@gmail.com"
+                  label="Email"
+                  variant="underlined"
+                  :rules="emailRules"
+                ></v-text-field>
+
+                <v-text-field
+                  label="Password"
+                  variant="underlined"
+                  v-model="password"
+                  :rules="passwordRules"
+                  :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  counter
+                  @click:append-inner="show1 = !show1"
+                ></v-text-field>
+
+                <v-text-field
+                  label="Confirm Password"
+                  variant="underlined"
+                  v-model="cpassword"
+                  :rules="confirmPasswordRules"
+                  :append-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show2 ? 'text' : 'password'"
+                  name="input-10-1"
+                  counter
+                  @click:append-inner="show2 = !show2"
+                ></v-text-field> 
+                    <v-btn  type="submit" class="reg">signup</v-btn>
+
+                    <v-btn type="submit" class="log" @click="navLogin"> Login</v-btn>
+                  </v-form>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+
+       
+      </v-container>
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      dialogVis: false,
+      show1: false,
+      show2: false,
+      fullName: "",
+      phone: "",
+      password: "",
+      email: "",
+      cpassword: "",
+      parlour: {},
+    };
+  },
+  computed: {
+    fullNameRules() {
+      return [
+        (v) => !!v || "Full Name is required.",
+        (v) => !/^\s/.test(v) || "Enter valid Full Name",
+        (v) => !/[^a-zA-Z\s]/.test(v) || "Enter valid Full Name",
+        (v) => /^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(v) || "Enter valid Full Name",
+      ];
+    },
+    phoneRules() {
+      return [
+        (v) => !!v || "Phone Number is required.",
+        (v) => /^[0-9]{10}$/.test(v) || "Enter a valid phone number",
+      ];
+    },
+    emailRules() {
+      return [
+        (v) => !!v || "Email is required.",
+        (v) =>
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(v) ||
+          "Email must be a valid email address.",
+      ];
+    },
+    passwordRules() {
+      return [
+        (v) => !!v || "Password is required.",
+        (v) =>
+          v.length >= 8 ||
+          "Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+        (v) =>
+          /[A-Z]/.test(v) ||
+          "Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+        (v) =>
+          /[a-z]/.test(v) ||
+          "Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+        (v) =>
+          /[0-9]/.test(v) ||
+          "Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+        (v) =>
+          /[!@#$%^&*(),.?":{}|<>]/.test(v) ||
+          "Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+      ];
+    },
+    confirmPasswordRules() {
+      return [
+        (v) => !!v || "Confirm Password is required.",
+        (v) =>
+          v === this.password || "Confirm Password must match the Password.",
+      ];
+    },
+  },
+  methods: {
+    navLogin() {
+      this.$router.push("/userlogin");
+    },
+    submit() {
+      this.$refs.form.validate().then((valid) => {
+        if (valid.valid) {
+          this.dialogVis = true;
+          const data = {"fullName":this.fullName,"phone":this.phone,"email":this.email,"password":this.password}
+          
+
+          this.$store
+            .dispatch("addTheUser", data)
+            .then(() => {
+            
+              this.resetFormData();
+              this.$router.push("/userlogin")
+            })
+            .catch((error) => {
+              console.error("Error adding user:", error);
+            });
+        } else {
+          console.warn("Form validation failed");
+        }
+      });
+    },
+    resetFormData() {
+      this.fullName = "";
+      this.phone = "";
+      this.email = "";
+      this.password = "";
+      this.cpassword = "";
+    },
+  },
+  
+};
+</script>
+
+<style scoped>
+
+.v-main {
+  background-color: #9f9999;
+  background-image:  url('@/assets/background2.jpg');
+  background-attachment: fixed;
   background-size: cover;
-  height: 100vh;
-  width: auto;
-  margin: auto;
-  position: relative; /* Make the banner area a positioned element */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(0px); 
 }
 
-.banner-area::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Black filter with 50% opacity */
-  backdrop-filter: blur(0px); /* Adjust the blur value as needed */
-  z-index: 1; /* Ensure the filter is above the background image */
+
+.v-application--wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.menu {
-  float: right;
-  list-style: none;
-  margin-top: 30px;
-  position: relative;
-  z-index: 2; /* Ensure menu is above the filter */
+.v-card {
+  background-color:  rgba(63, 63, 62, 0.75);
+  backdrop-filter: blur(2px); 
 }
 
-.menu ul li {
-  display: inline-block;
+.v-btn {
+  margin: 20px 0;
 }
-
-.menu ul li a {
-  color: #fff;
-  text-decoration: none;
-  padding: 5px 20px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+.v-text-field{
+  color:white
 }
-
-.menu ul li a:hover {
-  color: rgb(199, 139, 255);
-
+.log{
+  margin-left: 20px;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0);
+  color:white;
+  border:1px solid white
 }
-
-.banner-text {
-  position: absolute;
-  width: 600px;
-  height: 300px;
-  margin: 20% 30%;
-  text-align: center;
-  z-index: 2; /* Ensure text is above the filter */
+.log:hover{
+  background-color: rgb(255, 255, 255)!important;
+  color: black;
 }
-
-.banner-text h1 {
-  text-align: center;
-  color: rgb(255,255,255);
-  text-transform: uppercase;
-  font-size: 60px;
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
-}
-
-.banner-text p {
-  color: #fff;
-  font-size: 18px;
-}
-
-.banner-text a {
-  border: 1px solid #fff;
-  padding: 10px 25px;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 14px;
-  margin-top: 20px;
-  display: inline-block;
-  color: #fff;
-}
-
-.banner-text a:hover {
-  background-color: white;
-  color: rgba(68, 25, 109, 0.623);
-  font-weight: bold;
+.reg{
+  margin-left: 60px;
+  border-radius: 24px;
 }
 </style>
