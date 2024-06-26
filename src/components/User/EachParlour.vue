@@ -214,7 +214,7 @@
               </v-col>
               <v-row 
                 ><v-col v-for="i in service.subsubCategories" :key="i" :id="i.title">
-                  <v-card  class="mx-auto card1" max-width="344" max-height="400px">
+                  <v-card  class="mx-auto card1 animate11" max-width="344" max-height="400px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
@@ -504,7 +504,7 @@ export default {
         }
         item.quantity = 1;
         this.cart.push(item);
-        this.callAddCart()
+        
       }
     },
     async callAddCart(){
@@ -713,5 +713,19 @@ p {
 .btn1 {
   color: white;
   background-color: rgb(0, 0, 0);
+}
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translate(0%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
+}
+.animate11 {
+  opacity: 0;
+  animation: slide-fade 1s ease-out forwards;
 }
 </style>

@@ -1,6 +1,16 @@
 <template>
   <div :class="showSignupForm?'banner-area':'banner-area1'">
     <header>
+      <div class="salon-info animate11" v-if="showSignupForm" >
+        <p style="
+        color: white;
+            margin-left: 2px;
+            font-size: 30px;
+            font-weight: 800;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+              'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+          " ><i style="font-size: 20px;" class="fas fa-cut"></i>saloninfo</p>
+      </div>
       <div class="menu">
         <ul>
           <li><a href="#">Home</a></li>
@@ -19,7 +29,7 @@
       <a href="userlogin">Login</a>
       <a href="#" @click="showSignupForm = true">Sign up</a>
     </div>
-    <transition name="form-slide-up" mode="out-in">
+    <!-- <transition name="form-slide-up" mode="out-in"> -->
     <div v-if="showSignupForm" class="form-container">
       
       <v-card >
@@ -27,10 +37,11 @@
           <v-form @submit.prevent="submit" ref="form">
             <v-row>
               <v-col cols="12">
-                <h2 class="text-center" style="color: white;">User Registration</h2>
+                <h2 class="text-center animate1" style="color: white;">User Registration</h2>
               </v-col>
             </v-row>
             <v-text-field
+            class="animate2"
             style="color:white"
               v-model="fullName"
               label="Full Name"
@@ -39,6 +50,7 @@
             ></v-text-field>
 
             <v-text-field
+            class="animate3"
               v-model="phone"
               label="Phone Number"
               variant="underlined"
@@ -46,15 +58,17 @@
             ></v-text-field>
 
             <v-text-field
+            
               v-model="email"
               placeholder="example@gmail.com"
               label="Email"
               variant="underlined"
               :rules="emailRules"
-               class="custom-label"
+               class="custom-label animate4"
             ></v-text-field>
 
             <v-text-field
+            class="animate5"
               label="Password"
               variant="underlined"
               v-model="password"
@@ -67,6 +81,7 @@
             ></v-text-field>
 
             <v-text-field
+            class="animate6"
               label="Confirm Password"
               variant="underlined"
               v-model="cpassword"
@@ -77,13 +92,13 @@
               counter
               @click:append-inner="show2 = !show2"
             ></v-text-field> 
-            <v-btn type="submit" class="reg">Sign up</v-btn>
-            <v-btn class="log" @click="navLogin">Login</v-btn>
+            <v-btn type="submit" class="reg animate7">Sign up</v-btn>
+            <v-btn class="log animate8" @click="navLogin">Login</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
     </div>
-  </transition> 
+  <!-- </transition>  -->
   </div>
 </template>
 
@@ -126,6 +141,7 @@ export default {
       console.log('Form submitted');
     },
     navLogin() {
+      this.$router.push("/userlogin")
       // Navigate to login
       console.log('Navigating to login');
     },
@@ -158,6 +174,7 @@ export default {
 .custom-label >>> .v-label.v-label--has-placeholder {
   color: white !important;
 }
+
 .log {
   margin-left: 20px;
   border-radius: 24px;
@@ -202,6 +219,7 @@ export default {
   backdrop-filter: blur(0px);
   z-index: 1;
 }
+
 .banner-area1 {
   background-image: url('../../assets/background2.jpg');
   background-position: center center;
@@ -245,6 +263,24 @@ export default {
 }
 
 .menu ul li a:hover {
+  color: rgb(199, 139, 255);
+}
+
+.salon-info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.salon-info a {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.salon-info a:hover {
   color: rgb(199, 139, 255);
 }
 
@@ -294,35 +330,101 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  width:400px;
+  width: 400px;
 }
-.log{
+
+.log {
   margin-left: 20px;
   border-radius: 24px;
   background-color: rgba(255, 255, 255, 0);
-  color:white;
-  border:1px solid white;
-  width:100px;
+  color: white;
+  border: 1px solid white;
+  width: 100px;
 }
-.log:hover{
-  background-color: rgb(255, 255, 255)!important;
+
+.log:hover {
+  background-color: rgb(255, 255, 255) !important;
   color: black;
 }
-.reg{
+
+.reg {
   margin-left: 60px;
   border-radius: 24px;
   width: 100px;
 }
+
 @keyframes slide-up {
   from {
-    opacity: 0;
-    transform: translate(-50%, 50%);
+    opacity: 0.3;
+    transform: translate(0%, 100vh);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(0%, 0%);
   }
 }
+
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translate(0%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
+}
+.animate11 {
+  opacity: 0;
+  animation: slide-fade 0.5s ease-out forwards;
+}
+.animate1 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+}
+
+.animate2 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.animate3 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 0.7s;
+}
+
+.animate4 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.animate5 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 1.3s;
+}
+
+.animate6 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 1.6s;
+}
+
+.animate7 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 1.9s;
+}
+
+.animate8 {
+  opacity: 0;
+  animation: slide-up 0.3s ease-out forwards;
+  animation-delay: 2.2s;
+}
+
 .form-slide-up-enter-active {
   animation: slide-up 1.5s ease-out forwards;
 }
