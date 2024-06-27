@@ -203,10 +203,19 @@ export default {
     password: "",
   }),
   created() {
+    if(this.currentTab.tab==="Login"){
+      this.showSignup=false
+    }
+    else if(this.currentTab.tab==="Signup"){
+      this.showSignup=true
+    }
     this.viewUsers();
   },
   computed: {
-    
+    currentTab() {
+      const currentTab = JSON.parse(sessionStorage.getItem("currentTab"));
+      return currentTab;
+    },
     fullNameRules() {
       return [
         (v) => !!v || "Full Name is required.",
@@ -253,7 +262,7 @@ export default {
       return [
         (v) => !!v || "Confirm Password is required.",
         (v) =>
-          v === this.password || "Confirm Password must match the Password.",
+          v === this.reg.password || "Confirm Password must match the Password.",
       ];
     },
 
@@ -400,7 +409,7 @@ export default {
 }
 .fade{
   opacity:0;
-  animation: fade 0.2s ease-in-out forwards;
+  animation: fade 0.4s ease-in-out forwards;
   animation-delay:1s;
 }
 .animate1 {
@@ -457,10 +466,10 @@ export default {
   margin-bottom: 0px;
 }
 .log {
-  font-size: 90%;
-  height:20px !important;
+  /* font-size: 90%; */
+  height:40dp !important;
   margin-left: 20px;
-  border-radius: 24px;
+  border-radius: 20px;
   background-color: rgba(255, 255, 255, 0);
   color: white;
   border: 1px solid white;
@@ -474,10 +483,10 @@ export default {
 .reg {
   margin-left: 50%;
   
-  font-size: 90%;
-  height:20px !important;
+  /* font-size: 90%; */
+  height:40dp !important;
   margin-left: 60px;
-  border-radius: 24px;
+  border-radius: 20px;
 }
 .cl{
    color: #612800;
@@ -531,14 +540,17 @@ export default {
   0% {
     transform: perspective(1000px) rotateY(0deg);
     opacity: 1;
+    background-color: rgba(0, 0, 0, 0.3);
   }
   50% {
     transform: perspective(1000px) rotateY(90deg);
     opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.3);
   }
   100% {
     transform: perspective(1000px) rotateY(180deg);
     opacity: 1;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 .flip-animation {
@@ -561,35 +573,48 @@ export default {
 }
 .content {
   backdrop-filter: blur(3px);
-  background-color: rgba(0, 0, 0, 0.3); /* Adjust the opacity as needed */
+  background-color: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
   padding: 220px;
   padding-top: 180px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.561);
   border-radius: 10px;
 }
 
-.content-inner::before {
+.content-inner {
+    background-image: url("@/assets/contentbg.jpg");
+    background-color: rgba(0, 0, 0, 0.3); /* Black filter */
+    border-radius: 10px;
+    padding: 20px;
+    width: 800px;
+  }
+  .content-inner::before {
+    content: '';
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    /* top: 233px;
+    left: 208px;
+    width: 800px;
+    height: 448px; */
+   /* Background image */
+    background-color: rgba(0, 0, 0, 0.3); /* Black filter */
+    opacity: 0.5; /* Adjust opacity as needed */
+    z-index: 0; /* Behind content */
+    border-radius: 10px;
+  }
+/* .content-inner::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(0px);
-  
-}
-.content-inner {
-  /* background-image: radial-gradient(circle at center center, rgb(0,15,121),rgb(2,2,98)); */
-  /* background-color: rgba(6, 0, 40, 0.371);;  */
-  /* background-color: rgb(250, 232, 185); */
-  background-image: url("@/assets/contentbg.jpg");
-  border-radius: 10px;
-  padding: 20px;
-  width: 800px;
-
-  /* You can adjust the padding inside the white background */
-}
+  z-index: 0;
+} */
 .login-btn {
  height:25px !important;
  width:10px !important;
@@ -625,6 +650,8 @@ export default {
     color: #400000;
 }
 .overlay-title {
+  display: inline-block;
+  backface-visibility: hidden;
   background-color: rgba(0, 0, 0, 0) !important;
   padding-bottom: 10px;
   font-size: 40px;
@@ -634,6 +661,7 @@ export default {
   color: white; /* Background color with opacity */
   /* Adjust padding as needed */
   border-radius: 10px; /* Rounded corners */
+  z-index: 3 !important;;
 }.bgimage{
   position: relative;
   width: 100%;
@@ -647,5 +675,16 @@ export default {
   /* background-image: linear-gradient(52deg, rgba(163, 163, 163, 0.09) 0%, rgba(163, 163, 163, 0.09) 33.3%,rgba(100, 100, 100, 0.09) 33.3%, rgba(100, 100, 100, 0.09) 66.6%,rgba(162, 162, 162, 0.09) 66.6%, rgba(162, 162, 162, 0.09) 99%),linear-gradient(258deg, rgba(193, 193, 193, 0.06) 0%, rgba(193, 193, 193, 0.06) 33.3%,rgba(169, 169, 169, 0.06) 33.3%, rgba(169, 169, 169, 0.06) 66.6%,rgba(92, 92, 92, 0.06) 66.6%, rgba(92, 92, 92, 0.06) 99%),linear-gradient(129deg, rgba(45, 45, 45, 0.03) 0%, rgba(45, 45, 45, 0.03) 33.3%,rgba(223, 223, 223, 0.03) 33.3%, rgba(223, 223, 223, 0.03) 66.6%,rgba(173, 173, 173, 0.03) 66.6%, rgba(173, 173, 173, 0.03) 99%),linear-gradient(280deg, rgba(226, 226, 226, 0.06) 0%, rgba(226, 226, 226, 0.06) 33.3%,rgba(81, 81, 81, 0.06) 33.3%, rgba(81, 81, 81, 0.06) 66.6%,rgba(186, 186, 186, 0.06) 66.6%, rgba(186, 186, 186, 0.06) 99%),linear-gradient(85deg, rgba(225, 225, 225, 0.04) 0%, rgba(225, 225, 225, 0.04) 33.3%,rgba(95, 95, 95, 0.04) 33.3%, rgba(95, 95, 95, 0.04) 66.6%,rgba(39, 39, 39, 0.04) 66.6%, rgba(39, 39, 39, 0.04) 99%),linear-gradient(128deg, rgba(184, 184, 184, 0.06) 0%, rgba(184, 184, 184, 0.06) 33.3%,rgba(0, 0, 0, 0.06) 33.3%, rgba(0, 0, 0, 0.06) 66.6%,rgba(140, 140, 140, 0.06) 66.6%, rgba(140, 140, 140, 0.06) 99.89999999999999%),linear-gradient(323deg, rgba(40, 40, 40, 0.07) 0%, rgba(40, 40, 40, 0.07) 33.3%,rgba(214, 214, 214, 0.07) 33.3%, rgba(214, 214, 214, 0.07) 66.6%,rgba(190, 190, 190, 0.07) 66.6%, rgba(190, 190, 190, 0.07) 99.89999999999999%),linear-gradient(61deg, rgba(230, 230, 230, 0) 0%, rgba(230, 230, 230, 0) 33.3%,rgba(241, 241, 241, 0) 33.3%, rgba(241, 241, 241, 0) 66.6%,rgba(55, 55, 55, 0) 66.6%, rgba(55, 55, 55, 0) 99%),linear-gradient(0deg, rgb(0,0,0),rgb(0,0,0)); */
   /* background-image: linear-gradient(224deg, rgba(63, 63, 63, 0.1) 0%, rgba(63, 63, 63, 0.1) 50%,rgba(155, 155, 155, 0.1) 50%, rgba(155, 155, 155, 0.1) 100%),linear-gradient(89deg, rgba(75, 75, 75, 0.02) 0%, rgba(75, 75, 75, 0.02) 50%,rgba(99, 99, 99, 0.02) 50%, rgba(99, 99, 99, 0.02) 100%),linear-gradient(151deg, rgba(14, 14, 14, 0.02) 0%, rgba(14, 14, 14, 0.02) 50%,rgba(74, 74, 74, 0.02) 50%, rgba(74, 74, 74, 0.02) 100%),linear-gradient(7deg, rgba(31, 31, 31, 0.04) 0%, rgba(31, 31, 31, 0.04) 50%,rgba(210, 210, 210, 0.04) 50%, rgba(210, 210, 210, 0.04) 100%),linear-gradient(291deg, rgba(153, 153, 153, 0.07) 0%, rgba(153, 153, 153, 0.07) 50%,rgba(32, 32, 32, 0.07) 50%, rgba(32, 32, 32, 0.07) 100%),linear-gradient(90deg, rgb(4, 164, 188),rgb(9, 51, 170)); */
   background-image:url('../../assets/background2.jpg');
+}
+.bgimage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(0px);
+  z-index: 0;
 }
 </style>
