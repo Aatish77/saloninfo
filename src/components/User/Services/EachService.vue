@@ -89,7 +89,7 @@
 
       <v-main>
         <v-card
-          style="background-color: black; color: white"
+          style="background-color: black; color: white;height: 100vh;"
           class="mx-auto"
           max-width="1200"
         >
@@ -168,6 +168,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .multi-line-title {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -175,6 +176,7 @@ export default {
   overflow: hidden;
 }
 body {
+  height: 100vh;
   background-color: black;
   color: white;
 }

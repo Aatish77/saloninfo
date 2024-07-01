@@ -6,7 +6,7 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.23:8080`,
+      baseUrl: `http://192.168.1.3:8080`,
       users: [
         { userId:"1",
           fullName: "Rakesh S",
