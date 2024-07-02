@@ -22,7 +22,8 @@ import AdminOverview from "./components/Admin/AdminOverview.vue";
 import AdminSubCat from "./components/Admin/AdminSubCat.vue";
 import AdminOffers from "./components/Admin/AdminOffers.vue";
 import DummyPage from "./components/DummyPage.vue";
-
+import PayMent from "./components/User/Cart/PayMent.vue";
+import ParlourView from "./components/Parlour/ParlourView.vue"
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -53,7 +54,9 @@ const router = createRouter({
     {path:"/overview",component:AdminOverview},
     {path:"/adminsubcat",component: AdminSubCat},
     {path:"/adminoffers",component:AdminOffers},
-    {path:"/dummy",component: DummyPage}
+    {path:"/dummy",component: DummyPage},
+    {path:"/payMent",component:PayMent},
+    {path:"/parlourView",component:ParlourView}
    
   ],
 });
