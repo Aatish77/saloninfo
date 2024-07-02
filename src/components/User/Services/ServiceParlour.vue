@@ -91,7 +91,7 @@
 
       <v-main>
         <v-card
-          style="background-color: black; color: white"
+          style="background-color: black; color: white;height: 100vh;"
           class="mx-auto"
           max-width="1200"
           max-height="2000"

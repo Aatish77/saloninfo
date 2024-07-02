@@ -26,8 +26,8 @@
       <p>
         Transform your beauty routine with seamless scheduling and exclusive offers from top salons. Enjoy expert services at your convenience no waiting, just beauty on demand. Your perfect look is just a click away!
       </p>
-      <a href="userlogin">Login</a>
-      <a href="#" @click="showSignupForm = true">Sign up</a>
+      <a  @click="navLogin">Login</a>
+      <a  @click="navSignup">Sign up</a>
     </div>
     <!-- <transition name="form-slide-up" mode="out-in"> -->
     <div v-if="showSignupForm" class="form-container">
@@ -141,10 +141,17 @@ export default {
       console.log('Form submitted');
     },
     navLogin() {
+      sessionStorage.setItem("currentTab",JSON.stringify({tab:"Login"}))   
       this.$router.push("/userlogin")
       // Navigate to login
       console.log('Navigating to login');
     },
+    navSignup(){
+      sessionStorage.setItem("currentTab",JSON.stringify({tab:"Signup"}))   
+      this.$router.push("/userlogin")
+      // Navigate to login
+      console.log('Navigating to login');
+    }
   },
 };
 </script>

@@ -42,6 +42,7 @@
         </v-btn>
       </v-app-bar>
       <v-main class="card"><v-row>
+        <v-col :cols="3"><v-btn @click="pay">Payment</v-btn></v-col>
         <v-col :cols="3"><v-btn @click="allCats">All cats</v-btn></v-col>
         <v-col :cols="3"><v-btn @click="viewCat">View cats</v-btn></v-col>
         <v-col :cols="3"><v-btn @click="viewSubCat">View sub cats</v-btn></v-col>
@@ -288,6 +289,9 @@ export default {
     },
   },
   methods: {
+    pay(){
+      this.$store.dispatch("billPayment",{uniqueId:"c4ca4238-a0b9-3382-8dcc-509a6f75849b",discount:'0'})
+    },
     allCats(){
       console.log(this.$store.getters["getCategories"])
     },

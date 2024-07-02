@@ -504,7 +504,7 @@ export default {
         }
         item.quantity = 1;
         this.cart.push(item);
-        
+        this.callAddCart()
       }
     },
     async callAddCart(){
@@ -514,8 +514,11 @@ export default {
         itemIds.push(i.itemId)
         quantityArray.push(i.quantity)
       }
-      let cart={"userId":this.currentUser.userId,"itemIds":itemIds,"parlourId":this.card.parlourId,"employeeId":"2","bookingDate":"2024-06-22","bookingTime":"10:30:00","quantity":quantityArray,"status":0}
-      await this.$store.dispatch("addToCart",cart)
+
+      let cart={"userId":parseInt(this.currentUser.userId),"itemId":parseInt(itemIds[0]),"parlourId":parseInt(this.card.parlourId),"employeeId":2,"quantity":parseInt(quantityArray[0])}
+      let c=[cart]
+      console.log(cart)
+      await this.$store.dispatch("addToCart",c)
     },
     // Add methods to increase and decrease quantity
     increaseQuantity(item) {
