@@ -58,16 +58,16 @@
       <div class="user-profile">
 
         <div>
-          <label for="fullName">Name:</label>
-          <input type="text"  id="fullName" v-model="user.fullName">
+          
+          <v-text-field style="color:black;width: 300px;" type="text"  id="fullName" label="Name" :rules="nameRules" v-model="user.fullName"></v-text-field>
         </div>
         <div>
-          <label>Email:</label>
-          <input type="email" v-model="user.email">
+          
+          <v-text-field label="Email" style="color:black;width: 300px;" type="email" v-model="user.email" :rules="emailRules"></v-text-field>
         </div>
         <div>
-          <label>Mobile:</label>
-          <input type="text" v-model.number="user.phone">
+          
+          <v-text-field label="Phone Number" style="color:black;width: 300px;" type="text" v-model.number="user.phone" :rules="phoneRules"></v-text-field>
         </div>
         <button class="button1" @click="saveProfile">Save</button>
         
@@ -196,7 +196,30 @@
       };
     },
     computed:{
-     currentUser(){
+      nameRules() {
+      return [
+        (v) => !!v || "Name is required.",
+        (v) =>
+          !/^\s/.test(v) || "Name should not start with a blank space.",
+      ];
+    },
+    phoneRules() {
+      return [
+        (v) => !!v || "Phone Number is required.",
+        (v) =>
+          /^[0-9]{10}$/.test(v) ||
+          "Phone Number should contain exactly 10 digits and only numbers.",
+      ];
+    },
+    emailRules() {
+      return [
+        (v) => !!v || "Email is required.",
+        (v) =>
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(v) ||
+          "Email must be a valid email address.",
+      ];
+    },
+    currentUser(){
         return JSON.parse(sessionStorage.getItem("currentUser"));
      }
     },
@@ -209,6 +232,7 @@
         this.isFollowing = !this.isFollowing;
       },
       saveProfile() {
+        this.dialog=false
         // Add logic to save user profile
       },
       clickProfile(){

@@ -227,7 +227,18 @@ export default{
       },
       async addToCart(context,payload){
         try{
-          const response = await axios.post(`${context.getters.getBaseUrl}/cart/addCart`,payload)
+          const response = await axios.post(`${context.getters.getBaseUrl}/cart/add`,payload)
+          if(response.status===200){
+            console.log(response.data,"Success")
+          }
+        }catch (error){
+          console.error(error)
+        }
+      },
+      //payment with unique id
+      async billPayment(context,payload){
+        try{
+          const response = await axios.post(`${context.getters.getBaseUrl}/userBill/create?uniqueId=${payload.uniqueId}&discount=${payload.discount}`)
           if(response.status===200){
             console.log(response.data,"Success")
           }
@@ -237,8 +248,8 @@ export default{
       },
       async addpayMent(context,payload){
         try {
-          const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubSubCategory/add_Sub?subCategoryId=2`,payload)
+          const response = await axios.get(
+            `${context.getters.getBaseUrl}/createTransaction/${payload.amount}/${payload.id}`)
           if (response.status===200){
             console.log(response.data)
           }}

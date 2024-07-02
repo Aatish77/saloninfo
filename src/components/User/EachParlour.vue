@@ -214,7 +214,7 @@
               </v-col>
               <v-row 
                 ><v-col v-for="i in service.subsubCategories" :key="i" :id="i.title">
-                  <v-card  class="mx-auto card1" max-width="344" max-height="400px">
+                  <v-card  class="mx-auto card1 animate11" max-width="344" max-height="400px">
                     <v-img
                       style="border-radius: 5px"
                       class="align-end text-white"
@@ -514,8 +514,11 @@ export default {
         itemIds.push(i.itemId)
         quantityArray.push(i.quantity)
       }
-      let cart={"userId":this.currentUser.userId,"itemIds":itemIds,"parlourId":this.card.parlourId,"employeeId":"2","bookingDate":"2024-06-22","bookingTime":"10:30:00","quantity":quantityArray,"status":0}
-      await this.$store.dispatch("addToCart",cart)
+
+      let cart={"userId":parseInt(this.currentUser.userId),"itemId":parseInt(itemIds[0]),"parlourId":parseInt(this.card.parlourId),"employeeId":2,"quantity":parseInt(quantityArray[0])}
+      let c=[cart]
+      console.log(cart)
+      await this.$store.dispatch("addToCart",c)
     },
     // Add methods to increase and decrease quantity
     increaseQuantity(item) {
@@ -713,5 +716,19 @@ p {
 .btn1 {
   color: white;
   background-color: rgb(0, 0, 0);
+}
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translate(0%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
+}
+.animate11 {
+  opacity: 0;
+  animation: slide-fade 1s ease-out forwards;
 }
 </style>

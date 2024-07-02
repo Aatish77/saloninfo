@@ -356,22 +356,22 @@ export default {
           !/^\s/.test(v) || "Location should not start with a blank space.",
       ];
     },
-    phoneRules() {
-      return [
-        (v) => !!v || "Phone Number is required.",
-        (v) =>
-          /^[0-9]{10}$/.test(v) ||
-          "Phone Number should contain exactly 10 digits and only numbers.",
-      ];
-    },
-    emailRules() {
-      return [
-        (v) => !!v || "Email is required.",
-        (v) =>
-          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(v) ||
-          "Email must be a valid email address.",
-      ];
-    },
+      phoneRules() {
+        return [
+          (v) => !!v || "Phone Number is required.",
+          (v) =>
+            /^[0-9]{10}$/.test(v) ||
+            "Phone Number should contain exactly 10 digits and only numbers.",
+        ];
+      },
+      emailRules() {
+        return [
+          (v) => !!v || "Email is required.",
+          (v) =>
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(v) ||
+            "Email must be a valid email address.",
+        ];
+      },
     descriptionRules() {
       return [
         (v) => !!v || "Description is required.",
