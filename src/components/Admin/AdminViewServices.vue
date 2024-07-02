@@ -197,9 +197,14 @@
     export default {
       created(){
         this.$store.dispatch("viewCategories")
-        this.tab = 0
+        if(this.currentService){
+        this.tab = this.currentService.catIndex}
       },
       computed:{
+        currentService(){
+        const currentLabel = JSON.parse(sessionStorage.getItem("adminser"))
+        return currentLabel
+      },
         categories(){
           return this.$store.getters["getCategories"]
         },
@@ -224,7 +229,7 @@
         }
       },
       data: () => ({ drawer: null,
-        tab: null,
+        tab: 0,
         catName:"",
         subName:"",
         picUrl:"",

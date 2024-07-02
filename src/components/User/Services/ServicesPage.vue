@@ -87,12 +87,11 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-main style="background-color: black">
+      <v-main style="background-color: black !important">
         <v-container class="d-flex justify-center align-center" fluid style="height: 80px;" >
-          <v-tabs v-model="switchLabel" align-tabs="center" color="blue">
+          <v-tabs v-model="tab" align-tabs="center" color="deep-purple-accent-4">
      
-     <v-tab style="color:white" value="Men">Men</v-tab>
-     <v-tab style="color:white" value="Women">Women</v-tab>
+     <v-tab style="color:white" v-for="(category,index) in categories" :key="category" :value="index">{{ category.name }}  </v-tab>
    </v-tabs>
           <!-- <v-radio-group v-model="switchLabel" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
       <v-radio label="Men" value="Men" color="primary"></v-radio>
@@ -105,35 +104,29 @@
           class="mx-auto"
           max-width="1200"
         >
-          <v-container fluid>
-            <v-row v-if="switchLabel==='Men'">
-              <v-col v-for="card in services.men" :key="card">
-                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item v-for="(category,index) in categories" :key="category" :value="index">
+          <v-container fluid style="background-color: black; height: 100vh;">
+            
+            <v-row style="background-color: black;">
+              <v-col v-for="(subCategory,subIndex) in category.subCategories" :key="subCategory">
+                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(category.name,subCategory.name,index,subIndex)">
                   
-                  <v-img height="200px" :src="card.img" cover></v-img>
+                  <v-img height="200px" :src="subCategory.image ? getImageUrl(subCategory.image) : subCategory.image1" cover></v-img>
 
                   <v-card-title>
-                    {{ card.title }}
+                    {{ subCategory.name }}
                   </v-card-title>
                 </v-card>
               </v-col>
               
             </v-row>
-            <v-row v-else>
-              <v-col v-for="card in services.women" :key="card">
-                <v-card class="mx-auto card1" max-width="344" height="250px" @click="navigateToEach(card.title,switchLabel)">
-                  <v-img height="200px" :src="card.img" cover></v-img>
-
-                  <v-card-title>
-                    {{ card.title }}
-                  </v-card-title>
-                </v-card>
-              </v-col>
-              
-            </v-row>
+            
 
             
           </v-container>
+        </v-tabs-window-item>
+        </v-tabs-window>
         </v-card>
       </v-main>
     </v-layout>
@@ -213,27 +206,28 @@ export default {
       switchValue: "Men",
       switchLabel: "Men",
       switchColor: "blue",
+      tab:0
     };
   },
   created(){
-    if(this.currentLabel){
-
-      this.switchLabel=this.currentLabel.label
-      // if(this.switchLabel==='Women'){
-      //   this.switchValue=false
-      // }
-    }
+    this.$store.dispatch("viewCategories")
+    if(this.currentService){
+      this.tab = this.currentService.catIndex}
+    
   },
   methods: {
-    navigateToEach(title,label){
-        const t={category:title,label:label}
-        sessionStorage.setItem("currentLabel",JSON.stringify(t))
+    getImageUrl(base64String) {
+      return `data:image/jpeg;base64,${base64String}`;
+    },
+    navigateToEach(cat,sub,catIndex,subIndex){
+        const t={cat:cat,subCat:sub,catIndex:catIndex,subIndex:subIndex}
+        sessionStorage.setItem("currentService",JSON.stringify(t))
         this.$router.push("/eachservice")
     },
-    handleSwitchChange() {
-    console.log(this.switchLabel) 
+    // handleSwitchChange() {
+    // console.log(this.switchLabel) 
       
-    },
+    // },
     clickProfile(){
       this.$router.push("/userpage")
     },
@@ -249,17 +243,28 @@ export default {
       this.$router.push("/")
     },
   },
-  computed: {
-    currentLabel(){
-        const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"))
-        return currentLabel
+  watch:{
+        tab(value){
+          if(value!="add"){
+          this.$store.dispatch("viewSubCategories",value)}
+
+        }
       },
+  computed: {
+    categories(){
+          return this.$store.getters["getCategories"]
+        },
+    
     services() {
       return this.$store.getters["getServiceCategories"];
     },
     currentUser() {
       const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
       return currentUser;
+    },
+    currentService(){
+      const currentService = JSON.parse(sessionStorage.getItem("currentService"))
+      return currentService
     },
   },
 };
