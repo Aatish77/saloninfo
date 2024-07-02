@@ -121,13 +121,17 @@
                   </template>
 
                   <v-img height="250" :src="card.src" cover>
-      <template v-slot:default>
-        <div class="overlay-text">
-          <!-- <i class="fas fa-female"></i> -->
-          <svg-icon type="mdi" :path="iconPath(card.type)"></svg-icon>
-        </div>
-      </template>
-    </v-img>
+                    <v-tooltip  location="top">
+
+                      <template v-slot:activator="{ props }">
+                        <div class="overlay-text" v-bind="props" @mouseenter="showTooltip(card.id)"
+                        @mouseleave="hideTooltip">
+                          <svg-icon type="mdi" :path="iconPath(card.type)"></svg-icon>
+                        </div>
+                      </template>
+                      <span v-if="visibleTooltip === card.id">{{ getTooltipMessage(card.type) }}</span>
+                    </v-tooltip>
+                  </v-img>
 
 
                   <v-card-item>
@@ -282,6 +286,7 @@ export default {
     path: mdiHumanFemaleGirl,
     searchText: "",
     open: ["Users"],
+    visibleTooltip: '',
     
   }),
   created(){
@@ -356,6 +361,17 @@ export default {
       }
     },
 
+     getTooltipMessage(type) {
+      if (type === 'Men') {
+        return 'Men Services';
+      } else if (type === 'Women') {
+        return 'Women Services';
+      } else if (type === 'Unisex') {
+        return 'Unisex Services';
+      }
+      return 'Services';
+    },
+
     clickProfile(){
       this.$router.push("/userpage")
     },
@@ -375,6 +391,12 @@ export default {
     },
     toggleSearch() {
       this.show = !this.show;
+    },
+    showTooltip(id) {
+      this.visibleTooltip = id;
+    },
+    hideTooltip() {
+      this.visibleTooltip = null;
     },
   },
 };
