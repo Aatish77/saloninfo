@@ -89,13 +89,14 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-main>
+      <v-main >
         <v-card
-          style=" color: white"
+          style=" color: white;background-color:black;"
           class="mx-auto bgcolor"
           max-width="1500"
+          min-height="100vh"
         >
-          <v-container fluid v-if="filteredCards.length !== 0">
+          <v-container fluid v-if="filteredCards.length !== 0" >
             <h4 class="text-center" v-if="searchText">
               Showing results of: {{ searchText }}
             </h4>
