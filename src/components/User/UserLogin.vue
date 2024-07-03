@@ -35,8 +35,8 @@
             <i class="fas fa-cut" style="font-size: 25px"></i>saloninfo
           </h1>
           <v-row v-if="!showSignup" :class="{'flip-animation':flip}" class="content-inner">
-            <v-col align="center" style="width: 350px">
-              <img
+            <v-col v-if="window" align="center" style="width: 350px">
+              <img 
               :class="{'fade':!showSignup}"
                 class="slideshow "
                 :src="currentImage"
@@ -146,7 +146,7 @@
             <v-btn class=" log animate7 mt-3"  @click="toggleShow">Login</v-btn>
           </v-form>
         </v-col>
-          <v-col align="center" style="width: 350px">
+          <v-col v-if="window" align="center" style="width: 350px">
               <img
                 :class="{'fade':showSignup}"
                 class="slideshow "
@@ -203,6 +203,8 @@ export default {
     password: "",
   }),
   created() {
+    this.windowSize()
+    
     if(this.currentTab.tab==="Login"){
       this.showSignup=false
     }
@@ -325,11 +327,12 @@ export default {
       }, 500); // Stop the animation after 0.5 seconds
     },
     windowSize() {
-      if (window.innerWidth >= 1191) {
+      console.log(window.innerWidth)
+      if (window.innerWidth > 1000 ) {
         this.window = true;
       } else {
         this.window = false;
-      }
+      }console.log(this.window)
     },
     signup() {
       this.$router.push("/usersignup");

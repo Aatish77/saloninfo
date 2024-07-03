@@ -72,7 +72,7 @@
   :items="['Logout']"
   v-model="selectedItem"
 >
-  <template #label>
+  <template #cat>
     <div style="display: flex; align-items: center;">
       <h4 style="margin-left:80px; margin-right: 10px; margin-top: 15px;">{{currentUser.fullName}} </h4>
       
@@ -269,13 +269,13 @@ export default {
     }
   },
     created(){
-      this.items=[{title:this.currentLabel.label,href:"/services"},{title:this.currentLabel.category,href:"/eachservice"},{title:this.currentLabel.subCategory,href:"/eachservice"},{title:this.currentLabel.subsubCategory}]
-        console.log(this.currentLabel)
+      this.items=[{title:this.currentService.cat,href:"/services"},{title:this.currentService.subCat,href:"/eachservice"},{title:this.currentService.subsubCat}]
+        console.log(this.currentService)
     },
     computed:{
-      currentLabel(){
-        const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"))
-        return currentLabel
+      currentService(){
+        const currentService = JSON.parse(sessionStorage.getItem("currentService"))
+        return currentService
       },
         cards() {
       return this.$store.getters["getSalons"];
@@ -283,27 +283,27 @@ export default {
     filteredCards() {
   return this.cards.filter(card => {
     // Filter cards based on type and services category
-    return (card.type === this.currentLabel.label ||  card.type==="Unisex" ) && this.servicesMatchCategory(card.services);
+    return (card.type === this.currentService.cat ||  card.type==="Unisex" ) && this.servicesMatchCategory(card.services);
   }).map(card => {
     // Modify the filtered cards to include service information
     let matchingService
     if(card.type==="Unisex"){
       
       for(let i of card.serviceCategories){
-        if(i.title=== this.currentLabel.label){
+        if(i.title=== this.currentService.cat){
       matchingService = i.services.find(service => {
-      return service.category === this.currentLabel.category && service.subCategory === this.currentLabel.subCategory && service.subsubCategories.some(subsub => subsub.title === this.currentLabel.subsubCategory);
+      return service.category === this.currentService.category && service.subCategory === this.currentService.subCategory && service.subsubCategories.some(subsub => subsub.title === this.currentService.subsubCategory);
     });}}
     }
     else{ matchingService = card.services.find(service => {
-      return service.category === this.currentLabel.category && service.subCategory === this.currentLabel.subCategory && service.subsubCategories.some(subsub => subsub.title === this.currentLabel.subsubCategory);
+      return service.category === this.currentService.category && service.subCategory === this.currentService.subCategory && service.subsubCategories.some(subsub => subsub.title === this.currentService.subsubCategory);
     });}
     if (matchingService) {
-      const matchingSubsubCategory = matchingService.subsubCategories.find(subsub => subsub.title === this.currentLabel.subsubCategory);
+      const matchingSubsubCategory = matchingService.subsubCategories.find(subsub => subsub.title === this.currentService.subsubCategory);
       if (matchingSubsubCategory) {
         return {
           ...card,
-          serviceCategory: this.currentLabel.subCategory,
+          serviceCategory: this.currentService.subCategory,
           serviceTitle: matchingSubsubCategory.title,
           servicePrice: matchingSubsubCategory.price
         };
@@ -326,8 +326,8 @@ export default {
         this.$router.push({name:"EachParlour",params:{id:id}})
       },
       servicesMatchCategory(services) {
-      // Check if any service's category matches the currentLabel.title
-      return services.some(service => service.category === this.currentLabel.category);
+      // Check if any service's category matches the currentService.title
+      return services.some(service => service.subCat === this.currentService.subCat);
     }
   }
     

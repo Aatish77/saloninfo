@@ -87,121 +87,165 @@
         <v-app-bar-nav-icon @click.stop = "drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-main>
-        <v-card
-          style="background-color: black; color: white;height: 100vh;"
-          class="mx-auto"
-          max-width="1200"
-        >
+      <v-main class="bg-grey-lighten-2">
+      <v-card style="height: 100vh; background-color: black;">
           <div>
-            <v-breadcrumbs :items="items">
-              <template v-slot:divider>
-                <v-icon icon="mdi-chevron-right"></v-icon>
-              </template>
-            </v-breadcrumbs>
-          </div>
-          <v-container fluid v-for="item in datas.subCategories" :key="item">
-             <v-row >
-                
-                    <!-- <v-avatar image="smirk.png" size="100"><v-img
-                    :src="item.img"></v-img></v-avatar> -->
-                    
-                    <h1>{{ item.title }}</h1></v-row> 
-            <v-row><v-col v-for="i in item.subsubCategories" :key="i">
-                <v-card class="mx-auto card1" max-width="344" max-height="260px" @click="navigateToEach(datas.title,item.title,i.title,currentLabel.label)">
-                  <v-img height="200px" :src="i.img" cover></v-img>
-
-                  <v-card-item ><h5 class="multi-line-title">{{ i.title }}</h5>
-                    
-                  </v-card-item>
-                </v-card>
-
-            </v-col></v-row>
-               
-        </v-container>
-        </v-card></v-main></v-layout
+          <v-breadcrumbs :items="items" style="color:white">
+            <template v-slot:divider>
+              <v-icon icon="mdi-chevron-right"></v-icon>
+            </template>
+          </v-breadcrumbs>
+        </div>
+          <v-row>
+           
+              
+          <v-col v-for="subsubCategory in subsubCategories" :key="subsubCategory"  style="border:2px black" md="3">
+            <v-card  class="mx-auto card1 a" @click="navigateToEach(currentService.cat,currentService.subCat,subsubCategory.name)" max-width="344" max-height="300px">
+                  <v-img
+                    style="border-radius: 5px"
+                    class="align-end text-white"
+                    height="250"
+                    :src="subsubCategory.image1"
+                    cover
+                  >
+                  </v-img>
+                  <v-card-item ><h5 class="multi-line-title">{{ subsubCategory.name }}</h5> </v-card-item></v-card>
+            <!-- <v-img
+              :src="subsubCategory.image1"
+              height="205"
+              
+            ></v-img>
+            <h6 align="center">{{subsubCategory.name}}</h6> -->
+          </v-col>
+         
+         
+          </v-row>
+      </v-card></v-main></v-layout
   ></v-card>
+  <v-card>
+    <v-layout>
+      <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
+        <template v-slot:prepend>
+          <v-row>
+            <v-col cols="9">
+              <v-list-item
+            lines="two"
+            :prepend-avatar='currentUser.image'
+            subtitle="Logged in"
+            :title="currentUser.fullName"
+          >
+          </v-list-item>
+  </v-col><v-col cols="3">
+    <v-btn icon @click="drawer = false" style="background-color: black; color: white; ">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
+    
+          
+        </v-col>
+        </v-row>
+          
+        </template>
+
+
+        <v-list density="compact" nav>
+          <v-list-item
+            prepend-icon="mdi-home-city"
+            title="Home"
+            value="home"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account"
+            @click="clickProfile"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-briefcase"
+            title="Services"
+            value="account"
+            @click="serviceClick"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="fas fa-tags"
+            title="Offers"
+            value="account"
+            @click="offerClick"
+          ></v-list-item>
+          
+        </v-list>
+        <template v-slot:append>
+          <div class="pa-2">
+            <v-btn block @click="logout"> Logout </v-btn>
+          </div>
+        </template>
+      </v-navigation-drawer>
+      
+    </v-layout>
+  </v-card>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      datas: {},
-    };
+  data(){
+      return{
+        drawer: null,
+          subsubDia:false,
+          items:[],
+          subsubCategories:[],
+          subsubName:"",
+          picsubsubUrl:"",
+          subsubFile:null,
+      }
   },
-  created() {
-    this.items = [
-      { title: this.currentLabel.label, href: "/services" },
-      { title: this.currentLabel.category },
-    ];
-    if(this.currentLabel.label==="Women"){
-    for (let i of this.currentService.women){
-        if(i.title===this.currentLabel.category){
-            this.datas=i
-        }
+  created(){
+      this.items = [
+    { title: this.currentService.cat, href: "/services" },
+    { title: this.currentService.subCat },
+  ];
+  this.subsubCategories=this.categories[this.currentService.catIndex].subCategories[this.currentService.subIndex].subsubCategories
+  console.log(this.subsubCategories)
+  },
+  computed:{
+    currentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      return currentUser;
+    },
+      currentService(){
+      const currentService = JSON.parse(sessionStorage.getItem("currentService"))
+      return currentService
+    },
+    categories(){
+      return this.$store.getters["getCategories"]
     }
-  }
-  else if(this.currentLabel.label==="Men"){
-    for (let i of this.currentService.men){
-        if(i.title===this.currentLabel.category){
-            this.datas=i
-        }
-    }
-  }
   },
   methods:{
-    navigateToEach(category,subCategory,subsubCategory,label){
-        const t={category:category,subCategory:subCategory,subsubCategory:subsubCategory,label:label}
-        sessionStorage.setItem("currentLabel",JSON.stringify(t))
+    clickProfile(){
+      this.$router.push("/userpage")
+    },
+    serviceClick(){
+      this.$router.push("/services")
+    },
+    offerClick(){
+      this.$router.push("/offer")
+    },
+    logout(){
+      
+      console.log("logout")
+      this.$router.push("/")
+    },
+    navigateToEach(category,subCategory,subsubCategory){
+        const t={cat:category,subCat:subCategory,catIndex:this.currentService.catIndex,subIndex:this.currentService.subIndex,subsubCat:subsubCategory}
+        sessionStorage.setItem("currentService",JSON.stringify(t))
         this.$router.push("/serviceparlour")
     },
-  },
-  computed: {
-    currentService(){
-        return this.$store.getters["getServiceCategories"]
-    },
-    currentLabel() {
-      const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"));
-      return currentLabel;
-    },
-  },
-};
+  }
+
+}
 </script>
 <style scoped>
-
-.multi-line-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  overflow: hidden;
-}
-body {
-  height: 100vh;
-  background-color: black;
-  color: white;
-}
 .card1 {
-  color: white;
-  background-color: rgb(41, 41, 41);
-}
-.round-img {
-  border-radius: 50%;
-  
-  /* margin-bottom: 50px; */
-  margin-left: 120px;
-  padding: 50px;
-}
-.square-image {
-  width: 100%; /* Set the width to 100% */
-   /* 1:1 Aspect Ratio */
-  position: relative;
-  overflow: hidden;
+margin-top: 10px;
+color: white;
+background-color: rgb(41, 41, 41);
 }
 
-.square-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}</style>
+</style>
