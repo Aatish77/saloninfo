@@ -13,6 +13,7 @@ export default{
           );
           if (response.status === 200) {
             console.log(response.data);
+            context.commit("loadCurrentSalon",response.data)
             return response;
           }
         } catch (error) { 
@@ -156,7 +157,7 @@ export default{
             `${context.getters.getBaseUrl}/parlour/ParlourReg`,
             payload
           );
-          if (response.status === 200) {
+          if (response.status >= 200 || response.status <= 300 ) {
             console.log(response.data);
             alert("You have been successfully registered");
           }
