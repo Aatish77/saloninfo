@@ -26,5 +26,8 @@ export default{
        },
        loadSubSubCategories(state,payload){
         state.categories[payload.catIndex].subCategories[payload.subIndex].subsubCategories=payload.data
+       },
+       loadCurrentSalon(state,payload){
+        state.currentSalon=payload
        }
       }

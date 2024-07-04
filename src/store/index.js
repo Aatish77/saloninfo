@@ -63,6 +63,7 @@ const store = createStore({
       isUserLoggedin: false,
       // admin: { email: "admin@gmail.com", password: "Pass123@" },
       admin: "",
+      currentSalon:{},
       validAdmin: null,
       isAdminLoggedin: false,
       categories:[{name:"Men",id:1,
