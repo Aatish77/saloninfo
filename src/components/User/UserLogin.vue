@@ -35,7 +35,7 @@
             <i class="fas fa-cut" style="font-size: 25px"></i>saloninfo
           </h1>
           <v-row v-if="!showSignup" :class="{'flip-animation':flip}" class="content-inner">
-            <v-col v-if="window" align="center" style="width: 350px">
+            <v-col  align="center" style="width: 350px">
               <img 
               :class="{'fade':!showSignup}"
                 class="slideshow "
@@ -146,7 +146,7 @@
             <v-btn class=" log animate7 mt-3"  @click="toggleShow">Login</v-btn>
           </v-form>
         </v-col>
-          <v-col v-if="window" align="center" style="width: 350px">
+          <v-col align="center" style="width: 350px">
               <img
                 :class="{'fade':showSignup}"
                 class="slideshow "
@@ -180,7 +180,7 @@ export default {
     flip:false,
     showSignup:false,
     isRotating: false,
-    window: true,
+    // window: true,
     dialog: true,
     show1: false,
     show2: true,
@@ -203,7 +203,7 @@ export default {
     password: "",
   }),
   created() {
-    this.windowSize()
+    
     
     if(this.currentTab.tab==="Login"){
       this.showSignup=false
@@ -211,7 +211,7 @@ export default {
     else if(this.currentTab.tab==="Signup"){
       this.showSignup=true
     }
-    this.viewUsers();
+    // this.viewUsers();
   },
   computed: {
     currentTab() {
@@ -276,13 +276,11 @@ export default {
     },
   },
   mounted() {
-    this.windowSize();
+
     this.startSlideshow();
   },
   watch: {
-    currentImage() {
-      this.rotateImage();
-    }
+    
   },
   methods: {
     submit() {
@@ -290,15 +288,16 @@ export default {
       this.$refs.signup.validate().then((valid) => {
         if (valid.valid) {
           this.dialogVis = true;
-          const data = {"fullName":this.reg.fullName,"phone":this.reg.phone,"email":this.reg.email,"password":this.reg.password}
+          const data = {"fullName":this.reg.fullName,"phoneNumber":this.reg.phone,"email":this.reg.email,"password":this.reg.password}
           
 
           this.$store
             .dispatch("addTheUser", data)
             .then(() => {
+              alert("Success")
               // Reset form data after successful dispatch
-              this.resetFormData();
-              this.$router.push("/userlogin")
+              // this.resetFormData();
+              // this.$router.push("/userlogin")
             })
             .catch((error) => {
               console.error("Error adding user:", error);
@@ -320,43 +319,40 @@ export default {
       this.showSignup=!this.showSignup
       this.flip=true
     },
-    rotateImage() {
-      this.isRotating = true;
-      setTimeout(() => {
-        this.isRotating = false;
-      }, 500); // Stop the animation after 0.5 seconds
-    },
-    windowSize() {
-      console.log(window.innerWidth)
-      if (window.innerWidth > 1000 ) {
-        this.window = true;
-      } else {
-        this.window = false;
-      }console.log(this.window)
-    },
-    signup() {
-      this.$router.push("/usersignup");
-    },
-    async viewUsers() {
-      try {
-        await this.$store.dispatch("viewUsers");
-      } catch (error) {
-        console.error(error);
-      }
-    },
+    
+    // windowSize() {
+    //   console.log(window.innerWidth)
+    //   if (window.innerWidth > 1000 ) {
+    //     this.window = true;
+    //   } else {
+    //     this.window = false;
+    //   }console.log(this.window)
+    // },
+    // signup() {
+    //   this.$router.push("/usersignup");
+    // },
+    // async viewUsers() {
+    //   try {
+    //     await this.$store.dispatch("viewUsers");
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // },
     startSlideshow() {
       this.intervalId = setInterval(() => {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
       }, this.intervalDuration);
     },
-    stopSlideshow() {
-      clearInterval(this.intervalId);
-    },
-    beforeDestroy() {
-      this.stopSlideshow();
-    },
-    submitLogin() {
-      this.$refs.form.validate().then((valid) => {
+    // stopSlideshow() {
+    //   clearInterval(this.intervalId);
+    // },
+    // beforeDestroy() {
+    //   this.stopSlideshow();
+    // },
+    async submitLogin() {
+      
+      try {
+        this.$refs.form.validate().then((valid) => {
         console.log(valid.valid)
         if (valid.valid) {
           console.log("Login");
@@ -378,10 +374,23 @@ export default {
         //   this.error = 'Form validation failed';
         // }
       });
+        const res = await this.$store.dispatch("userLogin", {
+          "phoneNumber":this.phone,
+          "password":this.password
+        })
+        if(res){
+          sessionStorage.setItem("currentUser", JSON.stringify(res))
+          this.$router.push("/viewparlours")
+        }
+        else{
+          this.error = "The phone number and password don't match";
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      
     },
-    navigateTo(route) {
-      this.$router.push(route);
-    },
+    
   },
 };
 </script>

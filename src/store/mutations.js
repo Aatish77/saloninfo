@@ -3,7 +3,12 @@ export default{
         state.users = payload;
       },
       addAdmin(state, payload) {
-        state.admin = payload;
+        state.adminToken = payload;
+      },
+      addParlourToken(state,payload){
+        state.parlourToken = payload
+      },addUserToken(state,payload){
+        state.userToken=payload
       },
       addAUser(state, payload) {
         state.users.push(payload);
