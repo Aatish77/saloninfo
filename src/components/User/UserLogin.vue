@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
+  <v-card class="mx-auto" color="grey-lighten-3" max-width="100%">
     <v-layout>
       <!-- <v-app-bar
         color="teal-darken-4"
@@ -527,7 +527,6 @@ export default {
   /* color:#a0522d; */
   color: #8b4513;
 
-
 }
 
 .title {
@@ -584,17 +583,17 @@ export default {
   animation-delay: 1s;
 }
 .content {
-  backdrop-filter: blur(3px);
+  /* backdrop-filter: blur(3px); */
   background-color: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
-  padding: 220px;
-  padding-top: 180px;
+  /* padding: 220px; */
+  /* padding-top: 180px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.561);
   border-radius: 10px;
 }
 
 .content-inner {
     background-image: url("@/assets/contentbg.jpg");
-    background-color: rgba(0, 0, 0, 0.3); /* Black filter */
+    background-color: rgba(0, 0, 0, 0.3); 
     border-radius: 10px;
     padding: 20px;
     width: 800px;

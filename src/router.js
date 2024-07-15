@@ -29,6 +29,7 @@ import DummyPage2 from "./components/User/DummyPage2.vue";
 import BarChart from "./components/Admin/BarChart.vue";
 import DoughnutChart from "./components/Admin/DoughnutChart.vue";
 
+import RatingPage from "./components/User/RatingPage.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -66,6 +67,7 @@ const router = createRouter({
     {path:"/parlourView",component:ParlourView},
     {path:"/barChart",component:BarChart},
     {path:"/doughnut",component:DoughnutChart},
+    {path:"/rating",component: RatingPage}
    
   ],
 });
