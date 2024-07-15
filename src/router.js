@@ -30,6 +30,7 @@ import BarChart from "./components/Admin/BarChart.vue";
 import DoughnutChart from "./components/Admin/DoughnutChart.vue";
 
 import RatingPage from "./components/User/RatingPage.vue";
+import LocationSearch from "./components/User/LocationSearch.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -67,8 +68,8 @@ const router = createRouter({
     {path:"/parlourView",component:ParlourView},
     {path:"/barChart",component:BarChart},
     {path:"/doughnut",component:DoughnutChart},
-    {path:"/rating",component: RatingPage}
-   
+    {path:"/rating",component: RatingPage},
+   {path:"/location",component: LocationSearch}
   ],
 });
 export default router;

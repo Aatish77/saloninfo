@@ -269,5 +269,16 @@ export default{
             console.error(error)
           }
       },
+      async addRating(context,payload){
+        try{
+          const response = await axios.post(`${context.getters.getBaseUrl}/ratings/add?parlourId=${payload.parlourId}&customerName=${payload.cutomerName}&ratingValue=${payload.rating}&review=${payload.review}`)
+          if (response.status===200){
+            console.log(response.data)
+          }}
+          catch(error){
+            console.error(error)
+          }
+        }
+        
+      }
       
-}

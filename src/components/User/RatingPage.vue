@@ -1,6 +1,6 @@
 <template>
     <v-card style="background-color: black; height: 100vh">
-    <div class="text-center a" >
+    <div class="a" >
         <div class="ar">
         <h1>We Value Your Feedback!</h1>
         <h4>Thank you for visiting {{parlourName}}! We hope you had a wonderful experience. Your feedback helps us improve and provide the best service possible.</h4>
@@ -10,6 +10,15 @@
         v-model="rating"
         clearable
       ></v-rating>
+      <div style="color:white;width: 700px;">
+      <v-textarea
+      
+      v-model="review"
+      label="Write a review"
+      maxlength="120"
+      counter
+      single-line
+    ></v-textarea></div>
       <div>
       <v-btn @click="submit">
   Submit
@@ -22,11 +31,28 @@
     export default {
       data: () => ({
         rating: 0,
-        parlourName:"The Garage"
+        parlourId:2,
+        parlourName:"The Garage",
+        customerName :"Rakesh",
+        review:""
+
       }),
       methods:{
         submit(){
+          const data={"customerName":this.customerName,"parlourId":this.parlourId,"rating":this.rating,"review":this.review
+          }
             
+            this.$store
+              .dispatch("addRating", data)
+              .then(() => {
+                
+                // Reset form data after successful dispatch
+                alert("Thank you for the feedback")
+                // this.$router.push("/adminlogin")
+              })
+              .catch((error) => {
+                console.error("Error adding user:", error);
+              }); 
         }
       }
     }
@@ -35,12 +61,17 @@
   body{
     background-color: black;
   }
-.a{ height: 100%;
+.v-card{
+   
+  display: flex;
+            justify-content: center;
+            /* Optional: Centers vertically as well */
+            align-items: center; 
     background-color: black;
 }
+
 .ar{
-    margin-top:200px;
-    margin-left:250px;
+    
     width:1000px;
     color:white;
 }
