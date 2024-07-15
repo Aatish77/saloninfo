@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
+  <v-card class="mx-auto" color="grey-lighten-3" max-width="100%">
     <v-layout>
       <v-app-bar
         color="teal-darken-4"
@@ -50,7 +50,7 @@
         <v-card
           style="color: white"
           class="mx-auto bgcolor"
-          max-width="1200"
+          max-width="100%"
         >
           <v-container fluid>
             <v-row dense>
@@ -659,6 +659,10 @@ h1 {
   margin-top: 10px;
   color: white;
   background-color: rgb(41, 41, 41);
+}
+.card1 {
+  width: 300px !important;
+  height: 400px;
 }
 .card2 {
   color: white;

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
+  <v-card class="mx-auto" color="grey-lighten-3" max-width="100%">
     <v-layout>
       <v-app-bar
         style="z-index: 1;background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
@@ -102,7 +102,7 @@
         <v-card
           style="background-color: black; color: white"
           class="mx-auto"
-          max-width="1200"
+          max-width="100%"
         >
         <v-tabs-window v-model="tab">
           <v-tabs-window-item v-for="(category,index) in categories" :key="category" :value="index">
@@ -277,6 +277,10 @@ body {
 .card1 {
   color: white;
   background-color: rgb(41, 41, 41);
+}
+.card1 {
+  width: 250px !important;
+  height: 400px;
 }
 @keyframes slide-up {
   from {

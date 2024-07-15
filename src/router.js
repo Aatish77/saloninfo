@@ -25,6 +25,7 @@ import DummyPage from "./components/DummyPage.vue";
 import HomePage from "./components/User/HomePage.vue";
 import PayMent from "./components/User/Cart/PayMent.vue";
 import ParlourView from "./components/Parlour/ParlourView.vue"
+import RatingPage from "./components/User/RatingPage.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -56,10 +57,10 @@ const router = createRouter({
     {path:"/adminsubcat",component: AdminSubCat},
     {path:"/adminoffers",component:AdminOffers},
     {path:"/dummy",component: DummyPage},
-    {path:"/home",component:HomePage}
-,
+    {path:"/home",component:HomePage},
     {path:"/payMent",component:PayMent},
-    {path:"/parlourView",component:ParlourView}
+    {path:"/parlourView",component:ParlourView},
+    {path:"/rating",component: RatingPage}
    
   ],
 });
