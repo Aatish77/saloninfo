@@ -197,7 +197,7 @@ export default {
       this.$refs.form.validate().then((valid) => {
         if (valid.valid) {
           this.dialogVis = true;
-          const data = {"fullName":this.fullName,"phone":this.phone,"email":this.email,"password":this.password}
+          const data = {"fullName":this.fullName,"phoneNumber":this.phone,"email":this.email,"password":this.password}
           
 
           this.$store

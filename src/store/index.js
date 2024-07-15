@@ -6,7 +6,10 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.3:8080`,
+      baseUrl: `http://192.168.1.20:8086`,
+      adminToken:sessionStorage.getItem('adminToken')||'',
+      parlourToken:sessionStorage.getItem('parlourToken')||"",
+      userToken:sessionStorage.getItem('userToken')||"",
       users: [
         { userId:"1",
           fullName: "Rakesh S",
@@ -60,6 +63,7 @@ const store = createStore({
       isUserLoggedin: false,
       // admin: { email: "admin@gmail.com", password: "Pass123@" },
       admin: "",
+      currentSalon:{},
       validAdmin: null,
       isAdminLoggedin: false,
       categories:[{name:"Men",id:1,
@@ -395,7 +399,7 @@ const store = createStore({
       salonsPending: [
         {
           parlourPic:
-            "https://cdn.tapetender70er.de/media/image/6c/3d/af/Hair-Salon-Wallpaper-Design_944x944@2x.webp",
+            "https://vendor.mschirpy.com/blogs/1696850528.jpg",
           parlourName: "Classic Cuts Hair Salon",
           location: "Chandanakkavu road, Alappuzha",
           phone: "9846766214",
@@ -521,7 +525,7 @@ const store = createStore({
           parlourName: "Amaze Beauty Parlour & Bridal Makeup Studio",
           type: "Women",
           phone: "9495193392",
-          email: "amazebeauty@email.com",
+          email: "a@gmail.com",
           username: "amaze",
           password: "Pass123@1",
           src: "https://cdn.tapetender70er.de/media/image/6c/3d/af/Hair-Salon-Wallpaper-Design_944x944@2x.webp",
@@ -876,7 +880,8 @@ const store = createStore({
           type: "Men",
           username: "thegarage",
           password: "Pass123@2",
-          src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
+          // src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
+          src: require("@/assets/thegarage.jpg"),
           rating: 4.7,
           location: "YMCA road, Alappuzha",
           parlourId:"2",
@@ -1058,7 +1063,7 @@ const store = createStore({
             },
           ],
           phone: "9846766214",
-          email: "thegarage@email.com",
+          email: "b@gmail.com",
         },
         {
           parlourName: "Vaniya Unisex Beauty Salon & Makeup Studio ",
@@ -1649,7 +1654,7 @@ const store = createStore({
         {
           parlourName: "Classic Cuts Hair Salon",
           type: "Men",
-          src: "https://antdisplay.com/pub/media/wysiwyg/5_18__1.JPG",
+          src: "https://res.cloudinary.com/conferences-and-exhibitions-pvt-ltd/image/upload/v1655285681/Salon-Management/2022/June/Men/Lead_e305ap.jpg",
           rating: 4.2,
           location: "Punnapra, Alappuzha",
           flex: 3,

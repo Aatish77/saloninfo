@@ -1,17 +1,17 @@
 <template>
-    <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
-      <v-layout>
-        <v-app-bar
-          color="teal-darken-4"
-           style="background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
-        >
-          <template v-slot:image>
-            <v-img
-              gradient="to top right, rgba(255,255,255,.0), rgba(255,255,255,.2)"
-            ></v-img>
-          </template>
-  
-          <template v-slot:prepend>
+  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
+    <v-layout>
+      <v-app-bar
+        color="teal-darken-4"
+        style="background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
+      >
+        <template v-slot:image>
+          <v-img
+            gradient="to top right, rgba(255,255,255,.0), rgba(255,255,255,.2)"
+          ></v-img>
+        </template>
+
+        <template v-slot:prepend>
           <i class="fas fa-cut"></i>
         </template>
 
@@ -23,260 +23,293 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
               'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
           "
-          >saloninfo</v-app-bar-title>
-  
-          <v-spacer></v-spacer>
-  
-          <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-  
-          <v-btn icon>
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
-  
-          <v-btn icon>
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </v-app-bar>
-        <v-main>
-          <v-card style="background-color: black; color: white;" class="mx-auto" max-width="1200">
-            <v-container fluid>
-              <v-row dense>
-                <v-col :cols="12">
-                  <v-card style="background-color: black; color: white;">
-                    <v-img
-                      :src="currentImage"
-                      alt="Slideshow"
-                      class="align-end"
-                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                      height="500px"
-                      cover
+        >saloninfo</v-app-bar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-main>
+        <v-card style="background-color: black; color: white;" class="mx-auto" max-width="1200">
+          <v-container fluid>
+            <v-row dense>
+              <v-col :cols="12">
+                <v-card style="background-color: black; color: white;">
+                  <v-img
+                    :src="currentImage"
+                    alt="Slideshow"
+                    class="align-end"
+                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                    height="500px"
+                    cover
+                  ><v-img
+                      :src="card.src"
+                      alt="Profile Photo"
+                      height="auto"
+                      width="170"
+                      class="profile-photo"
+                    ></v-img>
+                    <v-card-title
+                      class="text-white"
+                      style="font-size: 30px"
+                      v-text="card.parlourName"
+                    ></v-card-title>
+                    <v-card-subtitle
+                      ><h6>{{ card.subTitle }}</h6></v-card-subtitle
                     >
-                      <v-card-title
-                        class="text-white"
-                        style="font-size: 30px"
-                        v-text="card.parlourName"
-                      ></v-card-title>
-                      <v-card-subtitle
-                        ><h6>{{ card.subTitle }}</h6></v-card-subtitle
-                      >
-                    </v-img>
-  
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      
-                      <v-btn class="text-end">
+                    
+                  </v-img>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn class="text-end">
                       <div>
-                      <h6 class="text-end" style="margin-top: 0px">
-                        {{ card.location }} <i class="fas fa-map-marker-alt"></i>
-                       
-                      </h6>
-                      <h6 class="text-end" style="margin-top: 0px">
-                        {{ card.phone }} <i class="fas fa-phone"></i>
-                        
-                      </h6>
-                      <h6  class="text-end" style="text-transform: lowercase; margin-top: 0px">
-                        
-                        {{ card.email }} <i class="fas fa-envelope"></i>
-                      </h6>
-                      
-                      <v-btn @click="toggleEditDialog"><i class="fas fa-edit"></i>
-Edit</v-btn>
-                    </div></v-btn>
-                    
+                        <h6 class="text-end" style="margin-top: 0px">
+                          {{ card.location }} <i class="fas fa-map-marker-alt"></i>
+                        </h6>
+                        <h6 class="text-end" style="margin-top: 0px">
+                          {{ card.phone }} <i class="fas fa-phone"></i>
+                        </h6>
+                        <h6 class="text-end" style="text-transform: lowercase; margin-top: 0px">
+                          {{ card.email }} <i class="fas fa-envelope"></i>
+                        </h6>
+                        <v-btn @click="toggleEditDialog"><i class="fas fa-edit"></i> Edit</v-btn>
+                      </div>
+                    </v-btn>
                   </v-card-actions>
-  
-                    <h1>About</h1>
-                    <v-row>
-                      <v-col :cols="8">
-                        <p>
-                          {{ card.description }}
-                        </p>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                </v-col>
-                
-              </v-row>
-              <h1 class="mt-3">Services</h1>
-              <v-row
-                class="book"
-                v-for="(service, index) in card.services"
-                :key="service"
-              >
-                <v-col :cols="12" md="6" v-if="index % 2 === 0">
-                  <v-img
-                    class="round-img square-image"
-                    :src="service.img"
-                    height="300px"
-                    width="300px"
-                  >
-                  </v-img>
-                </v-col>
-                <v-col :cols="12" md="6" v-else>
-                  <h1 class="hc1">{{ service.title }}</h1>
-                  <p class="pc">
-                    {{ service.desc }}
-                  </p>
-  
-                 
-                </v-col>
-  
-                <v-col :cols="6" v-if="index % 2 !== 0">
-                  <v-img
-                    class="round-img square-image"
-                    :src="service.img"
-                    height="300px"
-                    width="300px"
-                  >
-                  </v-img>
-                </v-col>
-                <v-col :cols="6" v-else>
-                  <h1 class="hc1">{{ service.title }}</h1>
-                  <p class="pc">
-                    {{ service.desc }}
-                  </p>
-                  
-                </v-col>
-              </v-row>
-              <h1 class="mt-3">Offers</h1>
-              <v-row class="mt-3">
-                <v-col
-                  class="book"
-                  v-for="offer in card.offers"
-                  :key="offer"
-                  :cols="4"
+
+                  <h1>About</h1>
+                  <v-row>
+                    <v-col :cols="8">
+                      <p>
+                        {{ card.description }}
+                      </p>
+                    </v-col>
+                  </v-row>
+                </v-card>
+              </v-col>
+            </v-row>
+            <h1 class="mt-3">Services</h1>
+            <v-row
+              class="book"
+              v-for="(service, index) in card.services"
+              :key="service"
+            >
+              <v-col :cols="12" md="6" v-if="index % 2 === 0">
+                <v-img
+                  class="round-img square-image"
+                  :src="service.img"
+                  height="300px"
+                  width="300px"
                 >
-                  <v-card style="background-color: black; color: white;" class="mx-auto" max-width="400">
-                    <v-img
-                      style="border-radius: 5px"
-                      class="align-end text-white mx-3"
-                      height="300"
-                      :src="offer.img"
-                      cover
+                </v-img>
+              </v-col>
+              <v-col :cols="12" md="6" v-else>
+                <h1 class="hc1">{{ service.title }}</h1>
+                <p class="pc">
+                  {{ service.desc }}
+                </p>
+              </v-col>
+
+              <v-col :cols="6" v-if="index % 2 !== 0">
+                <v-img
+                  class="round-img square-image"
+                  :src="service.img"
+                  height="300px"
+                  width="300px"
+                >
+                </v-img>
+              </v-col>
+
+              <v-col :cols="6" v-else>
+                <h1 class="hc1">{{ service.title }}</h1>
+                <p class="pc">
+                  {{ service.desc }}
+                </p>
+              </v-col>
+              <v-row 
+              ><v-col v-for="i in service.subsubCategories" :key="i" :id="i.title">
+                <v-card  class="mx-auto card1 animate11" max-width="344" max-height="350px">
+                  <v-img
+                    style="border-radius: 5px"
+                    class="align-end text-white"
+                    height="250"
+                    :src="i.img"
+                    cover
+                  >
+                  </v-img>
+                  <v-card-item ><h5 class="multi-line-title">{{ i.title }}</h5> </v-card-item>
+                  <v-card-subtitle class="">
+                    Price:
+                    <span>₹ {{ i.price }}</span>
+                  </v-card-subtitle></v-card></v-col></v-row>
+            </v-row>
+            <h1 class="mt-3">Offers</h1>
+            <v-row class="mt-3">
+              <v-col
+                class="book"
+                v-for="offer in card.offers"
+                :key="offer"
+                :cols="4"
+              >
+                <v-card style="background-color: black; color: white;" class="mx-auto" max-width="400">
+                  <v-img
+                    style="border-radius: 5px"
+                    class="align-end text-white mx-3"
+                    height="300"
+                    :src="offer.img"
+                    cover
+                  >
+                    <v-card-title>{{ offer.title }}</v-card-title>
+                  </v-img>
+
+                  <v-card-subtitle class="pt-2 mb-0">
+                    Price:
+                    <span style="text-decoration: line-through"
+                      >₹{{ offer.mrp }}</span
                     >
-                      <v-card-title>{{ offer.name }}</v-card-title>
-                    </v-img>
-  
-                    <v-card-subtitle class="pt-2 mb-0">
-                      Price:
-                      <span style="text-decoration: line-through"
-                        >₹{{ offer.price }}</span
-                      >
-                    </v-card-subtitle>
-  
-                    <v-card-text class="pt-0">
-                      <div>Offer Price: ₹{{ offer.offerPrice }}</div>
-                    </v-card-text>
-  
-                    
-                   
-    <v-dialog  v-model="editDialog" max-width="800px">
-    <v-card style="color:white; background-color: black;">
-      <v-card-title>Edit Salon Information</v-card-title>
-      <v-card-text>
-        
-        <v-text-field
-          v-model="editedCard.title"
-          label="Title"
-          required
-        ></v-text-field>
-        <v-row>
-          <v-col cols="12">
-            <v-file-input
-            v-model="coverImage"
-            @change="previewCoverImage"
-    label="Change Cover Image"
-    prepend-icon="mdi-camera"
-    variant="filled"
-  ></v-file-input>
-            
-            <v-img v-if="previewCover || editedCard.coverImages[0]" :src="previewCover?previewCover: editedCard.coverImages[0]" width="100%" height="200px" class="my-2"></v-img>
-          </v-col>
-        </v-row>
-        <v-textarea
-          v-model="editedCard.description"
-          label="About"
-          required
-          auto-grow
-        ></v-textarea>
-        <v-text-field
-          v-model="editedCard.location"
-          label="Location"
-          required
-        ></v-text-field>
-        <v-text-field
-          v-model="editedCard.phone"
-          label="Phone"
-          required
-        ></v-text-field>
-        <v-text-field
-          v-model="editedCard.email"
-          label="Email"
-          required
-        ></v-text-field>
-        
-        
-        <!-- Services -->
-        <v-card-text>
-          <h3>Services</h3>
-          <v-row v-for="(service, index) in editedCard.services" :key="index">
-            <v-col cols="4">
-              <v-text-field
-                v-model="service.title"
-                label="Title"
-                required
-              ></v-text-field>
-              <v-file-input
-                v-model="service.file" 
-                label="Change Image"
-                @change="previewServiceImage(index,$event)"
-                accept="image/*"
-                prepend-icon="mdi-camera"
-              variant="filled"
-              ></v-file-input>
+                  </v-card-subtitle>
 
-              <v-img  :src="service.preview?service.preview:service.img" width="100%" height="150px" class="my-2"></v-img>
-              
-              <v-text-field
-                v-model="service.price"
-                label="Price"
-                type="number"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="7">
-              <v-textarea
-                v-model="service.desc"
-                label="Description"
-                required
-                auto-grow
-              ></v-textarea>
-            </v-col>
-            <v-col cols="1">
-              <v-btn style="color: white; background-color: black;" icon @click="removeService(index)">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
-            </v-col>
-          </v-row>
-          <v-btn @click="addService">Add Service</v-btn>
-        </v-card-text>
+                  <v-card-text class="pt-0">
+                    <div>Offer Price: ₹{{ offer.price }}</div>
+                  </v-card-text>
 
-        <!-- Offers -->
-        <v-card-text>
+                  <v-dialog  v-model="editDialog" max-width="800px">
+                    <v-card style="color:white; background-color: black;">
+                      <v-card-title>Edit Salon Information</v-card-title>
+                      <v-card-text>
+                        <v-text-field
+                          v-model="editedCard.parlourName"
+                          label="Title"
+                          required
+                        ></v-text-field>
+                        <v-row>
+                          <v-col cols="12">
+                            <v-file-input
+                              v-model="coverImage"
+                              @change="previewCoverImage"
+                              label="Change Cover Image"
+                              prepend-icon="mdi-camera"
+                              variant="filled"
+                            ></v-file-input>
+                            <v-img v-if="previewCover || editedCard.coverImages[0]" :src="previewCover?previewCover: editedCard.coverImages[0]" width="100%" height="200px" class="my-2"></v-img>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-file-input
+                          v-model="editedCard.src"
+                          @change="previewProfileImage"
+                          label="Change Profile Photo"
+                          prepend-icon="mdi-camera"
+                          variant="filled"
+                        ></v-file-input>
+                        <v-img v-if="editedCard.src" :src="editedCard.src" width="100px" height="100px" class="my-2"></v-img>
+                          </v-col>
+                        </v-row>
+                        <v-textarea
+                          v-model="editedCard.description"
+                          label="About"
+                          required
+                          auto-grow
+                        ></v-textarea>
+                        <v-text-field
+                          v-model="editedCard.location"
+                          label="Location"
+                          required
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="editedCard.phone"
+                          label="Phone"
+                          required
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="editedCard.email"
+                          label="Email"
+                          required
+                        ></v-text-field>
+
+                        <!-- Services -->
+                        <v-card-text>
+                          <h3>Services</h3>
+                          <v-row v-for="(service, index) in editedCard.services" :key="index">
+                            <v-col cols="9" sm="9" md="9">
+                               <v-text-field
+                                style="font-weight:800;font-size: 100px;"
+                                v-model="service.title"
+                                label="Service Title"
+                                required
+                              ></v-text-field>
+                              <v-textarea
+                                v-model="service.desc"
+                                label="Service Description"
+                                required
+                                auto-grow
+                              ></v-textarea>
+                              </v-col><v-col cols="3" sm="3" md="3">
+                              <v-file-input
+                                v-model="service.img"
+                                @change="previewServiceImage(index)"
+                                label="Service Image"
+                                prepend-icon="mdi-camera"
+                                variant="filled"
+                              ></v-file-input>
+                              <v-img v-if="service.previewImage || service.img" :src="service.previewImage?service.previewImage:service.img" width="100%" height="150px" class="my-2"></v-img>
+                              
+                              </v-col><v-col cols="12" sm="12" md="12" >
+                                <h5>Sub Services of {{ service.title }}</h5>
+                              <v-row v-for="(subsubCategory, subIndex) in service.subsubCategories" :key="subIndex">
+                                <v-col cols="6" sm="6" md="6">
+                                  <v-text-field
+                                    v-model="subsubCategory.title"
+                                    label="subsubCategory Title"
+                                    required
+                                  ></v-text-field>
+                                  <v-text-field
+                                    v-model="subsubCategory.price"
+                                    label="SubsubCategory Price"
+                                    required
+                                  ></v-text-field>
+                                  </v-col><v-col cols="6" sm="6" md="6 ">
+                                  <v-file-input
+                                    v-model="subsubCategory.img"
+                                    @change="previewsubsubCategoryImage(index, subIndex)"
+                                    label="subsubCategory Image"
+                                    prepend-icon="mdi-camera"
+                                    variant="filled"
+                                  ></v-file-input>
+                                  <v-img v-if="subsubCategory.previewImage || subsubCategory.img" :src="subsubCategory.previewImage?subsubCategory.previewImage:subsubCategory.img" width="100%" height="150px" class="my-2"></v-img>
+                                </v-col>
+                              </v-row>
+                              <v-btn @click="addsubsubCategory(index)">Add Sub Service</v-btn>
+
+                              <div class="my-4" ></div>
+                            </v-col>
+                            
+                          </v-row>
+                        </v-card-text>
+                        <v-card-text>
           <h3>Offers</h3>
           <v-row v-for="(offer,index) in editedCard.offers" :key="index">
             <v-col cols="3">
               <v-text-field
-                v-model="offer.name"
+                v-model="offer.title"
                 label="Name"
                 required
               ></v-text-field>
             </v-col>
             <v-col cols="2">
               <v-text-field
-                v-model="offer.price"
+                v-model="offer.mrp"
                 label="Price"
                 required
                 type="number"
@@ -284,7 +317,7 @@ Edit</v-btn>
             </v-col>
             <v-col cols="2">
               <v-text-field
-                v-model="offer.offerPrice"
+                v-model="offer.price"
                 label="Offer Price"
                 required
                 type="number"
@@ -311,22 +344,22 @@ Edit</v-btn>
           <v-btn @click="addOffer">Add Offer</v-btn>
         </v-card-text>
 
-      </v-card-text>
-      <v-card-actions>
-        <v-btn @click="saveChanges">Save</v-btn>
-        <v-btn @click="closeEditDialog">Close</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
-                  </v-card></v-col
-                >
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-main>
-      </v-layout>
-    </v-card>
-  </template>
+      
+
+                        <v-btn @click="saveChanges" class="ms-3">Save</v-btn>
+                        <v-btn @click="cancelChanges" class="ms-3">Cancel</v-btn>
+                      </v-card-text>
+                    </v-card>
+                  </v-dialog>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-main>
+    </v-layout>
+  </v-card>
+</template>
   
   <script>
   
@@ -426,9 +459,9 @@ Edit</v-btn>
         return this.card.coverImages[this.currentIndex];
       },
       currentParlour(){
-        return this.datas[0]
-      // const currentParlour = JSON.parse(sessionStorage.getItem('currentParlour'));
-      // return currentParlour
+        
+      const currentParlour = JSON.parse(sessionStorage.getItem('currentParlour'));
+      return currentParlour
     },
     },
     mounted() {
@@ -445,6 +478,9 @@ Edit</v-btn>
     
     saveChanges() {
       this.card = { ...this.editedCard };
+      this.editDialog = false;
+    },
+    cancelChanges() {
       this.editDialog = false;
     },
     
@@ -475,6 +511,15 @@ Edit</v-btn>
         preview: null,
       });
     },
+    previewProfileImage(event) {
+      if (event && event.target && event.target.files && event.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.editedCard.src = e.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    },
     previewCoverImage(event) {
       console.log(event)
       const file = event.target.files[0];
@@ -497,6 +542,22 @@ Edit</v-btn>
       const file = event.target.files[0];
       this.editedCard.offers[index].preview = URL.createObjectURL(file);
       this.editedCard.offers[index].img=this.editedCard.offers[index].preview
+    },
+    previewsubsubCategoryImage(serviceIndex, subIndex) {
+      const file = this.editedCard.services[serviceIndex].subsubCategories[subIndex].img;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.editedCard.services[serviceIndex].subsubCategories[subIndex].previewImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    addsubsubCategory(serviceIndex) {
+      this.editedCard.services[serviceIndex].subsubCategories.push({
+        title: '',
+        price: 0,
+        img: '',
+        previewImage: '',
+      });
     },
 
     removeOffer(index) {
@@ -535,6 +596,26 @@ Edit</v-btn>
   };
   </script>
   <style scoped>
+  .my-4 {
+    width: 100%;
+  height: 5px; /* Adjust the height as needed */
+  background-color: white;
+  margin: 16px 0;
+}
+  .align-end {
+  align-items: flex-end;
+}
+.text-end {
+  text-align: end;
+}
+.book {
+  margin-bottom: 20px;
+}
+  .card1 {
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(41, 41, 41);
+}
   .btn1 {
     color:white;
     visibility: hidden;
@@ -615,5 +696,12 @@ Edit</v-btn>
   .pt {
     margin-top: -15px;
   }
+  .profile-photo {
+  
+  bottom: 5px;
+  left: 25px;
+  
+  border: 3px solid white;
+}
   </style>
   
