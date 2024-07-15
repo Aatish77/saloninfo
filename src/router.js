@@ -25,6 +25,10 @@ import DummyPage from "./components/DummyPage.vue";
 import HomePage from "./components/User/HomePage.vue";
 import PayMent from "./components/User/Cart/PayMent.vue";
 import ParlourView from "./components/Parlour/ParlourView.vue"
+import DummyPage2 from "./components/User/DummyPage2.vue";
+import BarChart from "./components/Admin/BarChart.vue";
+import DoughnutChart from "./components/Admin/DoughnutChart.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -56,10 +60,12 @@ const router = createRouter({
     {path:"/adminsubcat",component: AdminSubCat},
     {path:"/adminoffers",component:AdminOffers},
     {path:"/dummy",component: DummyPage},
-    {path:"/home",component:HomePage}
-,
+    {path:"/home",component:HomePage},
+    {path:"/dummy2",component:DummyPage2},
     {path:"/payMent",component:PayMent},
-    {path:"/parlourView",component:ParlourView}
+    {path:"/parlourView",component:ParlourView},
+    {path:"/barChart",component:BarChart},
+    {path:"/doughnut",component:DoughnutChart},
    
   ],
 });
