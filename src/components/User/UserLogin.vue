@@ -598,23 +598,7 @@ export default {
     padding: 20px;
     width: 800px;
   }
-  .content-inner::before {
-    content: '';
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    /* top: 233px;
-    left: 208px;
-    width: 800px;
-    height: 448px; */
-   /* Background image */
-    background-color: rgba(0, 0, 0, 0.3); /* Black filter */
-    opacity: 0.5; /* Adjust opacity as needed */
-    z-index: 0; /* Behind content */
-    border-radius: 10px;
-  }
+  
 /* .content-inner::before {
   content: '';
   position: absolute;

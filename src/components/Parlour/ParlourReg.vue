@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
+  <v-card class="mx-auto" color="grey-lighten-3" max-width="100%">
     <v-layout>
       <v-app-bar
         color="teal-darken-4"
@@ -103,6 +103,35 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="6">
+                <v-btn class="btn1" @click="diaLoc=!diaLoc">Select Location</v-btn>
+              </v-col>
+              <v-dialog v-model="diaLoc">
+                <button class="close-btn" @click="diaLoc = false">
+                      X
+                    </button>
+                <parlour-location></parlour-location>
+              </v-dialog>
+              <v-col cols="12" sm="6" >
+                <v-text-field
+                  v-model="latitude"
+                  label="Latitude"
+                  variant="underlined"
+                  :rules="locationRules"
+                  required
+                  readonly
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" >
+                <v-text-field
+                  v-model="longitude"
+                  label="Longitude"
+                  variant="underlined"
+                  :rules="locationRules"
+                  required
+                  readonly
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
                 <v-text-field
                   v-model="phone"
                   label="Phone Number"
@@ -196,9 +225,14 @@
   </v-card>
 </template>
 <script>
+import ParlourLocation from "./ParlourLocation.vue"
 export default {
+  components:{
+    ParlourLocation
+  },
   data() {
     return {
+      diaLoc:false,
       parlourPhoto: null,
       imageUrl:null,
       previewUrl: null,
@@ -221,6 +255,8 @@ export default {
       errorMessagel:'',
       errorp:false,
       errorMessagep:"",
+      latitude:null,
+      longitude:null,
       licenseFileRules: [v => {
           return !!v || "License file is required."},]
     };
@@ -278,6 +314,8 @@ export default {
           formData.append("licenseNumber", this.licenseNo); // License Number
           formData.append("licenseImage", this.licenseUrl);
           formData.append("ratings", this.rating); // License File
+          formData.append("latitude", this.latitude);
+          formData.append("longitude", this.longitude);
 
           this.$store.dispatch("addTheParlour", formData)
             .then(() => {
@@ -321,9 +359,20 @@ export default {
       if(value){
       this.errorp=false 
       this.errorMessagep=""}
-    }
+    },
+    diaLoc(value){
+      if(value===false && this.parlourLoc.latitude){
+      this.latitude=this.parlourLoc.latitude
+      this.longitude=this.parlourLoc.longitude}
+      }
+  },
+  created(){
+    sessionStorage.removeItem('parlourlocation');
   },
   computed: {
+    parlourLoc(){
+      return JSON.parse(sessionStorage.getItem("parlourlocation"))
+    },
     uploadedPhotoName() {
       if (this.parlourPhoto) {
         return this.parlourPhoto.name;
@@ -414,6 +463,20 @@ export default {
 };
 </script>
 <style scoped>
+.close-btn {
+  position: relative;
+  margin-left:1440px;
+  margin-bottom:5px;
+  height: 40px;
+  width: 40px;
+ 
+  background-color: transparent;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  color: #fffcfc;
+  font-size: 20px;
+  cursor: pointer;
+}
 .v-text-field {
   color: white;
 }
