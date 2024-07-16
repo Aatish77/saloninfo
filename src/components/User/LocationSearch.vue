@@ -116,7 +116,7 @@ function selectSuggestion(suggestion) {
       place.latitude,
       place.longitude
     );
-    return distance <= 100; // 100 km radius
+    return distance <= 50; // 100 km radius
   });
 
   // Add nearby places markers
