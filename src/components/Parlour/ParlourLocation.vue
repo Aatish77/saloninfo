@@ -66,6 +66,8 @@
             latitude: latlng.lat,
             longitude: latlng.lng,
           };
+          userMarker.value.setLatLng([latlng.lat, latlng.lng]);
+    userMarker.value.setTooltipContent(selectedPlace.value.name);
           map.value.setView(latlng, 10);
         });
     }

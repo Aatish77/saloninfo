@@ -36,7 +36,7 @@ const userMarker = ref(null);
 // Known correct location
 const correctLat = 9.53475442125953;
 const correctLon = 76.31948869004815;
-const accuracyThreshold = 0.1; // Define a threshold for acceptable accuracy
+ // Define a threshold for acceptable accuracy
 const nearbyRadius = 50; // Radius in kilometers for nearby places
 
 const placesInKerala = [
@@ -69,6 +69,25 @@ onMounted(() => {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map.value);
+    userMarker.value = L.marker([10.8505, 76.2711], { draggable: true })
+        .addTo(map.value)
+        .bindTooltip("Drag to select location", {
+          permanent: true,
+          direction: "top",
+        })
+        .on("dragend", (event) => {
+          const latlng = event.target.getLatLng();
+          selectedPlace.value = {
+            // name: `Lat: ${latlng.lat.toFixed(5)}, Lon: ${latlng.lng.toFixed(5)}`,
+            name:'Selected Location',
+            latitude: latlng.lat,
+            longitude: latlng.lng,
+          };
+          map.value.setView(latlng, 10);
+          userMarker.value.setLatLng([latlng.lat, latlng.lng]);
+    userMarker.value.setTooltipContent(selectedPlace.value.name);
+          displayNearbyPlaces(selectedPlace.value.latitude, selectedPlace.value.longitude, nearbyRadius);
+        });
   }
 });
 
@@ -98,7 +117,9 @@ function selectSuggestion(suggestion) {
     longitude: selectedLon
   };
 
-  setMapLocation(selectedLat, selectedLon, selectedPlace.value.name);
+  map.value.setView([selectedLat, selectedLon], 10);
+  userMarker.value.setLatLng([selectedLat, selectedLon]);
+    userMarker.value.setTooltipContent(selectedPlace.value.name);
 
   // Find and display nearby places within 10 km
   displayNearbyPlaces(selectedLat, selectedLon, nearbyRadius);
@@ -113,19 +134,19 @@ function getLocation() {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
-
-        // Calculate distance between retrieved location and correct location
-        const distanceToCorrectLocation = calculateDistance(lat, lng, correctLat, correctLon);
-
-        // Check if the distance is within the acceptable accuracy threshold
-        if (distanceToCorrectLocation > accuracyThreshold) {
-          console.warn(`Geolocation accuracy is off by more than ${accuracyThreshold} km. Using the correct coordinates.`);
-          setMapLocation(correctLat, correctLon, "Your Location");
+        map.value.setView([lat, lng], 13);
+  
+          userMarker.value.setLatLng([lat, lng]);
+          userMarker.value.setTooltipContent("Your Location");
+  
+          selectedPlace.value = {
+            name: "Current Location",
+            latitude: lat,
+            longitude: lng,
+          };
           displayNearbyPlaces(correctLat, correctLon, nearbyRadius);
-        } else {
-          setMapLocation(lat, lng, "Your Location");
-          displayNearbyPlaces(lat, lng, nearbyRadius);
-        }
+        // Calculate distance between retrieved location and correct location
+        
       },
       (error) => {
         console.error('Error getting location:', error);
