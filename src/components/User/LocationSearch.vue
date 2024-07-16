@@ -29,8 +29,8 @@ const query = ref("");
 const suggestions = ref([]);
 const nearbyPlaces = ref([]);
 const selectedPlace = ref(null);
-const map = ref();
-const mapContainer = ref();
+const map = ref(null);
+const mapContainer = ref(null);
 const userMarker = ref(null);
 
 const placesInKerala = [
@@ -57,12 +57,14 @@ const placesInKerala = [
 ];
 
 onMounted(() => {
-  map.value = L.map(mapContainer.value).setView([10.8505, 76.2711], 7);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(map.value);
+  if (mapContainer.value) {
+    map.value = L.map(mapContainer.value).setView([10.8505, 76.2711], 7);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map.value);
+  }
 });
 
 function fetchSuggestions() {
@@ -81,6 +83,8 @@ function fetchSuggestions() {
 }
 
 function selectSuggestion(suggestion) {
+  if (!map.value) return;
+
   const selectedLat = parseFloat(suggestion.lat);
   const selectedLon = parseFloat(suggestion.lon);
   selectedPlace.value = {
@@ -90,7 +94,7 @@ function selectSuggestion(suggestion) {
   };
 
   map.value.setView([selectedLat, selectedLon], 10);
-  
+
   // Remove existing markers
   map.value.eachLayer((layer) => {
     if (layer instanceof L.Marker) {
@@ -101,7 +105,7 @@ function selectSuggestion(suggestion) {
   // Add selected place marker
   L.marker([selectedLat, selectedLon], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' }) })
     .addTo(map.value)
-    .bindTooltip(selectedPlace.value.name, {  direction: 'top' })
+    .bindTooltip(selectedPlace.value.name, { permanent: true, direction: 'top' })
     .bindPopup(selectedPlace.value.name);
 
   // Find and display nearby places within 100 km
@@ -112,14 +116,14 @@ function selectSuggestion(suggestion) {
       place.latitude,
       place.longitude
     );
-    return distance <= 50; // 100 km radius
+    return distance <= 100; // 100 km radius
   });
 
   // Add nearby places markers
   nearbyPlaces.value.forEach(place => {
     L.marker([place.latitude, place.longitude], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }) })
       .addTo(map.value)
-      .bindTooltip(place.name, {direction: 'top' })
+      .bindTooltip(place.name, { permanent: true, direction: 'top' })
       .bindPopup(place.name);
   });
 
@@ -127,7 +131,7 @@ function selectSuggestion(suggestion) {
 }
 
 function getLocation() {
-  if (navigator.geolocation) {
+  if (navigator.geolocation && map.value) {
     navigator.geolocation.watchPosition((position) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
