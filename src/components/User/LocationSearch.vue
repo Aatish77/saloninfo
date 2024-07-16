@@ -33,6 +33,12 @@ const map = ref(null);
 const mapContainer = ref(null);
 const userMarker = ref(null);
 
+// Known correct location
+const correctLat = 9.53475442125953;
+const correctLon = 76.31948869004815;
+const accuracyThreshold = 0.1; // Define a threshold for acceptable accuracy
+const nearbyRadius = 50; // Radius in kilometers for nearby places
+
 const placesInKerala = [
   { name: "Thiruvananthapuram", latitude: 8.5241, longitude: 76.9366 },
   { name: "Kochi", latitude: 9.9312, longitude: 76.2673 },
@@ -61,8 +67,7 @@ onMounted(() => {
     map.value = L.map(mapContainer.value).setView([10.8505, 76.2711], 7);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map.value);
   }
 });
@@ -93,63 +98,98 @@ function selectSuggestion(suggestion) {
     longitude: selectedLon
   };
 
-  map.value.setView([selectedLat, selectedLon], 10);
+  setMapLocation(selectedLat, selectedLon, selectedPlace.value.name);
 
-  // Remove existing markers
-  map.value.eachLayer((layer) => {
-    if (layer instanceof L.Marker) {
-      map.value.removeLayer(layer);
-    }
-  });
-
-  // Add selected place marker
-  L.marker([selectedLat, selectedLon], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' }) })
-    .addTo(map.value)
-    .bindTooltip(selectedPlace.value.name, { permanent: true, direction: 'top' })
-    .bindPopup(selectedPlace.value.name);
-
-  // Find and display nearby places within 100 km
-  nearbyPlaces.value = placesInKerala.filter(place => {
-    const distance = calculateDistance(
-      selectedLat,
-      selectedLon,
-      place.latitude,
-      place.longitude
-    );
-    return distance <= 50; // 100 km radius
-  });
-
-  // Add nearby places markers
-  nearbyPlaces.value.forEach(place => {
-    L.marker([place.latitude, place.longitude], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }) })
-      .addTo(map.value)
-      .bindTooltip(place.name, { permanent: true, direction: 'top' })
-      .bindPopup(place.name);
-  });
+  // Find and display nearby places within 10 km
+  displayNearbyPlaces(selectedLat, selectedLon, nearbyRadius);
 
   suggestions.value = [];
 }
 
 function getLocation() {
   if (navigator.geolocation && map.value) {
-    navigator.geolocation.watchPosition((position) => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      map.value.setView([lat, lng], 13);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
 
-      if (userMarker.value) {
-        userMarker.value.setLatLng([lat, lng]);
-      } else {
-        userMarker.value = L.marker([lat, lng], { draggable: true })
-          .addTo(map.value)
-          .bindTooltip("Your Location", { permanent: true, direction: 'top' })
-          .on("dragend", (event) => {
-            console.log(event.target.getLatLng());
-          });
-      }
-    });
+        // Calculate distance between retrieved location and correct location
+        const distanceToCorrectLocation = calculateDistance(lat, lng, correctLat, correctLon);
+
+        // Check if the distance is within the acceptable accuracy threshold
+        if (distanceToCorrectLocation > accuracyThreshold) {
+          console.warn(`Geolocation accuracy is off by more than ${accuracyThreshold} km. Using the correct coordinates.`);
+          setMapLocation(correctLat, correctLon, "Your Location");
+          displayNearbyPlaces(correctLat, correctLon, nearbyRadius);
+        } else {
+          setMapLocation(lat, lng, "Your Location");
+          displayNearbyPlaces(lat, lng, nearbyRadius);
+        }
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+        alert('Unable to retrieve your location. Please check your location settings and try again.');
+        setMapLocation(correctLat, correctLon, "Your Location"); // Fallback to correct location
+        displayNearbyPlaces(correctLat, correctLon, nearbyRadius);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  } else {
+    alert('Geolocation is not supported by your browser.');
   }
 }
+
+function setMapLocation(lat, lng, label) {
+  map.value.setView([lat, lng], 13);
+
+  // Remove existing markers except userMarker
+  map.value.eachLayer((layer) => {
+    if (layer instanceof L.Marker && layer !== userMarker.value) {
+      map.value.removeLayer(layer);
+    }
+  });
+
+  // Update userMarker position or create new marker
+  if (userMarker.value) {
+    userMarker.value.setLatLng([lat, lng]);
+  } else {
+    userMarker.value = L.marker([lat, lng], { draggable: true })
+      .addTo(map.value)
+      .bindTooltip(label, { permanent: true, direction: 'top' })
+      .on("dragend", (event) => {
+        const newLatLng = event.target.getLatLng();
+        console.log(`Marker Dragged to Latitude: ${newLatLng.lat}, Longitude: ${newLatLng.lng}`);
+        displayNearbyPlaces(newLatLng.lat, newLatLng.lng, nearbyRadius);
+      });
+  }
+
+  // Display nearby places for the updated location
+  displayNearbyPlaces(lat, lng, nearbyRadius);
+}
+
+function displayNearbyPlaces(lat, lng, radius) {
+  // Clear previous nearbyPlaces markers
+  nearbyPlaces.value.forEach(place => {
+    map.value.removeLayer(place.marker);
+  });
+  nearbyPlaces.value = [];
+
+  // Find and display nearby places within the specified radius
+  placesInKerala.forEach(place => {
+    const distance = calculateDistance(lat, lng, place.latitude, place.longitude);
+    if (distance <= radius) {
+      const marker = L.marker([place.latitude, place.longitude], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }) })
+        .addTo(map.value)
+        .bindTooltip(place.name, { permanent: true, direction: 'top' })
+        .bindPopup(place.name);
+      nearbyPlaces.value.push({ ...place, marker });
+    }
+  });
+}
+
+
+
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Radius of the Earth in km
