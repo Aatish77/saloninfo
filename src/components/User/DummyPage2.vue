@@ -33,10 +33,6 @@ const map = ref(null);
 const mapContainer = ref(null);
 const userMarker = ref(null);
 
-// Known correct location
-const correctLat = 9.53475442125953;
-const correctLon = 76.31948869004815;
-const accuracyThreshold = 0.1; // Define a threshold for acceptable accuracy
 const nearbyRadius = 50; // Radius in kilometers for nearby places
 
 const placesInKerala = [
@@ -114,24 +110,20 @@ function getLocation() {
         const lng = position.coords.longitude;
         console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
 
-        // Calculate distance between retrieved location and correct location
-        const distanceToCorrectLocation = calculateDistance(lat, lng, correctLat, correctLon);
+        setMapLocation(lat, lng, "Your current Location");
+        displayNearbyPlaces(lat, lng, nearbyRadius);
 
-        // Check if the distance is within the acceptable accuracy threshold
-        if (distanceToCorrectLocation > accuracyThreshold) {
-          console.warn(`Geolocation accuracy is off by more than ${accuracyThreshold} km. Using the correct coordinates.`);
-          setMapLocation(correctLat, correctLon, "Your Location");
-          displayNearbyPlaces(correctLat, correctLon, nearbyRadius);
-        } else {
-          setMapLocation(lat, lng, "Your Location");
-          displayNearbyPlaces(lat, lng, nearbyRadius);
-        }
+        // Update the input field with the retrieved location's display name
+        query.value = "Your current Location";
       },
       (error) => {
         console.error('Error getting location:', error);
         alert('Unable to retrieve your location. Please check your location settings and try again.');
-        setMapLocation(correctLat, correctLon, "Your Location"); // Fallback to correct location
-        displayNearbyPlaces(correctLat, correctLon, nearbyRadius);
+        setMapLocation(10.8505, 76.2711, "Default Location"); // Fallback to default location
+        displayNearbyPlaces(10.8505, 76.2711, nearbyRadius);
+
+        // Update the input field with the default location's display name
+        query.value = "Default Location";
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
