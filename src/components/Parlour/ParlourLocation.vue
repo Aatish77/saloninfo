@@ -1,9 +1,9 @@
 <template>
     <div>
       <v-row>
-        <v-col cols="6">
+        <!-- <v-col cols="6">
           <v-btn @click="getLocation" class="mb-3">Get My Location</v-btn>
-        </v-col>
+        </v-col> -->
         <v-col cols="6">
           <input
             style="background-color: white; margin-left: 420px;"
@@ -108,30 +108,30 @@
     userMarker.value.setTooltipContent(selectedPlace.value.name);
   }
   
-  function getLocation() {
-    if (navigator.geolocation && map.value) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          map.value.setView([lat, lng], 13);
+  // function getLocation() {
+  //   if (navigator.geolocation && map.value) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const lat = position.coords.latitude;
+  //         const lng = position.coords.longitude;
+  //         map.value.setView([lat, lng], 13);
   
-          userMarker.value.setLatLng([lat, lng]);
-          userMarker.value.setTooltipContent("Your Location");
+  //         userMarker.value.setLatLng([lat, lng]);
+  //         userMarker.value.setTooltipContent("Your Location");
   
-          selectedPlace.value = {
-            name: "Current Location",
-            latitude: lat,
-            longitude: lng,
-          };
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        },
-        { enableHighAccuracy: true }
-      );
-    }
-  }
+  //         selectedPlace.value = {
+  //           name: "Current Location",
+  //           latitude: lat,
+  //           longitude: lng,
+  //         };
+  //       },
+  //       (error) => {
+  //         console.error("Error getting location:", error);
+  //       },
+  //       { enableHighAccuracy: true }
+  //     );
+  //   }
+  // }
   
   function submit() {
     console.log(selectedPlace.value);
@@ -140,27 +140,27 @@
   </script>
   
   <style scoped>
-  input {
-    width: 300px;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    max-width: 300px;
-  }
-  
-  li {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  li:hover {
-    background-color: #f0f0f0;
-  }
+    input {
+      width: 300px;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ccc;
+      max-width: 300px;
+    }
+    
+    li {
+      padding: 8px;
+      cursor: pointer;
+    }
+    
+    li:hover {
+      background-color: #f0f0f0;
+    }
   </style>
   
