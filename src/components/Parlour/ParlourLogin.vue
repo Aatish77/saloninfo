@@ -161,35 +161,36 @@ export default {
           this.$router.push("/parlourprofile")
         }
         else{
-          this.error = "The email id and password don't match";
+          this.$refs.form.validate().then((valid) => {
+        console.log(valid);
+        if (valid.valid) {
+          this.error = "";
+          let found = false;
+          console.log("p", this.parlours);
+          let p = this.parlours;
+          for (const parlour of p) {
+            if (
+              this.email === parlour.email &&
+              this.password === parlour.password
+            ) {
+              sessionStorage.setItem("currentParlour", JSON.stringify(parlour));
+              this.$router.push("/parlourprofile");
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            this.error =
+              "The phone number and password you entered don't match";
+          }
+        }
+      });
+          // this.error = "The email id and password don't match";
         }
       } catch (error) {
         console.error(error);
       }
-      // this.$refs.form.validate().then((valid) => {
-      //   console.log(valid);
-      //   if (valid.valid) {
-      //     this.error = "";
-      //     let found = false;
-      //     console.log("p", this.parlours);
-      //     let p = this.parlours;
-      //     for (const parlour of p) {
-      //       if (
-      //         this.phone === parlour.phone &&
-      //         this.password === parlour.password
-      //       ) {
-      //         sessionStorage.setItem("currentParlour", JSON.stringify(parlour));
-      //         this.$router.push("/parlourprofile");
-      //         found = true;
-      //         break;
-      //       }
-      //     }
-      //     if (!found) {
-      //       this.error =
-      //         "The phone number and password you entered don't match";
-      //     }
-      //   }
-      // });
+      
     },
   },
 };

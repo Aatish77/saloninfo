@@ -3,15 +3,18 @@ import axios from "axios";
 export default{
     addOneUser(context, payload) {
         context.commit("addAUser", payload);
-      },
-      async parlourLogin(context, payload) {
+      },  
+        async parlourLogin(context, payload) {
         try {
           console.log(payload);
           const response = await axios.post(
             `${context.getters.getBaseUrl}/parlour/ParlourLogin`,
             payload
           );
+          
           if (response.status === 200) {
+            sessionStorage.setItem("parlourToken",response.data)
+            context.commit("addParlourToken", response.data);
             console.log(response.data);
             context.commit("loadCurrentSalon",response.data)
             return response;
@@ -28,6 +31,7 @@ export default{
           );
           if (response.status === 200) {
             console.log(response.data);
+            sessionStorage.setItem("adminToken",response.data)
             context.commit("addAdmin", response.data);
             return true;
           }
@@ -39,7 +43,10 @@ export default{
         try {
           const response = await axios.get(`${context.getters.getBaseUrl}/`);
           if (response.status === 200) {
-            context.commit("addUsers", response.data);
+            // context.commit("addUsers", response.data);
+            sessionStorage.setItem("userToken",response.data)
+            context.commit("addUserToken", response.data);
+            return response.data
           }
         } catch (error) {
           console.error(error);
@@ -48,7 +55,11 @@ export default{
       async viewCategories(context) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/Categories/all`)
+            `${context.getters.getBaseUrl}/Categories/all`,
+          {headers: {
+            Authorization: `Bearer ${context.getters.getAdminToken}`}
+          })
+
           if (response.status===200){
             console.log("Success")
             console.log(response.data)
@@ -96,7 +107,7 @@ export default{
       async addTheUser(context, payload) {
         try {
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/`,
+            `${context.getters.getBaseUrl}/user/UserReg`,
             payload
           );
           if (response.status === 201) {
@@ -258,5 +269,16 @@ export default{
             console.error(error)
           }
       },
+      async addRating(context,payload){
+        try{
+          const response = await axios.post(`${context.getters.getBaseUrl}/ratings/add?parlourId=2`,payload)
+          if (response.status===200){
+            console.log(response.data)
+          }}
+          catch(error){
+            console.error(error)
+          }
+        }
+        
+      }
       
-}

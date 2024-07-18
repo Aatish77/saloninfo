@@ -1,207 +1,224 @@
 <template>
-  <v-card class="mx-auto" color="grey-lighten-3" max-width="1208">
-    <v-layout>
-      <v-app-bar
-        style="z-index: 1;background-image: linear-gradient(135deg, transparent 0%, transparent 50%,rgba(159, 159, 159,0.07) 50%, rgba(159, 159, 159,0.07) 77%,transparent 77%, transparent 100%),linear-gradient(90deg, transparent 0%, transparent 91%,rgba(159, 159, 159,0.07) 91%, rgba(159, 159, 159,0.07) 99%,transparent 99%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 24%,rgba(159, 159, 159,0.07) 24%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(0deg, transparent 0%, transparent 49%,rgba(159, 159, 159,0.07) 49%, rgba(159, 159, 159,0.07) 63%,transparent 63%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));"
-        color="teal-darken-4"
+  <div>
+    <input 
+      type="text" 
+      v-model="query" 
+      @input="fetchSuggestions" 
+      placeholder="Enter a location" 
+    />
+    <ul v-if="suggestions.length">
+      <li 
+        v-for="suggestion in suggestions" 
+        :key="suggestion.place_id" 
+        @click="selectSuggestion(suggestion)"
       >
-        <template v-slot:image>
-          <v-img
-            gradient="to top right, rgba(255,255,255,.0), rgba(255,255,255,.2)"
-          ></v-img>
-        </template>
-
-        <template v-slot:prepend>
-          <i class="fas fa-cut"></i>
-        </template>
-
-        <v-app-bar-title
-          style="
-            margin-left: 2px;
-            font-size: 30px;
-            font-weight: 800;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-              'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-          "
-          >saloninfo</v-app-bar-title
-        >
-        <v-slide-y-transition class="mx-3">
-          <v-text-field
-            class="search"
-            v-model="searchText"
-            placeholder="Search"
-            prepend-inner-icon="mdi-magnify"
-            solo-inverted
-            hide-details
-          ></v-text-field>
-        </v-slide-y-transition>
-
-        <!-- Location Input -->
-        <!-- <v-slide-y-transition class="mx-3 mt-3">
-    <v-text-field
-      v-model="location"
-      placeholder="Enter your location"
-      prepend-inner-icon="mdi-map-marker"
-      solo-inverted
-      hide-details
-      @input="fetchNearbySalons"
-    ></v-text-field>
-  </v-slide-y-transition> -->
-        <v-spacer></v-spacer>
-        <!-- <v-card class="mx-auto" width="200">
-          <v-list v-model:opened="open">
-            <v-list-group value="Users">
-              <template v-slot:activator="{ props }">
-                <v-list-item
-                  v-bind="props"
-                    prepend-icon="mdi-account-circle"
-                  title="Users"
-                ></v-list-item>
-              </template>
-              <v-list-item
-                style="z-index: 100 !important"
-                prepend-icon="mdi-home"
-                title="Home"
-              ></v-list-item>
-            </v-list-group>
-          </v-list>
-        </v-card> -->
-        <!-- <v-select 
-  :items="['Logout']"
-  v-model="selectedItem"
->
-  <template #label>
-    <div style="display: flex; align-items: center;">
-      <h4 style="margin-left:80px; margin-right: 10px; margin-top: 15px;">{{currentUser.fullName}} </h4>
-      
-      <v-avatar style="margin-top: 5px;">
-        <v-img src="https://img.freepik.com/free-photo/close-portrait-man-with-beard-all-face-snow-snowy-forest_343596-4609.jpg?w=996&t=st=1714026882~exp=1714027482~hmac=123975867a0075aee012ece59b12d3eabfa90f2e848983aec784d0d7750d3c7e"></v-img>
-      </v-avatar>
-    </div>
-  </template>
-</v-select> -->
-
-        <!-- Search bar -->
-
-        <!-- <h6 class="user mx-2">Hi, {{ currentUser.fullName }}</h6> -->
-        <v-app-bar-nav-icon @click.stop = "drawer = !drawer"></v-app-bar-nav-icon>
-      </v-app-bar>
-
-      <v-main>
-        <v-card
-          style="background-color: black; color: white;height: 100vh;"
-          class="mx-auto"
-          max-width="1200"
-        >
-          <div>
-            <v-breadcrumbs :items="items">
-              <template v-slot:divider>
-                <v-icon icon="mdi-chevron-right"></v-icon>
-              </template>
-            </v-breadcrumbs>
-          </div>
-          <v-container fluid v-for="item in datas.subCategories" :key="item">
-             <v-row >
-                
-                    <!-- <v-avatar image="smirk.png" size="100"><v-img
-                    :src="item.img"></v-img></v-avatar> -->
-                    
-                    <h1>{{ item.title }}</h1></v-row> 
-            <v-row><v-col v-for="i in item.subsubCategories" :key="i">
-                <v-card class="mx-auto card1" max-width="344" max-height="260px" @click="navigateToEach(datas.title,item.title,i.title,currentLabel.label)">
-                  <v-img height="200px" :src="i.img" cover></v-img>
-
-                  <v-card-item ><h5 class="multi-line-title">{{ i.title }}</h5>
-                    
-                  </v-card-item>
-                </v-card>
-
-            </v-col></v-row>
-               
-        </v-container>
-        </v-card></v-main></v-layout
-  ></v-card>
+        {{ suggestion.display_name }}
+      </li>
+    </ul>
+    <!-- <button @click="getLocation()">Get My Location</button> -->
+    <div ref="mapContainer" style="width: 100%; height: 500px"></div>
+  </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      datas: {},
-    };
-  },
-  created() {
-    this.items = [
-      { title: this.currentLabel.label, href: "/services" },
-      { title: this.currentLabel.category },
-    ];
-    if(this.currentLabel.label==="Women"){
-    for (let i of this.currentService.women){
-        if(i.title===this.currentLabel.category){
-            this.datas=i
-        }
-    }
+
+<script setup>
+import { onMounted, ref } from "vue";
+import L from "leaflet";
+import axios from "axios";
+
+const query = ref("");
+const suggestions = ref([]);
+const nearbyPlaces = ref([]);
+const selectedPlace = ref(null);
+const map = ref(null);
+const mapContainer = ref(null);
+const userMarker = ref(null);
+
+const nearbyRadius = 50; // Radius in kilometers for nearby places
+
+const placesInKerala = [
+  { name: "Thiruvananthapuram", latitude: 8.5241, longitude: 76.9366 },
+  { name: "Kochi", latitude: 9.9312, longitude: 76.2673 },
+  { name: "Kozhikode", latitude: 11.2588, longitude: 75.7804 },
+  { name: "Thrissur", latitude: 10.5276, longitude: 76.2144 },
+  { name: "Alappuzha", latitude: 9.4981, longitude: 76.3388 },
+  { name: "Palakkad", latitude: 10.7867, longitude: 76.6548 },
+  { name: "Kollam", latitude: 8.8932, longitude: 76.6141 },
+  { name: "Kannur", latitude: 11.8745, longitude: 75.3704 },
+  { name: "Kottayam", latitude: 9.5916, longitude: 76.5222 },
+  { name: "Malappuram", latitude: 11.0735, longitude: 76.0745 },
+  { name: "Pathanamthitta", latitude: 9.2646, longitude: 76.7870 },
+  { name: "Idukki", latitude: 9.8503, longitude: 76.9747 },
+  { name: "Varkala", latitude: 8.7379, longitude: 76.7163 },
+  { name: "Guruvayur", latitude: 10.5943, longitude: 76.0410 },
+  { name: "Munnar", latitude: 10.0892, longitude: 77.0595 },
+  { name: "Kumarakom", latitude: 9.6174, longitude: 76.4294 },
+  { name: "Wayanad", latitude: 11.6854, longitude: 76.1319 },
+  { name: "Bekal", latitude: 12.3660, longitude: 75.0466 },
+  { name: "Vagamon", latitude: 9.6855, longitude: 76.9183 },
+  { name: "Sabarimala", latitude: 9.4420, longitude: 77.0694 }
+];
+
+onMounted(() => {
+  if (mapContainer.value) {
+    map.value = L.map(mapContainer.value).setView([10.8505, 76.2711], 7);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map.value);
   }
-  else if(this.currentLabel.label==="Men"){
-    for (let i of this.currentService.men){
-        if(i.title===this.currentLabel.category){
-            this.datas=i
-        }
-    }
+});
+
+function fetchSuggestions() {
+  if (query.value.length > 2) {
+    axios
+      .get(`https://nominatim.openstreetmap.org/search?format=json&q=${query.value}`)
+      .then(response => {
+        suggestions.value = response.data;
+      })
+      .catch(error => {
+        console.error('Error fetching suggestions:', error);
+      });
+  } else {
+    suggestions.value = [];
   }
-  },
-  methods:{
-    navigateToEach(category,subCategory,subsubCategory){
-        const t={cat:category,subCat:subCategory,subsubCat:subsubCategory}
-        sessionStorage.setItem("currentService",JSON.stringify(t))
-        this.$router.push("/serviceparlour")
-    },
-  },
-  computed: {
-    currentService(){
-        return this.$store.getters["getServiceCategories"]
-    },
-    currentLabel() {
-      const currentLabel = JSON.parse(sessionStorage.getItem("currentLabel"));
-      return currentLabel;
-    },
-  },
-};
+}
+
+function selectSuggestion(suggestion) {
+  if (!map.value) return;
+
+  const selectedLat = parseFloat(suggestion.lat);
+  const selectedLon = parseFloat(suggestion.lon);
+  selectedPlace.value = {
+    display_name: suggestion.display_name,
+    latitude: selectedLat,
+    longitude: selectedLon
+  };
+
+  setMapLocation(selectedLat, selectedLon, suggestion.display_name);
+
+  // Find and display nearby places within 10 km
+  displayNearbyPlaces(selectedLat, selectedLon, nearbyRadius);
+
+  suggestions.value = [];
+}
+
+// function getLocation() {
+//   if (navigator.geolocation && map.value) {
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         const lat = position.coords.latitude;
+//         const lng = position.coords.longitude;
+//         console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
+
+//         setMapLocation(lat, lng, "Your current Location");
+//         displayNearbyPlaces(lat, lng, nearbyRadius);
+
+//         // Update the input field with the retrieved location's display name
+//         query.value = "Your current Location";
+//       },
+//       (error) => {
+//         console.error('Error getting location:', error);
+//         alert('Unable to retrieve your location. Please check your location settings and try again.');
+//         setMapLocation(10.8505, 76.2711, "Default Location"); // Fallback to default location
+//         displayNearbyPlaces(10.8505, 76.2711, nearbyRadius);
+
+//         // Update the input field with the default location's display name
+//         query.value = "Default Location";
+//       },
+//       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+//     );
+//   } else {
+//     alert('Geolocation is not supported by your browser.');
+//   }
+// }
+
+function setMapLocation(lat, lng, label) {
+  map.value.setView([lat, lng], 13);
+
+  // Remove existing markers except userMarker
+  map.value.eachLayer((layer) => {
+    if (layer instanceof L.Marker && layer !== userMarker.value) {
+      map.value.removeLayer(layer);
+    }
+  });
+
+  // Update userMarker position or create new marker
+  if (userMarker.value) {
+    userMarker.value.setLatLng([lat, lng]);
+  } else {
+    userMarker.value = L.marker([lat, lng], { draggable: true })
+      .addTo(map.value)
+      .bindTooltip(label, { permanent: true, direction: 'top' })
+      .on("dragend", (event) => {
+        const newLatLng = event.target.getLatLng();
+        console.log(`Marker Dragged to Latitude: ${newLatLng.lat}, Longitude: ${newLatLng.lng}`);
+        displayNearbyPlaces(newLatLng.lat, newLatLng.lng, nearbyRadius);
+      });
+  }
+
+  // Display nearby places for the updated location
+  displayNearbyPlaces(lat, lng, nearbyRadius);
+}
+
+function displayNearbyPlaces(lat, lng, radius) {
+  // Clear previous nearbyPlaces markers
+  nearbyPlaces.value.forEach(place => {
+    map.value.removeLayer(place.marker);
+  });
+  nearbyPlaces.value = [];
+
+  // Find and display nearby places within the specified radius
+  placesInKerala.forEach(place => {
+    const distance = calculateDistance(lat, lng, place.latitude, place.longitude);
+    if (distance <= radius) {
+      const marker = L.marker([place.latitude, place.longitude], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }) })
+        .addTo(map.value)
+        .bindTooltip(place.name, { permanent: true, direction: 'top' })
+        .bindPopup(place.name);
+      nearbyPlaces.value.push({ ...place, marker });
+    }
+  });
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the Earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; // Distance in km
+  return distance;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
 </script>
+
 <style scoped>
-
-.multi-line-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  overflow: hidden;
-}
-body {
-  height: 100vh;
-  background-color: black;
-  color: white;
-}
-.card1 {
-  color: white;
-  background-color: rgb(41, 41, 41);
-}
-.round-img {
-  border-radius: 50%;
-  
-  /* margin-bottom: 50px; */
-  margin-left: 120px;
-  padding: 50px;
-}
-.square-image {
-  width: 100%; /* Set the width to 100% */
-   /* 1:1 Aspect Ratio */
-  position: relative;
-  overflow: hidden;
+input {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 10px;
 }
 
-.square-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}</style>
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  max-width: 300px;
+}
+
+li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #f0f0f0;
+}
+</style>

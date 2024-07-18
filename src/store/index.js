@@ -6,7 +6,11 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.16:8086`,
+      // baseUrl: `http://192.168.1.20:8082`,
+      baseUrl: `http://localhost:8082`,
+      adminToken:sessionStorage.getItem('adminToken')||'',
+      parlourToken:sessionStorage.getItem('parlourToken')||"",
+      userToken:sessionStorage.getItem('userToken')||"",
       users: [
         { userId:"1",
           fullName: "Rakesh S",
@@ -396,7 +400,7 @@ const store = createStore({
       salonsPending: [
         {
           parlourPic:
-            "https://cdn.tapetender70er.de/media/image/6c/3d/af/Hair-Salon-Wallpaper-Design_944x944@2x.webp",
+            "https://vendor.mschirpy.com/blogs/1696850528.jpg",
           parlourName: "Classic Cuts Hair Salon",
           location: "Chandanakkavu road, Alappuzha",
           phone: "9846766214",
@@ -522,12 +526,14 @@ const store = createStore({
           parlourName: "Amaze Beauty Parlour & Bridal Makeup Studio",
           type: "Women",
           phone: "9495193392",
-          email: "amazebeauty@email.com",
+          email: "a@gmail.com",
           username: "amaze",
           password: "Pass123@1",
           src: "https://cdn.tapetender70er.de/media/image/6c/3d/af/Hair-Salon-Wallpaper-Design_944x944@2x.webp",
           rating: 4.5,
           location: "Nadakkavu, Alappuzha",
+          latitude:9.652492496164513,
+          longitude: 76.32408329798503,
           locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.9097557147425!2d76.53979667478346!3d9.252360890818142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b061f4f39da6ea7%3A0x35daef4905593447!2sNadakkavu!5e0!3m2!1sen!2sin!4v1715839892019!5m2!1sen!2sin",
           flex: 3,
           id: "salon1",
@@ -877,9 +883,12 @@ const store = createStore({
           type: "Men",
           username: "thegarage",
           password: "Pass123@2",
-          src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
+          // src: "https://lh3.googleusercontent.com/p/AF1QipMDDLemTXyX1So7OH68OPVnUsfRJeZkKqvoaoM6=s1360-w1360-h1020",
+          src: require("@/assets/thegarage.jpg"),
           rating: 4.7,
           location: "YMCA road, Alappuzha",
+          latitude:9.498406137822036, 
+          longitude:76.33870263034589,
           parlourId:"2",
           locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.9152373328!2d76.33623521572925!3d9.498367919855726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08845fbbee7013%3A0x7ba0cda86b0d631d!2sThe%20Garage!5e0!3m2!1sen!2sin!4v1717129438735!5m2!1sen!2sin",
           flex: 3,
@@ -1059,7 +1068,7 @@ const store = createStore({
             },
           ],
           phone: "9846766214",
-          email: "thegarage@email.com",
+          email: "b@gmail.com",
         },
         {
           parlourName: "Vaniya Unisex Beauty Salon & Makeup Studio ",
@@ -1068,6 +1077,8 @@ const store = createStore({
 
           rating: 4.0,
           location: "Chandanakkavu road, Alappuzha",
+          latitude:9.484441203110263, 
+          longitude: 76.3445811300803,
           locationLink:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.928037340505!2d76.34522558911691!3d9.487457484507154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0885f939dc5ff1%3A0x336ec60eec9cc6b!2sAlappuzha!5e0!3m2!1sen!2sin!4v1715840447501!5m2!1sen!2sin",
           flex: 3,
           id: "salon3",
@@ -1600,6 +1611,8 @@ const store = createStore({
           type: "Men",
           src: "https://cdn.citymapia.com/kottayam/golden-style-gents-salon-and-beauty-parlour/14164/Portfolio.jpg?width=700&biz=2578&v=20210324065607",
           rating: 4.8,
+          latitude:9.462095577047265,
+          longitude: 76.341537224079,
           location: "Kalarcode, Alappuzha",
           flex: 3,
           id: "salon4",
@@ -1633,6 +1646,8 @@ const store = createStore({
           src: "https://www.designersarch.in/wp-content/uploads/2023/07/Low-Budget-Beauty-Salon-Interior-Design-2.jpg",
           rating: 4.6,
           location: "Mannancherry, Alappuzha",
+          latitude:9.566692345191786,
+          longitude: 76.34450472986485,
           flex: 3,
           id: "salon5",
           description:
@@ -1650,9 +1665,11 @@ const store = createStore({
         {
           parlourName: "Classic Cuts Hair Salon",
           type: "Men",
-          src: "https://antdisplay.com/pub/media/wysiwyg/5_18__1.JPG",
+          src: "https://res.cloudinary.com/conferences-and-exhibitions-pvt-ltd/image/upload/v1655285681/Salon-Management/2022/June/Men/Lead_e305ap.jpg",
           rating: 4.2,
           location: "Punnapra, Alappuzha",
+          latitude:9.44019086485429,
+          longitude: 76.34227716533024,
           flex: 3,
           id: "salon6",
           description:
@@ -1681,6 +1698,8 @@ const store = createStore({
           src: "https://www.trade4asia.com/ProductImg/beat.jpg",
           rating: 4.4,
           location: "Cherthala, Alappuzha",
+          latitude:9.673369335587484,
+          longitude: 76.33891410331687,
           flex: 3,
           id: "salon7",
           description:
@@ -1700,6 +1719,8 @@ const store = createStore({
           type: "Men",
           src: "https://www.swagmee.com/media/wysiwyg/blog/Men-Grooming--2.jpg",
           rating: 4.9,
+          latitude:9.513341412517981,
+          longitude: 76.32985825655054,
           location: "Aryad South, Alappuzha",
           flex: 3,
           id: "salon8",
