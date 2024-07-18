@@ -92,7 +92,7 @@ export default {
         phone: '0987654321',
         email: 'contact@amaze.com',
         licenseNo: 'ABC12345',
-        status: 1, // 0 = Denied, 1 = Approved, 2 = Waiting
+        status: 0, // 0 = Denied, 1 = Approved, 2 = Waiting
       },
       statusText: '',
       statusClass: '',
