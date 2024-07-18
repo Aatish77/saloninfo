@@ -17,7 +17,7 @@
         {{ suggestion.display_name }}
       </li>
     </ul>
-    <button @click="getLocation()">Get My Location</button>
+    <!-- <button @click="getLocation()">Get My Location</button> -->
     <div ref="mapContainer" style="width: 100%; height: 500px"></div>
   </div>
 </template>
@@ -101,35 +101,35 @@ export default {
 
       this.suggestions = [];
     },
-    getLocation() {
-      if (navigator.geolocation && this.map) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
-            this.map.setView([lat, lng], 13);
+    // getLocation() {
+    //   if (navigator.geolocation && this.map) {
+    //     navigator.geolocation.getCurrentPosition(
+    //       (position) => {
+    //         const lat = position.coords.latitude;
+    //         const lng = position.coords.longitude;
+    //         console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
+    //         this.map.setView([lat, lng], 13);
 
-            this.userMarker.setLatLng([lat, lng]);
-            this.userMarker.setTooltipContent("Your Location");
+    //         this.userMarker.setLatLng([lat, lng]);
+    //         this.userMarker.setTooltipContent("Your Location");
 
-            this.selectedPlace = {
-              name: "Current Location",
-              latitude: lat,
-              longitude: lng,
-            };
-            this.displayNearbyPlaces(lat, lng, this.nearbyRadius);
-          },
-          (error) => {
-            console.error('Error getting location:', error);
-            alert('Unable to retrieve your location. Please check your location settings and try again.');
-          },
-          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-        );
-      } else {
-        alert('Geolocation is not supported by your browser.');
-      }
-    },
+    //         this.selectedPlace = {
+    //           name: "Current Location",
+    //           latitude: lat,
+    //           longitude: lng,
+    //         };
+    //         this.displayNearbyPlaces(lat, lng, this.nearbyRadius);
+    //       },
+    //       (error) => {
+    //         console.error('Error getting location:', error);
+    //         alert('Unable to retrieve your location. Please check your location settings and try again.');
+    //       },
+    //       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    //     );
+    //   } else {
+    //     alert('Geolocation is not supported by your browser.');
+    //   }
+    // },
     displayNearbyPlaces(lat, lng, radius) {
       // Clear previous nearbyPlaces markers and nearbySalons
       this.nearbyPlaces.forEach(place => {
