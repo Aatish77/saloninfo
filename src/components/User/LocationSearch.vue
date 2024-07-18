@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div style="background-color: black;color:white;">
+    <v-btn @click="sal">Salons</v-btn>
     <input 
+    style="background-color: black;color:white;  margin-left: 50px; "
       type="text" 
       v-model="query" 
       @input="fetchSuggestions" 
       placeholder="Enter a location" 
     />
-    <ul v-if="suggestions.length">
+    <ul v-if="suggestions.length"  style="position: absolute; z-index: 1000;  background-color: black; margin-left: 50px; margin-left: 50px;">
       <li 
         v-for="suggestion in suggestions" 
         :key="suggestion.place_id" 
@@ -35,7 +37,8 @@ export default {
       map: null,
       mapContainer: null,
       userMarker: null,
-      nearbyRadius: 10,
+      nearbyRadius: 10  ,
+      nearbySalons: [],
       placesInKerala: [
         { name: "Thiruvananthapuram", latitude: 8.5241, longitude: 76.9366 },
         { name: "Kochi", latitude: 9.9312, longitude: 76.2673 },
@@ -61,6 +64,9 @@ export default {
     };
   },
   methods: {
+    sal(){
+      console.log(this.nearbySalons)
+    },
     fetchSuggestions() {
       if (this.query.length > 2) {
         axios
@@ -103,10 +109,10 @@ export default {
             const lng = position.coords.longitude;
             console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
             this.map.setView([lat, lng], 13);
-  
+
             this.userMarker.setLatLng([lat, lng]);
             this.userMarker.setTooltipContent("Your Location");
-  
+
             this.selectedPlace = {
               name: "Current Location",
               latitude: lat,
@@ -125,11 +131,12 @@ export default {
       }
     },
     displayNearbyPlaces(lat, lng, radius) {
-      // Clear previous nearbyPlaces markers
+      // Clear previous nearbyPlaces markers and nearbySalons
       this.nearbyPlaces.forEach(place => {
         this.map.removeLayer(place.marker);
       });
       this.nearbyPlaces = [];
+      this.nearbySalons = []; // Clear previous nearby salons
 
       // Find and display nearby places within the specified radius
       this.salons.forEach(place => {
@@ -152,6 +159,11 @@ export default {
           })
           .bindPopup(place.name);
           this.nearbyPlaces.push({ ...place, marker });
+
+          // Add to nearbySalons if distance is within 10km
+          if (distance <= 10) {
+            this.nearbySalons.push(place);
+          }
         }
       });
     },
@@ -209,26 +221,26 @@ export default {
 </script>
 
 <style scoped>
-input {
-  width: 300px;
-  padding: 8px;
-  margin-bottom: 10px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  border: 1px solid #ccc;
-  max-width: 300px;
-}
-
-li {
-  padding: 8px;
-  cursor: pointer;
-}
-
-li:hover {
-  background-color: #f0f0f0;
-}
+  input {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-width: 300px;
+  }
+  
+  li {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    background-color: #282828;
+  }
 </style>

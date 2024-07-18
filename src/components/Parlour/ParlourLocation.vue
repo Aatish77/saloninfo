@@ -140,27 +140,27 @@
   </script>
   
   <style scoped>
-  input {
-    width: 300px;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    max-width: 300px;
-  }
-  
-  li {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  li:hover {
-    background-color: #f0f0f0;
-  }
+    input {
+      width: 300px;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ccc;
+      max-width: 300px;
+    }
+    
+    li {
+      padding: 8px;
+      cursor: pointer;
+    }
+    
+    li:hover {
+      background-color: #f0f0f0;
+    }
   </style>
   
