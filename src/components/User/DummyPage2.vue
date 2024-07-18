@@ -15,7 +15,7 @@
         {{ suggestion.display_name }}
       </li>
     </ul>
-    <button @click="getLocation()">Get My Location</button>
+    <!-- <button @click="getLocation()">Get My Location</button> -->
     <div ref="mapContainer" style="width: 100%; height: 500px"></div>
   </div>
 </template>
@@ -102,35 +102,35 @@ function selectSuggestion(suggestion) {
   suggestions.value = [];
 }
 
-function getLocation() {
-  if (navigator.geolocation && map.value) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
+// function getLocation() {
+//   if (navigator.geolocation && map.value) {
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         const lat = position.coords.latitude;
+//         const lng = position.coords.longitude;
+//         console.log(`Retrieved Latitude: ${lat}, Retrieved Longitude: ${lng}`);
 
-        setMapLocation(lat, lng, "Your current Location");
-        displayNearbyPlaces(lat, lng, nearbyRadius);
+//         setMapLocation(lat, lng, "Your current Location");
+//         displayNearbyPlaces(lat, lng, nearbyRadius);
 
-        // Update the input field with the retrieved location's display name
-        query.value = "Your current Location";
-      },
-      (error) => {
-        console.error('Error getting location:', error);
-        alert('Unable to retrieve your location. Please check your location settings and try again.');
-        setMapLocation(10.8505, 76.2711, "Default Location"); // Fallback to default location
-        displayNearbyPlaces(10.8505, 76.2711, nearbyRadius);
+//         // Update the input field with the retrieved location's display name
+//         query.value = "Your current Location";
+//       },
+//       (error) => {
+//         console.error('Error getting location:', error);
+//         alert('Unable to retrieve your location. Please check your location settings and try again.');
+//         setMapLocation(10.8505, 76.2711, "Default Location"); // Fallback to default location
+//         displayNearbyPlaces(10.8505, 76.2711, nearbyRadius);
 
-        // Update the input field with the default location's display name
-        query.value = "Default Location";
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-    );
-  } else {
-    alert('Geolocation is not supported by your browser.');
-  }
-}
+//         // Update the input field with the default location's display name
+//         query.value = "Default Location";
+//       },
+//       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+//     );
+//   } else {
+//     alert('Geolocation is not supported by your browser.');
+//   }
+// }
 
 function setMapLocation(lat, lng, label) {
   map.value.setView([lat, lng], 13);
