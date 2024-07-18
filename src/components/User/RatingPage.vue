@@ -39,7 +39,7 @@
       }),
       methods:{
         submit(){
-          const data={"customerName":this.customerName,"parlourId":this.parlourId,"rating":this.rating,"review":this.review
+          const data={"id":32,"customerName":this.customerName,"customerRating":this.rating,"review":this.review, "ratingValue": 5
           }
             
             this.$store

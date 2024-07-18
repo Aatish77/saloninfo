@@ -6,7 +6,8 @@ import rootActions from "./actions.js";
 const store = createStore({
   state() {
     return {
-      baseUrl: `http://192.168.1.20:8086`,
+      // baseUrl: `http://192.168.1.20:8082`,
+      baseUrl: `http://localhost:8082`,
       adminToken:sessionStorage.getItem('adminToken')||'',
       parlourToken:sessionStorage.getItem('parlourToken')||"",
       userToken:sessionStorage.getItem('userToken')||"",

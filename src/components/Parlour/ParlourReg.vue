@@ -314,14 +314,14 @@ export default {
           formData.append("licenseNumber", this.licenseNo); // License Number
           formData.append("licenseImage", this.licenseUrl);
           formData.append("ratings", this.rating); // License File
-          formData.append("latitude", this.latitude);
-          formData.append("longitude", this.longitude);
+          formData.append("latitude", parseFloat(this.latitude));
+          formData.append("longitude", parseFloat(this.longitude));
 
           this.$store.dispatch("addTheParlour", formData)
             .then(() => {
               // Reset form data after successful dispatch
-              this.resetFormData();
-              this.$router.push("/parlourlogin")
+             // this.resetFormData();
+              // this.$router.push("/parlourlogin")
             })
             .catch((error) => {
               console.error("Error adding user:", error);
