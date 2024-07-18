@@ -92,7 +92,7 @@ Copy code
           </div>
         </section>
 
-        <v-card class="charts mt-4">
+        <!-- <v-card class="charts mt-4">
           <h3 class="fs-6 mb-3">Today's Booking: 75</h3>
           <div class="chart-container" style="height: 250px; overflow-y: auto;">
             <v-data-table
@@ -115,7 +115,7 @@ Copy code
               </template>
             </v-data-table>
           </div>
-        </v-card>
+        </v-card> -->
       </div>
     </section>
   </v-app>
@@ -139,34 +139,34 @@ export default {
     const selectedTimeframe = ref(['today', 'today', 'today', 'today']);
     const timeframes = ['today', 'monthly', 'yearly'];
 
-    const headings = [
-      { title: 'Sl No', value: 'slNo' },
-      { title: 'Booking ID', value: 'bookingId' },
-      { title: 'Phone', value: 'phone' },
-      { title: 'Booking Date', value: 'bookingDate' },
-      { title: 'Category', value: 'category' },
-      { title: 'Price', value: 'price' },
-      { title: 'Status', value: 'status' },
-    ];
+    // const headings = [
+    //   { title: 'Sl No', value: 'slNo' },
+    //   { title: 'Booking ID', value: 'bookingId' },
+    //   { title: 'Phone', value: 'phone' },
+    //   { title: 'Booking Date', value: 'bookingDate' },
+    //   { title: 'Category', value: 'category' },
+    //   { title: 'Price', value: 'price' },
+    //   { title: 'Status', value: 'status' },
+    // ];
 
-    const bookings = [
-      { slNo: 1, bookingId: 'BK001', phone: '9246700932', bookingDate: '2-07-2024', category: 'Haircut', price: '150', status: 'Confirmed' },
-      { slNo: 2, bookingId: 'BK002', phone: '9653245741', bookingDate: '4-07-2024', category: 'Manicure', price: '130', status: 'confirmed' },
-      { slNo: 3, bookingId: 'BK003', phone: '9876431674', bookingDate: '5-07-2024', category: 'facial', price: '300', status: 'Pending' },
-      { slNo: 4, bookingId: 'BK004', phone: '7643279012', bookingDate: '10-07-2024', category: 'Haircut', price: '230', status: 'Pending' },
-      { slNo: 5, bookingId: 'BK005', phone: '8734127659', bookingDate: '11-07-2024', category: 'pedicure', price: '130', status: 'Pending' },
-      { slNo: 6, bookingId: 'BK006', phone: '9086542445', bookingDate: '12-07-2024', category: 'spa', price: '400', status: 'Pending' },
-      { slNo: 7, bookingId: 'BK007', phone: '7642688567', bookingDate: '13-07-2024', category: 'Haircut', price: '150', status: 'Pending' },
-      { slNo: 8, bookingId: 'BK008', phone: '9345522178', bookingDate: '14-07-2024', category: 'facial', price: '430', status: 'Pending' },
-      { slNo: 9, bookingId: 'BK009', phone: '9748553621', bookingDate: '18-07-2024', category: 'Manicure', price: '230', status: 'Pending' },
-      { slNo: 10, bookingId: 'BK010', phone: '9822567823', bookingDate: '25-07-2024', category: 'spa', price: '500', status: 'Pending' }
-    ];
+    // const bookings = [
+    //   { slNo: 1, bookingId: 'BK001', phone: '9246700932', bookingDate: '2-07-2024', category: 'Haircut', price: '150', status: 'Confirmed' },
+    //   { slNo: 2, bookingId: 'BK002', phone: '9653245741', bookingDate: '4-07-2024', category: 'Manicure', price: '130', status: 'confirmed' },
+    //   { slNo: 3, bookingId: 'BK003', phone: '9876431674', bookingDate: '5-07-2024', category: 'facial', price: '300', status: 'Pending' },
+    //   { slNo: 4, bookingId: 'BK004', phone: '7643279012', bookingDate: '10-07-2024', category: 'Haircut', price: '230', status: 'Pending' },
+    //   { slNo: 5, bookingId: 'BK005', phone: '8734127659', bookingDate: '11-07-2024', category: 'pedicure', price: '130', status: 'Pending' },
+    //   { slNo: 6, bookingId: 'BK006', phone: '9086542445', bookingDate: '12-07-2024', category: 'spa', price: '400', status: 'Pending' },
+    //   { slNo: 7, bookingId: 'BK007', phone: '7642688567', bookingDate: '13-07-2024', category: 'Haircut', price: '150', status: 'Pending' },
+    //   { slNo: 8, bookingId: 'BK008', phone: '9345522178', bookingDate: '14-07-2024', category: 'facial', price: '430', status: 'Pending' },
+    //   { slNo: 9, bookingId: 'BK009', phone: '9748553621', bookingDate: '18-07-2024', category: 'Manicure', price: '230', status: 'Pending' },
+    //   { slNo: 10, bookingId: 'BK010', phone: '9822567823', bookingDate: '25-07-2024', category: 'spa', price: '500', status: 'Pending' }
+    // ];
 
     const statistics = [
       { icon: 'fas fa-store',  value: 108, description: 'Total Parlours' },
       { icon: 'fas fa-users', value: 112, description: 'Total Users' },
-      { icon: 'fas fa-calendar-check', values: [80, 240, 20000], description: 'Total Booking' },
-      { icon: 'uil-rupee-sign', values: [15000, 60000, 445784], description: 'Total Income' }
+      { icon: 'fas fa-calendar-check', values: [80, 2400, 864000], description: 'Total Booking' },
+      { icon: 'uil-rupee-sign', values: [15000, 450000, 4457084], description: 'Total Income' }
     ];
     const getStatisticValue = (stat, timeframe) => {
       if (Array.isArray(stat.values)) {
@@ -186,8 +186,8 @@ export default {
       drawer,
       selectedTimeframe,
       timeframes,
-      headings,
-      bookings,
+      // headings,
+      // bookings,
       statistics,
       // overviewClick,
       // serviceClick,
