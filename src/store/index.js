@@ -1810,7 +1810,7 @@ const store = createStore({
 
         // Add more offers
       ],
-    
+    parlourBookinghistory:[]
     };
   },
   getters: rootGetters,
