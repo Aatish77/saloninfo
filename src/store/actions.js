@@ -278,7 +278,17 @@ export default{
           catch(error){
             console.error(error)
           }
-        }
+        },
+        async parlourBookinghistory(context,payload){
+          try{
+            const response = await axios.get(`${context.getters.getBaseUrl}/../,${payload}`)
+            if(response.status===200){
+              console.log(response.data)
+              context.commit("loadparlourBookinghistory",response.data)
+              }}
+              catch(error){
+                console.error(error)
         
       }
-      
+    }
+  }
