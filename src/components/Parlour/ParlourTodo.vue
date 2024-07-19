@@ -47,7 +47,7 @@
                 <div class="table-cell">Actions</div>
               </div>
               <div class="table-body">
-                <div class="table-row" v-for="(service, index) in services" :key="index">
+                <div class="table-row" v-for="(service, index) in filteredServices" :key="index">
                   <div class="table-cell">{{ service.clientName }}</div>
                   <div class="table-cell">{{ service.service }}</div>
                   <div class="table-cell">{{ service.assistant }}</div>
@@ -82,7 +82,7 @@ export default {
           clientName: 'Maya',
           service: 'Spa',
           assistant: 'Anju',
-          date:'12/07/2024',
+          date:'19/07/2024',
           time: '09:00 AM',
           status: 'Waiting' // Possible statuses: Waiting, In Progress, Completed
         },
@@ -93,9 +93,48 @@ export default {
           date:'15/07/2024',
           time: '11:30 AM',
           status: 'Waiting' // Possible statuses: Waiting, In Progress, Completed
-        }
+        },
+        {
+          clientName: 'Vidhya',
+          service: 'Nail Art',
+          assistant: 'Pooja',
+          date:'24/07/2024',
+          time: '10:30 AM',
+          status: 'Waiting' // Possible statuses: Waiting, In Progress, Completed
+        },
+        {
+          clientName: 'Sandra',
+          service: 'Hair Cut',
+          assistant: 'Payal',
+          date:'30/07/2024',
+          time: '11:30 AM',
+          status: 'Waiting' // Possible statuses: Waiting, In Progress, Completed
+        },
       ],
     };
+  },
+  computed: {
+    filteredServices() {
+      const today = new Date().toISOString().split('T')[0];
+      const weekFromToday = new Date();
+      weekFromToday.setDate(weekFromToday.getDate() + 7);
+      const weekFromTodayStr = weekFromToday.toISOString().split('T')[0];
+
+      return this.services.filter(service => {
+        const serviceDate = new Date(service.date.split('/').reverse().join('-')).toISOString().split('T')[0];
+
+        if (this.selectedPeriod === 'Daily') {
+          return serviceDate === today;
+        } else if (this.selectedPeriod === 'Weekly') {
+          return serviceDate >= today && serviceDate <= weekFromTodayStr;
+        } else if (this.selectedPeriod === 'Monthly') {
+          const serviceMonthYear = service.date.split('/').slice(1).reverse().join('-');
+          const todayMonthYear = today.split('-').slice(0, 2).join('-');
+          return serviceMonthYear === todayMonthYear;
+        }
+        return true;
+      });
+    }
   },
   methods: {
     markComplete(index) {
