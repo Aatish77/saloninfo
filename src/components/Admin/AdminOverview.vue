@@ -1,5 +1,4 @@
 
-Copy code
 <template>
   <v-app id="inspire">
     <v-app-bar
