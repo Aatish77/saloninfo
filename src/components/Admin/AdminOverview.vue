@@ -23,19 +23,19 @@ Copy code
           @click="overviewClick"
         ></v-list-item>
         <v-list-item
-          prepend-icon="fas fa-briefcase"
+          prepend-icon="fas fa-scissors"
           title="Services"
           value="services"
           @click="serviceClick"
         ></v-list-item>
         <v-list-item
-          prepend-icon="fas fa-tags"
+          prepend-icon="fas fa-store"
           title="Parlours"
           value="parlours"
           @click="parlourClick"
         ></v-list-item>
         <v-list-item
-          prepend-icon="fas fa-tags"
+          prepend-icon="mdi-offer"
           title="Offers"
           value="offers"
           @click="offerClick"
