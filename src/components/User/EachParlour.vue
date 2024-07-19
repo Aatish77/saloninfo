@@ -348,13 +348,18 @@
             </v-row>
           </v-container>
         </v-card>
-        <iframe :src="card.locationLink"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="l1"></iframe>
+        <div id="l1">
+    <MapComponent :latitude="card.latitude" :longitude="card.longitude" :name="card.parlourName" />
+  </div>
+        <!-- <iframe :src="card.locationLink"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="l1"></iframe> -->
       </v-main>
     </v-layout>
   </v-card>
 </template>
 
 <script>
+import MapComponent from "./LocationEach.vue";
+
 import CartPage from "./Cart/CartPage.vue";
 import BookAppointment from "./Cart/BookAppointment.vue";
 export default {
@@ -365,6 +370,7 @@ export default {
     },
   },
   components: {
+    MapComponent,
     CartPage,
     BookAppointment,
   },

@@ -28,6 +28,10 @@
           >saloninfo</v-app-bar-title
         >
         <v-slide-y-transition class="mx-3">
+          <v-btn @click="dia=!dia"> 
+      <v-icon style="font-size: 170%">mdi-map-marker-radius</v-icon>{{selectedPlace.name?selectedPlace.name:"Location"}}</v-btn>
+        </v-slide-y-transition>
+        <v-slide-y-transition class="mx-3">
           <v-text-field
             class="search"
             v-model="searchText"
@@ -89,7 +93,12 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar>
 
-      <v-main >
+      <v-main > 
+      <v-dialog v-model="dia">
+        <button class="close-btn" @click="dia = false">
+                      X
+                    </button>
+        <location-search @child-value-updated="handleChildValueChange"></location-search></v-dialog>
         <v-card
           style=" color: white;background-color:black;"
           class="mx-auto bgcolor"
@@ -232,6 +241,7 @@
 </template>
 
 <style scoped>
+
 .bgcolor{
   background-color: rgb(0, 0, 0);
 }
@@ -274,13 +284,17 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiHumanFemaleGirl } from '@mdi/js';
 import { mdiHumanMaleChild } from '@mdi/js';
 import { mdiHumanMaleFemale } from '@mdi/js';
-
+import LocationSearch from "./LocationSearch.vue"
 export default {
   name: "my-component",
   components: {
+  LocationSearch,
     SvgIcon
   },
   data: () => ({
+    selectedPlace:{},
+    salons:[],
+    dia:false,
     drawer: null,
     selectedItem: null,
     show: false,
@@ -293,6 +307,7 @@ export default {
   created(){
     sessionStorage.removeItem('currentOffer')
     sessionStorage.removeItem('currentLabel');
+    this.loadSelectedPlace()
   },
   computed: {
     currentUser() {
@@ -300,7 +315,11 @@ export default {
       return currentUser;
     },
     cards() {
-      return this.$store.getters["getSalons"];
+      if(this.salons.length===0){
+        return this.$store.getters["getSalons"];
+      }
+      else{
+      return this.salons}
     },
     filteredCards() {
       if (!this.searchText) {
@@ -350,6 +369,21 @@ export default {
     }
   },
   methods: {
+    loadSelectedPlace() {
+      const savedPlace = localStorage.getItem('selectedPlace');
+      const savedSalons =localStorage.getItem('savedSalons')
+      if (savedPlace && savedSalons) {
+        this.selectedPlace = JSON.parse(savedPlace);
+        this.salons = JSON.parse(savedSalons);
+        return true;
+      }
+      return false;
+    },
+    handleChildValueChange(value) {
+      // Handle the value passed from the child component
+      this.salons = value.salons;
+      this.selectedPlace = value.place
+    },
     iconPath(type){
       if(type==='Men'){
         return mdiHumanMaleChild
@@ -405,6 +439,20 @@ export default {
 <style scoped>
 .card1:hover {
   scale: 101%;
+}
+.close-btn {
+  position: relative;
+  margin-left:1440px;
+  margin-bottom:5px;
+  height: 40px;
+  width: 40px;
+ 
+  background-color: transparent;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  color: #fffcfc;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 </style>

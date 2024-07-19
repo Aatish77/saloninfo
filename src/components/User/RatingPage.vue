@@ -43,7 +43,7 @@
           }
             
             this.$store
-              .dispatch("addRating", data)
+              .dispatch("addRating", {"parlourId":this.parlourId,"pay":data})
               .then(() => {
                 
                 // Reset form data after successful dispatch
