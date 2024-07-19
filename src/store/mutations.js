@@ -29,5 +29,9 @@ export default{
        },
        loadCurrentSalon(state,payload){
         state.currentSalon=payload
+       },
+
+       loadparlourBookinghistory(state,payload){
+        state.parlourBookinghistory=payload
        }
       }
