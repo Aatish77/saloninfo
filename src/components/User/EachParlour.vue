@@ -85,9 +85,9 @@
                         </h6></div
                     ></v-btn>
                   </v-card-actions>
-                  <v-container v-if="card.serviceCategories" class="d-flex justify-center align-center" fluid style="height: 80px;" >
+                  <v-container v-if="card.serviceCategories" class="cont"  fluid style="height: 80px;" >
          
-         <v-radio-group v-model="type" @change="handleSwitchChange"  inline style="color:white;margin-left: 460px;">
+         <v-radio-group v-model="type" @change="handleSwitchChange"  inline style="color:white; display: inline-block;">
      <v-radio label="Men" value="Men" color="primary"></v-radio>
      <v-radio label="Women" value="Women" color="red"></v-radio>
    </v-radio-group>
@@ -580,6 +580,10 @@ export default {
 <style scoped>
 .cart {
   position: relative;
+}
+.cont{
+  text-align: center;
+  
 }
 .cart-button {
   position: relative;

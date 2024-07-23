@@ -32,14 +32,18 @@
       <v-icon style="font-size: 170%">mdi-map-marker-radius</v-icon>{{selectedPlace.name?selectedPlace.name:"Location"}}</v-btn>
         </v-slide-y-transition>
         <v-slide-y-transition class="mx-3">
+         
           <v-text-field
-            class="search"
-            v-model="searchText"
-            placeholder="Search"
-            prepend-inner-icon="mdi-magnify"
-            solo-inverted
-            hide-details
-          ></v-text-field>
+           v-model="searchText"
+        
+        append-inner-icon="mdi-magnify"
+        density="compact"
+        placeholder="Search"
+       
+        hide-details
+        
+        @click:append-inner="onClick"
+      ></v-text-field>
         </v-slide-y-transition>
 
         <!-- Location Input -->

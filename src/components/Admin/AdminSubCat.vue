@@ -110,7 +110,7 @@
                   @change="subsubPhoto"
                 >
                 </v-file-input>
-                <v-btn @click="addSubsubcat">Add sub sub category</v-btn>
+                <v-btn @click="addsubsubCat">Add sub sub category</v-btn>
           </v-dialog>
             </v-row>
         </v-card></v-main></v-app>
@@ -125,6 +125,7 @@ export default {
             subsubName:"",
             picsubsubUrl:"",
             subsubFile:null,
+            subCategory:null,
         }
     },
     created(){
@@ -133,7 +134,8 @@ export default {
       { title: this.currentService.subCat },
     ];
     this.subsubCategories=this.categories[this.currentService.catIndex].subCategories[this.currentService.subIndex].subsubCategories
-    console.log(this.subsubCategories)
+    this.subCategory=this.categories[this.currentService.catIndex].subCategories[this.currentService.subIndex]
+    console.log(this.subCategory)
     },
     computed:{
       uploadedsubsubFileName() {
@@ -166,6 +168,7 @@ export default {
       const formData = new FormData();
           formData.append("name", this.subsubName);
           formData.append("image",this.picsubsubUrl)
+          formData.append("subCategoryId",this.subCategory.id)
           this.$store.dispatch("addSubsubcategory", formData)
             .then(() => {
               // Reset form data after successful dispatch

@@ -311,11 +311,13 @@
     //    reader.src = URL.createObjectURL(imgInput);
     // },
     addSubcat(id){
-      const jsonBlob = new Blob([JSON.stringify({"name":this.subName})], { type: 'application/json' })
+      // const jsonBlob = new Blob([JSON.stringify({"name":this.subName})], { type: 'application/json' })
       const formData = new FormData();
-          formData.append("data", jsonBlob);
+      formData.append("name",this.subName);
+      formData.append("categoryId",id);
+          // formData.append("data", jsonBlob);
           formData.append("image",this.picUrl)
-          this.$store.dispatch("addSubcategory", {"form":formData,"catId":id})
+          this.$store.dispatch("addSubcategory", formData)
             .then(() => {
               // Reset form data after successful dispatch
               this.subDia=false
@@ -331,12 +333,12 @@
               console.error("Error adding user:", error);
             });
     },addCat(){
-      const jsonBlob = new Blob([JSON.stringify({"name":this.catName})], { type: 'application/json' })
+      // const jsonBlob = new Blob([JSON.stringify({"name":this.catName})], { type: 'application/json' })
       const formData = new FormData(); 
       // newblob in it json new blob application/json
-      formData.append('data', jsonBlob);
+      // formData.append('data', jsonBlob);
       // formData.append("data",JSON.stringify({"name": this.catName}));
-          // formData.append("name", this.catName);
+          formData.append("name", this.catName);
           formData.append("image",this.piccatUrl)
 
         this.$store.dispatch("addCategories",formData)

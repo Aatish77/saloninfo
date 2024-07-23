@@ -81,7 +81,9 @@ export default{
       async viewSubCategories(context,payload) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${context.getters.getCategories[payload].id}`)
+            `${context.getters.getBaseUrl}/SubCategory/all?categoryId=${context.getters.getCategories[payload].id}`,{headers: {
+              Authorization: `Bearer ${context.getters.getAdminToken}`}
+            })
           if (response.status>=200 || response.status<300){
             console.log("Success",payload)
             console.log(response.data)
@@ -94,7 +96,9 @@ export default{
       async viewSubSubCategories(context,payload) {
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/SubSubCategories/all?subcategoryId=${payload}`)
+            `${context.getters.getBaseUrl}/SubSubCategories/all?subcategoryId=${payload}`,{headers: {
+              Authorization: `Bearer ${context.getters.getAdminToken}`}
+            })
           if (response.status===200){
             console.log("Success",payload)
             console.log(response.data)
@@ -189,8 +193,11 @@ export default{
       },
       async addCategories(context,payload){
         try {
+          console.log(context.getters.getAdminToken)
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/Categories/add`,payload)
+            `${context.getters.getBaseUrl}/Categories/add`,payload,{headers: {
+              Authorization: `Bearer ${context.getters.getAdminToken}`}
+            })
           if (response.status===200){
             alert("Subcategory added successfully")
             console.log("Success")
@@ -203,7 +210,9 @@ export default{
         try {
           console.log(payload)
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubCategory/add_Sub?categoryId=${payload.catId}`,payload.form)
+            `${context.getters.getBaseUrl}/SubCategory/add_Sub`,payload,{headers: {
+              Authorization: `Bearer ${context.getters.getAdminToken}`}
+            })
           if (response.status===200){
             alert("Subcategory added successfully")
             console.log("Success")
@@ -218,7 +227,9 @@ export default{
       async addSubsubcategory(context,payload){
         try {
           const response = await axios.post(
-            `${context.getters.getBaseUrl}/SubSubCategory/add_Sub?subCategoryId=2`,payload)
+            `${context.getters.getBaseUrl}/SubSubCategory/add_Sub`,payload,{headers: {
+              Authorization: `Bearer ${context.getters.getAdminToken}`}
+            })
           if (response.status===200){
             console.log("Success")
             console.log(response)
@@ -271,7 +282,7 @@ export default{
       },
       async addRating(context,payload){
         try{
-          const response = await axios.post(`${context.getters.getBaseUrl}/ratings/add?parlourId=${payload.parlourId    }`,payload.pay)
+          const response = await axios.post(`${context.getters.getBaseUrl}/ratings/add?parlourId=${payload.parlourId}`,payload.pay)
           if (response.status===200){
             console.log(response.data)
           }}
