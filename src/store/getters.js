@@ -8,5 +8,6 @@ export default{
     getoffers: (state )=> state.offers,
     getCategories:(state)=> state.categories,
     getCurrentSalon:(state)=> state.currentSalon,
-    getAdminToken:(state)=> state.adminToken
+    getAdminToken:(state)=> state.adminToken,
+    getUserToken:(state)=> state.userToken
 }

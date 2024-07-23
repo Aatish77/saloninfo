@@ -95,8 +95,12 @@
         select(index){
           this.se=index
         },
-        reserve() {
+       async reserve() {
           console.log("slots",this.employee.slots)
+          let cart={"userId":1,"itemId":1,"parlourId":1,"quantity":2,"bookingDate":"2024-07-19","bookingTime":"10:30:00"}
+      let c=[cart]
+      console.log(cart)
+      await this.$store.dispatch("addToCart",c)
           for ( let i=0;i<this.cart.length;++i){
             if(this.index!=i){
               this.cartFinal[i]=this.cart[i]
@@ -116,6 +120,10 @@
         },
       },
       computed: {
+        currentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      return currentUser;
+    },
     formattedDate() {
       // Check if selectedDate is not null or undefined
       if (this.selectedDate) {

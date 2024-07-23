@@ -352,34 +352,35 @@ export default {
     async submitLogin() {
       
       try {
-        this.$refs.form.validate().then((valid) => {
-        console.log(valid.valid)
-        if (valid.valid) {
-          console.log("Login");
-          this.error = "";
-          let found = false;
-          for (const user of this.users) {
-            if (this.phone === user.phone && this.password === user.password) {
-              sessionStorage.setItem("currentUser", JSON.stringify(user));
-              this.$router.push("/viewparlours");
-              found = true;
-              break;
-            }
-          }
-          if (!found) {
-            this.error = "The phone number and password don't match";
-          }
-        }
-        // else {
-        //   this.error = 'Form validation failed';
-        // }
-      });
+      //   this.$refs.form.validate().then((valid) => {
+      //   console.log(valid.valid)
+      //   if (valid.valid) {
+      //     console.log("Login");
+      //     this.error = "";
+      //     let found = false;
+      //     for (const user of this.users) {
+      //       if (this.phone === user.phone && this.password === user.password) {
+      //         sessionStorage.setItem("currentUser", JSON.stringify(user));
+      //         this.$router.push("/viewparlours");
+      //         found = true;
+      //         break;
+      //       }
+      //     }
+      //     if (!found) {
+      //       this.error = "The phone number and password don't match";
+      //     }
+      //   }
+      //   // else {
+      //   //   this.error = 'Form validation failed';
+      //   // }
+      // });
         const res = await this.$store.dispatch("userLogin", {
-          "phoneNumber":this.phone,
-          "password":this.password
+         
+          "password":this.password,
+          "phoneNumber":this.phone
         })
         if(res){
-          sessionStorage.setItem("currentUser", JSON.stringify(res))
+          // sessionStorage.setItem("currentUser", JSON.stringify(res))
           this.$router.push("/viewparlours")
         }
         else{

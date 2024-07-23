@@ -27,10 +27,16 @@
           "
           >saloninfo</v-app-bar-title
         >
-        <v-slide-y-transition class="mx-3">
-          <v-btn @click="dia=!dia"> 
-      <v-icon style="font-size: 170%">mdi-map-marker-radius</v-icon>{{selectedPlace.name?selectedPlace.name:"Location"}}</v-btn>
-        </v-slide-y-transition>
+       <v-slide-y-transition class="mx-3">
+  <v-btn @click="dia=!dia" style="width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+    <v-icon style="font-size: 170%">mdi-map-marker-radius</v-icon>
+    <span style="display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; vertical-align: middle;">
+      {{ selectedPlace.name ? selectedPlace.name : "Location" }}
+    </span>
+  </v-btn>
+</v-slide-y-transition>
+
+
         <v-slide-y-transition class="mx-3">
          
           <v-text-field

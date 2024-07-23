@@ -39,14 +39,16 @@ export default{
           console.error(error);
         }
       },
-      async userLogin(context) {
+      async userLogin(context,payload) {
         try {
-          const response = await axios.get(`${context.getters.getBaseUrl}/`);
-          if (response.status === 200) {
+          const response = await axios.post(`${context.getters.getBaseUrl}/user/UserLogin`,payload);
+          if (response.status>=200 || response.status<300) {
             // context.commit("addUsers", response.data);
+            console.log(response.data)
             sessionStorage.setItem("userToken",response.data)
             context.commit("addUserToken", response.data);
-            return response.data
+            return true
+          
           }
         } catch (error) {
           console.error(error);
@@ -250,7 +252,11 @@ export default{
       },
       async addToCart(context,payload){
         try{
-          const response = await axios.post(`${context.getters.getBaseUrl}/cart/add`,payload)
+          const response = await axios.post(`${context.getters.getBaseUrl}/api/cart/add`,payload,
+            {headers: {
+              Authorization: `Bearer ${context.getters.getUserToken}`}
+            }
+          )
           if(response.status===200){
             console.log(response.data,"Success")
           }
