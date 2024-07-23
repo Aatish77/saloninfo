@@ -14,7 +14,8 @@
         
 
         <template v-slot:prepend>
-          <i class="fas fa-cut"></i>
+          <v-img ></v-img>
+          <!-- <i class="fas fa-cut"></i> -->
         </template>
 
         <v-app-bar-title
@@ -182,7 +183,7 @@
             </v-row>
           </v-container>
           <v-container fluid v-else>
-            <h1 align="center" class="mt-5">No search results found.</h1>
+            <h1 align="center" class="mt-5">No search results found</h1>
           </v-container>
         </v-card>
       </v-main>
@@ -193,7 +194,7 @@
       <v-navigation-drawer v-model="drawer" temporary location="right" style="background-color: black; color:white;">
         <template v-slot:prepend>
           <v-row>
-            <v-col cols="9">
+            <!-- <v-col cols="9">
               <v-list-item
             lines="two"
             :prepend-avatar='currentUser.image'
@@ -201,7 +202,8 @@
             :title="currentUser.fullName"
           >
           </v-list-item>
-  </v-col><v-col cols="3">
+  </v-col> -->
+  <v-col cols="3">
     <v-btn icon @click="drawer = false" style="background-color: black; color: white; ">
       <v-icon>mdi-close</v-icon>
     </v-btn>
@@ -370,14 +372,14 @@ export default {
       });
     },
   },
-  watch: {
-    selectedItem(newValue) {
-      console.log(newValue)
-      if (newValue === 'Logout') {
-        this.logout();
-      }
-    }
-  },
+  // watch: {
+  //   selectedItem(newValue) {
+  //     console.log(newValue)
+  //     if (newValue === 'Logout') {
+  //       this.logout();
+  //     }
+  //   }
+  // },
   methods: {
     loadSelectedPlace() {
       const savedPlace = localStorage.getItem('selectedPlace');

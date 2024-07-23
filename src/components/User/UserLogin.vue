@@ -43,7 +43,7 @@
                 alt="Slideshow"
               />
             </v-col>
-            <v-form ref="form" >
+            <v-form ref="form" @submit.prevent="submitLogin">
               <v-col style="width: 350px">
                 <v-sheet class="mx-auto login" width="200">
                   <h2 class="title text-center animate11">Login</h2>
@@ -77,7 +77,7 @@
                   >
                     {{ error }}
                   </v-alert>
-                  <v-btn elevation="6" rounded="xl" class="mt-0 login-btn animate11 " type="submit" block @click="submitLogin">Login</v-btn>
+                  <v-btn elevation="6" rounded="xl" class="mt-0 login-btn animate11 "  block type="submit">Login</v-btn>
                 <v-btn elevation="6" rounded="xl" class="mt-0 signup-btn animate11 " block    @click="toggleShow">Register</v-btn>
                 </v-sheet>
               </v-col>
@@ -350,7 +350,7 @@ export default {
     //   this.stopSlideshow();
     // },
     async submitLogin() {
-      
+      console.log("helloe")
       try {
       //   this.$refs.form.validate().then((valid) => {
       //   console.log(valid.valid)
@@ -379,8 +379,10 @@ export default {
           "password":this.password,
           "phoneNumber":this.phone
         })
+        
         if(res){
           // sessionStorage.setItem("currentUser", JSON.stringify(res))
+          console.log('response: '+ res)
           this.$router.push("/viewparlours")
         }
         else{

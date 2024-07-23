@@ -75,6 +75,7 @@ const router = createRouter({
     {path:"/rating",component: RatingPage},
    {path:"/location",component: LocationSearch},
    {path:"/parlourlocation", component: ParlourLocation},
+   
   ],
 });
 export default router;

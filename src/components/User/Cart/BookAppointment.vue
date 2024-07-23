@@ -97,7 +97,15 @@
         },
        async reserve() {
           console.log("slots",this.employee.slots)
-          let cart={"userId":1,"itemId":1,"parlourId":1,"quantity":2,"bookingDate":"2024-07-19","bookingTime":"10:30:00"}
+          let cart={"userId": 1,
+        "itemId": 1,
+        "parlourId":1,
+        "quantity": 2,
+        "parlourName":"Prince",
+        "employeeId":1,
+        "employeeName":"Amit",
+        "bookingDate": "2024-07-22",
+        "bookingTime": "10:30:00"  }
       let c=[cart]
       console.log(cart)
       await this.$store.dispatch("addToCart",c)

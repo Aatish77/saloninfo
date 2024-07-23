@@ -278,14 +278,34 @@ export default{
       async addpayMent(context,payload){
         try {
           const response = await axios.get(
-            `${context.getters.getBaseUrl}/createTransaction/${payload.amount}/${payload.id}`)
+            `${context.getters.getBaseUrl}/orderDetails/createTransaction/${payload.amount}/${payload.id}`,{headers: {
+              Authorization: `Bearer ${context.getters.getUserToken}`}
+            })
           if (response.status===200){
+
             console.log(response.data)
+            context.commit("loadRazorDetails",response.data)
+            return true
           }}
           catch(error){
             console.error(error)
           }
       },
+      async addRazorPayment(context,payload){
+        try {
+          const response = await axios.post(
+            `${context.getters.getBaseUrl}/api/verifypayment/payment/${payload.orderId}/${payload.paymentId}/${payload.signature}`,payload,{headers: {
+              Authorization: `Bearer ${context.getters.getUserToken}`}
+            })
+          if (response.status===200){
+
+            console.log(response.data)  
+            return true
+          }}
+          catch(error){
+            console.error(error)
+          }
+      },  
       async addRating(context,payload){
         try{
           const response = await axios.post(`${context.getters.getBaseUrl}/ratings/add?parlourId=${payload.parlourId}`,payload.pay)

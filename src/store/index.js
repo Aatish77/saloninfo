@@ -11,6 +11,7 @@ const store = createStore({
       adminToken:sessionStorage.getItem('adminToken')||'',
       parlourToken:sessionStorage.getItem('parlourToken')||"",
       userToken:sessionStorage.getItem('userToken')||"",
+      razorDetails:{},
       users: [
         { userId:"1",
           fullName: "Rakesh S",

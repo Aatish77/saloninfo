@@ -9,5 +9,6 @@ export default{
     getCategories:(state)=> state.categories,
     getCurrentSalon:(state)=> state.currentSalon,
     getAdminToken:(state)=> state.adminToken,
-    getUserToken:(state)=> state.userToken
+    getUserToken:(state)=> state.userToken,
+    getRazorDetails:(state)=> state.razorDetails
 }

@@ -7,7 +7,10 @@ export default {
   props: ['order_details', 'customer_details'],
   data(){
     return{
-      script: `https://checkout.razorpay.com/v1/checkout.js`
+      script: `https://checkout.razorpay.com/v1/checkout.js`,
+      order_id: null,
+      signature: null,
+      pay_id: null,
     }
   },
   methods :{ 
@@ -33,20 +36,42 @@ export default {
     }
 
     const options = {
-      key: process.env.VUE_APP_RAZORPAY_ID,
-      amount: `The amount must match with that is defined on backend`,
-      currency: `The currency must match with that is defined on backend`,
-      name: `The name you want to be displayed on the razorpay payment screen`,
+      key: this.$store.getters["getRazorDetails"].key,
+      amount: this.$store.getters["getRazorDetails"].amount,
+      currency:this.$store.getters["getRazorDetails"].currency ,
+      name: `SalonInfo`,
       description: `Description of the payment`,
-      order_id: `This will come from backend`,
-      image: `Your business logo`,
-      handler: function(){
-        // It is function executed on success
+      order_id: this.$store.getters["getRazorDetails"].orderId,
+      image: require("@/assets/Logo.jpg"),
+      handler: async (response) => {
+        this.pay_id = response.razorpay_payment_id;
+        this.order_id = response.razorpay_order_id;
+        this.signature = response.razorpay_signature;
+        this.$store.commit('setPayment', this.pay_id)
+        // console.log(this.pay_id);
+        try {
+          const response1 = await await this.$store.dispatch("addRazorPayment", {
+            "orderId": this.order_id,
+            "paymentId": this.pay_id,
+            "signature": this.signature,
+          });
+
+          if (response1.status === 200) {
+            this.$router.push('/loading_ticket')
+          }
+        }
+        catch (error) {
+          console.error(error);
+        }
       },
+
       prefill: {
         name: `Your customer name`,
         email: `Your customer email`,
-        contact: `Your customer contact`
+        contact: `9800445500`,
+      },
+      "theme":{
+        "color": "#00006f"
       }
     }; 
     const paymentObject = new window.Razorpay(options);
@@ -56,5 +81,7 @@ export default {
 </script>
 
 <style>
-
+.a{
+  color:#00006f
+}
 </style>

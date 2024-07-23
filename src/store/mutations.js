@@ -33,5 +33,8 @@ export default{
 
        loadparlourBookinghistory(state,payload){
         state.parlourBookinghistory=payload
-       }
+       },
+       loadRazorDetails(state,payload){
+        state.razorDetails=payload
+      }
       }

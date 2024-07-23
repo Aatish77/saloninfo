@@ -521,9 +521,9 @@ export default {
         quantityArray.push(i.quantity)
       }
 
-      let cart={"userId":parseInt(this.currentUser.userId),"itemId":parseInt(itemIds[0]),"parlourId":parseInt(this.card.parlourId),"quantity":parseInt(quantityArray[0])}
+      // let cart={"userId":parseInt(this.currentUser.userId),"itemId":parseInt(itemIds[0]),"parlourId":parseInt(this.card.parlourId),"quantity":parseInt(quantityArray[0])}
       // let c=[cart]
-      console.log(cart)
+      // console.log(cart)
       // await this.$store.dispatch("addToCart",c)
     },
     // Add methods to increase and decrease quantity
