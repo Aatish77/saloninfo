@@ -109,7 +109,7 @@
                 <button class="close-btn" @click="diaLoc = false">
                       X
                     </button>
-                <parlour-location></parlour-location>
+                <parlour-location @childValues="place"></parlour-location>
               </v-dialog>
               <v-col cols="12" sm="6" >
                 <v-text-field
@@ -296,6 +296,10 @@ export default {
     navparlourlogin() {
       this.$router.push("/parlourlogin");
     },
+    place(value){
+      this.latitude = value.lat
+      this.longitude = value.lng
+    },
     async submit() {
       // Check if the form is valid
       // this.$refs.form.validate().then((valid) => {
@@ -360,11 +364,7 @@ export default {
       this.errorp=false 
       this.errorMessagep=""}
     },
-    diaLoc(value){
-      if(value===false && this.parlourLoc.latitude){
-      this.latitude=this.parlourLoc.latitude
-      this.longitude=this.parlourLoc.longitude}
-      }
+    
   },
   created(){
     sessionStorage.removeItem('parlourlocation');
