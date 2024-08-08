@@ -69,9 +69,9 @@
                       style="font-size: 30px"
                       v-text="card.parlourName"
                     ></v-card-title>
-                    <v-card-subtitle
+                    <!-- <v-card-subtitle
                       ><h6>{{ card.subTitle }}</h6></v-card-subtitle
-                    >
+                    > -->
                   </v-img>
 
                   <v-card-actions>
@@ -85,13 +85,13 @@
                         </h6></div
                     ></v-btn>
                   </v-card-actions>
-                  <v-container v-if="card.serviceCategories" class="cont"  fluid style="height: 80px;" >
+                  <!-- <v-container v-if="card.serviceCategories" class="cont"  fluid style="height: 80px;" >
          
          <v-radio-group v-model="type" @change="handleSwitchChange"  inline style="color:white; display: inline-block;">
      <v-radio label="Men" value="Men" color="primary"></v-radio>
      <v-radio label="Women" value="Women" color="red"></v-radio>
    </v-radio-group>
-       </v-container>
+       </v-container> -->
                   <h1>About</h1>
                   <v-row>
                     <v-col :cols="8">
@@ -107,22 +107,22 @@
             <h1 class="mt-3">Services</h1>
             <v-row
               class="book"
-              v-for="(service, index) in cardServices.services"
+              v-for="(service, index) in card.items"
               :key="service"
             >
               <v-col :cols="12" md="6" v-if="index % 2 === 0">
-                <v-img
+                <!-- <v-img
                   class="round-img square-image"
                   :src="service.img"
                   height="300px"
                   width="300px"
                 >
-                </v-img>
+                </v-img> -->
               </v-col>
               <v-col :cols="12" md="6" v-else>
-                <h1 class="hc1">{{ service.title }}</h1>
+                <h1 class="hc1">{{ service.itemName }}</h1>
                 <p class="pc">
-                  {{ service.desc }}
+                  {{ service.description }}
                 </p>
 
                 <v-container
@@ -164,18 +164,18 @@
               </v-col>
 
               <v-col :cols="12" :md="6" v-if="index % 2 !== 0">
-                <v-img
+                <!-- <v-img
                   class="round-img square-image"
                   :src="service.img"
                   height="300px"
                   width="300px"
-                >
-                </v-img>
+                > -->
+                <!-- </v-img> -->
               </v-col>
               <v-col :cols="12" :md="6" v-else>
-                <h1 class="hc1">{{ service.title }}</h1>
+                <h1 class="hc1">{{ service.itemName }}</h1>
                 <p class="pc">
-                  {{ service.desc }}
+                  {{ service.description }}
                 </p>
                 <v-container>
                   <!-- <v-btn class="btn1" @click="addToCart(service)">
@@ -211,8 +211,8 @@
                     </v-card>
                   </v-dialog>
                 </v-container>
-              </v-col>
-              <v-row 
+              </v-col></v-row>
+              <!-- <v-row 
                 ><v-col v-for="i in service.subsubCategories" :key="i" :id="i.title">
                   <v-card  class="mx-auto card1 animate11" max-width="344" max-height="400px">
                     <v-img
@@ -254,8 +254,8 @@
                       <div></div> </v-card-actions
                   ></v-card> </v-col
               ></v-row>
-            </v-row>
-            <h1 class="mt-3">Offers</h1>
+            </v-row> -->
+            <!-- <h1 class="mt-3">Offers</h1>
             <v-row class="mt-3">
               <v-col
                 class="book"
@@ -310,11 +310,7 @@
                         </template>
                       </v-btn>
                     </div>
-                    <!-- <div>
-                      <v-btn class="btn1" @click="toggleBookoff(index)">
-                        Book an Appointment
-                      </v-btn>
-                    </div> -->
+                    
                   </v-card-actions>
                   <v-dialog v-model="dialogOff" max-width="500px">
                     <v-card>
@@ -345,12 +341,12 @@
                     />
                   </v-dialog> </v-card
               ></v-col>
-            </v-row>
+            </v-row> -->
           </v-container>
         </v-card>
-        <div id="l1">
+        <!-- <div id="l1">
     <MapComponent :latitude="card.latitude" :longitude="card.longitude" :name="card.parlourName" />
-  </div>
+  </div> -->
         <!-- <iframe :src="card.locationLink"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="l1"></iframe> -->
       </v-main>
     </v-layout>
@@ -358,10 +354,10 @@
 </template>
 
 <script>
-import MapComponent from "./LocationEach.vue";
+// import MapComponent from "./LocationEach.vue";
 
-import CartPage from "./Cart/CartPage.vue";
-import BookAppointment from "./Cart/BookAppointment.vue";
+// import CartPage from "./Cart/CartPage.vue";
+// import BookAppointment from "./Cart/BookAppointment.vue";
 export default {
   props: {
     id: {
@@ -370,9 +366,9 @@ export default {
     },
   },
   components: {
-    MapComponent,
-    CartPage,
-    BookAppointment,
+    // MapComponent,
+    // CartPage,
+    // BookAppointment,
   },
 
   data: () => ({
