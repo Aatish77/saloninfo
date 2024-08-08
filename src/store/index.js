@@ -62,7 +62,7 @@ const store = createStore({
         },
       ],
       cart:[],
-      eachparlours:[],
+      eachparlours: [],
       validUser: null,
       isUserLoggedin: false,
       // admin: { email: "admin@gmail.com", password: "Pass123@" },

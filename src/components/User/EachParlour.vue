@@ -57,7 +57,7 @@
               <v-col :cols="12">
                 <v-card style=" color: white" class="bgcolor">
                   <v-img
-                    :src="currentImage"
+                    :src="getImageUrl(card.image)"
                     alt="Slideshow"
                     class="align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
@@ -361,7 +361,7 @@
 export default {
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
     },
   },
@@ -414,7 +414,7 @@ export default {
       // return this.$store.getters["getSalons"];
     },
     currentImage() {
-      return this.cardServices.coverImages[0];
+      return this.card.image;
     },
     commonServices() {
       return this.$store.getters["getServiceCategories"];
@@ -426,6 +426,8 @@ export default {
   },
   created() {
     this.dataFetch()
+    this.card=this.$store.getters["getEachParlours"]
+    console.log(this.card)
     
   //   if (this.currentLabel) {
   //     console.log(this.currentLabel)
@@ -468,6 +470,9 @@ export default {
     
   },
   methods: {
+    getImageUrl(base64String) {
+      return `data:image/jpeg;base64,${base64String}`;
+    },
     async dataFetch(){
       try{
       const response= await this.$store.dispatch('eachParlours',this.id);

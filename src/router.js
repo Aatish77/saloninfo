@@ -41,7 +41,7 @@ const router = createRouter({
     { path: "/userlogin", component: UserLogin },
     { path: "/viewparlours", component: ViewParlours },
     {
-      path: "/eachparlour/:id",
+      path: "/eachparlour",
       component: EachParlour,
       name: "EachParlour",
       props: true,
