@@ -7,7 +7,7 @@ const store = createStore({
   state() {
     return {
       // baseUrl: `http://localhost:8082`,
-      baseUrl: `http://192.168.1.23:8086`,
+      baseUrl: `http://192.168.1.18:8086`,
       adminToken:sessionStorage.getItem('adminToken')||'',
       parlourToken:sessionStorage.getItem('parlourToken')||"",
       userToken:sessionStorage.getItem('userToken')||"",
@@ -61,6 +61,8 @@ const store = createStore({
           ],
         },
       ],
+      cart:[],
+      eachparlours:[],
       validUser: null,
       isUserLoggedin: false,
       // admin: { email: "admin@gmail.com", password: "Pass123@" },
@@ -1811,7 +1813,8 @@ const store = createStore({
 
         // Add more offers
       ],
-    parlourBookinghistory:[]
+    parlourBookinghistory:[],
+    allParlours:[]
     };
   },
   getters: rootGetters,

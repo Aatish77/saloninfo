@@ -141,7 +141,7 @@
                     ></v-progress-linear>
                   </template>
 
-                  <v-img height="250" :src="card.src" cover>
+                  <v-img height="250" :src="`data:image/png;base64,${card.image}`" cover>
                     <v-tooltip  location="top">
 
                       <template v-slot:activator="{ props }">
@@ -322,17 +322,21 @@ export default {
     this.loadSelectedPlace()
   },
   computed: {
+    cards(){
+      return this.$store.getters.getAllParlours;
+    },
+    
     currentUser() {
       const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
       return currentUser;
     },
-    cards() {
-      if(this.salons.length===0){
-        return this.$store.getters["getSalons"];
-      }
-      else{
-      return this.salons}
-    },
+    // cards() {
+    //   if(this.salons.length===0){
+    //     return this.$store.getters["getSalons"];
+    //   }
+    //   else{
+    //   return this.salons}
+    // },
     filteredCards() {
       if (!this.searchText) {
         return this.cards;
@@ -380,7 +384,17 @@ export default {
   //     }
   //   }
   // },
+mounted(){
+this.getparlours();
+console.log(this.cards);
+// this.$store.dispatch('eachParlours')
+},
+
   methods: {
+    async getparlours(){
+    await this.$store.dispatch('parlourList')
+    },
+
     loadSelectedPlace() {
       const savedPlace = localStorage.getItem('selectedPlace');
       const savedSalons =localStorage.getItem('savedSalons')
@@ -433,8 +447,18 @@ export default {
       console.log("logout")
       this.$router.push("/")
     },
-    navigateToEach(id) {
-      this.$router.push({ name: "EachParlour", params: { id: id } });
+   async navigateToEach(id) {
+    try{
+      const response= await this.$store.dispatch('eachParlours',id);
+   if(response){
+    console.log(response)
+    this.$router.push({ name: "EachParlour", params: { id: id }});
+   }
+    }
+   catch(error){
+    console.error(error)
+   }
+      // this.$router.push({ name: "EachParlour", params: { id: id } });
     },
     toggleSearch() {
       this.show = !this.show;

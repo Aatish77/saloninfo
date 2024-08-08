@@ -258,6 +258,7 @@ export default{
             }
           )
           if(response.status===200){
+            context.commit("setCart",{data:response.data,id:payload})
             console.log(response.data,"Success")
           }
         }catch (error){
@@ -327,5 +328,31 @@ export default{
                 console.error(error)
         
       }
+    },
+    async parlourList(context){
+      try{
+        const response = await axios.get(`${context.getters.getBaseUrl}/parlour/getAllParlours`)
+        if(response.status===200){
+          console.log(response.data)
+          context.commit("setAllParlours",response.data)
+          }}
+          catch(error){
+            console.error(error)
+    
+  }
+    },
+    async eachParlours(context,payload){
+      try{
+        const response = await axios.get(`${context.getters.getBaseUrl}/parlour/${payload}`)
+        if(response.status>=200 && response.status<300){
+          if(response.data && response.data.length>0){
+            console.log(response.data)
+          context.commit("setEachparlours",response.data)
+          return true;
+          }
+          }}
+          catch(error){
+            console.error(error)
     }
   }
+}

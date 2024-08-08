@@ -36,5 +36,14 @@ export default{
        },
        loadRazorDetails(state,payload){
         state.razorDetails=payload
+      },
+      setCart(state,payload){
+        state.cart=payload
+      },
+      setAllParlours(state,payload){
+        state.allParlours=payload
+      },
+      setEachparlours(state,payload){
+        state.eachparlours=payload
       }
       }
