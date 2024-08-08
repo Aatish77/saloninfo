@@ -14,7 +14,9 @@
         
 
         <template v-slot:prepend>
-          <v-img ></v-img>
+          <img :src="require('@/assets/logowhite.png')" alt="Logo" height="40">
+          <!-- <v-img :src="require('@/assets/logowhite.png')" alt="Logo" height="40"></v-img> -->
+          <!-- <v-img src="@/assets/logowhite.png" alt="Logo" height="40"></v-img> -->
           <!-- <i class="fas fa-cut"></i> -->
         </template>
 
@@ -297,6 +299,7 @@ import { mdiHumanFemaleGirl } from '@mdi/js';
 import { mdiHumanMaleChild } from '@mdi/js';
 import { mdiHumanMaleFemale } from '@mdi/js';
 import LocationSearch from "./LocationSearch.vue"
+// import L from 'leaflet';
 export default {
   name: "my-component",
   components: {
@@ -304,9 +307,9 @@ export default {
     SvgIcon
   },
   data: () => ({
-    selectedPlace:{},
-    salons:[],
-    dia:false,
+    selectedPlace: {},
+    salons: [],
+    dia: false,
     drawer: null,
     selectedItem: null,
     show: false,
@@ -314,12 +317,17 @@ export default {
     searchText: "",
     open: ["Users"],
     visibleTooltip: '',
-    
+    nearbyPlaces: [],
+    map: null,
+    userMarker: null,
+    nearbyRadius: 10,
   }),
+
   created(){
     sessionStorage.removeItem('currentOffer')
     sessionStorage.removeItem('currentLabel');
     this.loadSelectedPlace()
+    
   },
   computed: {
     cards(){
@@ -397,32 +405,90 @@ console.log(this.cards);
 
     loadSelectedPlace() {
       const savedPlace = localStorage.getItem('selectedPlace');
-      const savedSalons =localStorage.getItem('savedSalons')
-      if (savedPlace && savedSalons) {
+      
+      if (savedPlace) {
         this.selectedPlace = JSON.parse(savedPlace);
-        this.salons = JSON.parse(savedSalons);
+        if (this.selectedPlace.latitude && this.selectedPlace.longitude) {
+          console.log("place",this.selectedPlace)
+          this.displayNearbyPlaces(this.selectedPlace.latitude, this.selectedPlace.longitude, this.nearbyRadius);
+        }
         return true;
       }
       return false;
     },
-    handleChildValueChange(value) {
-      // Handle the value passed from the child component
-      this.salons = value.salons;
-      this.selectedPlace = value.place
-    },
-    iconPath(type){
-      if(type==='Men'){
-        return mdiHumanMaleChild
-      }
-      else if(type==='Women'){
-        return  mdiHumanFemaleGirl
-      }
-      else if(type==='Unisex'){
-        return mdiHumanMaleFemale
-      }
-    },
+    displayNearbyPlaces(lat, lng, radius) {
+      console.log("salons",this.salons)
+      // if (!this.map) return;
 
-     getTooltipMessage(type) {
+      // this.nearbyPlaces.forEach(place => {
+      //   this.map.removeLayer(place.marker);
+      // });
+      this.nearbyPlaces = [];
+
+      this.allsalons.forEach(place => {
+        const distance = this.calculateDistance(lat, lng, place.latitude, place.longitude);
+        if (distance <= radius) {
+          // const marker = L.marker(
+          //   [place.latitude, place.longitude],
+          //   {
+          //     icon: L.icon({
+          //       iconUrl: require("@/assets/redmarker.png"),
+          //       iconSize: [25, 41],
+          //     })
+          //   }
+          // ).addTo(this.map)
+          //   .bindTooltip(place.parlourName, {
+          //     permanent: true,
+          //     direction: 'top',
+          //     offset: [0, -20]
+          //   })
+          //   .bindPopup(place.name);
+
+          // marker.on('click', () => {
+          //   this.navigateToEach(place.id);
+          // });
+
+          // this.nearbyPlaces.push({ ...place, marker });
+          if (distance <= 10) {
+            this.salons.push(place);
+        }
+        
+        }
+      });
+      
+    },
+    calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Radius of the earth in km
+      const dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+      const dLon = this.deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const distance = R * c; // Distance in km
+      return distance;
+    },
+    deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    },
+    navigateToEach(id) {
+      this.$router.push({ name: "EachParlour", params: { id: id } });
+    },
+    handleChildValueChange(value) {
+      this.salons = value.salons;
+      this.selectedPlace = value.place;
+    },
+    iconPath(type) {
+      if (type === 'Men') {
+        return mdiHumanMaleChild;
+      } else if (type === 'Women') {
+        return mdiHumanFemaleGirl;
+      } else if (type === 'Unisex') {
+        return mdiHumanMaleFemale;
+      }
+    },
+    getTooltipMessage(type) {
       if (type === 'Men') {
         return 'Men Services';
       } else if (type === 'Women') {
@@ -432,15 +498,14 @@ console.log(this.cards);
       }
       return 'Services';
     },
-
-    clickProfile(){
-      this.$router.push("/userpage")
+    clickProfile() {
+      this.$router.push("/userpage");
     },
-    serviceClick(){
-      this.$router.push("/services")
+    serviceClick() {
+      this.$router.push("/services");
     },
-    offerClick(){
-      this.$router.push("/offer")
+    offerClick() {
+      this.$router.push("/offer");
     },
     logout(){
       

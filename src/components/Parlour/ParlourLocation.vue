@@ -107,7 +107,8 @@ export default {
     },
     submit() {
       console.log(this.selectedPlace);
-      sessionStorage.setItem("parlourlocation", JSON.stringify(this.selectedPlace));
+      this.$emit('childValues', { lat: this.selectedPlace.latitude, lng: this.selectedPlace.longitude })
+      // sessionStorage.setItem("parlourlocation", JSON.stringify(this.selectedPlace));
     },
   },
   mounted() {
