@@ -472,9 +472,9 @@ console.log(this.cards);
     deg2rad(deg) {
       return deg * (Math.PI / 180);
     },
-    navigateToEach(id) {
-      this.$router.push({ name: "EachParlour", params: { id: id } });
-    },
+    // navigateToEach(id) {
+    //   this.$router.push({ name: "EachParlour", params: { id: id } });
+    // },
     handleChildValueChange(value) {
       this.salons = value.salons;
       this.selectedPlace = value.place;

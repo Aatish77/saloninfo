@@ -429,48 +429,62 @@ export default {
     this.startSlideshow();
   },
   created() {
+    this.dataFetch()
     
-    if (this.currentLabel) {
-      console.log(this.currentLabel)
-      this.type=this.currentLabel.label
-      const element = document.getElementById(this.currentLabel.subsubCategory);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  } 
-  if(this.currentOffer){
-    console.log("b",this.currentOffer)
-    this.type=this.currentOffer.label
-    const element = document.getElementById(this.currentOffer.offer);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-  }
-    console.log(this.datas);
-    console.log(this.id);
-    for (let i = 0; i < this.datas.length; i++) {
-      if (this.datas[i].id === this.id) {
-        this.card = this.datas[i];
-        console.log(this.card);
-      }
-    }
-    if(this.card.serviceCategories){
+  //   if (this.currentLabel) {
+  //     console.log(this.currentLabel)
+  //     this.type=this.currentLabel.label
+  //     const element = document.getElementById(this.currentLabel.subsubCategory);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // } 
+  // if(this.currentOffer){
+  //   console.log("b",this.currentOffer)
+  //   this.type=this.currentOffer.label
+  //   const element = document.getElementById(this.currentOffer.offer);
+  //     if (element) {
+  //       element.scrollIntoView({ behavior: 'smooth' });
+  //     }
+  // }
+  //   console.log(this.datas);
+  //   console.log(this.id);
+  //   for (let i = 0; i < this.datas.length; i++) {
+  //     if (this.datas[i].id === this.id) {
+  //       this.card = this.datas[i];
+  //       console.log(this.card);
+  //     }
+  //   }
+  //   if(this.card.serviceCategories){
      
-        for(let i of this.card.serviceCategories ){
-          if(i.title===this.type){
-            this.cardServices=i;
-          }
-        }
+  //       for(let i of this.card.serviceCategories ){
+  //         if(i.title===this.type){
+  //           this.cardServices=i;
+  //         }
+  //       }
       
 
-    }
-    else{
-      this.cardServices=this.card;
-    }
+  //   }
+  //   else{
+  //     this.cardServices=this.card;
+  //   }
     
     
   },
   methods: {
+    async dataFetch(){
+      try{
+      const response= await this.$store.dispatch('eachParlours',this.id);
+   if(response){
+    console.log(response)
+    this.card=this.$store.getters["getEachParlours"]
+    console.log(this.card)
+   }
+    }
+   catch(error){
+    console.error(error)
+   }
+    },
     handleSwitchChange(){
       for(let i of this.card.serviceCategories ){
           if(i.title===this.type){
