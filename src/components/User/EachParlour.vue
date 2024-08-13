@@ -471,9 +471,10 @@ export default {
   },
   methods: {
     getImageUrl(base64String) {
-      return `data:image/jpeg;base64,${base64String}`;
+      return `data:image/png;base64,${base64String}`;
     },
     async dataFetch(){
+      console.log('id',this.id)
       try{
       const response= await this.$store.dispatch('eachParlours',this.id);
    if(response){

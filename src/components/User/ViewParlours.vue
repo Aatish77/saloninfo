@@ -14,7 +14,7 @@
         
 
         <template v-slot:prepend>
-          <img :src="require('@/assets/logowhite.png')" alt="Logo" height="40">
+          <img :src="require('@/assets/salonlog.jpg')" alt="Logo" height="50">
           <!-- <v-img :src="require('@/assets/logowhite.png')" alt="Logo" height="40"></v-img> -->
           <!-- <v-img src="@/assets/logowhite.png" alt="Logo" height="40"></v-img> -->
           <!-- <i class="fas fa-cut"></i> -->
@@ -410,24 +410,24 @@ console.log(this.cards);
         this.selectedPlace = JSON.parse(savedPlace);
         if (this.selectedPlace.latitude && this.selectedPlace.longitude) {
           console.log("place",this.selectedPlace)
-          this.displayNearbyPlaces(this.selectedPlace.latitude, this.selectedPlace.longitude, this.nearbyRadius);
+          // this.displayNearbyPlaces(this.selectedPlace.latitude, this.selectedPlace.longitude, this.nearbyRadius);
         }
         return true;
       }
       return false;
     },
-    displayNearbyPlaces(lat, lng, radius) {
-      console.log("salons",this.salons)
+    // displayNearbyPlaces(lat, lng, radius) {
+    //   console.log("salons",this.salons)
       // if (!this.map) return;
 
       // this.nearbyPlaces.forEach(place => {
       //   this.map.removeLayer(place.marker);
       // });
-      this.nearbyPlaces = [];
+      // this.nearbyPlaces = [];
 
-      this.allsalons.forEach(place => {
-        const distance = this.calculateDistance(lat, lng, place.latitude, place.longitude);
-        if (distance <= radius) {
+      // this.allsalons.forEach(place => {
+      //   const distance = this.calculateDistance(lat, lng, place.latitude, place.longitude);
+      //   if (distance <= radius) {
           // const marker = L.marker(
           //   [place.latitude, place.longitude],
           //   {
@@ -449,14 +449,12 @@ console.log(this.cards);
           // });
 
           // this.nearbyPlaces.push({ ...place, marker });
-          if (distance <= 10) {
-            this.salons.push(place);
-        }
+      //     if (distance <= 10) {
+      //       this.salons.push(place);
+      //   }
         
-        }
-      });
-      
-    },
+      //   }
+      // });},
     calculateDistance(lat1, lon1, lat2, lon2) {
       const R = 6371; // Radius of the earth in km
       const dLat = this.deg2rad(lat2 - lat1); // deg2rad below
@@ -513,6 +511,7 @@ console.log(this.cards);
       this.$router.push("/")
     },
    async navigateToEach(id) {
+    console.log('navigating.....')
     try{
       const response= await this.$store.dispatch('eachParlours',id);
    if(response){
@@ -540,6 +539,9 @@ console.log(this.cards);
 <style scoped>
 .card1:hover {
   scale: 101%;
+}
+img{
+  border-radius: 50%;
 }
 .close-btn {
   position: relative;
