@@ -394,7 +394,7 @@ export default {
   // },
 mounted(){
 this.getparlours();
-console.log(this.cards);
+console.log("salonns list",this.cards);
 // this.$store.dispatch('eachParlours')
 },
 
