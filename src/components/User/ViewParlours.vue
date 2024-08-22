@@ -512,6 +512,7 @@ console.log(this.cards);
     },
    async navigateToEach(id) {
     console.log('navigating.....')
+    console.log(id)
     try{
       const response= await this.$store.dispatch('eachParlours',id);
    if(response){
