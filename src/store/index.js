@@ -7,7 +7,7 @@ const store = createStore({
   state() {
     return {
       // baseUrl: `http://localhost:8082`,
-      baseUrl: `http://192.168.1.18:8086`,
+      baseUrl: `http://192.168.1.30:8086`,
       adminToken:sessionStorage.getItem('adminToken')||'',
       parlourToken:sessionStorage.getItem('parlourToken')||"",
       userToken:sessionStorage.getItem('userToken')||"",
@@ -63,11 +63,12 @@ const store = createStore({
       ],
       cart:[],
       eachparlours: [],
+      servicelist:[],
       validUser: null,
       isUserLoggedin: false,
       // admin: { email: "admin@gmail.com", password: "Pass123@" },
       admin: "",
-      currentSalon:{},
+      currentSalon:JSON.parse(sessionStorage.getItem('currentSalon')) || [],
       validAdmin: null,
       isAdminLoggedin: false,
       categories:[{name:"Men",id:1,
