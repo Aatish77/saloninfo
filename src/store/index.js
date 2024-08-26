@@ -64,6 +64,7 @@ const store = createStore({
       cart:[],
       eachparlours: [],
       servicelist:[],
+      addservices:[],
       validUser: null,
       isUserLoggedin: false,
       // admin: { email: "admin@gmail.com", password: "Pass123@" },

@@ -371,4 +371,21 @@ export default{
   
 }
   },
+
+  async addServices(context,payload){
+    try {
+      const response = await axios.post(
+        `${context.getters.getBaseUrl}/Items/AddItems`,payload,{headers: {
+          Authorization: `Bearer ${context.getters.getParlourToken}`}
+        })
+      if (response.status===200){
+        console.log("Success")
+        console.log(response)
+      }}
+      catch(error){
+        console.error(error)
+      }
+  },
+
+  
 }

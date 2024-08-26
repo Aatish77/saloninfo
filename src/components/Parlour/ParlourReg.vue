@@ -266,6 +266,7 @@ export default {
       coverPreviewUrl: null,
       dialogVis: false,
       licenseFile: null,
+      parlourPhoto:'',
       show1: false,
       show2: false,
       parlour: {},
@@ -294,8 +295,8 @@ export default {
   const imgInput = this.$refs.license.files[0];
   if (imgInput) {
     const reader = new FileReader();
-    reader.onload = (e) => {
-      this.licenseUrl = e.target.result;
+    reader.onload = () => {
+      this.licenseUrl = imgInput;
     };
     reader.readAsDataURL(imgInput);
   }
@@ -305,8 +306,8 @@ export default {
       const imgInput = this.$refs.profilePhoto.files[0];
       if (imgInput) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-          this.profilePreviewUrl = e.target.result;
+        reader.onload = () => {
+          this.profilePreviewUrl = imgInput
         };
         reader.readAsDataURL(imgInput);
       } else {
@@ -317,8 +318,8 @@ export default {
       const imgInput = this.$refs.coverPhoto.files[0];
       if (imgInput) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-          this.coverPreviewUrl = e.target.result;
+        reader.onload = () => {
+          this.coverPreviewUrl = imgInput;
         };
         reader.readAsDataURL(imgInput);
       } else {
@@ -341,8 +342,10 @@ export default {
           this.dialogVis = true;
           const formData = new FormData();
           formData.append("parlourName", this.parlourName);
-          formData.append("image",this.imageUrl)
+          // formData.append("image",this.imageUrl)
           formData.append("location", this.location);
+          formData.append("coverImage", this.coverPreviewUrl);
+          formData.append("image", this.profilePreviewUrl);
           formData.append("phoneNumber", this.phone);
           formData.append("email", this.email);
           formData.append("description", this.description);
@@ -352,8 +355,7 @@ export default {
           formData.append("ratings", this.rating); // License File
           formData.append("latitude", parseFloat(this.latitude));
           formData.append("longitude", parseFloat(this.longitude));
-          formData.append("coverImage", this.parlourPhoto);
-          formData.append("image", this.profilePreviewUrl);
+        
 
           this.$store.dispatch("addTheParlour", formData)
             .then(() => {

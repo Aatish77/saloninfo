@@ -50,5 +50,8 @@ export default{
       },
       setServiceList(state,payload){
         state.servicelist=payload
+      },
+      setAddServices(state,payload){
+        state.addservices=payload
       }
       }

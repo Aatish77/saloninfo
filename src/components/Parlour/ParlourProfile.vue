@@ -38,7 +38,7 @@
                 <v-card style="background-color: black; color: white;">
                   <!-- Image Section -->
                   <v-img
-                    :src="`data:image/png;base64,${parlourcard.coverimage}`"
+                    :src="`data:image/png;base64,${parlourcard.coverImage}`"
                     alt="Slideshow"
                     class="align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
@@ -211,22 +211,7 @@ export default {
         offers: [],
 
       },
-      // parlourcard: {
-      //   // image: 'https://t4.ftcdn.net/jpg/06/13/51/75/240_F_613517595_vN9ugH0PW0vnPTzINEX1Eqnqt1EAlB0c.jpg',
-      //   // parlourName: 'Angel Beauty Salon',
-      //   // location: 'Salon Location',
-      //   // phone: '1234567890',
-      //   // email: 'angelbeauty@gmail.com',
-      //   // description: 'Salon Description',
-      //   // services: [
-      //   //   { title: 'Service 1', desc: 'Description 1', img: 'https://via.placeholder.com/300' },
-      //   //   { title: 'Service 2', desc: 'Description 2', img: 'https://via.placeholder.com/300' }
-      //   // ],
-      //   // offers: [
-      //   //   { title: 'Offer 1', img: 'https://via.placeholder.com/300', price: 100, mrp: 150 },
-      //   //   { title: 'Offer 2', img: 'https://via.placeholder.com/300', price: 200, mrp: 250 }
-      //   // ]
-      // }
+     
     };
   },
   computed:{
