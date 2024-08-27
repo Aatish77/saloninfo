@@ -57,7 +57,7 @@
               <v-col :cols="12">
                 <v-card style=" color: white" class="bgcolor">
                   <v-img
-                    :src="getImageUrl(datas.image)"
+                    :src="getImageUrl(datas.coverImage)"
                     alt="Slideshow"
                     class="align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
@@ -72,7 +72,16 @@
                     <!-- <v-card-subtitle
                       ><h6>{{ card.subTitle }}</h6></v-card-subtitle
                     > -->
+
+                    <v-img
+                      :src="`data:image/png;base64,${datas.image}`"
+                      alt="Profile Photo"
+                      height="auto"
+                      width="170"
+                      class="profile-photo"
+                    ></v-img>
                   </v-img>
+                  
 
                   <v-card-actions>
                     <v-spacer></v-spacer>

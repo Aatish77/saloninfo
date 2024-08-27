@@ -121,74 +121,67 @@
         
         <!-- Edit Dialog -->
         <v-dialog v-model="editDialog" max-width="800px">
-          <v-card style="color:white; background-color: black;">
-            <v-card-title>Edit Salon Information</v-card-title>
-            <v-card-text>
-              <v-text-field v-model="editedCard.parlourName" label="Title" required></v-text-field>
-              <v-row>
-                <v-col cols="12">
-                  <v-file-input
-                    v-model="coverImage"
-                    @change="previewCoverImage"
-                    label="Change Cover Image"
-                    prepend-icon="mdi-camera"
-                    variant="filled"
-                  ></v-file-input>
-                  <v-img v-if="coverImage" :src="coverImage" width="100px" height="100px" class="my-2"></v-img>
-                </v-col>
-                <v-col cols="12">
-                  <v-file-input
-                    v-model="editedCard.src"
-                    @change="previewProfileImage"
-                    label="Change Profile Photo"
-                    prepend-icon="mdi-camera"
-                    variant="filled"
-                  ></v-file-input>
-                  <v-img v-if="editedCard.src" :src="editedCard.src" width="100px" height="100px" class="my-2"></v-img>
-                </v-col>
-              </v-row>
-              <v-textarea v-model="editedCard.description" label="About" required auto-grow></v-textarea>
-              <v-text-field v-model="editedCard.location" label="Location" required></v-text-field>
-              <v-text-field v-model="editedCard.phone" label="Phone" required></v-text-field>
-              <v-text-field v-model="editedCard.email" label="Email" required></v-text-field>
-              
-              <!-- Services Edit -->
-              <v-card-text>
-                <h3>Services</h3>
-                <v-row v-for="(service, index) in editedCard.services" :key="index">
-                  <v-col cols="6">
-                    <v-text-field v-model="service.title" label="Service Title" required></v-text-field>
-                    <v-textarea v-model="service.desc" label="Description" required></v-textarea>
-                  </v-col>
-                  <v-col cols="6">
-                    <v-file-input v-model="service.img" label="Service Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
-                  </v-col>
-                </v-row>
-                <v-btn @click="addService">Add New Service</v-btn>
-              </v-card-text>
-              
-              <!-- Offers Edit -->
-              <v-card-text>
-                <h3>Offers</h3>
-                <v-row v-for="(offer, index) in editedCard.offers" :key="index">
-                  <v-col cols="6">
-                    <v-text-field v-model="offer.title" label="Offer Title" required></v-text-field>
-                    <v-textarea v-model="offer.desc" label="Description" required></v-textarea>
-                  </v-col>
-                  <v-col cols="6">
-                    <v-file-input v-model="offer.img" label="Offer Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
-                  </v-col>
-                </v-row>
-                <v-btn @click="addOffer">Add New Offer</v-btn>
-              </v-card-text>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn @click="editDialog = false">Cancel</v-btn>
-              <v-btn @click="saveChanges">Save</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+    <v-card style="color:white; background-color: black;">
+      <v-card-title>Edit Salon Information</v-card-title>
+      <v-card-text>
+        <v-text-field v-model="editedCard.parlourName" label="Title" required></v-text-field>
+        <v-textarea v-model="editedCard.description" label="About" required auto-grow></v-textarea>
+        <v-text-field v-model="editedCard.location" label="Location" required></v-text-field>
+        <v-text-field v-model="editedCard.phone" label="Phone" required></v-text-field>
+        <v-text-field v-model="editedCard.email" label="Email" required></v-text-field>
+
+        <v-file-input
+          v-model="coverImage"
+          @change="previewCoverImage"
+          label="Change Cover Image"
+          prepend-icon="mdi-camera"
+          variant="filled"
+        ></v-file-input>
+        <v-img v-if="coverImage" :src="coverImage" width="100px" height="100px" class="my-2"></v-img>
+
+        <v-file-input
+          v-model="editedCard.src"
+          @change="previewProfileImage"
+          label="Change Profile Photo"
+          prepend-icon="mdi-camera"
+          variant="filled"
+        ></v-file-input>
+        <v-img v-if="editedCard.src" :src="editedCard.src" width="100px" height="100px" class="my-2"></v-img>
+
+        <!-- Services Edit -->
+        <h3>Services</h3>
+        <v-row v-for="(service, index) in editedCard.services" :key="index">
+          <v-col cols="6">
+            <v-text-field v-model="service.title" label="Service Title" required></v-text-field>
+            <v-textarea v-model="service.desc" label="Description" required></v-textarea>
+          </v-col>
+          <v-col cols="6">
+            <v-file-input v-model="service.img" label="Service Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
+          </v-col>
+        </v-row>
+        <v-btn @click="addService">Add New Service</v-btn>
+
+        <!-- Offers Edit -->
+        <h3>Offers</h3>
+        <v-row v-for="(offer, index) in editedCard.offers" :key="index">
+          <v-col cols="6">
+            <v-text-field v-model="offer.title" label="Offer Title" required></v-text-field>
+            <v-textarea v-model="offer.desc" label="Description" required></v-textarea>
+          </v-col>
+          <v-col cols="6">
+            <v-file-input v-model="offer.img" label="Offer Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
+          </v-col>
+        </v-row>
+        <v-btn @click="addOffer">Add New Offer</v-btn>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn @click="editDialog = false">Cancel</v-btn>
+        <v-btn @click="saveChanges">Save</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
       </v-main>
     </v-layout>
   </v-card>
@@ -199,9 +192,10 @@ export default {
   data() {
     return {
       editDialog: false,
-      coverImage: null,
+      coverImage: '',
       editedCard: {
         parlourName: '',
+        coverImage: '',
         src: '',
         description: '',
         location: '',
@@ -209,31 +203,34 @@ export default {
         email: '',
         services: [],
         offers: [],
-
       },
-     
     };
   },
-  computed:{
-   services(){
-    return this.$store.getters.getServiceList;
-   },
-   parlourcard(){
-          return this.$store.getters["getCurrentSalon"];
-  
-        },
-  },
-  async mounted(){
-    try{
-   
-      await this.$store.dispatch('serviceList',this.parlourcard.id)
-    }
-    catch(error){
-      console.error(error);
-    }
-    console.log('servicelist',this.services)
+  computed: {
+    parlourcard() {
+      return this.$store.getters["getCurrentSalon"];
+    },
   },
   methods: {
+    openEditDialog() {
+      if (this.parlourcard) {
+        this.editedCard = {
+          parlourName: this.parlourcard.parlourName || '',
+          coverImage: this.parlourcard.coverImage || '',
+          src: this.parlourcard.image || '',
+          description: this.parlourcard.description || '',
+          location: this.parlourcard.location || '',
+          phone: this.parlourcard.phoneNumber || '',
+          email: this.parlourcard.email || '',
+          services: [...this.parlourcard.services] || [],
+          offers: [...this.parlourcard.offers] || [],
+        };
+        this.editDialog = true;
+        this.coverImage = this.parlourcard.coverImage;
+      } else {
+        console.error("Parlourcard data is not available.");
+      }
+    },
     toggleEditDialog() {
       this.editDialog = !this.editDialog;
     },
@@ -241,7 +238,7 @@ export default {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = e => (this.coverImage = e.target.result);
+        reader.onload = e => (this.editedCard.coverImage = e.target.result);
         reader.readAsDataURL(file);
       }
     },
@@ -254,28 +251,22 @@ export default {
       }
     },
     addService() {
-      this.editedCard.services.push({
-        title: '',
-        desc: '',
-        img: ''
-      });
+      this.editedCard.services.push({ title: '', desc: '', img: '' });
     },
     addOffer() {
-      this.editedCard.offers.push({
-        title: '',
-        desc: '',
-        img: '',
-        price: 0,
-        mrp: 0
-      });
+      this.editedCard.offers.push({ title: '', desc: '', img: '', price: 0, mrp: 0 });
     },
     saveChanges() {
-      // Logic to save changes
-      this.parlourcard = { ...this.editedCard };
-      this.parlourcard.image = this.coverImage || this.parlourcard.image; // Update the cover image if changed
-      this.editDialog = false;
-    }
-  }
+      // Save the changes by dispatching an action to update the Vuex store
+      this.$store.dispatch('updateSalon', this.editedCard)
+        .then(() => {
+          this.editDialog = false;
+        })
+        .catch(error => {
+          console.error("Error updating salon:", error);
+        });
+    },
+  },
 };
 </script>
 
