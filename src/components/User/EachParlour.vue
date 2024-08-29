@@ -64,11 +64,7 @@
                     height="500px"
                     cover
                   >
-                    <v-card-title
-                      class="text-white"
-                      style="font-size: 30px"
-                      v-text="datas.parlourName"
-                    ></v-card-title>
+                   
                     <!-- <v-card-subtitle
                       ><h6>{{ card.subTitle }}</h6></v-card-subtitle
                     > -->
@@ -80,6 +76,12 @@
                       width="170"
                       class="profile-photo"
                     ></v-img>
+                    
+                    <v-card-title
+                      class="text-white"
+                      style="font-size: 30px"
+                      v-text="datas.parlourName"
+                    ></v-card-title>
                   </v-img>
                   
 
@@ -659,6 +661,11 @@ export default {
   color: #fffcfc;
   font-size: 20px;
   cursor: pointer;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  border: 2px solid white;
 }
 
 .btn2 {
