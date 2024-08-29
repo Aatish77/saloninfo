@@ -153,6 +153,7 @@
         <v-row v-for="(item, index) in editedCard.items" :key="index">
           <v-col cols="6">
             <v-text-field v-model="item.itemName" label="Service Title" required></v-text-field>
+            <v-text-field v-model="item.price" label="Price" required></v-text-field>
             <v-textarea v-model="item.description" label="Description" required></v-textarea>
           </v-col>
           <v-col cols="6">
