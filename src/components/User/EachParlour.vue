@@ -57,18 +57,14 @@
               <v-col :cols="12">
                 <v-card style=" color: white" class="bgcolor">
                   <v-img
-                    :src="getImageUrl(datas.coverImage)"
+                     :src="`data:image/png;base64,${datas.coverImage}`"
                     alt="Slideshow"
                     class="align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                     height="500px"
                     cover
                   >
-                    <v-card-title
-                      class="text-white"
-                      style="font-size: 30px"
-                      v-text="datas.parlourName"
-                    ></v-card-title>
+                   
                     <!-- <v-card-subtitle
                       ><h6>{{ card.subTitle }}</h6></v-card-subtitle
                     > -->
@@ -80,6 +76,12 @@
                       width="170"
                       class="profile-photo"
                     ></v-img>
+                    
+                    <v-card-title
+                      class="text-white"
+                      style="font-size: 30px"
+                      v-text="datas.parlourName"
+                    ></v-card-title>
                   </v-img>
                   
 
@@ -659,6 +661,11 @@ export default {
   color: #fffcfc;
   font-size: 20px;
   cursor: pointer;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  border: 2px solid white;
 }
 
 .btn2 {
