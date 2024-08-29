@@ -57,7 +57,7 @@
               <v-col :cols="12">
                 <v-card style=" color: white" class="bgcolor">
                   <v-img
-                    :src="getImageUrl(datas.coverImage)"
+                     :src="`data:image/png;base64,${datas.coverImage}`"
                     alt="Slideshow"
                     class="align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
