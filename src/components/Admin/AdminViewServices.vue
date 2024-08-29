@@ -283,17 +283,17 @@
           sessionStorage.setItem("adminser",JSON.stringify({cat:cat.name,subCat:subCat.name,catIndex:index,subIndex:subIndex}))
           this.$router.push("/adminsubcat")
         },
-        catPhoto(){
-      const imgInput = this.$refs.cat.files[0];
-       
-       const reader = new Image();
- 
-       reader.onload = () => {
-         this.piccatUrl = imgInput;
-       }
- 
-       reader.src = URL.createObjectURL(imgInput);
-    },
+          catPhoto(){
+        const imgInput = this.$refs.cat.files[0];
+        
+        const reader = new Image();
+  
+        reader.onload = () => {
+          this.piccatUrl = imgInput;
+        }
+  
+        reader.src = URL.createObjectURL(imgInput);
+      },
     subPhoto(event){
       
        

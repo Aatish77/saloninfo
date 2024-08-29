@@ -4,7 +4,7 @@ export default{
     addOneUser(context, payload) {
         context.commit("addAUser", payload);
       },  
-        async parlourLogin(context, payload) {
+    async parlourLogin(context, payload) {
         try {
           console.log('hello',payload);
           const response = await axios.post(
@@ -373,15 +373,30 @@ export default{
 }
   },
 
-  async addServices(context,payload){
+  // async addServices(context,payload){
+  //   try {
+  //     const response = await axios.post(
+  //       `${context.getters.getBaseUrl}/Items/AddItems`,payload,{headers: {
+  //         Authorization: `Bearer ${context.getters.getParlourToken}`}
+  //       })
+  //     if (response.status===200){
+  //       console.log("Success")
+  //       console.log(response)
+  //     }}
+  //     catch(error){
+  //       console.error(error)
+  //     }
+  // },
+  async addItems(context,payload){
     try {
+      console.log(context.getters.getAdminToken)
       const response = await axios.post(
         `${context.getters.getBaseUrl}/Items/AddItems`,payload,{headers: {
           Authorization: `Bearer ${context.getters.getParlourToken}`}
         })
       if (response.status===200){
+        alert("Item added successfully")
         console.log("Success")
-        console.log(response)
       }}
       catch(error){
         console.error(error)

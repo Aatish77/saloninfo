@@ -150,14 +150,57 @@
 
         <!-- Services Edit -->
          <h3>Services</h3>
-        <v-row v-for="(service, index) in editedCard.services" :key="index">
+        <v-row v-for="(item, index) in editedCard.items" :key="index">
           <v-col cols="6">
-            <v-text-field v-model="service.title" label="Service Title" required></v-text-field>
-            <v-textarea v-model="service.desc" label="Description" required></v-textarea>
+            <v-text-field v-model="item.itemName" label="Service Title" required></v-text-field>
+            <v-textarea v-model="item.description" label="Description" required></v-textarea>
           </v-col>
           <v-col cols="6">
-            <v-file-input v-model="service.img" label="Service Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
+            <v-file-input
+                class="input"
+                ref="item"
+                  style="color: white"
+                  label="Item photo"
+                  v-model="fileImage"
+                  accept="image/*"
+                  outlined
+                  @change="itemPhoto"
+                >
+                </v-file-input>  </v-col>
+          <v-col cols="6">
+            <v-select
+            v-model="item.categoryId"
+  label="Category"
+  :items="[1,2]"
+></v-select>
           </v-col>
+          <v-col cols="6">
+            <v-select
+            v-model="item.subCategoryId"
+  label="Sub category"
+  :items="[1,2,3]"
+></v-select>
+          </v-col>
+          <v-col cols="6">
+            <v-select
+            v-model="item.subSubCategoryId"
+  label="Sub sub category"
+  :items="[1,2,3]"
+></v-select>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+            label="Service Time"
+            v-model="item.serviceTime">
+
+            </v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-btn
+            @click="saveItem(item)">Save
+            </v-btn>
+          </v-col>
+         
         </v-row>
         <v-btn @click="addService">Add New Service</v-btn> 
 
@@ -191,6 +234,8 @@
 export default {
   data() {
     return {
+      fileImage:"",
+      imageUrl:"",
       editDialog: false,
       coverImage: '',
       editedCard: {
@@ -210,6 +255,7 @@ export default {
   },
   mounted(){
 this.getservice();
+console.log(this.parlourcard.id)
   },
 
   computed: {
@@ -217,7 +263,45 @@ this.getservice();
       return this.$store.getters["getCurrentSalon"];
     },
   },
-  methods: {
+  methods: { 
+    // itemPhoto(){
+    //     const imgInput = this.$refs.item.files[0];
+        
+    //     const reader = new Image();
+  
+    //     reader.onload = () => {
+    //       this.imageUrl = imgInput;
+    //     }
+  
+    //     reader.src = URL.createObjectURL(imgInput);
+    //   }, 
+      itemPhoto(event){
+      
+       
+      this.imageUrl = event.target.files[0];
+    },
+   
+async saveItem(item){
+  const formData = new FormData();
+  formData.append("itemName", item.itemName);
+  formData.append("itemImage", this.imageUrl);
+  formData.append("price", item.price);
+  formData.append("categoryId", item.categoryId);
+  formData.append("subCategoryId", item.subCategoryId);
+  formData.append("subSubCategoryId", item.subSubCategoryId);
+  formData.append("parlourId", this.parlourcard.id); 
+  formData.append("serviceTime", item.serviceTime); 
+  formData.append("description", item.description);
+  formData.append("availability", item.availability);  
+  this.$store.dispatch("addItems", formData)
+            .then(() => {
+             console.log("Success")
+            })
+            .catch((error) => {
+              console.error("Error adding user:", error);
+            });
+},
+
     async getservice(){
 try{
 await this.$store.dispatch('serviceList',this.parlourcard.id)
@@ -231,7 +315,7 @@ console.error(error)
         console.log('hello')
         this.editedCard = {
           parlourName: this.parlourcard.parlourName ,
-          coverImage: this.parlourcard.coverImage,
+          coverImage: this.parlourcard.coverImage,  
           src: this.parlourcard.image ,
           description: this.parlourcard.description,
           location: this.parlourcard.location,
@@ -267,7 +351,7 @@ console.error(error)
       }
     },
     addService() {
-      this.editedCard.services.push({ title: '', desc: '', img: '' });
+      this.editedCard.items.push({ itemName: '', itemImage: '', price: '', categoryId:"",subCategoryId:"", subSubCategoryId:"", parlourId:"",serviceTime:"",description:"",availability : true, itemFile:"" });
     },
     addOffer() {
       this.editedCard.offers.push({ title: '', desc: '', img: '', price: 0, mrp: 0 });
