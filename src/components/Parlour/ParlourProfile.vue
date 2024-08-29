@@ -137,7 +137,7 @@
           prepend-icon="mdi-camera"
           variant="filled"
         ></v-file-input>
-        <v-img v-if="coverImage" :src="coverImage" width="100px" height="100px" class="my-2"></v-img>
+        <v-img v-if="coverImage" :src="`data:image/png;base64,${coverImage}`" width="100px" height="100px" class="my-2"></v-img>
 
         <v-file-input
           v-model="editedCard.src"
@@ -146,10 +146,10 @@
           prepend-icon="mdi-camera"
           variant="filled"
         ></v-file-input>
-        <v-img v-if="editedCard.src" :src="editedCard.src" width="100px" height="100px" class="my-2"></v-img>
+        <v-img v-if="editedCard.src" :src="`data:image/png;base64,${editedCard.src}`" width="100px" height="100px" class="my-2"></v-img>
 
         <!-- Services Edit -->
-        <h3>Services</h3>
+        <!-- <h3>Services</h3>
         <v-row v-for="(service, index) in editedCard.services" :key="index">
           <v-col cols="6">
             <v-text-field v-model="service.title" label="Service Title" required></v-text-field>
@@ -159,10 +159,10 @@
             <v-file-input v-model="service.img" label="Service Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
           </v-col>
         </v-row>
-        <v-btn @click="addService">Add New Service</v-btn>
+        <v-btn @click="addService">Add New Service</v-btn> -->
 
         <!-- Offers Edit -->
-        <h3>Offers</h3>
+        <!-- <h3>Offers</h3>
         <v-row v-for="(offer, index) in editedCard.offers" :key="index">
           <v-col cols="6">
             <v-text-field v-model="offer.title" label="Offer Title" required></v-text-field>
@@ -172,7 +172,7 @@
             <v-file-input v-model="offer.img" label="Offer Image" prepend-icon="mdi-camera" variant="filled"></v-file-input>
           </v-col>
         </v-row>
-        <v-btn @click="addOffer">Add New Offer</v-btn>
+        <v-btn @click="addOffer">Add New Offer</v-btn> -->
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -208,30 +208,32 @@ export default {
   },
   computed: {
     parlourcard() {
-      return this.$store.getters["getCurrentSalon"];
+      return this.$store.getters["getCurrentSalon"][0];
     },
   },
   methods: {
     openEditDialog() {
       if (this.parlourcard) {
+        console.log('hello')
         this.editedCard = {
-          parlourName: this.parlourcard.parlourName || '',
-          coverImage: this.parlourcard.coverImage || '',
-          src: this.parlourcard.image || '',
-          description: this.parlourcard.description || '',
-          location: this.parlourcard.location || '',
-          phone: this.parlourcard.phoneNumber || '',
-          email: this.parlourcard.email || '',
-          services: [...this.parlourcard.services] || [],
-          offers: [...this.parlourcard.offers] || [],
+          parlourName: this.parlourcard.parlourName ,
+          coverImage: this.parlourcard.coverImage,
+          src: this.parlourcard.image ,
+          description: this.parlourcard.description,
+          location: this.parlourcard.location,
+          phone: this.parlourcard.phoneNumber,
+          email: this.parlourcard.email,
+          // services: [...this.parlourcard.services] || [],
+          // offers: [...this.parlourcard.offers] || [],
         };
-        this.editDialog = true;
+        // this.editDialog = true;
         this.coverImage = this.parlourcard.coverImage;
       } else {
         console.error("Parlourcard data is not available.");
       }
     },
     toggleEditDialog() {
+      this.openEditDialog();
       this.editDialog = !this.editDialog;
     },
     previewCoverImage(event) {
