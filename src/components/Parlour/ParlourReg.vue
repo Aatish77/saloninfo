@@ -86,7 +86,7 @@
   style="color: white"
   :error="errorp"
   :error-messages="errorMessagep"
-  :label="uploadedCoverPhotoName"
+  :label="uploadedcoverPhotoName"
   v-model="parlourCoverPhoto"
   :rules="parlourPhotoRules"
   accept="image/*"
