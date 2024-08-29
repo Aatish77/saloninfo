@@ -29,7 +29,7 @@ export default{
        },
        loadCurrentSalon(state,payload){
         state.currentSalon=payload;
-        sessionStorage.setItem('currentSalon',JSON.stringify(payload));
+        // sessionStorage.setItem('currentSalon',JSON.stringify(payload));
        },
 
        loadparlourBookinghistory(state,payload){

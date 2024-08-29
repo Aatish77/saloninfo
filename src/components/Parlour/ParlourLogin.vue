@@ -161,33 +161,33 @@ export default {
           console.log('routing')
           this.$router.push("/parlourprofile")
         }
-        else{
-          this.$refs.form.validate().then((valid) => {
-        console.log(valid);
-        if (valid.valid) {
-          this.error = "";
-          let found = false;
-          console.log("p", this.parlours);
-          let p = this.parlours;
-          for (const parlour of p) {
-            if (
-              this.email === parlour.email &&
-              this.password === parlour.password
-            ) {
-              sessionStorage.setItem("currentParlour", JSON.stringify(parlour));
-              this.$router.push("/parlourprofile");
-              found = true;
-              break;
-            }
-          }
-          if (!found) {
-            this.error =
-              "The email and password you entered don't match";
-          }
-        }
-      });
+        // else{
+        //   this.$refs.form.validate().then((valid) => {
+        // console.log(valid);
+        // if (valid.valid) {
+        //   this.error = "";
+        //   let found = false;
+        //   console.log("p", this.parlours);
+        //   let p = this.parlours;
+        //   for (const parlour of p) {
+        //     if (
+        //       this.email === parlour.email &&
+        //       this.password === parlour.password
+        //     ) {
+        //       sessionStorage.setItem("currentParlour", JSON.stringify(parlour));
+        //       this.$router.push("/parlourprofile");
+        //       found = true;
+        //       break;
+        //     }
+        //   }
+        //   if (!found) {
+        //     this.error =
+        //       "The email and password you entered don't match";
+        //   }
+        // }
+      //2});
           // this.error = "The email id and password don't match";
-        }
+        //}
       } catch (error) {
         console.error(error);
       }

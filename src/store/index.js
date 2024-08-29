@@ -7,7 +7,7 @@ const store = createStore({
   state() {
     return {
       // baseUrl: `http://localhost:8082`,
-      baseUrl: `http://192.168.1.30:8086`,
+      baseUrl: `http://192.168.1.41:8086`,
       adminToken:sessionStorage.getItem('adminToken')||'',
       parlourToken:sessionStorage.getItem('parlourToken')||"",
       userToken:sessionStorage.getItem('userToken')||"",

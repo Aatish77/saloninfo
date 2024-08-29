@@ -6,17 +6,18 @@ export default{
       },  
         async parlourLogin(context, payload) {
         try {
-          console.log(payload);
+          console.log('hello',payload);
           const response = await axios.post(
             `${context.getters.getBaseUrl}/parlour/ParlourLogin`,
             payload
           );
           
           if (response.status === 200) {
-            sessionStorage.setItem("parlourToken",response.data)
+            console.log('hello')
+            // sessionStorage.setItem("parlourToken",response.data.token)
             context.commit("addParlourToken", response.data.token);
-            console.log(response.data);
-            console.log('token',response.data.token)
+            console.log('response',response.data);
+            // console.log('token',response.data.token)
             context.commit("loadCurrentSalon",response.data.parlour)
             console.log('parlour',response.data.parlour)
             return true;
@@ -361,7 +362,7 @@ export default{
   },
   async serviceList(context,payload){
     try{
-      const response = await axios.get(`${context.getters.getBaseUrl}/parlour/${payload}/offers`)
+      const response = await axios.get(`${context.getters.getBaseUrl}/parlour/${payload}`)
       if(response.status===200){
         console.log(response.data)
         context.commit("setServiceList",response.data)
