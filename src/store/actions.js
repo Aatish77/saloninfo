@@ -14,10 +14,12 @@ export default{
           
           if (response.status === 200) {
             sessionStorage.setItem("parlourToken",response.data)
-            context.commit("addParlourToken", response.data);
+            context.commit("addParlourToken", response.data.token);
             console.log(response.data);
-            context.commit("loadCurrentSalon",response.data)
-            return response;
+            console.log('token',response.data.token)
+            context.commit("loadCurrentSalon",response.data.parlour)
+            console.log('parlour',response.data.parlour)
+            return true;
           }
         } catch (error) { 
           console.error(error);
@@ -341,18 +343,49 @@ export default{
     
   }
     },
+    //toget eachparlours
     async eachParlours(context,payload){
       try{
         const response = await axios.get(`${context.getters.getBaseUrl}/parlour/${payload}`)
         if(response.status>=200 && response.status<300){
           if(response.data && response.data.length>0){
             console.log(response.data)
-          context.commit("setEachparlours",response.data)
+          context.commit("setEachparlours",response.data[0])
+          console.log("getter",context.getters.getEachParlours)
           return true;
           }
           }}
           catch(error){
             console.error(error)
     }
-  }
+  },
+  async serviceList(context,payload){
+    try{
+      const response = await axios.get(`${context.getters.getBaseUrl}/parlour/${payload}/offers`)
+      if(response.status===200){
+        console.log(response.data)
+        context.commit("setServiceList",response.data)
+        }}
+        catch(error){
+          console.error(error)
+  
+}
+  },
+
+  async addServices(context,payload){
+    try {
+      const response = await axios.post(
+        `${context.getters.getBaseUrl}/Items/AddItems`,payload,{headers: {
+          Authorization: `Bearer ${context.getters.getParlourToken}`}
+        })
+      if (response.status===200){
+        console.log("Success")
+        console.log(response)
+      }}
+      catch(error){
+        console.error(error)
+      }
+  },
+
+  
 }

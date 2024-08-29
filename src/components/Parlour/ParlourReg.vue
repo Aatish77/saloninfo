@@ -51,38 +51,65 @@
                 <h2 class="text-center">Parlour Registration</h2>
               </v-col>
               <v-col cols="12" sm="6" >
-    <v-file-input
-      ref="photo"
-      style="color: white"
-      :error="errorp"
-      :error-messages="errorMessagep"
-      :label="uploadedPhotoName"
-      v-model="parlourPhoto"
-      :rules="parlourPhotoRules"
-      accept="image/*"
-      outlined
-      @change="previewParlourPhoto"
+                <v-file-input
+  ref="profilePhoto"
+  style="color: white"
+  :error="errorp"
+  :error-messages="errorMessagep"
+  :label="uploadedPhotoName"
+  v-model="parlourProfilePhoto"
+  :rules="parlourPhotoRules"
+  accept="image/*"
+  outlined
+  @change="previewParlourPhoto"
+/>
+
+
+<v-col cols="12" sm="6" v-if="profilePreviewUrl">
+  <v-card style="background-color: black; color: white">
+    <v-img
+      :src="profilePreviewUrl"
+      contain
+      class="align-end"
+      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
     >
-    </v-file-input>
-  </v-col>
-              <v-col cols="12" sm="6" v-if="previewUrl" >
-                <v-card style="background-color: black; color: white">
-                  <v-img
-                    :src="previewUrl" contain
-                    
-                    class="align-end"
-                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                    
-                    
-                  >
-                    <v-card-title
-                      class="text-white"
-                      style="font-size: 20px"
-                      
-                    >Parlour Photo</v-card-title>
-                  </v-img>
-                  </v-card>
-  </v-col>
+      <v-card-title class="text-white" style="font-size: 20px">
+        Parlour Profile Photo
+      </v-card-title>
+    </v-img>
+  </v-card>
+</v-col>
+</v-col>
+
+<v-file-input
+  ref="coverPhoto"
+  style="color: white"
+  :error="errorp"
+  :error-messages="errorMessagep"
+  :label="uploadedCoverPhotoName"
+  v-model="parlourCoverPhoto"
+  :rules="parlourPhotoRules"
+  accept="image/*"
+  outlined
+  @change="previewParlourCoverPhoto"
+/>
+
+
+<v-col cols="12" sm="6" v-if="coverPreviewUrl">
+  <v-card style="background-color: black; color: white">
+    <v-img
+      :src="coverPreviewUrl"
+      contain
+      class="align-end"
+      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+    >
+      <v-card-title class="text-white" style="font-size: 20px">
+        Parlour Cover Photo
+      </v-card-title>
+    </v-img>
+  </v-card>
+</v-col>
+
     
   
               <v-col cols="12" sm="6">
@@ -233,11 +260,13 @@ export default {
   data() {
     return {
       diaLoc:false,
-      parlourPhoto: null,
-      imageUrl:null,
-      previewUrl: null,
+      parlourProfilePhoto: null,
+      parlourCoverPhoto: null,
+      profilePreviewUrl: null,
+      coverPreviewUrl: null,
       dialogVis: false,
       licenseFile: null,
+      parlourPhoto:'',
       show1: false,
       show2: false,
       parlour: {},
@@ -250,7 +279,7 @@ export default {
       cpassword: "",
       licenseNo: "",
       licenseUrl:null,
-      rating:5,
+      rating:0,
       errorl: false,
       errorMessagel:'',
       errorp:false,
@@ -262,35 +291,39 @@ export default {
     };
   },
   methods: {
-    licensePhoto(){
-      const imgInput = this.$refs.license.files[0];
-       
-       const reader = new Image();
- 
-       reader.onload = () => {
-         this.licenseUrl = imgInput;
-       }
- 
-       reader.src = URL.createObjectURL(imgInput);
-    },
+    licensePhoto() {
+  const imgInput = this.$refs.license.files[0];
+  if (imgInput) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.licenseUrl = imgInput;
+    };
+    reader.readAsDataURL(imgInput);
+  }
+},
+
     previewParlourPhoto() {
-      const imgInput = this.$refs.photo.files[0];
-       
-      const reader = new Image();
-
-      reader.onload = () => {
-        this.imageUrl = imgInput;
-      }
-
-      reader.src = URL.createObjectURL(imgInput);
-      if (this.parlourPhoto) {
+      const imgInput = this.$refs.profilePhoto.files[0];
+      if (imgInput) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-          this.previewUrl = e.target.result;
+        reader.onload = () => {
+          this.profilePreviewUrl = imgInput
         };
-        reader.readAsDataURL(this.parlourPhoto);
+        reader.readAsDataURL(imgInput);
       } else {
-        this.previewUrl = null;
+        this.profilePreviewUrl = null;
+      }
+    },
+    previewParlourCoverPhoto() {
+      const imgInput = this.$refs.coverPhoto.files[0];
+      if (imgInput) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.coverPreviewUrl = imgInput;
+        };
+        reader.readAsDataURL(imgInput);
+      } else {
+        this.coverPreviewUrl = null;
       }
     },
     navparlourlogin() {
@@ -309,8 +342,10 @@ export default {
           this.dialogVis = true;
           const formData = new FormData();
           formData.append("parlourName", this.parlourName);
-          formData.append("image",this.imageUrl)
+          // formData.append("image",this.imageUrl)
           formData.append("location", this.location);
+          formData.append("coverImage", this.coverPreviewUrl);
+          formData.append("image", this.profilePreviewUrl);
           formData.append("phoneNumber", this.phone);
           formData.append("email", this.email);
           formData.append("description", this.description);
@@ -320,6 +355,7 @@ export default {
           formData.append("ratings", this.rating); // License File
           formData.append("latitude", parseFloat(this.latitude));
           formData.append("longitude", parseFloat(this.longitude));
+        
 
           this.$store.dispatch("addTheParlour", formData)
             .then(() => {
@@ -364,6 +400,11 @@ export default {
       this.errorp=false 
       this.errorMessagep=""}
     },
+    profilePreviewUrl(value){
+      if(value){
+      this.errorp=false 
+      this.errorMessagep=""}
+    },
     
   },
   created(){
@@ -377,8 +418,14 @@ export default {
       if (this.parlourPhoto) {
         return this.parlourPhoto.name;
       }
-      return "Upload Parlour Photo";
+      return "Upload Parlour profile Photo";
     },
+    uploadedcoverPhotoName() {
+    if (this.parlourCoverPhoto) {
+      return this.parlourCoverPhoto.name;
+    }
+    return "Upload Parlour Cover Photo";
+  },
     parlourPhotoRules() {
       return [(v) => !!v || "Parlour photo is required."];
     },

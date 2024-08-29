@@ -57,7 +57,7 @@
               <v-col :cols="12">
                 <v-card style=" color: white" class="bgcolor">
                   <v-img
-                    :src="getImageUrl(card.image)"
+                    :src="getImageUrl(datas.coverImage)"
                     alt="Slideshow"
                     class="align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
@@ -67,12 +67,21 @@
                     <v-card-title
                       class="text-white"
                       style="font-size: 30px"
-                      v-text="card.parlourName"
+                      v-text="datas.parlourName"
                     ></v-card-title>
                     <!-- <v-card-subtitle
                       ><h6>{{ card.subTitle }}</h6></v-card-subtitle
                     > -->
+
+                    <v-img
+                      :src="`data:image/png;base64,${datas.image}`"
+                      alt="Profile Photo"
+                      height="auto"
+                      width="170"
+                      class="profile-photo"
+                    ></v-img>
                   </v-img>
+                  
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -80,7 +89,7 @@
                     <v-btn href="#l1">
                       <div>
                         <h6 class="text-end" style="margin-top: 0px">
-                          {{ card.location }}
+                          {{ datas.location }}
                           <i class="fas fa-map-marker-alt"></i>
                         </h6></div
                     ></v-btn>
@@ -96,7 +105,7 @@
                   <v-row>
                     <v-col :cols="8">
                       <p>
-                        {{ card.description }}
+                        {{ datas.description }}
                       </p>
                     </v-col>
                   </v-row>
@@ -107,17 +116,17 @@
             <h1 class="mt-3">Services</h1>
             <v-row
               class="book"
-              v-for="(service, index) in card.items"
+              v-for="(service, index) in datas.items"
               :key="service"
             >
               <v-col :cols="12" md="6" v-if="index % 2 === 0">
-                <!-- <v-img
+                <v-img
                   class="round-img square-image"
-                  :src="service.img"
+                   :src="getImageUrl(service.itemImage)"
                   height="300px"
                   width="300px"
                 >
-                </v-img> -->
+                </v-img>
               </v-col>
               <v-col :cols="12" md="6" v-else>
                 <h1 class="hc1">{{ service.itemName }}</h1>
@@ -164,13 +173,13 @@
               </v-col>
 
               <v-col :cols="12" :md="6" v-if="index % 2 !== 0">
-                <!-- <v-img
+                <v-img
                   class="round-img square-image"
-                  :src="service.img"
+                  :src="getImageUrl(service.itemImage)"
                   height="300px"
                   width="300px"
-                > -->
-                <!-- </v-img> -->
+                >
+                </v-img>
               </v-col>
               <v-col :cols="12" :md="6" v-else>
                 <h1 class="hc1">{{ service.itemName }}</h1>
@@ -410,7 +419,7 @@ export default {
       return currentLabel;
     },
     datas() {
-      return this.$store.getters["getSalons"];
+      return this.$store.getters["getEachParlours"];
       // return this.$store.getters["getSalons"];
     },
     currentImage() {
@@ -425,8 +434,8 @@ export default {
     this.startSlideshow();
   },
   created() {
-    this.dataFetch()
-    this.card=this.$store.getters["getEachParlours"]
+    // this.dataFetch()
+    // this.card=this.$store.getters["getEachParlours"]
     console.log(this.card)
     
   //   if (this.currentLabel) {
@@ -471,6 +480,7 @@ export default {
   },
   methods: {
     getImageUrl(base64String) {
+      console.log("url",base64String)
       return `data:image/png;base64,${base64String}`;
     },
     async dataFetch(){

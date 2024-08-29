@@ -28,7 +28,8 @@ export default{
         state.categories[payload.catIndex].subCategories[payload.subIndex].subsubCategories=payload.data
        },
        loadCurrentSalon(state,payload){
-        state.currentSalon=payload
+        state.currentSalon=payload;
+        sessionStorage.setItem('currentSalon',JSON.stringify(payload));
        },
 
        loadparlourBookinghistory(state,payload){
@@ -45,5 +46,12 @@ export default{
       },
       setEachparlours(state,payload){
         state.eachparlours=payload
+        
+      },
+      setServiceList(state,payload){
+        state.servicelist=payload
+      },
+      setAddServices(state,payload){
+        state.addservices=payload
       }
       }

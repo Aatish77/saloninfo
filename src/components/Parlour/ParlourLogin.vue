@@ -157,7 +157,8 @@ export default {
           "password":this.password
         })
         if(res){
-          sessionStorage.setItem("currentParlour", JSON.stringify(res))
+          // sessionStorage.setItem("currentParlour", JSON.stringify(res))
+          console.log('routing')
           this.$router.push("/parlourprofile")
         }
         else{
@@ -181,7 +182,7 @@ export default {
           }
           if (!found) {
             this.error =
-              "The phone number and password you entered don't match";
+              "The email and password you entered don't match";
           }
         }
       });
